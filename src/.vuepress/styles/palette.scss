@@ -1,0 +1,25 @@
+// you can change colors here
+$theme-color: #303e85;
+html[data-theme=dark] {
+  --navbar-bg-color: #1a1a1a;
+  --sidebar-bg-color: var(--bg-color-blur);
+  --theme-color: #3ed270;
+  --tip-bg-color: rgba(0, 89, 30, 0.51);
+}
+.vp-action {
+
+  border-radius: 0.2rem !important;
+
+}
+.vp-hero-info-wrapper {
+  height: 100vh;
+}
+.vp-hero-infos{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+//strong {
+//  font-weight: bold !important; 
+//  color: #d35400 !important;
+//}
