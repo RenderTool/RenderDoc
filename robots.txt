@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://vuepress-theme-hope-docs-demo.netlify.app/RenderDoc/sitemap.xml
+Sitemap: https://rendertool.github.io/RenderDoc/RenderDoc/sitemap.xml
