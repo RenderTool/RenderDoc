@@ -8,6 +8,7 @@ export default defineUserConfig({
   description: "斯高和的文档",
 
   theme,
+  
   // Enable it with pwa
   // shouldPrefetch: false,
 });

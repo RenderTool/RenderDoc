@@ -4,18 +4,18 @@ import sidebar from "./sidebar.js";
 import {defaultTheme} from "@vuepress/theme-default";
 export default hopeTheme({
   fullscreen: true,
-  hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
+  hostname: "https://rendertool.github.io/RenderDoc/",
   author: {
     name: "Mr.Si",
-    url: "https://mister-hope.com",
+    url: "https://rendertool.github.io/RenderDoc/",
   },
 
   iconAssets: "fontawesome-with-brands",
 
   logo: "/logo.svg",
 
-  repo: "vuepress-theme-hope/vuepress-theme-hope",
-
+  repo: "RenderTool/RenderDoc",
+  docsBranch:"master",
   docsDir: "src",
   
   // navbar
@@ -38,7 +38,6 @@ export default hopeTheme({
   metaLocales: {
     editLink: "在 GitHub 上编辑此页",
   },
-
   plugins: {
     // You should generate and use your own comment service
     comment: {
@@ -179,4 +178,5 @@ export default hopeTheme({
 // 在这里放置属于 @vuepress/theme-default 的配置项
 export const themeConfig = defaultTheme({
   colorMode: "dark",
+  
 });

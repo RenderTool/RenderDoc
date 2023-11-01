@@ -20,10 +20,8 @@ tag:
 sticky: true
 # 此页面会出现在文章收藏中
 star: true
-# 你可以自定义页脚
-footer: 这是测试显示的页脚
-# 你可以自定义版权信息
-copyright: 无版权
+copyright: false
+footer: MIT 协议, 斯高和版权所有 © 2023
 ---
 
 `more` 注释之前的内容被视为文章摘要。
