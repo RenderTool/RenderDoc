@@ -1,8 +1,8 @@
 import { hopeTheme  } from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
-import {defaultTheme} from "@vuepress/theme-default";
 export default hopeTheme({
+  darkmode : "toggle",
   fullscreen: true,
   hostname: "https://rendertool.github.io/RenderDoc/",
   author: {
@@ -24,7 +24,7 @@ export default hopeTheme({
   // sidebar
   sidebar,
 
-  footer: "默认页脚",
+  //footer: "MIT 协议, 斯高和版权所有 © 2023",
 
   displayFooter: true,
 
@@ -39,6 +39,7 @@ export default hopeTheme({
     editLink: "在 GitHub 上编辑此页",
   },
   plugins: {
+    
     // You should generate and use your own comment service
     comment: {
       provider: "Giscus",
@@ -47,7 +48,7 @@ export default hopeTheme({
       category: "Announcements",
       categoryId: "DIC_kwDOKnzR2s4Cam3R",
     },
-
+    
     // All features are enabled for demo, only preserve features you need here
     mdEnhance: {
       align: true,
@@ -74,7 +75,8 @@ export default hopeTheme({
       imgLazyload: true,
       imgSize: true,
       include: true,
-
+      imgMark: true,
+      
       // install katex before enabling it
       // katex: true,
 
@@ -112,7 +114,7 @@ export default hopeTheme({
       sup: true,
       tabs: true,
       vPre: true,
-
+     
       // install @vue/repl before enabling it
       // vuePlayground: true,
     },
@@ -174,9 +176,4 @@ export default hopeTheme({
     //   },
     // },
   },
-});
-// 在这里放置属于 @vuepress/theme-default 的配置项
-export const themeConfig = defaultTheme({
-  colorMode: "dark",
-  
 });

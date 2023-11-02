@@ -2,6 +2,26 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   "/",
-  "/CPP/",
-  "/Unreal/",
+  {
+    text: "开发语言",
+    icon: "signs-post",
+    prefix: "/language/",
+    children: ["markdown/"],
+  },
+  {
+    text: '开发工具',
+    icon: "screwdriver-wrench",
+    prefix: "/tools/",
+    children:["git/","github/","vscode/"],
+  },
+  // {
+  //   text: '开发工具',
+  //   icon: "screwdriver-wrench",
+  //   prefix: "/tools/",
+  //   children: [
+  //     {text: 'Git', link: 'git/'},
+  //     {text: 'Github', link: 'github/'},
+  //     {text: 'VSCode', link: 'vscode/'},
+  //   ]
+  // },
 ]);

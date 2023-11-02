@@ -11,7 +11,7 @@ heroText: RenderDoc
 tagline:  斯高和的笔记
 actions:
   - text: 开始修炼
-    link: ./CPP/
+    link: /#🤷%E2%80%8D♂%EF%B8%8F-写在前面
     type: primary
 features:
   - title: 技术聚焦
@@ -21,8 +21,6 @@ features:
   - title: 丰富表达
     details: 图文代码结合，直观地展示解决方案，同时享受问题解决的过程。
 
-copyright: false
-footer: MIT 协议, 斯高和版权所有 © 2023
 
 
 ---
@@ -39,8 +37,14 @@ footer: MIT 协议, 斯高和版权所有 © 2023
 
 ::: info
 * 当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
-  :::
-```cpp
+:::
+
+
+::: code-tabs#shell
+
+@tab:active  cpp
+
+``` cpp
 void AYourGameCharacter::BeginPlay()
 {
     // Super 表示调用父类的方法或属性，这里调用开始事件
@@ -50,13 +54,88 @@ void AYourGameCharacter::BeginPlay()
 }
 ```
 
+@tab lua
+
+```lua
+
+-- 定义一个新的 Lua 类，继承自 Unreal Engine 的 AYourGameCharacter
+YourGameCharacter = AYourGameCharacter:new()
+
+-- 重写 BeginPlay 方法
+function YourGameCharacter:BeginPlay()
+    -- 调用父类的 BeginPlay 方法
+    self:SuperBeginPlay()
+    
+    -- 控制台中打印 hello
+    UE_LOG("LogTemp", "Warning", "hello")
+end
+
+```
+:::
+
+
+[//]: # (<div class="image-preview">)
+
+[//]: # (  <img src="https://theme-hope.vuejs.press/assets/image/1.jpg" />)
+
+[//]: # (</div>)
+
+[//]: # ()
+[//]: # (<style>)
+
+[//]: # (  .image-preview {)
+
+[//]: # (    display: flex;)
+
+[//]: # (    justify-content: space-evenly;)
+
+[//]: # (    align-items: center;)
+
+[//]: # (    flex-wrap: wrap;)
+
+[//]: # (  })
+
+[//]: # ()
+[//]: # (  .image-preview > img {)
+
+[//]: # (     box-sizing: border-box;)
+
+[//]: # (     width: 33.3% !important;)
+
+[//]: # (     padding: 9px;)
+
+[//]: # (     border-radius: 16px;)
+
+[//]: # (  })
+
+[//]: # ()
+[//]: # (  @media &#40;max-width: 719px&#41;{)
+
+[//]: # (    .image-preview > img {)
+
+[//]: # (      width: 50% !important;)
+
+[//]: # (    })
+
+[//]: # (  })
+
+[//]: # ()
+[//]: # (  @media &#40;max-width: 419px&#41;{)
+
+[//]: # (    .image-preview > img {)
+
+[//]: # (      width: 100% !important;)
+
+[//]: # (    })
+
+[//]: # (  })
+
+[//]: # (</style>)
 
  ::: tip
 * 为了TA的视力健康，默认采用深色主题。
  :::
 
-### 👦关于本人
-对游戏特感兴趣，我经常会犯错，我经常会遗忘。
 
 ## :email: 联系
 
