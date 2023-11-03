@@ -11,7 +11,7 @@ heroText: RenderDoc
 tagline:  斯高和的笔记
 actions:
   - text: 开始修炼
-    link: /#🤷%E2%80%8D♂%EF%B8%8F-写在前面
+    link: /#🤞关于本站
     type: primary
 features:
   - title: 技术聚焦
@@ -24,14 +24,14 @@ features:
 
 
 ---
-## 🤷‍♂️ 写在前面
+### 🤞关于本站
 
 欢迎你的到来，本站基于 [VuePress](https://theme-hope.vuejs.press/zh/) 的中文技术文档站点！虽然被称为技术站，却更像是我的个人开发日志。
 希望这里的内容能对你有所帮助！
-### 🤞关于本站
+
 我主要记录与建模、渲染技术、光线追踪、[UE4/UE5](https://docs.unrealengine.com/5.0/zh-CN/)、各类编程语言、以及各类工具使用等综合技术应用相关的内容。
 
-主要形式：图文- 视频- 代码(蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)** 可用Ctrl+C复制)
+>主要形式：图文- 视频- 代码(蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)** 可用Ctrl+C复制)
 
 <iframe src="https://blueprintue.com/render/j0oxoqx7/" width="100%" height="500" scrolling="no" allowfullscreen></iframe>
 
@@ -133,9 +133,10 @@ end
 [//]: # (</style>)
 
  ::: tip
-* 为了TA的视力健康，默认采用深色主题。
+* 为了TA的视力健康，建议采用深色主题。
  :::
 
+>如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
 
 ## :email: 联系
 

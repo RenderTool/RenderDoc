@@ -1,4 +1,7 @@
-# vscode- 修复 TODO HIGHLIGHT 的链接
+---
+title: vscode- 修复 TODO HIGHLIGHT 的链接
+order : 2
+---
 
 [VSCODE-TODO-HIGHLIGHT](https://github.com/wayou/vscode-todo-highlight) 在 linux 平台下输出所有事项时对路径进行了编码，导致跳转失败。
 

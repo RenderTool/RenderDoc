@@ -1,4 +1,9 @@
-# Github- 同步一个 fork
+---
+title: Github- 同步一个 fork
+order : 3
+tag:
+  - 踩坑记录
+---
 
 ## 配置 upstream
 

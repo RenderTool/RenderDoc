@@ -1,7 +1,6 @@
 ---
 title: Github- ssh key引发的push failed
-dir:
-  sidebar: 1
+order : 4
 tag:
   - 踩坑记录
   - Rider

@@ -1,8 +1,6 @@
 ---
 title: Git
 icon: code-compare
-dir:
-  order: 1
 category:
   - 开发工具
   - Git

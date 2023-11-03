@@ -1,9 +1,9 @@
 ---
+title: Git-规范 Git 提交信息并生成日志
+order : 3
 tag:
   - husky
 ---
-
-# Git-规范 Git 提交信息并生成日志
 
 ## Commit 规范化
 

@@ -1,4 +1,7 @@
-# vscode- 处理 VSCode 错误
+---
+title: vscode- 处理 VSCode 错误
+order : 1
+---
 
 ## 无法监视文件变化
 

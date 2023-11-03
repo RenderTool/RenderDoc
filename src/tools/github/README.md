@@ -1,8 +1,6 @@
 ---
 title: Github
 icon: fab fa-github
-dir:
-  order: 2
 category:
   - 开发工具
   - Github
