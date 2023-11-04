@@ -1,6 +1,6 @@
 ---
 title:  Git- 使用子模块
-order : 4
+order : 5
 ---
 
 当希望某个项目依赖于另外一个项目，虽然有 lerna 的方案可以选择，但若希望它具有独立的 `issue`、`feature` 管理，那么可能需要 `multi-repo` 的形式。

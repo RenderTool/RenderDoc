@@ -1,6 +1,6 @@
 ---
 title: Git-规范 Git 提交信息并生成日志
-order : 3
+order : 4
 tag:
   - husky
 ---

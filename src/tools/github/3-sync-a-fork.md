@@ -4,8 +4,12 @@ order : 3
 tag:
   - 踩坑记录
 ---
+## 问题详情
+如何同步一个fork?
 
-## 配置 upstream
+## 解决思路
+
+### 1. 配置 upstream
 
 ```bash
 # 查看远程仓库
@@ -15,17 +19,16 @@ git remote add upstream https://github.com/vueComponent/ant-design-vue.git
 git remote -v # 验证
 ```
 
-## 同步 upstream
+### 2. 同步 upstream
 
 ```bash
 git fetch upstream # fetch
 git merge upstream/master # merge
 ```
 
-## 推送
+### 3.  推送
 
 ```bash
 git push
 ```
 
-最后前往 github 验证即可。

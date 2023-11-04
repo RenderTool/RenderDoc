@@ -3,12 +3,7 @@ import { navbar } from "vuepress-theme-hope";
 export default navbar([
   "/",
   "/preface/",
-  {
-    text: 'unreal',
-    icon: "u",
-    prefix: "/unreal/",
-    children:["unrealbase/"],
-  },
+  "/unreal/",
   {
     text: "开发语言",
     icon: "signs-post",
