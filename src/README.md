@@ -31,8 +31,12 @@ features:
 
 我主要记录与建模、渲染技术、光线追踪、[UE4/UE5](https://docs.unrealengine.com/5.0/zh-CN/)、各类编程语言、以及各类工具使用等综合技术应用相关的内容。
 
->主要形式：图文- 视频- 代码(蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)** 可用Ctrl+C复制)
+>主要形式：图文- 视频- 代码(蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)** )
 
+<ChatMessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
+baba绝对不会告诉你这个蓝图可以复制的。
+</ChatMessage>
+<br>
 <iframe src="https://blueprintue.com/render/j0oxoqx7/" width="100%" height="500" scrolling="no" allowfullscreen></iframe>
 
 ::: info
@@ -73,68 +77,9 @@ end
 ```
 :::
 
-
-[//]: # (<div class="image-preview">)
-
-[//]: # (  <img src="https://theme-hope.vuejs.press/assets/image/1.jpg" />)
-
-[//]: # (</div>)
-
-[//]: # ()
-[//]: # (<style>)
-
-[//]: # (  .image-preview {)
-
-[//]: # (    display: flex;)
-
-[//]: # (    justify-content: space-evenly;)
-
-[//]: # (    align-items: center;)
-
-[//]: # (    flex-wrap: wrap;)
-
-[//]: # (  })
-
-[//]: # ()
-[//]: # (  .image-preview > img {)
-
-[//]: # (     box-sizing: border-box;)
-
-[//]: # (     width: 33.3% !important;)
-
-[//]: # (     padding: 9px;)
-
-[//]: # (     border-radius: 16px;)
-
-[//]: # (  })
-
-[//]: # ()
-[//]: # (  @media &#40;max-width: 719px&#41;{)
-
-[//]: # (    .image-preview > img {)
-
-[//]: # (      width: 50% !important;)
-
-[//]: # (    })
-
-[//]: # (  })
-
-[//]: # ()
-[//]: # (  @media &#40;max-width: 419px&#41;{)
-
-[//]: # (    .image-preview > img {)
-
-[//]: # (      width: 100% !important;)
-
-[//]: # (    })
-
-[//]: # (  })
-
-[//]: # (</style>)
-
- ::: tip
-* 为了TA的视力健康，建议采用深色主题。
- :::
+<ChatMessage avatar="/assets/emoji/ybk.png" :avatarWidth="40">
+ 为了TA的视力健康，建议采用深色主题。
+</ChatMessage>
 
 >如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Github- ssh key引发的push failed
-order : 4
+title: Github- 自动部署
+order : 5
 tag:
   - 踩坑记录
 ---

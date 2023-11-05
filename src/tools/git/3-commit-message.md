@@ -5,9 +5,11 @@ tag:
   - husky
 ---
 
-## Commit 规范化
+## 前言
 
-大家都使用 [Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.greljkmo14y0)。
+规范的 commit message 有助于团队其它人员 review[Angular 规范](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.greljkmo14y0)。
+
+## 规范(commit)
 
 Commit message 包括三个部分：
 
@@ -47,6 +49,25 @@ Commit message 包括三个部分：
   ```
 
 ### 1. 模板
+
+[//]: # ( <div class="chat-message">)
+
+[//]: # (    <div class="avatar">)
+
+[//]: # (      <img src="../../assets/R.jpg" alt="头像">)
+
+[//]: # (    </div>)
+
+[//]: # (    <div class="message">)
+
+[//]: # (      <p>对不起我是真记不住。</p>)
+
+[//]: # (    </div>)
+
+[//]: # (</div>)
+
+
+
 
 提交信息最好在在[模板](https://www.npmjs.com/package/commitizen)的约束下：
 
@@ -127,7 +148,7 @@ npx commitizen init cz-conventional-changelog --yarn --dev --exact
   ✖   type may not be empty [type-empty]
   ```
 
-## 生成 CHANGELOG
+## 生成 (CHANGELOG)日志
 
 根据规则生成 CHANGELOG 的前提是 commit 规范化。
 
@@ -195,12 +216,14 @@ npm i lint-staged -D
 接着前往 `package.json` 增加 `lint-staged` 字段，以 vue-cli 创建的项目示例：
 
 ```json
-"lint-staged": {
-  "*.{js,jsx,vue,ts,tsx}": [
-    "vue-cli-service lint",
-    "git add"
-  ]
-}
+
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+
 ```
 
 而 husky 校验同样不在 `package.json` 中设置了：
@@ -210,3 +233,6 @@ npx husky add .husky/pre-commit "npx --no-install lint-staged"
 ```
 
 如果还想加些什么，可以手动追加，例如 [stylelint](https://github.com/stylelint/stylelint)。
+
+## 参考资料
+[Git Commit规范指北](https://juejin.cn/post/7138790324494827533)

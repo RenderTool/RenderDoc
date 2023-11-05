@@ -7,7 +7,7 @@ tag:
 
 ## 问题详情
 
-有时候要对多个 github 账号进行切换。比如，自己的、公司的、小号。
+有时候要对多个 github 账号进行切换。
 
 ## 解决思路
 ### 前置准备
@@ -85,10 +85,11 @@ tag:
 
 ### 7. 切换账户
 >   假定我们A账户切换到N账号
->   ```bash
->   git config --global user.name n账户名
->   git config --global user.email n账户的邮箱
->   ```
+
+```bash
+ git config --global user.name n账户名
+git config --global user.email n账户的邮箱
+```
 
 ### 8. clone or add
 >   clone
@@ -132,4 +133,4 @@ tag:
 
 ## 参考资料
 如果你阅读本文有点吃力，或者对其中的git操作不太清楚，我强烈建议你看看我写的git基本操作篇。🤦‍♂️
-[git基本操作](../git/0-gitbase.md)
+[git基本操作](../git/README.md)

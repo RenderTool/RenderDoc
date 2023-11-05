@@ -81,3 +81,21 @@ git rm -r --cached a/
 # 示例 -- 取消所有文件
 git rm -r --cached .
 ```
+## 总结
+
+<ChatMessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
+人生苦短，用IDE吧。
+</ChatMessage>
+
+> 以rider为例,通过界面可以设置哪些文件进行管理排除，简直不要太方便。
+
+
+![ide.png](assets%2Fide.png)
+>并非凭空排除，依然使用`.gitignore` 
+
+![idegitignore.png](assets%2Fidegitignore.png)
+
+## 参考资料
+如果你阅读本文有点吃力，或者对其中的git操作不太清楚，我强烈建议你看看我写的git基本操作篇。🤦‍♂️
+[git基本操作](../git/README.md)
+[Rider](https://www.jetbrains.com/zh-cn/rider/)

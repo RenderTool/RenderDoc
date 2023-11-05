@@ -1,5 +1,5 @@
 ---
-title: vscode
+title: VSCode
 icon: code
 dir:
   order: 3
@@ -8,7 +8,7 @@ category:
   - vscode
 tag:
   - 介绍
-  - vscode
+  - VSCode
 ---
 
 ## VSCode
@@ -16,17 +16,16 @@ tag:
 
 > Visual Studio Code（简称 VS Code）是一款由微软开发且跨平台的免费源代码编辑器。
 如果部署Rider开发UEc++更好真的极力推荐使用。
-### 下载 VSCode
+## 下载 VSCode
 
 [下载地址](https://code.visualstudio.com/)
 
-::: tip
-
+<ChatMessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
 请点击左侧的蓝色按钮完成下载。
+</ChatMessage>
 
-:::
 
-### 安装 VSCode
+## 安装 VSCode
 
 1. 双击安装包打开
 

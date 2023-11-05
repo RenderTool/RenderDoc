@@ -8,6 +8,8 @@ order : 3
 
 有个小任务，拉取 [Chromium OS](https://www.chromium.org/chromium-os/quick-start-guide) 的代码：
 
+## 实践
+
 ```bash
 cd ${SOURCE_REPO}
 repo init -u https://chromium.googlesource.com/chromiumos/manifest.git
