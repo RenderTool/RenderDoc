@@ -42,6 +42,11 @@ tag:
 
 要注意引用图片的资源路径位置变化，原本在同级路径引用，现在上一级路径引用。
 
+``` html {1,1}
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+实际部署路径在
+</ChatMessage>
+```
 
 ``` text 
 ./assets/emoji/blzt.png
