@@ -30,7 +30,7 @@ export default hopeTheme({
 
   encrypt: {
     config: {
-      "/CPP/encrypt.html": ["1234"],
+      "/tools/github/5-autoaction.html": ["1234"],
     },
   },
 
