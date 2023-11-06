@@ -12,7 +12,7 @@ export default hopeTheme({
 
   iconAssets: "fontawesome-with-brands",
 
-  logo: "/logo.svg",
+  logo: "./logo.svg",
 
   repo: "RenderTool/RenderDoc",
   docsBranch:"master",
