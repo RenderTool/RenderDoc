@@ -77,7 +77,7 @@ end
 ```
 :::
 
-<ChatMessage avatar="/assets/emoji/ybk.png" :avatarWidth="40">
+<ChatMessage avatar="./assets/emoji/ybk.png" :avatarWidth="40">
  为了TA的视力健康，建议采用深色主题。
 </ChatMessage>
 
