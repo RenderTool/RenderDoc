@@ -8,7 +8,7 @@ order : 1
 vuepress添加自定义组件-以实现聊天气泡为例。
 
 ## 实现目标
-<ChatMessage avatar="/assets/emoji/ybk.png" :avatarWidth="40">
+<ChatMessage avatar="./assets/emoji/ybk.png" :avatarWidth="40">
   这是一条聊天消息。
 </ChatMessage>
 
@@ -61,7 +61,7 @@ vuepress添加自定义组件-以实现聊天气泡为例。
 ```
 ### 方案2：全局导入 Vue 组件
 
-<ChatMessage avatar="/assets/emoji/ybk.png" :avatarWidth="40">
+<ChatMessage avatar="./assets/emoji/ybk.png" :avatarWidth="40">
 很显然，方案1局限非常大，每次使用都要粘贴大量代码。
 </ChatMessage>
 

@@ -33,7 +33,7 @@ features:
 
 >主要形式：图文- 视频- 代码(蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)** )
 
-<ChatMessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
 baba绝对不会告诉你这个蓝图可以复制的。
 </ChatMessage>
 <br>

@@ -20,7 +20,7 @@ tag:
 
 [下载地址](https://code.visualstudio.com/)
 
-<ChatMessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
 请点击左侧的蓝色按钮完成下载。
 </ChatMessage>
 
