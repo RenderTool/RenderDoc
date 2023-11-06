@@ -12,9 +12,9 @@ tag:
 ---
 
 ## VSCode
-![Visual_Studio_Code](assets%2FVisual_Studio_Code_1.35_icon.svg.png =200x)
+![](assets%2FVisual_Studio_Code_1.35_icon.svg =150x)
 
-> Visual Studio Code（简称 VS Code）是一款由微软开发且跨平台的免费源代码编辑器。
+[Visual Studio Code](https://code.visualstudio.com/docs)（简称 VS Code）是一款由微软开发且跨平台的免费源代码编辑器。
 如果部署Rider开发UEc++更好真的极力推荐使用。
 ## 下载 VSCode
 

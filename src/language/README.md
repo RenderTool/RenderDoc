@@ -5,6 +5,6 @@ article: false
 ---
 
 ## 开发语言
-### Markdown
+- [lua](lua/README.md)
 - [Markdown](markdown/README.md)
 

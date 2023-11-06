@@ -8,7 +8,7 @@ export default navbar([
     text: "开发语言",
     icon: "signs-post",
     prefix: "/language/",
-    children: ["markdown/"],
+    children: ["markdown/","lua/"],
   },
   {
     text: '开发工具',
