@@ -83,7 +83,7 @@ git rm -r --cached .
 ```
 ## 总结
 
-<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 人生苦短，用IDE吧。
 </ChatMessage>
 
