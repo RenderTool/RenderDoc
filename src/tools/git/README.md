@@ -13,34 +13,173 @@ tag:
 
 ![](assets%2FGit-logo.svg =200x)
 
-[Git]("https://git-scm.com/")是一个开源的分布式版本控制系统。它被设计用来以 _高速_ 和 _高效_ 的方式处理从小型到大型项目。它的开发是为了协调开发人员之间的工作。版本控制使我们能够在同一工作区跟踪并与我们的团队成员一起工作。
+[Git]("https://git-scm.com/")是世界上先进的开源「分布式的版本控制系统」，而SVN是「集中式的版本控制系统」，SVN对于版本的管理集中于中央服务器中，而Git对于版本的管理可以在本地。
 
-## 基础概念
+## 安装
+工欲善其事必先利其器。[下载地址](https://git-scm.com/downloads)
 
-### 1. 工作区（workspace）
+![](assets%2Fgitdownload.jpg)
 
->当前文件夹中可见的文件结构。在初始化或执行 `git clean` 命令后，工作区和暂存区相同。随着修改，未经过 `git add` 的文件会使工作区与暂存区不一致。
+>windows中安装好以后，空白处右键会多Git GUI Here以及Git Bash Here。
 
-```bash
-$ git status
-# 当前分支为 master
-# 没有需要提交的更改，工作目录干净
+![](assets%2Fgit%20gui.jpg =300x)
+
+## 基本概念
+
+### 1. GIT
+> 一个开源的分布式版本控制系统
+### 2.[Github](../github/README.md)
+> 一个托管和协作管理 Git 仓库的"同性交友"平台
+
+### 3. GIT基本概念
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+在Git中几个基本概念
+</ChatMessage>
+
+1. **工作区（Workspace）：** 你在本地计算机上用来编辑、修改和保存文件的目录，包含了项目的实际文件。
+
+2. **暂存区（Staging Area）：** 一个中间区域，可以暂时存放你要提交的修改，允许你一次性提交多个修改。使用 `git add` 命令将工作区中的修改添加到暂存区。
+> 在早期的Git文档和一些教程中，"暂存区" 有时会被称为 "索引"，而 "索引" 也经常被用来指代暂存区。这两者的含义完全相同，只是术语不同而已。
+3. **本地仓库（Local Repository）：** 包含了完整的版本历史、分支信息等的目录，通常是指项目根目录下的 `.git` 目录。它是Git用来记录和管理项目变更历史的核心。
+
+4. **远程仓库（Remote Repository）：** 存储在服务器上的代码仓库，可以供团队成员共享和协作。可以通过 `git push` 和 `git pull` 与远程仓库进行交互。
+
+5. **提交（Commit）：** 将工作区或者暂存区的修改记录到本地仓库中，形成一个版本快照，可以随时回溯到这个版本。
+
+## 实践
+
+### 1. 配置
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+ 对所有本地仓库的用户信息进行配置
+</ChatMessage>
+
+``` sh
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
+```
+### 2.初始化
+
+<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+配置完信息后，就可以「创建目录并初始化自己的本地仓库」
+</ChatMessage>
+
+``` sh
+$ mkdir testfolder             # 创建一个名为 testfolder 的文件夹
+$ cd testfolder                # 进入到 testfolder 文件夹
+$ pwd                          # 输出当前工作目录的路径，此时应该是 /e/testfolder
+
+$ git init                     # 初始化本地仓库，创建了一个新的 Git 仓库
+#$ git clean                   # 是一个用于清理工作区的命令，谨慎使用以避免意外删除重要文件。
+```
+输出：
+`Initialized empty Git repository in /e/testfolder/.git/`
+
+> 使用（ git clone 命令）来获取代码，而不需要再次执行 git init。
+
+### 3.创建仓库
+
+* 添加 - **`git add`**
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+在接下来的操作中，你可以做一些修改，并通过以下命令将它们提交到版本库中
+</ChatMessage>
+
+``` sh
+$ git add <文件名>              # 将文件添加到暂存区
+$ git commit -m "提交信息"      # 提交暂存区中的修改，并附上提交信息
 ```
 
-### 2. 暂存区（index）
+>操作结束后可以用git status查看文件
 
->临时存放文件的区域，会随着 `git commit` 一起提交到本地仓库。
+![](assets%2Fgitstatus.jpg)  
 
-### 3. 本地仓库（local repository）
+<hr>
 
->本地存储库，可以完全离线操作，包括 log、history、commit、diff 等。
+* 远程 - 连接 -  **`git remote`**
+<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+  如果有远程仓库，可以使用这个命令和远程仓库连接起来。
+</ChatMessage>
 
-### 4. 远程仓库（remote repository）
+``` sh
+$ git remote add origin [远程仓库的URL]
+```
 
->中心仓库，可以分享给其他人。
+<hr>
+
+* 远程- 克隆 - **`git clone`** 
+<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+不需要 git init(初始化) 和 mkdir（创建文件夹）操作，最多就是cd（切换）到想放的目录。
+</ChatMessage>
+
+``` sh
+$ git clone <远程仓库的URL>
+```
+![](assets%2Fgitclone.jpg)
+
+<hr>
+
+* 远程推送 -**`git push`**
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+将本地仓库的内容推送到远程仓库中
+</ChatMessage>
+
+``` sh
+$ git push origin main
+
+#如果是第一次
+$ git push -u origin <本地分支名>
+```
+<hr>
+
+### 4.同步操作
 
 
-### 查看帮助
+| 命令               | 作用                                       | 示例                                |
+|------------------|------------------------------------------|---------------------------------|
+| git merge        | 将一个分支的代码合并到当前分支中           | `git merge <分支名>`                |
+| git fetch        | 从远程仓库获取最新的代码和分支信息，但不合并 | `git fetch <远程仓库>`              |
+| git pull         | 获取远程仓库的最新代码并将其合并到当前分支  | `git pull <远程仓库> <分支名>`       |
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<span style="color: #c0392b">git pul</span>相当于先执行<span style="color: #c0392b">git fetch</span>，再紧接着执行 <span style="color: #c0392b">git merge</span>将远程仓库的代码合并到本地分支中。
+</ChatMessage>
+
+<hr>
+
+>可以保持本地仓库与远程仓库的同步，同时确保清理掉已经不存在的远程分支。
+
+```sh
+git fetch --prune
+```
+
+>还可利用 [xargs](/os/linux/xargs) 配合 `grep` 清理指定条件分支：
+
+```sh
+git branch | grep 'fix/*' | xargs git branch -D
+```
+<hr>
+
+### 5.分支操作
+
+| 命令                           | 功能                                               |
+|-------------------------------|--------------------------------------------------|
+| `git branch [branch-name]`     | 创建一个新分支                                      |
+| `git switch -c [branch-name]`  | 切换到指定分支并更新工作目录(working directory)   |
+| `git merge [branch]`          | 将指定分支的历史合并到当前分支                     |
+| `git branch -d [branch-name]`  | 删除指定的分支                                     |
+
+<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+记不住根本记不住。
+</ChatMessage>
+
+### 6.其他
+* 日志 - **`git log`**
+```bash
+# 所有分支指定用户指定时间范围提交信息
+
+git log --all --author="你的名称" --after="2022-07-16" --before="2022-07-23" --no-merges --pretty=format:"%an(%ae) %as: %s"
+```
+
+## 查看帮助
 
 >所有命令行最重要的当然是查看帮助文档：
 
@@ -94,45 +233,14 @@ git help
 查看 'git help <命令>' 或 'git help <概念>' 以获取给定子命令或概念的
 帮助。
 ```
+## IDE
 
-## 简单使用
+人生苦短我选IDE,可视化一切，包括Commit模板、分支合并、同步。
 
-```bash
-# 检查文件是否有更新
-git status
 
-# 将新增的文件进行跟踪
-git add .
+![](assets%2FIDEGITPUSH.jpg)
 
-# 提交本次修改内容（请尽量详细），方便日后修改 bug 时快速定位
-# 此处 commit 仅为示例，请修改为你项目的提交信息
-git commit  -m"docs(git): 新增 git 简单使用"
-
-# 提交到仓库
-git push
-```
-
-### 统计信息
-
-```bash
-# 所有分支指定用户指定时间范围提交信息
-# 更多的 formats 可见 https://git-scm.com/docs/pretty-formats
-git log --all --author="你的名称" --after="2022-07-16" --before="2022-07-23" --no-merges --pretty=format:"%an(%ae) %as: %s"
-```
-
-### 清理分支
-
->一个多人长期合作的项目会有很多的远程分支,想要有个功能去清理他们
-
-```sh
-git fetch --prune
-```
-
->还可利用 [xargs](/os/linux/xargs) 配合 `grep` 清理指定条件分支：
-
-```sh
-git branch | grep 'fix/*' | xargs git branch -D
-```
+![](assets%2Fidegit.jpg)
 
 ## 参考资料
 
