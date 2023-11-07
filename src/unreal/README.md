@@ -18,6 +18,6 @@ tag:
 ## UnrealEngine
 
 虚幻引擎（英语：Unreal Engine）是一款由Epic Games开发的游戏引擎。
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
 这也是本站的主要精力输出点。
 </ChatMessage>
