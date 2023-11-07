@@ -235,12 +235,11 @@ git help
 
 人生苦短我选IDE,可视化一切，包括Commit模板、分支合并、同步。
 
-
-![](assets%2FIDEGITPUSH.jpg)
-
-![](assets%2Fidegit.jpg)
+![idelog.jpg](assets%2Fidelog.jpg)
 
 ## 参考资料
+
+>更多细节操作可以参考我的其他记录。
 
 + [Github](https://help.github.com/en)
 + [Git-scm](https://git-scm.com/book/zh/v2)

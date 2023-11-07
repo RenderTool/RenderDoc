@@ -97,5 +97,6 @@ git rm -r --cached .
 
 ## 参考资料
 如果你阅读本文有点吃力，或者对其中的git操作不太清楚，我强烈建议你看看我写的git基本操作篇。🤦‍♂️
-[git基本操作](../git/README.md)
-[Rider](https://www.jetbrains.com/zh-cn/rider/)
+[1.git基本操作](../git/README.md)
+
+[2.Rider](https://www.jetbrains.com/zh-cn/rider/)
