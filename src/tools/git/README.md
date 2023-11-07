@@ -74,8 +74,6 @@ $ git init                     # 初始化本地仓库，创建了一个新的 G
 输出：
 `Initialized empty Git repository in /e/testfolder/.git/`
 
-> 使用（ git clone 命令）来获取代码，而不需要再次执行 git init。
-
 ### 3.创建仓库
 
 * 添加 - **`git add`**
