@@ -1,13 +1,18 @@
 ---
-title: UECPP-基础概念
+title: UECPP-初见UE GamePlay
 #icon: download
 order : 1
 ---
+>天地除开，诞生了第一缕`UObject`，各自进化成Actor+Component、Level、World、WorldContext、GameInstance等。  
+有这么一天，UEngine大佬出现自称为帝，掌管所有UObject，还给各种UObject划分职责。有的管理游戏逻辑、有的管理游戏表现、有的管理游戏数据。
+<!-- more -->
 
 ## 实现目标
-
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
-了解基本UE基础概念，并尝试第一个使用CPP写的蓝图节点在屏幕上输出HelloWorld!
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+1、食用本文前你应该已经了解UE的一些基本操作,包括下载安装、打开工程、资源导入导出、关卡等概念。<br>
+2、有一定的（C++）编程基础，但不是必须的。<br>
+3、本章将试图初步了解UE GamePlay架构。<br>
+4、最终尝试用CPP在我们的屏幕上打印一个HelloWorld。
 </ChatMessage>
 
 ## 开始实践
@@ -21,36 +26,33 @@ order : 1
 
 ## 2. 等待编译并启动项目，点击工具-新建C++类
 
+>如果你对C++类的概念不是很清楚，我。。。。
+
 <ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 BABA用了Rider已经回不去了,如果你用VS这里是将是刷新VS项目。
 </ChatMessage>
 
-![newcppclass.png](..%2Fassets%2Fnewcppclass.png)
+![](..%2Fassets%2Fnewcppclass.png)
 
->然后你可以看到：
+<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40">
+在打开的窗口中，细心的你应该发现:
+</ChatMessage>
+
+>所有节点的根目录都来自一个叫Object的东西，这里我们叫它UObject。  
+即：所有XXObject都继承自UObject。  
+
+![](..%2Fassets%2Fnewcppclass.gif)
+
 
 <ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 看不懂，根本看不懂。
 </ChatMessage>
 
-![](..%2Fassets%2Factorpublicobject.jpg)
-
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
-很好！下一步之前需要搞清楚几个基本概念
-</ChatMessage>
-
 <hr>
 
-##  UPK|UE包文件组成
-
-<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
-Unreal Package 文件，它是Unreal Engine（虚幻引擎）中用于存储游戏资源和数据的一种文件格式。
+<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
+很好！看来下一步之前需要搞清楚几个基本概念
 </ChatMessage>
-
-![](..%2Fassets%2FUEpakage.jpg)
-
->从Unreal Engine 4（UE4）开始，UPK 文件被替代为更先进的Unreal Asset文件格式（.uasset）和Unreal Asset Registry（.uassetregistry）等。
-UPK 文件仍然存在于早期版本的Unreal Engine中。
 
 ## UObject|UE对象
 
@@ -62,27 +64,24 @@ UObject 是 Unreal Engine 中所有对象的基类。
 * UObject 提供了许多基本的功能和特性，例如内存管理、反射（Reflection）、属性系统、蓝图扩展等。
 
 <ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
-例如：actor继承自UObject
+例如：Actor继承自UObject
 </ChatMessage>
 
-![](..%2Fassets%2Factorpublicobject.jpg)
+![选中一个Actor类](..%2Fassets%2Factorpublicobject.jpg)
 
 <ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 对比蓝图版，C++类中多了许多类，这也是C++比蓝图自由度更高的原因。
 </ChatMessage>
 
-![](..%2Fassets%2Fslate.jpg)
+![左边C++右边蓝图](..%2Fassets%2Fslate.jpg)
 
-## UE-GamePlay框架
+>**既然继承结构有了，可别忘记我们UE引擎是干啥的！UE引擎可以拿来做游戏！EpicBABA试图搭建一套基本的游戏框架供我们使用。
+我们称他为GamePlay。**
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
-字面翻译来说是玩法，也就是所谓的规则（GameMode），更深入点
-<span style="color: red"><a href="#_1gameplay框架-gamemode">游戏规则 ①-②</a>
-+<a href="#_3-camera-游戏相机">3C③-⑤</a>
-+<a href="#_6-gameui-游戏ui">界面⑥</a>
-= GamePlay</span>
+## UE-GamePlay架构
+<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
+现在请你暂停阅读，想想一个游戏的组成有哪些？
 </ChatMessage>
-
 
 ![](..%2Fassets%2FGameFramework.jpg)
 
@@ -93,11 +92,21 @@ UObject 是 Unreal Engine 中所有对象的基类。
 <br>这些PlayerController允许玩家持有游戏中的Pawn，以便在关卡中有物理表示。
 <br>PlayerController还为玩家提供了输入功能按钮、平视显示器（简称HUD）和用于处理摄像机视图的PlayerCameraManager。
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
-3C也就是所谓的<span style="color: orangered">Character（角色）、Control（控制）和Camera（摄像机）</span>
+<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+官方你在说啥？我脑子不够用了！
 </ChatMessage>
 
-### ①GamePlay框架/GameMode
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+总结成一个基本公式：<br>
+游戏规则 + 3C + 游戏界面 = 基础GamePlay。<br>
+</ChatMessage>
+
+>下面会详细介绍每一项
+
+<span style="color: red"><a href="#_1GamePlay->GameMode">游戏规则： ①-②</a><br>
+<a href="#_3-camera-游戏相机">3C是指： <span style="color: orangered">Character（角色）、Control（控制）和Camera（摄像机）</span> ③-⑤</a>[扩展阅读](https://zhuanlan.zhihu.com/p/357621053)<br>
+<a href="#_6-gameui-游戏ui">游戏界面⑥</a></span>
+### ①GamePlay->GameMode
 
 - AGameModeBase (public AInfo)
     - AInfo (public AActor)
@@ -195,32 +204,67 @@ Game State 就是指游戏状态。它管理了所有已连接的客户端，并
 记不住根本记不住！这里BABA推荐你<a href="./2-UE_Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
 </ChatMessage>
 
-## Subsystem|子系统
+<hr>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
-子系统是一组在整个引擎中提供特定功能的类和接口，它们可以独立于Gameplay框架存在并提供额外的功能和服务。后续会有实践篇，更加深入体验一下。
+### ULevel|游戏关卡
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+现在游戏剧本、演员、相机等道具都齐活了！可拍摄地呢?拍摄完给谁看呢？
 </ChatMessage>
 
-| 子系统          | 继承自的类                  |
-|---------------|---------------------------|
-| 引擎子系统       | UEngineSubsystem 类        |
-| 编辑器子系统     | UEditorSubsystem 类        |
-| 游戏实例子系统   | UGameInstanceSubsystem 类  |
-| 本地玩家子系统   | ULocalPlayerSubsystem 类   |
+![关卡组成](..%2Fassets%2Flevel.jpg)
 
->当引擎子系统的模块加载时，子系统将在模块的 Startup() 函数返回后执行 Initialize()，子系统将在模块的 Shutdown() 函数返回后执行 Deinitialize()。
+### N* ULeveL => UWorld
 
-![](..%2Fassets%2Fsubsystems.jpg)
+>还记得永劫无间、吃鸡这类网游吗。我们登录游戏后，需要选择自己的角色、地图然后开战。游戏会将我们传送到一个大的地图中。  
+考虑硬件我们将这个大地图分成若干块子Level然后按需加载。
 
->目录：Engine\Source\Runtime\Engine\Public\Subsystems\
+![若干小关卡组成大世界](..%2Fassets%2Fuworld.jpg)
 
-[**延展阅读|单例（Singleton）**](4-UE_CPP_Singleton.md)
+> **至此我们已经了解了UE中一些由UObject派生出来的基本对象,他们彼此相关又彼此独立！可是谁才是他们的掌权者？**
 
->在UE中，子系统（Subsystem）通常是以单例（Singleton）的形式存在的。
-<br>这意味着在游戏或编辑器的运行过程中，每个子系统只会有一个实例存在，而不会创建多个相同类型的实例。
+## 掌权者
+
+### WorldContext|世界上下文
+
+<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
+问题又来了！吃鸡可不止一张地图哦！也就是不止一个World!如果玩家去另外一个世界丢失记忆（游戏数据）可不是一件好事。
+</ChatMessage>
+
+>还好EPICbaba给我们的UE奈何桥留了个后门-WorldContext，通过WorldContext可以连接各个界面而保持记忆。
+
+<hr>
+
+### GameInstance|游戏实例
+
+>似乎我们已经从人界跳脱，来到了其他界面。前文我们说了后门-WorldContext的事情，看毕竟这只是一个后门，到底谁能开启掌管这个后门呢？
+
+<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40">
+GameInstance就是这么一个掌权者，管理这些“后门”。
+</ChatMessage>
+
+![gameinstancecpp.jpg](..%2Fassets%2Fgameinstancecpp.jpg)
+
+### UEngine|虚幻游戏引擎
+
+>天地除开，诞生了第一缕`UObject`，各自进化成Actor+Component、Level、World、WorldContext、GameInstance等。  
+有这么一天，UEngine大佬出现自称为帝，掌管所有UObject，还给各种UObject划分职责。有的管理游戏逻辑、有的管理游戏表现、有的管理游戏数据。
+
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+没错，这就是经典的MVC->数据（Model）、表现（View）、逻辑（Controller）
+</ChatMessage>
+
+>最终一个由UEngine掌管的宇宙诞生了。
+
+**Object->Actor+Component->Level->World->WorldContext->GameInstance->Engine**
 
 
-## UE-Refection|UE反射
+## 真神
+<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+说到底还是程序员在管理这些东西，可是他们内部之前的矛盾一不小心就会激化。这时候我们需要介入调和、整顿。
+</ChatMessage>
+
+### UE-Refection|UE反射
 
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 C++中并没有类似JAVA的反射机制，但EpicBABA的UE引擎已经帮我们实现了。
@@ -237,7 +281,7 @@ C++中并没有类似JAVA的反射机制，但EpicBABA的UE引擎已经帮我们
 >不会吧不会吧！还有人不知道宏是什么？自行百度吧！
 
 
-## UHT|Unreal Header Tool（虚幻头文件工具）
+### UHT|Unreal Header Tool（虚幻头文件工具）
 
 <ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
 UHT是一个用于生成C++类和相关代码的预处理器工具，它将特定的宏和标记解析成C++代码，以便在编译时构建项目。大致流程如下：
@@ -275,13 +319,54 @@ UHT是一个用于生成C++类和相关代码的预处理器工具，它将特�
 图片截取自[图片截取自ARRG从入门到进阶P36](https://www.bilibili.com/video/BV1EM411U7PX?p=36&vd_source=fc61eb54bf3245afbff2be6b8c1ebfc2)
 
 
-### UE-Specifiers|UE类说明符
+* UE-Specifiers|UE类说明符
 
 <ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 是 Unreal Engine 中用于声明和定义类、变量、函数等的一组宏标记（macros）。
 </ChatMessage>
 
 >具体可以参考[官方文档](https://docs.unrealengine.com/5.3/zh-CN/gameplay-classes-in-unreal-engine/)或者我写的unreal-Specifiers
+
+<hr>
+
+> **解决完这些矛盾、纠纷后怎么保存我们建立的”宇宙“呢？不得不引入一个叫做资源打包的概念。**
+
+### UPK|UE包文件组成
+
+<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
+Unreal Package 文件，它是Unreal Engine（虚幻引擎）中用于存储游戏资源和数据的一种文件格式。
+</ChatMessage>
+
+![](..%2Fassets%2FUEpakage.jpg)
+
+>从Unreal Engine 4（UE4）开始，UPK 文件被替代为更先进的Unreal Asset文件格式（.uasset）和Unreal Asset Registry（.uassetregistry）等。
+UPK 文件仍然存在于早期版本的Unreal Engine中。
+
+## 进化
+
+### Subsystem|子系统
+
+<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+子系统是一组在整个引擎中提供特定功能的类和接口，它们可以独立于Gameplay存在并提供额外的功能和服务。后续会有实践篇，更加深入体验一下。
+</ChatMessage>
+
+| 子系统          | 继承自的类                  |
+|---------------|---------------------------|
+| 引擎子系统       | UEngineSubsystem 类        |
+| 编辑器子系统     | UEditorSubsystem 类        |
+| 游戏实例子系统   | UGameInstanceSubsystem 类  |
+| 本地玩家子系统   | ULocalPlayerSubsystem 类   |
+
+>当引擎子系统的模块加载时，子系统将在模块的 Startup() 函数返回后执行 Initialize()，子系统将在模块的 Shutdown() 函数返回后执行 Deinitialize()。
+
+![](..%2Fassets%2Fsubsystems.jpg)
+
+>目录：Engine\Source\Runtime\Engine\Public\Subsystems\
+
+[**延展阅读|单例（Singleton）**](4-UE_CPP_Singleton.md)
+
+>在UE中，子系统（Subsystem）通常是以单例（Singleton）的形式存在的。
+<br>这意味着在游戏或编辑器的运行过程中，每个子系统只会有一个实例存在，而不会创建多个相同类型的实例。
 
 ## 3. 选择蓝图函数库类
 
