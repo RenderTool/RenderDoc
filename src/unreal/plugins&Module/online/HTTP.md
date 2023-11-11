@@ -1,19 +1,19 @@
 ---
 title: HTTP
-order: 1
+order: 3
 category:
   - 教程知识
 ---
 
 ## 目标
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 本节目标：手撸一个HTTP插件
 </ChatMessage>
 
 ## 老生常谈
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40">
 什么是HTTP?
 </ChatMessage>
 

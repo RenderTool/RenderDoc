@@ -3,16 +3,15 @@ title: UE-Lyra中对CommonUI中Inputmode的封装。
 order : 1
 ---
 ## 导读
+
 <ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 官方文档介绍CommonUI虽然提供了InputMode函数：UCommonActivatableWidget::GetDesiredInputConfig却没有给出对应的蓝图节点已经属性操作。
 本章节从Lyra的InputConfig出发，观察理解LyraInputmode实现细节。
 </ChatMessage>
 
-
-
 ## 前置条件
 
->安装插件CommonUI,推荐阅读我的初见[CommonUI](../plugins_Module/CommonUI.md)
+>安装插件CommonUI,推荐阅读我的初见[CommonUI](../plugins_Module/commonui/CommonUI.md)
 
 ## 实践
 >日常心血来潮，想给我的游戏菜单背景加一个角色查看功能，即：可以操作UI的同时控制游戏模型（比如旋转、缩放等）。
@@ -288,6 +287,7 @@ void UExorcistActivatableWidget::ValidateCompiledWidgetTree(const UWidgetTree& B
 #undef LOCTEXT_NAMESPACE // 取消命名空间 "Exorcist"
 
 ```
+
 <ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
 打住打住！你管这叫源码剖析？
 </ChatMessage>
@@ -311,21 +311,13 @@ void UExorcistActivatableWidget::ValidateCompiledWidgetTree(const UWidgetTree& B
 
 ```cpp
 // ExorcistActivatableWidget.h
-
 protected:
 	/** 激活此 UI 时要使用的所需输入模式，例如您是否希望按键仍然传递到游戏/玩家控制器？ */
 	UPROPERTY(EditAnywhere, Category = Input)
 	EExorcistWidgetInputMode InputConfig = EExorcistWidgetInputMode::Default; // 输入模式
 ```
 
-TOptional<T>详解：
-
-
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
-但是，Baba想用官方推荐的get和set方法，即：封装一个专门的函数来设置输入模式。<br>
-这种方式也更加灵活，允许设置输入模式时执行其他自定义操作。
-</ChatMessage>
-
+### 流程
 
 首先，我们在头文件中添加新的声明：
 
@@ -350,44 +342,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Exorcist")
 	static void SetExorcistInputMode(UExorcistActivatableWidget* ActivatableWidget, EExorcistWidgetInputMode InputMode);
 };
-```
-
-然后，我们在源文件中实现这个新的蓝图函数库：
-
-```cpp
-// ExorcistBlueprintFunctionLibrary.cpp
-
-#include "ExorcistBlueprintFunctionLibrary.h"
-
-void UExorcistBlueprintFunctionLibrary::SetExorcistInputMode(UExorcistActivatableWidget* ActivatableWidget, EExorcistWidgetInputMode InputMode)
-{
-	if (IsValid(ActivatableWidget))
-	{
-		ActivatableWidget->SetInputMode(InputMode);
-	}
-}
-```
-
-接着，我们需要在 `UExorcistActivatableWidget` 类中添加一个新的函数来设置输入模式：
-
-```cpp
-// ExorcistActivatableWidget.h
-
-public:
-	// 设置输入模式
-	UFUNCTION(BlueprintCallable, Category = "Exorcist")
-	void SetInputMode(EExorcistWidgetInputMode NewInputMode);
-```
-
-在源文件中实现这个函数：
-
-```cpp
-// ExorcistActivatableWidget.cpp
-
-void UExorcistActivatableWidget::SetInputMode(EExorcistWidgetInputMode NewInputMode)
-{
-	InputConfig = NewInputMode;
-}
 ```
 
 现在，你可以在蓝图中调用 `SetInputMode` 来设置输入模式了。
@@ -415,29 +369,3 @@ void UExorcistActivatableWidget::SetMouseCaptureMode(EMouseCaptureMode NewCaptur
 	GameMouseCaptureMode = NewCaptureMode;
 }
 ```
-
-然后，在 `UExorcistBlueprintFunctionLibrary` 类中添加一个新的函数用于在蓝图中调用设置鼠标捕获模式：
-
-```cpp
-// ExorcistBlueprintFunctionLibrary.h
-
-public:
-	UFUNCTION(BlueprintCallable, Category = "Exorcist")
-	static void SetExorcistMouseCaptureMode(UExorcistActivatableWidget* ActivatableWidget, EMouseCaptureMode CaptureMode);
-```
-
-在源文件中实现这个函数：
-
-```cpp
-// ExorcistBlueprintFunctionLibrary.cpp
-
-void UExorcistBlueprintFunctionLibrary::SetExorcistMouseCaptureMode(UExorcistActivatableWidget* ActivatableWidget, EMouseCaptureMode CaptureMode)
-{
-	if (IsValid(ActivatableWidget))
-	{
-		ActivatableWidget->SetMouseCaptureMode(CaptureMode);
-	}
-}
-```
-
-这样，你就可以在蓝图中使用 `SetExorcistMouseCaptureMode` 来设置鼠标捕获模式。

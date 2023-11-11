@@ -20,7 +20,7 @@ common UI 的设计目的是解决重叠UI的交互问题，并在不同平台�
 
 ### 源码目录
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 UE_5.x\Engine\Plugins\Experimental\CommonUI\Source\CommonUI\
 </ChatMessage>
 
