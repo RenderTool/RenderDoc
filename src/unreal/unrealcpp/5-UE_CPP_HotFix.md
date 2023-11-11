@@ -1,6 +1,6 @@
 ---
-title: UECPP-单例
-order : 4
+title: UECPP-热更新
+order : 5
 ---
 
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
