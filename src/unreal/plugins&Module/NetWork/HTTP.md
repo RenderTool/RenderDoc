@@ -26,7 +26,6 @@ category:
 | 默认端口     | 80                                      | 443                                                                        |
 | URL 示例    | http://                                 | https://                                                                   |
 
-![](..%2Fassets%2Fhttp.jpeg)
 
 ### HTTP请求操作
 
