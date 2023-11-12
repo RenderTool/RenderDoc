@@ -1,17 +1,17 @@
 ---
 title: UECPP-绑定GameMode
-order : 3
+order : 2
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
 使用C++来绑定GameMode的方法
 </ChatMessage>
 
 ## 1. 新建GameMode类
 
-   ![](..%2Fassets%2FGameMode.jpg)
+   ![](assets%2FGameMode.jpg)
 
-   ![](..%2Fassets%2Fgamemodeinclue.jpg)
+   ![](assets%2Fgamemodeinclue.jpg)
 
 | 类别                    | 类名                     | 用途                                                                                                 |
 |-----------------------|------------------------|----------------------------------------------------------------------------------------------------|
@@ -32,7 +32,7 @@ AMainMenuGameMode::AMainMenuGameMode()
     PlayerControllerClass = AMenuPlayerController::StaticClass();    
 }
 ```
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 这里的PlayerControllerClass是GameMode父类中定义的subclass(子类)
 </ChatMessage>
 
@@ -44,11 +44,11 @@ AMainMenuGameMode::AMainMenuGameMode()
 	TSubclassOf<APlayerController> PlayerControllerClass;
 ```
 
-![](..%2Fassets%2Fgamemodesuper.jpg)
+![](assets%2Fgamemodesuper.jpg)
 
 ## 3. 编译使用OR派生蓝图
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 可以在c++类目录中看到这个GameMode类，也可以再次基于这个GameMode派生蓝图类。
 </ChatMessage>
 
-![gamemodecpp2bp.png](..%2Fassets%2Fgamemodecpp2bp.png)
+![](assets%2Fgamemodecpp2bp.png)

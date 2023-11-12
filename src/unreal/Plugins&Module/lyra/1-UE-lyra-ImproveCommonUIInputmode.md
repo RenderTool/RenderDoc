@@ -4,19 +4,19 @@ order : 1
 ---
 ## 导读
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 官方文档介绍CommonUI虽然提供了InputMode函数：UCommonActivatableWidget::GetDesiredInputConfig却没有给出对应的蓝图节点已经属性操作。
 本章节从Lyra的InputConfig出发，观察理解LyraInputmode实现细节。
 </ChatMessage>
 
 ## 前置条件
 
->安装插件CommonUI,推荐阅读我的初见[CommonUI](../plugins_Module/commonui/CommonUI.md)
+>安装插件CommonUI,推荐阅读我的初见[CommonUI](../commonui/CommonUI.md)
 
 ## 实践
 >日常心血来潮，想给我的游戏菜单背景加一个角色查看功能，即：可以操作UI的同时控制游戏模型（比如旋转、缩放等）。
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 这还不简单！构造函数里设置一下输入模式`游戏和UI`
 </ChatMessage>
 
@@ -24,14 +24,14 @@ order : 1
 
 >悲剧发生了！
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40">
 运行后根本无法操作UI后面的场景！
 </ChatMessage>
 
 
 ![设置输入模式为游戏和UI后依然无法操作视口](assets%2Fgame%20view%20cannot%20move.gif)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 如果没记错的话原系统中我们要修改输入模式确实是这几个节点。
 </ChatMessage>
 
@@ -41,19 +41,19 @@ order : 1
 
 >可咱用的是CommonUI啊！
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 最后发现设置里可以通过SupportsActivationFocus关闭来开启游戏和UI这种输入模式。完美！再次编译运行！
 </ChatMessage>
 
 ![checkout.jpg](assets%2Fcheckout.jpg)
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 But！当你来回切换几个UI界面后，你发现你的视口又不能动了！总不能所有界面都设置SupportsActivationFocus吧！而且这卡顿是怎么回事啊！
 </ChatMessage>
 
 ![](assets%2Fmenu.gif)
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40">
 官方S一样的文档中也找不对应的节点只给了一个实现函数。
 </ChatMessage>
 
@@ -70,7 +70,7 @@ But！当你来回切换几个UI界面后，你发现你的视口又不能动了
 
 ![](assets%2Flyrainputmode.jpg)
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
 很好！是时候学习一下新科学知识了！
 </ChatMessage>
 
@@ -84,7 +84,7 @@ enum class EWidgetInputMode : uint8
 	Menu
 };
 ```
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 这个应该看得懂，默认的几种输入模式。
 </ChatMessage>
 
@@ -100,7 +100,7 @@ enum class EWidgetInputMode : uint8
 
 ![](assets%2Fgame.gif)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
 最终，BABA还是担心你看不懂，做了几个动画演示。
 </ChatMessage>
 
@@ -125,7 +125,7 @@ enum class EMouseCaptureMode : uint8
 
 ```
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40">
 等等!Baba有个问题:Game模式下，一定不能控制UI吗？
 </ChatMessage>
 
@@ -140,7 +140,7 @@ enum class EMouseCaptureMode : uint8
 
 >为什么Game模式下也能控制UI?
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 从视觉上分析，鼠标按下期间捕获的过程相当于Menu和Game模式的切换，一结合也就变成了GameAndMenu的效果。
 </ChatMessage>
 
@@ -288,7 +288,7 @@ void UExorcistActivatableWidget::ValidateCompiledWidgetTree(const UWidgetTree& B
 
 ```
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
 打住打住！你管这叫源码剖析？
 </ChatMessage>
 
@@ -296,7 +296,7 @@ void UExorcistActivatableWidget::ValidateCompiledWidgetTree(const UWidgetTree& B
 
 ## 回顾
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 我们先来重新复习一下CommonUI有哪些现成的Widget类
 </ChatMessage>
 

@@ -1,7 +1,7 @@
 ---
-title: UECPP-初见UE GamePlay
+title: UE-GamePlay初见
 #icon: download
-order : 1
+order : 2
 ---
 >天地除开，诞生了第一缕`UObject`，各自进化成Actor+Component、Level、World、WorldContext、GameInstance等。  
 有这么一天，UEngine大佬出现自称为帝，掌管所有UObject，还给各种UObject划分职责。有的管理游戏逻辑、有的管理游戏表现、有的管理游戏数据。
@@ -141,7 +141,7 @@ GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规
 | APlayerState class    | 玩家状态                 | 保存与玩家相关的状态，如分数、生命值、角色类型等。通常由服务器和客户端各自维护一份。                     |
 | ASpectatorPawn class   | 观察者角色               | 允许玩家以观察者身份观察游戏，通常用于回放、录像功能或者观察比赛。不与玩家角色相关联，可以自由观察游戏世界。 |
 
-[cpp中绑定GameMode](/src/unreal/unrealcpp/3-UE_CPP_GameMode.md)
+[cpp中绑定GameMode](help/GameMode.md)
 
 <hr>
 
@@ -211,7 +211,7 @@ Game State 就是指游戏状态。它管理了所有已连接的客户端，并
 | UWidgetComponent           | 将2D UI嵌入3D世界，显示UMG部件                      |
 
 <ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
-记不住根本记不住！这里BABA推荐你<a href="./2-UE_Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
+记不住根本记不住！这里BABA推荐你<a href="./help/Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
 </ChatMessage>
 
 <hr>
@@ -524,6 +524,9 @@ void UTEST::TESTFUNC()
 ![](..%2Fassets%2Fsuccesshelloworld.png)
 
 ## 参考链接
+
+**[知乎大钊](https://www.zhihu.com/people/fjz13)**
+
 | 课程名                              | 类型      | 链接                                                                                     |
 |-----------------------------------|-----------|----------------------------------------------------------------------------------------|
 | 2023最新版C++                    | C++基础  | [链接](https://www.bilibili.com/video/BV1eL41187JS/?spm_id_from=333.999.0.0&vd_source=fc61eb54bf3245afbff2be6b8c1ebfc2)                     |
@@ -531,3 +534,4 @@ void UTEST::TESTFUNC()
 | 为游戏编程学习C++           | C++基础  | [链接](https://www.bilibili.com/video/BV1Dd4y1R7VS/?spm_id_from=333.999.0.0)                        |
 | 字节跳动最新打造的C++教程 | C++基础  | [链接](https://www.bilibili.com/video/BV1ps4y1k7d7/?spm_id_from=333.999.0.0)                        |
 | Udemy宝藏数据结构与算法课   | C++算法  | [链接](https://www.bilibili.com/video/BV1Ba411Y71K/?spm_id_from=333.337.top_right_bar_window_custom_collection.content.click) |
+
