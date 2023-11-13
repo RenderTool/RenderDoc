@@ -1,5 +1,8 @@
 // you can change colors here
 $theme-color: #303e85;
+:root {
+  --sidebar-width: 20rem !important;
+}
 html[data-theme=dark] {
   --navbar-bg-color: #1a1a1a;
   --sidebar-bg-color: var(--bg-color-blur);
@@ -24,4 +27,6 @@ html[data-theme=dark] {
     margin-top: 5rem;
   }
 }
-
+.vp-sidebar {
+  padding-inline-start: 0 !important;
+}

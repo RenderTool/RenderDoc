@@ -342,14 +342,6 @@ UHT是一个用于生成C++类和相关代码的预处理器工具，它将特�
 图片截取自[图片截取自ARRG从入门到进阶P36](https://www.bilibili.com/video/BV1EM411U7PX?p=36&vd_source=fc61eb54bf3245afbff2be6b8c1ebfc2)
 
 
-* UE-Specifiers|UE类说明符
-
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-是 Unreal Engine 中用于声明和定义类、变量、函数等的一组宏标记（macros）。
-</ChatMessage>
-
->具体可以参考[官方文档](https://docs.unrealengine.com/5.3/zh-CN/gameplay-classes-in-unreal-engine/)或者我写的unreal-Specifiers
-
 <hr>
 
 > **解决完这些矛盾、纠纷后怎么保存我们建立的”宇宙“呢？不得不引入一个叫做资源打包的概念。**

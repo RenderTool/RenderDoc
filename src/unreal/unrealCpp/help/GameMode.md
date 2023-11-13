@@ -1,5 +1,5 @@
 ---
-title: UECPP-绑定GameMode
+title: U++GameMode绑定
 order : 2
 ---
 
