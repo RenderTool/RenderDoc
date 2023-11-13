@@ -9,9 +9,10 @@ order : 1
 
 ## 1. 新建GameMode类
 
-   ![](assets%2FGameMode.jpg)
+![](assets%2FGameMode.jpg)
 
-   ![](assets%2Fgamemodeinclue.jpg)
+![](assets%2Fgamemodeinclue.jpg)
+
 
 | 类别                    | 类名                     | 用途                                                                                                 |
 |-----------------------|------------------------|----------------------------------------------------------------------------------------------------|
