@@ -130,7 +130,7 @@ GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规
 
 >生成的类打开后
 
-![](guide%2assets%2Fgamemodeinclue.jpg)
+![](guide%2Fgamemodeinclue.jpg)
 
 
 | 类别                    | 类名                     | 用途                                                                                                 |
