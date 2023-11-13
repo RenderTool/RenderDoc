@@ -128,12 +128,11 @@ Epicbaba作为造物主，当然需要给自己的UE宇宙制定一些界面准�
 GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规则、逻辑和行为。
 </ChatMessage>
 
-![](experience%5B%BE%AD%D1%E9%5D%2Fassets%2FGameMode.jpg)
+![](..%2Fassets%2FGameMode.jpg)
 
 >生成的类打开后
 
-![](experience%5B%BE%AD%D1%E9%5D%2Fassets%2Fgamemodeinclue.jpg)
-
+![](..%2Fassets%2Fgamemodeinclue.jpg)
 
 | 类别                    | 类名                     | 用途                                                                                                 |
 |-----------------------|------------------------|----------------------------------------------------------------------------------------------------|
