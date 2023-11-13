@@ -1,6 +1,8 @@
 ---
 title: Github- 仓库文件下载慢
 order : 1
+category:
+  - Github
 tag:
   - 踩坑记录
 ---

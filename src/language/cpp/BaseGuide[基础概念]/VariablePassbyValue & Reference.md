@@ -1,7 +1,7 @@
 ---
 title: c++-参数-值传递和引用
 category:
-  - 基础概念
+  - c++
 ---
 
 <ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">

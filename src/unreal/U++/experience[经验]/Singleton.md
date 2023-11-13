@@ -1,6 +1,8 @@
 ---
 title: U++单例实践
 order : 1
+category:
+  - u++
 ---
 
 <ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">

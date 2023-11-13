@@ -1,7 +1,7 @@
 ---
 title: c++new和delete
 category:
-   - C++关键字
+   - c++
 tags:
    - new
    - delete

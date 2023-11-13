@@ -4,7 +4,7 @@ icon: c
 dir:
   order: 1
 category:
-  - 基础知识
+  - c++
 tag:
   - 介绍
   - c++

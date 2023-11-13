@@ -1,6 +1,8 @@
 ---
 title: Git- 路径引发的思考
 order : 6
+category:
+  - Git
 tag:
   - 踩坑记录
 ---

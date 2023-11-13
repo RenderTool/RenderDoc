@@ -1,7 +1,7 @@
 ---
 title: c++inline[内联函数]
 category:
-   - C++关键字
+  - c++
 tags:
    - inline
 ---

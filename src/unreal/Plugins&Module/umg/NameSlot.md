@@ -2,7 +2,7 @@
 title: Umg-NameSlot 
 order: 1
 category:
-  - 教程知识
+  - unreal
 ---
 ## 导读
 <ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">

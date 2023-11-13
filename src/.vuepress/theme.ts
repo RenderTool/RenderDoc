@@ -1,4 +1,4 @@
-import { hopeTheme  } from "vuepress-theme-hope";
+import {hopeTheme, PageInfo} from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 export default hopeTheme({
@@ -40,6 +40,7 @@ export default hopeTheme({
   },
   plugins: {
     
+    blog: true,
     // You should generate and use your own comment service
     comment: {
       provider: "Giscus",
@@ -57,7 +58,7 @@ export default hopeTheme({
 
       // install chart.js before enabling it
       // chart: true,
-
+    
       codetabs: true,
       demo: true,
 

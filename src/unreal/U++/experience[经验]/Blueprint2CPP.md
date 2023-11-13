@@ -1,6 +1,8 @@
 ---
 title: U++蓝图对应CPP几种方法
 order : 2
+category:
+  - u++
 ---
 
 <ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">

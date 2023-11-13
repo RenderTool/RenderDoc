@@ -1,6 +1,8 @@
 ---
 title: Github- 自动部署
 order : 5
+category:
+  - Github
 tag:
   - 踩坑记录
 ---

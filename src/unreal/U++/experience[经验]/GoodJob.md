@@ -1,6 +1,8 @@
 ---
 title: U++项目归档备份
 order : 1
+category:
+  - u++
 ---
 
 <ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">

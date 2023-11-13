@@ -2,7 +2,7 @@
 title: 初见CommonUI
 order: 1
 category:
-  - 教程知识
+  - unreal
 ---
 
 ### 插件概述
@@ -16,11 +16,11 @@ common UI 的设计目的是解决重叠UI的交互问题，并在不同平台�
 
 ### 插件使用
 
-![](..%2Fassets%2Fcommonui.jpg)
+![](assets%2Fcommonui.jpg)
 
 ### 源码目录
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40">
 UE_5.x\Engine\Plugins\Experimental\CommonUI\Source\CommonUI\
 </ChatMessage>
 

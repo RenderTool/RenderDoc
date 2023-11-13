@@ -4,7 +4,6 @@ icon: code
 dir:
   order: 3
 category:
-  - 开发工具
   - vscode
 tag:
   - 介绍

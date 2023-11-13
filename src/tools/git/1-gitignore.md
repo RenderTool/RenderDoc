@@ -1,6 +1,8 @@
 ---
 title: Git- 忽略跟踪的文件
 order : 2
+category:
+  - Git
 ---
 
 ## 忽略规则

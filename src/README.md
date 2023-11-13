@@ -90,7 +90,7 @@ end
 >如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
 > 
 ## 留情
-<ChatMessage avatar="../assets/emoji/hh.png" :avatarWidth="40">
+<ChatMessage avatar="./assets/emoji/hh.png" :avatarWidth="40">
 本站大多为个人踩坑合实践记录,如果你发现一些错误和纰漏实属正常。要么是我不懂，要么是我懒得写。
 </ChatMessage>
 

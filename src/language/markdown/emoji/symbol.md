@@ -2,7 +2,6 @@
 title: 符号 Emoji
 icon: circle-right
 category:
-  - 教程知识
   - Markdown
 tag:
   - Markdown

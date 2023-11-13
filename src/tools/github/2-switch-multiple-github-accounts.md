@@ -1,6 +1,8 @@
 ---
 title: Github--切换多个账号
 order : 2
+category:
+  - Github
 tag:
   - 踩坑记录
 ---

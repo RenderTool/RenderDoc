@@ -1,6 +1,8 @@
 ---
 title: 修复Rider在UE5.2报错找不到DirectX符号问题
 order : 1
+category:
+  - rider
 ---
 
 ## 修复Rider在UE5.2报错找不到DirectX符号问题

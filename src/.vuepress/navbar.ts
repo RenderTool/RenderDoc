@@ -16,7 +16,9 @@ export default navbar([
     prefix: "/tools/",
     children:["git/","github/","vscode/","vuepress/","rider/"],
   },
-  
+    
+  "/category/",
+    
   // {
   //   text: '开发工具',
   //   icon: "screwdriver-wrench",

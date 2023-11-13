@@ -1,6 +1,8 @@
 ---
 title: vuepress-添加自定义组件
 order : 1
+category:
+  - vuepress
 ---
 
 ## 问题描述

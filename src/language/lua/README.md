@@ -4,7 +4,6 @@ icon: l
 dir:
   order: 1
 category:
-  - 教程知识
   - lua
 tag:
   - 介绍

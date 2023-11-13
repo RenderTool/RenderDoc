@@ -1,7 +1,7 @@
 ---
 title: c++continue 和break区别
 category:
-  - C++关键字
+  - c++
 tags:
   - continue
   - break

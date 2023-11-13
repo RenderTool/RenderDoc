@@ -1,7 +1,9 @@
 ---
-title: HelloWorld
+title: GamePlay
 #icon: download
 order : 2
+category:
+  - u++
 ---
 >天地除开，诞生了第一缕`UObject`，各自进化成Actor+Component、Level、World、WorldContext、GameInstance等。  
 有这么一天，UEngine大佬出现自称为帝，掌管所有UObject，还给各种UObject划分职责。有的管理游戏逻辑、有的管理游戏表现、有的管理游戏数据。
@@ -212,7 +214,7 @@ Game State 就是指游戏状态。它管理了所有已连接的客户端，并
 | UWidgetComponent           | 将2D UI嵌入3D世界，显示UMG部件                      |
 
 <ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
-记不住根本记不住！这里BABA推荐你<a href="./guide/Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
+记不住根本记不住！这里BABA推荐你<a href="./experience_经验_/Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
 </ChatMessage>
 
 <hr>

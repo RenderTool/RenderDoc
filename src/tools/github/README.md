@@ -2,7 +2,6 @@
 title: Github
 icon: fab fa-github
 category:
-  - 开发工具
   - Github
 tag:
   - 介绍

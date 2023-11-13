@@ -3,6 +3,8 @@ title: 写在前面
 icon: lightbulb
 order : 1
 sidebar : false
+timeline : false
+article : false
 ---
 
 ## 我是

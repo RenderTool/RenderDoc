@@ -4,7 +4,6 @@ icon: r
 dir:
   order: 4
 category:
-  - 开发工具
   - rider
 tag:
   - 介绍

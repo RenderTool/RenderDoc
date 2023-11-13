@@ -1,6 +1,8 @@
 ---
 title: U++项目迁移蓝图父类重定向
 order : 1
+category:
+  - u++
 ---
 
 ![](assets%2Ferrortip.png)
@@ -39,4 +41,4 @@ order : 1
 
 ## 参考链接
 
-https://blog.csdn.net/tianxiaojie_blog/article/details/129405380
+[csdn-tianxiaojie_blog](https://blog.csdn.net/tianxiaojie_blog/article/details/129405380)

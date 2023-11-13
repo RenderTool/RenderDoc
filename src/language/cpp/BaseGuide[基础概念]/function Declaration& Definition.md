@@ -1,7 +1,7 @@
 ---
 title: c++函数声明和定义
 category:
-  - 基础概念
+  - c++
 ---
 <ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 函数声明和定义

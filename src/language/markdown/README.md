@@ -4,7 +4,6 @@ icon: fab fa-markdown
 dir:
   order: 2
 category:
-  - 教程知识
   - Markdown
 tag:
   - 介绍

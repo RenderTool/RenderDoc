@@ -2,7 +2,6 @@
 title: Git
 icon: code-compare
 category:
-  - 开发工具
   - Git
 tag:
   - 介绍

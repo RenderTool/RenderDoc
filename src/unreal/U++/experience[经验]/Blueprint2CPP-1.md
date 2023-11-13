@@ -1,17 +1,17 @@
 ---
 title: U++蓝图节点输入输出控制
 order : 3
+category:
+  - u++
 ---
 
 <ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
-C++蓝图节点输入输出控制
+测试不同传参方法对应的蓝图节点结果
 </ChatMessage>
 
 ## 实践
 
-> 测试不同传参方法对应的蓝图节点
-
-1. 新建一个蓝图函数库类
+### 1. 新建一个蓝图函数库类
 
 <ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 蓝图函数库是一个静态函数的合集，便于测试
@@ -19,7 +19,7 @@ C++蓝图节点输入输出控制
 
 ![](..%2F..%2Fassets%2Flibexpcpp.jpg)
 
-2. 输入测试代码
+### 2. 输入测试代码
 ```cpp
 	UFUNCTION(BlueprintCallable, Category ="TEST",meta = ( tooltip = "值传递"))
 	static void PassbyValue(TArray<ACameraActor*>Camera, int32 test);
@@ -30,11 +30,12 @@ C++蓝图节点输入输出控制
 	UFUNCTION(BlueprintCallable, Category ="TEST",meta = ( tooltip = "const修饰的值引用"))
     	static void PassbyReference(TArray<ACameraActor*> &Camera,int32 &test);
 ```
-3. 测试结果
+### 3. 测试结果
 
 ![](assets%2FUEvaluepass.jpg)
 
-## 蓝图
->蓝图中只有数组默认通过值传递的。
+## 其他
+
+### 蓝图中数组只能用引用传递。
 
 ![](assets%2Fdefalutreference.gif)

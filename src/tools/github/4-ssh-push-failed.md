@@ -1,6 +1,8 @@
 ---
 title: Github- ssh key引发的push failed
 order : 4
+category:
+  - Github
 tag:
   - 踩坑记录
 ---

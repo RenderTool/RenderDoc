@@ -3,7 +3,7 @@ shortTitle: U++无法解析外部符号...
 title: 无法解析外部符号，无法解析外部命令 和命令“xxx”已退出。
 order: 1
 category:
-  - 编译报错
+   - u++
 ---
 ## 问题描述
 

@@ -2,7 +2,7 @@
 title: c++const
 order: 1
 category:
-  - 实用建议
+   - c++
 ---
 <ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 为什么C++ 中推荐使用 const 常量？
