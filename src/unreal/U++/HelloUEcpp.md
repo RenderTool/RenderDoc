@@ -126,11 +126,11 @@ Epicbaba作为造物主，当然需要给自己的UE宇宙制定一些界面准�
 GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规则、逻辑和行为。
 </ChatMessage>
 
-![](help%2Fassets%2FGameMode.jpg)
+![GameMode.jpg](guide%2Fassets%2FGameMode.jpg)
 
 >生成的类打开后
 
-![](help%2Fassets%2Fgamemodeinclue.jpg)
+![](guide%2assets%2Fgamemodeinclue.jpg)
 
 
 | 类别                    | 类名                     | 用途                                                                                                 |
@@ -142,7 +142,7 @@ GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规
 | APlayerState class    | 玩家状态                 | 保存与玩家相关的状态，如分数、生命值、角色类型等。通常由服务器和客户端各自维护一份。                     |
 | ASpectatorPawn class   | 观察者角色               | 允许玩家以观察者身份观察游戏，通常用于回放、录像功能或者观察比赛。不与玩家角色相关联，可以自由观察游戏世界。 |
 
-[cpp中绑定GameMode](help/GameMode.md)
+[cpp中绑定GameMode](guide/GameMode.md)
 
 <hr>
 
@@ -212,7 +212,7 @@ Game State 就是指游戏状态。它管理了所有已连接的客户端，并
 | UWidgetComponent           | 将2D UI嵌入3D世界，显示UMG部件                      |
 
 <ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
-记不住根本记不住！这里BABA推荐你<a href="./help/Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
+记不住根本记不住！这里BABA推荐你<a href="./guide/Blueprint2CPP.html">几种查看蓝图节点对应C++类的几种方法！</a>
 </ChatMessage>
 
 <hr>
