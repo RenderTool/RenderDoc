@@ -8,13 +8,13 @@ export default navbar([
     text: "开发语言",
     icon: "signs-post",
     prefix: "/language/",
-    children: ["markdown/","lua/"],
+    children: ["markdown/","lua/","cpp/"],
   },
   {
     text: '开发工具',
     icon: "screwdriver-wrench",
     prefix: "/tools/",
-    children:["git/","github/","vscode/","vuepress/"],
+    children:["git/","github/","vscode/","vuepress/","rider/"],
   },
   
   // {

@@ -62,6 +62,10 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 
 ## 试试Rider吧
 
+![](assets%2Frider-ide_cB2pr.png)
+
+[破J补丁](https://3.jetbra.in/)
+
 以删除一个类为例，使用VS只会将其在项目中暂时移除，下次打开依然存在。
 
 >通常需要以下步骤才能彻底移除一个类：

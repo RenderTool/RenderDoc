@@ -1,6 +1,6 @@
 ---
 title: U++GameMode绑定
-order : 2
+order : 1
 ---
 
 <ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">

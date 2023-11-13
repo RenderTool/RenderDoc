@@ -4,7 +4,9 @@ icon: lightbulb
 order : 1
 sidebar : false
 ---
+
 ## 我是
+
 <ChatMessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
 我是一个普通人，如果你希望通过看我的文章变成高手，不好意思我办不到。
 </ChatMessage>

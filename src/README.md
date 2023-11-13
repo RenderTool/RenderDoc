@@ -31,13 +31,19 @@ features:
 
 我主要记录与建模、渲染技术、光线追踪、[UE4/UE5](https://docs.unrealengine.com/5.0/zh-CN/)、各类编程语言、以及各类工具使用等综合技术应用相关的内容。
 
->主要形式：图文- 视频- 代码(蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)** )
+<hr>
+
+### 主要形式：
+
+>图文- 视频- 代码示例如下：
+
+<iframe src="https://blueprintue.com/render/j0oxoqx7/" width="100%" height="500" scrolling="no" allowfullscreen></iframe>
+
+>蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)**
 
 <ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
 baba绝对不会告诉你这个蓝图可以复制的。
 </ChatMessage>
-<br>
-<iframe src="https://blueprintue.com/render/j0oxoqx7/" width="100%" height="500" scrolling="no" allowfullscreen></iframe>
 
 ::: info
 * 当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
@@ -82,6 +88,11 @@ end
 </ChatMessage>
 
 >如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
+> 
+## 留情
+<ChatMessage avatar="../assets/emoji/hh.png" :avatarWidth="40">
+本站大多为个人踩坑合实践记录,如果你发现一些错误和纰漏实属正常。要么是我不懂，要么是我懒得写。
+</ChatMessage>
 
 ## :email: 联系
 

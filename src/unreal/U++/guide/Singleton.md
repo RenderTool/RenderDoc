@@ -1,6 +1,6 @@
 ---
 title: U++单例实践
-order : 3
+order : 1
 ---
 
 <ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
