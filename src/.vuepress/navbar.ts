@@ -16,7 +16,7 @@ export default navbar([
     prefix: "/tools/",
     children:["git/","github/","vscode/","vuepress/","rider/"],
   },
-    
+  "/algorithm/",  
   "/category/",
     
   // {

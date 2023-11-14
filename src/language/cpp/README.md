@@ -13,7 +13,7 @@ tag:
 
 ## 须知
 
->万丈高楼平地起,这是U++的基石,本站只是简单介绍一下c++基础，具体入门还是看大佬教程吧，重点还是关注我自己的项目问题。
+>万丈高楼平地起,这是U++的基石，这里许多演示都是基于UE蓝图/C++加深理解。
 
 ## c++
 
@@ -25,10 +25,19 @@ C++是一种被广泛使用的计算机程序设计语言。它是一种通用�
 
 <!-- more -->
 
+
+## 认识内存
+
+![8颗粒内存](assets%2Fmenmory.jpg)
+
+>防呆槽：防止内存条插反短路,以及区分型号  
+SPD芯片：记录标准工作状态、速度、响应时间  
+内存颗粒：数据存储在这里。
+
 ## c++注释
 
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
-注释后编译器不会再执行。
+注释后编译器不会再执行，在UE中亦是如此。
 </ChatMessage>
 
 1. 单行注释用：
@@ -55,7 +64,7 @@ C++是一种被广泛使用的计算机程序设计语言。它是一种通用�
 
 ## c++变量
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/bqb02.png" :avatarWidth="45">
 C++ 中的变量是程序可操作的存储区的名称。
 </ChatMessage>
 
@@ -63,10 +72,60 @@ C++ 中的变量是程序可操作的存储区的名称。
 
 ![感谢菜鸟教程的图片](assets%2Fcpp-variable-types-2020-12-14.png)
 
-| 类型   | 示例                                                           | 作用域      | 生命周期                  |
-|------|--------------------------------------------------------------|----------|-----------------------|
-| 全局变量 | ```cpp int globalVariable = 10; ```                          | 整个程序     | 程序启动时分配内存，程序结束时销毁     |
-| 局部变量 | ```cpp void exampleFunction() { int localVariable = 5; } ``` | 定义它们的代码块 | 函数、代码块执行时分配内存，执行结束时销毁 |
+| 类型   | 示例                                                   | 作用域      | 生命周期                  |
+|------|------------------------------------------------------|----------|-----------------------|
+| 全局变量 | ` int globalVariable = 10;`                          | 整个程序     | 程序启动时分配内存，程序结束时销毁     |
+| 局部变量 | `void exampleFunction() { int localVariable = 5; } ` | 定义它们的代码块 | 函数、代码块执行时分配内存，执行结束时销毁 |
+
+
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+请注意！为变量分配地址和存储空间的称为定义，不分配地址的称为声明。<a href="/RenderDoc/language/cpp/BaseGuide_基础概念_/Variable%20Declaration_%20Definition.html">参考链接</a>
+</ChatMessage>
+
+
+### 引用变量
+
+>语法：数据类型 & 变量名a = 变量名b
+
+<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
+引用变量是一个别名，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。
+</ChatMessage>
+
+```cpp
+#include <string>
+
+string mainname = "关羽";
+string othernmae = "关云长";
+string& othername = mainname ;
+
+/*关羽
+  *^
+  *|
+  *+--- 关公
+  *|
+  *+--- 关云长
+*/
+```
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+在C++中，“&” 符号的用法确实有点让人迷惑，具体取决于上下文。
+</ChatMessage>
+
+
+1. **取地址：**
+   - 当 `&` 用于变量前时，它是取地址符，用于获取变量的地址。
+
+   ```cpp
+   int x = 10;
+   int *ptrX = &x;  // & 用于取 x 的地址，ptrX 现在存储 x 的地址
+   ```
+
+2. **引用声明：**
+   - 当 `&` 用于声明变量时，它表示引用类型。
+
+   ```cpp
+   int x = 10;
+   int &refX = x;  // & 用于声明 refX 是 x 的引用
+   ```
 
 ## c++常量
 
@@ -74,52 +133,110 @@ C++ 中的变量是程序可操作的存储区的名称。
 常量是固定值，在程序执行期间不会改变。这些固定的值，又叫做字面量
 </ChatMessage>
 
->常量的两种形式
+>常量的几种形式
 
-### 1. #define[宏常量] #define
+### 1. #define[宏常量]
 
 >**语法:#define MACRO_NAME 值**
 
 ```cpp
 #define day 7
 ```
-### 2. const[修饰的变量] #define
+### 2. const[修饰的变量]
 
->**语法: const 数据类型 变量名 = 值**
+>**语法: const 数据类型 变量名 = 值(必须有初始值)**
 
 ![](assets%2Fconst.png)
 
 ![](assets%2Fdefineconst.png)
 
-## c++左右值
+### 3. constexpr
 
-[左右值](https://nettee.github.io/posts/2018/Understanding-lvalues-and-rvalues-in-C-and-C/)
+在C++中，`constexpr`用于在编译时计算表达式的值。以下是使用`constexpr`的几种常见情况：
+
+1. **声明常量：**
+   ```cpp
+   constexpr int myConst = 42;
+   ```
+
+2. **定义`constexpr`函数：**
+   ```cpp
+   constexpr double square(double x) {
+       return x * x;
+   }
+   ```
+
+3. **使用`constexpr`函数：**
+   ```cpp
+   constexpr double result = square(3.14);
+   ```
+
+4. **在数组的大小声明中使用`constexpr`：**
+   ```cpp
+   int arr[square(3)]; // 使用constexpr函数在数组大小声明中
+   ```
+
+5. **在模板中使用`constexpr`：**
+   ```cpp
+   template <int N>
+   void myFunction() {
+       // 使用N，这是在编译时已知的常量
+   }
+
+   int main() {
+       myFunction<square(4)>();
+       return 0;
+   }
+   ```
+
+6. **C++11中`constexpr`函数的限制：**
+   在C++11中，`constexpr`函数有一些限制，例如只能包含一行的返回语句。在C++14及更高版本中，这些限制得到了放宽，允许更复杂的函数体。
+
+7. **C++17中的`constexpr if`：**
+   C++17引入了`constexpr if`，它使得在`constexpr`上下文中可以使用更灵活的条件语句。
+
+示例：
+```cpp
+template <typename T>
+constexpr T max(T a, T b) {
+    return a > b ? a : b;
+}
+
+int main() {
+    constexpr int result = max(3, 5);
+    return 0;
+}
+```
 
 ## c++数据类型
 
-![](assets%2Fdatatyoe.png)
+以下是标准C++和（Unreal Engine）UC++中一些常见数据类型的对比表格：
 
-| 类别        | 类型                  | 描述                                           |
-|-----------|---------------------|----------------------------------------------|
-| **整数类型**  | int                 | 用于表示整数，通常占用4个字节。                             |
-|           | short               | 用于表示短整数，通常占用2个字节。                            |
-|           | long                | 用于表示长整数，通常占用4个字节。                            |
-|           | long long           | 用于表示更长的整数，通常占用8个字节。                          |
-| **浮点类型**  | float               | 用于表示单精度浮点数，通常占用4个字节。![](assets%2Ffloat.png)  |
-|           | double              | 用于表示双精度浮点数，通常占用8个字节。![](assets%2Fdouble.png) |
-|           | long double         | 用于表示更高精度的浮点数，字节数实现相关。                        |
-| **字符类型**  | char                | 用于表示字符，通常占用1个字节。                             |
-|           | wchar_t             | 用于表示宽字符，通常占用2或4个字节。                          |
-|           | char16_t            | 用于表示16位Unicode字符，占用2个字节。                     |
-|           | char32_t            | 用于表示32位Unicode字符，占用4个字节。                     |
-| **布尔类型**  | bool                | 用于表示布尔值，只能取true或false。                       |
-| **枚举类型**  | enum                | 用于定义一组命名的整数常量。                               |
-| **指针类型**  | type*               | 用于表示指向类型为type的对象的指针。                         |
-| **数组类型**  | type[] 或 type[size] | 用于表示具有相同类型的元素组成的数组。                          |
-| **结构体类型** | struct              | 用于定义包含多个不同类型成员的结构。                           |
-| **类类型**   | class               | 用于定义具有属性和方法的自定义类型。                           |
-| **共用体类型** | union               | 用于定义一种特殊的数据类型，可以在相同的内存位置存储不同的数据类型。           |
+| 数据类型   | 标准C++                         | UE C++                           |
+|--------|-------------------------------|----------------------------------|
+| 整数     | int, long, short, char, etc.  | int32, int16, int8, uint32, etc. |
+| 浮点数    | float, double                 | float, double                    |
+| 字符串    | std::string                   | FString                          |
+| 字符     | char                          | TCHAR                            |
+| 布尔     | bool                          | bool                             |
+| 数组     | std::vector, std::array, etc. | TArray                           |
+| 结构体    | struct                        | USTRUCT                          |
+| 类      | class                         | UCLASS                           |
+| 指针     | *                             | *                                |
+| 引用     | &                             | &                                |
+| 枚举     | enum                          | UENUM                            |
+| 构造函数   | ClassName()                   | ClassName()                      |
+| 析构函数   | ~ClassName()                  | ~ClassName()                     |
+| 命名空间   | namespace                     | NAMESPACE                        |
+| 模板     | `template <typename T> `      | TEMPLATETYPE                     |
+| 指定类型别名 | using                         | using                            |
 
+
+### 数据类型—基本类型
+
+![官方图解内存占用图](assets%2Fisocpp%20type.png)
+
+![对照UE引擎](assets%2Fdatatyoe.png)
 
 <ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 记不住！打死记不住！使用sizeof可以确定该类型占用内存大小。
@@ -137,28 +254,150 @@ int main()
     return 0;
 }
 ```
+
+### 数据类型-字符串
+>**语法： string 变量名 = "字符串";**
+
+![](assets%2Fstring.jpg)
+
+### 数据类型—枚举
+
+>**语法：enum 枚举名{值1,值2,值3};**
+
+#### 旧式枚举（Old-style Enumerations）：
+```cpp
+enum Color {
+    Red, 
+    Blue, 
+    Green
+};
+Color myColor = Red;
+```
+<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+C++11 引入了枚举类，也称为范围枚举。枚举类的语法更严格，它引入了作用域。这也是UE中主流枚举
+</ChatMessage>
+
+#### 枚举类（Scoped Enumerations / Enum Classes）：
+
+>**语法：enum class 枚举名{值1,值2,值3};**
+
+```cpp
+UENUM(BlueprintType)
+enum class EWidgetInputMode : uint8
+{
+	Default,
+	GameAndMenu,
+	Game,
+	Menu
+};
+EWidgetInputMode myMode = EWidgetInputMode::Game;
+```
+### 数据类型—结构体
+
+>**语法：struct 结构体名{成员1;成员2;成员3;};**
+
+```cpp
+struct Point {
+    int x;
+    int y;
+}
+```
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+细心的你可能已经注意到了struct和class很像，只不过struct成员都是public,class可以prvate成员。
+</ChatMessage>
+
+>UE中结构体
+
+```cpp
+USTRUCT(BlueprintType)
+struct FPerson
+{
+    GENERATED_USTRUCT_BODY()
+
+    UPROPERTY()
+        int32 P_ID;//整型
+
+    UPROPERTY()
+        FName P_Name;//字符串注重表现只读
+
+    UPROPERTY()
+        FString P_Direction;//字符串
+
+    UPROPERTY()
+        AActor* SelfPointer;//actor
+
+    void SetP_Name(FName In_Name) { P_Name = In_Name; }//内联函数
+
+    AActor* GetSelfPointer() { return SelfPointer; }
+
+    FPerson()
+    {
+        P_ID = 0;
+        P_Name = TEXT("snowing");
+        P_Direction = TEXT("this is a dog");
+        SelfPointer = nullptr;
+    }
+
+};
+
+```
+
+
 ## c++运算符
 
-| 运算符类型       | 描述                                             | 示例                   |
-|-------------------|--------------------------------------------------|------------------------|
-| 算术运算符        | 执行基本的数学运算                               | `+, -, *, /, %`       |
-| 关系运算符        | 比较两个值之间的关系                             | `==, !=, <, >, <=, >=` |
-| 逻辑运算符        | 执行逻辑操作                                     | `&&, ||, !`           |
-| 位运算符          | 对二进制位进行操作                               | `&, |, ^, ~, <<, >>`   |
-| 赋值运算符        | 将值赋给变量                                     | `=, +=, -=, *=, /=, %=`|
-| 自增自减运算符    | 增加或减少变量的值 ![](assets%2F%2B%2B--.png)                           | `++, --`              |
-| 条件运算符        | 三元运算符，根据条件返回值 ![](assets%2Fselect.jpg)                    | `condition ? expr1 : expr2` |
-| 逗号运算符        | 用于在一个语句中执行多个表达式，返回最后一个表达式的值 | `expr1, expr2, expr3`  |
-| 成员访问运算符    | 访问类或结构体的成员                             | `., ->`               |
-| 类型转换运算符    | 将一个类型转换为另一个类型                       | `static_cast, dynamic_cast, const_cast, reinterpret_cast` |
-| sizeof运算符      | 返回数据类型的大小（以字节为单位）               | `sizeof(type)`        |
-| 地址运算符        | 返回变量的地址                                   | `&`                   |
-| 指针运算符        | 用于声明指针及操作指针                           | `*, ->`               |
-| new和delete运算符  | 用于动态分配和释放内存                           | `new, delete`         |
+| 运算符类型         | 描述                                     | 示例                                                        |
+|---------------|----------------------------------------|-----------------------------------------------------------|
+| 算术运算符         | 执行基本的数学运算                              | `+, -, *, /, %`                                           |
+| 关系运算符         | 比较两个值之间的关系                             | `==, !=, <, >, <=, >=`                                    |
+| 逻辑运算符         | 执行逻辑操作                                 | `&&,                                                      ||, !`           |
+| 位运算符          | 对二进制位进行操作                              | `&,                                                       |, ^, ~, <<, >>`   |
+| 赋值运算符         | 将值赋给变量                                 | `=, +=, -=, *=, /=, %=`                                   |
+| 自增自减运算符       | 增加或减少变量的值 ![](assets%2F%2B%2B--.png)   | `++, --`                                                  |
+| 条件运算符         | 三元运算符，根据条件返回值 ![](assets%2Fselect.jpg) | `condition ? expr1 : expr2`                               |
+| 逗号运算符         | 用于在一个语句中执行多个表达式，返回最后一个表达式的值            | `expr1, expr2, expr3`                                     |
+| 成员访问运算符       | 访问类或结构体的成员                             | `., ->`                                                   |
+| 类型转换运算符       | 将一个类型转换为另一个类型                          | `static_cast, dynamic_cast, const_cast, reinterpret_cast` |
+| sizeof运算符     | 返回数据类型的大小（以字节为单位）                      | `sizeof(type)`                                            |
+| 地址运算符         | 返回变量的地址                                | `&`                                                       |
+| 指针运算符         | 用于声明指针及操作指针                            | `*, ->`                                                   |
+| new和delete运算符 | 用于动态分配和释放内存                            | `new, delete`                                             |
 
 <ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 记不住，根本记不住。
 </ChatMessage>
+
+### static_cast
+
+static_cast 是 C++ 中的一个类型转换运算符，用于执行编译时的类型转换。它允许你在已知类型之间进行显式的类型转换，以便在某些情况下，将一个类型转换为另一个类型。
+>语法 ：
+
+```cpp
+static_cast<目标类型>(表达式)
+```
+例子：
+
+```cpp
+// int to double
+int intValue = 5;
+double doubleValue = static_cast<double>(intValue);
+
+//类继承关系转换
+class Base {};
+class Derived : public Base {};
+
+Base* basePtr = new Derived;
+Derived* derivedPtr = static_cast<Derived*>(basePtr);
+
+//枚举类型之间的转换：
+enum class MyEnum { Value1, Value2 };
+int enumValue = static_cast<int>(MyEnum::Value1);
+
+//指针之间的转换
+int* intPtr = &intValue;
+void* voidPtr = static_cast<void*>(intPtr);
+
+```
+
 
 ## c++循环语句
 
@@ -273,55 +512,6 @@ end
 :::
 
 
-
-## c++函数
-
-![](assets%2Ffunction.png)
-
->语法： 
-
-``` cpp
-返回类型 函数名(参数1，参数2，参数...)
-{
-   // 函数体语句
-    retrun 表达式 
-}
-```
-<hr>
-
-### 调用
-
->语法：函数名(参数1，参数2，参数...)
-
-<hr>
-
-### 参数
-
-| 术语        | 描述                                          | 示例                   |
-|-----------|-----------------------------------------------|------------------------|
-| 形参（形式参数）  | 函数定义中的参数，是用来接收传递给函数的值的变量  | `void printNumber(int x)`，其中 `x` 是形参 |
-| 实参（实际参数）  | 函数调用中的参数，是实际传递给函数的值          | `printNumber(42)`，其中 `42` 是实参  |
-| 可变参数 (模板) | 函数定义中使用的特殊参数，允许函数接受不定数量的实参 | `void printValues(T value, Args... args)`，其中 `Args...` 表示可变参数模板 |
-
-
-#### 可变参数
-
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
-c++ 使用三点 ... 表示可变参数。
-</ChatMessage>
-
-<hr>
-
-#### 值传递
-
->函数调用时，实参传递给形参。  
-传递时：形参改变不会影响实参。
-
-
-## c++字符串
-
-![](assets%2Fstring.jpg)
-
 ### 双引号
 
 ```cpp
@@ -336,11 +526,401 @@ string str = "Hello"
 
 ![](assets%2Farray.png)
 
-``` c++
+``` cpp
 -- 创建一个数组
 int myArray[5] = {10, 20, 30, 40, 50}
 ```
+## c++ 指针
 
+存储某个变量的地址的变量叫指针。
+
+>语法：type* var_name;
+
+### 初始化
+
+``` cpp
+//初始化指针
+int *p = NULL;
+```
+
+![](assets%2Fptr.png)
+
+``` cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // 定义整数变量 b 并赋值为 10
+    int b = 10;
+
+    // 定义整型指针 p 并将其指向 b 的地址
+    int* p = &b;
+
+    // 打印 b 的地址
+    cout << "b 的地址: " << &b << endl;
+
+    // 打印指针 p 存储的地址，即 b 的地址
+    cout << "指针 p 存储的地址: " << p << endl;
+
+    // 打印指针 p 指向的值，即 b 的值
+    cout << "指针 p 指向的值: " << *p << endl;
+
+    // 打印指针 p 本身的地址
+    cout << "指针 p 本身的地址: " << &p << endl;
+
+    return 0;
+}
+
+```
+
+### 野指针
+>访问非法空间。
+
+## c++函数
+
+![](assets%2Ffunction.png)
+
+### 函数签名
+
+>语法：
+
+``` cpp
+返回类型 函数名(参数1，参数2，参数...)
+{
+   // 函数体语句
+    retrun 表达式 
+}
+```
+<hr>
+
+### 函数调用
+
+>语法：函数名(参数1，参数2，参数...)
+
+<hr>
+
+### 参数和可变参数
+
+| 术语        | 描述                         | 示例                                                              |
+|-----------|----------------------------|-----------------------------------------------------------------|
+| 形参（形式参数）  | 函数定义中的参数，是用来接收传递给函数的值的变量   | `void printNumber(int x)`，其中 `x` 是形参                            |
+| 实参（实际参数）  | 函数调用中的参数，是实际传递给函数的值        | `printNumber(42)`，其中 `42` 是实参                                   |
+| 可变参数 (模板) | 函数定义中使用的特殊参数，允许函数接受不定数量的实参 | `void printValues(T value, Args... args)`，其中 `Args...` 表示可变参数模板 |
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+c++ 使用三点 ... 表示可变参数。
+</ChatMessage>
+
+### 值传递和引用传递
+
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+函数调用时均不会改变参数，调用完成后引用传递可能改变参数。
+</ChatMessage>
+
+<hr>
+
+### 默认实参
+默认实参（Default Arguments）是 C++ 函数的一种特性。  
+声明时特定函数指定某些值，但想要注意一旦出现默认参数，后面都需要有参数。  
+调用时可以省略这些参数。  
+```cpp
+int a( int x, int y = 0, int z = 0 ,int w;//错误一但之前用了默认实参后面都得有。)
+{
+return 0;
+}
+```
+
+## c++类
+>语法：class 类名{ public: 成员变量; private: 成员变量; protected: 成员变量; };
+
+![](assets%2Fclassdefine.png)
+
+```cpp
+class Point {
+public:
+    int x;
+    int y;
+    //函数
+    void print() {
+        cout << x << "," << y << endl;
+    }
+};
+
+//访问成员变量
+Point p;
+p.x = 1;
+
+//访问成员函数
+p.print();
+
+```
+
+![](assets%2Fvisit.png)
+
+### 访问控制和继承
+>派生类可以访问基类中所有的非私有成员。因此基类成员如果不想被派生类的成员函数访问，则应在基类中声明为 private。
+
+| 访问     | 同一个类 | 派生类 | 外部的类 |
+| -------- | ------- | ------ | -------- |
+| Public   | Yes     | Yes    | Yes      |
+| Protected| Yes     | Yes    | No       |
+| Private  | Yes     | No     | No       |
+
+
+### 静态成员(Static Member Function)和普通成员函数(Non-Static Member Function)
+
+| 特性        | 静态成员函数                         | 非静态成员函数              |
+|-----------|--------------------------------|----------------------|
+| 归属        | 整个类                            | 类的每个实例               |
+| 对象实例      | 不需要实例，直接属于类                    | 需要类的实例，每个对象都可以调用     |
+| "this" 指针 | 不可用，因为没有特定的对象实例                | 可用，指向调用该函数的对象        |
+| 调用方式      | 类名::函数名() 调用                   | 对象实例.函数名() 调用        |
+| 操作类的状态    | 可以操作类的静态成员，但不能访问非静态成员          | 可以操作和访问类的非静态成员       |
+| 内存分配      | 不需要对象实例，因此不需要分配对象的内存空间         | 需要对象实例，因此需要分配对象的内存空间 |
+| 使用场景      | 适用于执行与整个类相关的操作，如工具函数(UE蓝图函数库类) | 适用于处理特定对象的特定行为       |
+
+
+### 构造（Constructor）和析构（Destructor）
+
+1. 类的构造函数是类的一种特殊的成员函数，它会在每次创建类的新对象时执行。
+
+```cpp
+class MyClass {
+public:
+    MyClass() {
+        // 构造函数的代码，初始化对象
+    }
+};
+```
+2. 析构函数是类的一种特殊的成员函数，它会在每次删除所创建的对象时执行。
+```cpp
+class MyClass {
+public:
+    ~MyClass() {
+        // 析构函数，删除对象
+    }
+};
+```
+### 重载（Overloading）和重写（Overriding）
+
+1. 函数重载（Overloading）
+   是指在同一个作用域内，可以定义多个同名但参数列表不同的函数。  
+   重载的函数可以有不同的参数类型、参数个数或参数顺序，编译器根据调用时提供的参数来确定调用哪个函数重载。
+
+```cpp
+class MyClass{
+public:
+MyClass(int a);
+MyClass(float a);
+MyClass(const float a);//顶层const 无法重载
+MyClass(const float* a);//底层const可以重载
+};
+```
+#### 函数匹配
+
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+编译器自动选择版本的过程叫函数匹配，是自动完成的，但需要注意二义问题。
+</ChatMessage>
+
+
+2. 函数重写（Overriding）
+   是面向对象编程中的概念，它发生在继承关系中。子类可以在继承自父类的函数基础上重新定义相同名称和参数列表的函数，这就是函数重写。
+   重写的函数在子类中实现了与父类同名的函数，但可能有不同的实现逻辑。
+
+```cpp
+#include <iostream>
+
+// 基类
+class Animal {
+public:
+    // 虚函数，可以被子类重写
+    virtual void eat() const {
+        std::cout << "Animal eat" << std::endl;
+    }
+     virtual void sleep() const {
+        std::cout << "Animal sleep" << std::endl;
+    }
+};
+
+// 派生类
+class Dog : public Animal {
+public:
+    // 重写基类中的虚函数
+    void eat() const override {
+        std::cout << "Dog eat" << std::endl;
+    }
+    void bark() {
+        std::cout << "Dog bark" << std::endl;
+    }
+};
+
+// 另一个派生类
+class Cat : public Animal {
+public:
+    // 重写基类中的虚函数
+    void sleep() const override {
+        std::cout << "Cat sleep" << std::endl;
+    }
+};
+
+int main() {
+    // 创建基类指针
+    Animal* animalPtr;
+
+    // 创建派生类对象
+    Dog myDog;
+    Cat myCat;
+
+    // 指向派生类对象的指针
+    animalPtr = &myDog;
+    // 调用虚函数，将调用 Dog 类的版本
+    animalPtr->eat();
+    animalPtr->bark();
+
+    // 指向另一个派生类对象的指针
+    animalPtr = &myCat;
+    // 调用虚函数，将调用 Cat 类的版本
+    animalPtr->sleep();
+
+    return 0;
+}
+
+```
+
+### 模板函数
+先来看一个函数重载案例：
+
+```cpp
+//这是普通函数写法
+int add(int a , int b){
+return a + b;
+}
+//函数重载
+double add(double a , double b){
+return a + b;
+}
+```
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+每一次增加一个数据类型，就得重写写一次函数，使得代码非常冗余，模板函数应需而生。
+</ChatMessage>
+
+>语法：`template<typename T>`
+
+1. 先写一遍普通函数
+```cpp
+void point(int x = 1 ,int y = 1)
+{
+return x + y ;
+}
+```
+2. 模板化就是把这些数据类型替换成一个通用符号
+
+```cpp
+//告诉编译器我要写模板了
+template<typename T>
+T point(T x = 1 ,T y = 1)
+{
+return x + y ;
+}
+//调用
+point<int>();//指定数据类型
+point();//直接调用。
+```
+3. 既然有了模板，那么我希望他有特殊版本怎么办？这就是模板特化
+
+```cpp
+#include <iostream>
+
+// 通用模板类
+template <typename T>
+class Box {
+public:
+    Box(const T& value) : data(value) {}
+
+    void display() {
+        std::cout << "Generic Box: " << data << std::endl;
+    }
+
+private:
+    T data;
+};
+
+// 模板特化：针对字符串类型的定制实现
+template <>
+class Box<std::string> {
+public:
+    Box(const std::string& value) : data(value) {}
+
+    void display() {
+        std::cout << "Specialized Box for Strings: " << data << std::endl;
+    }
+
+private:
+    std::string data;
+};
+
+int main() {
+    // 使用通用模板类
+    Box<int> intBox(42);
+    intBox.display();
+
+    // 使用模板特化类
+    Box<std::string> stringBox("Hello, Template Specialization!");
+    stringBox.display();
+
+    return 0;
+}
+
+```
+
+## c++多态
+C++多态(polymorphism)是通过虚函数来实现的，虚函数允许子类重新定义成员函数，而子类重新定义父类的做法称为覆盖(override)，或者称为重写。
+
+![](assets%2Fc16d7b91-9e62-4008-a36c-3d69b17ada95.png)
+
+### 虚函数|virtual function
+>语法父类：
+
+```cpp
+class 父类
+{ 
+   virtual 类型 函数名 (参数表); 
+};
+class 子类 public 父类
+{ 
+   virtual 类型 函数名(参数表) override; 
+};
+```
+
+虚函数（Virtual Function）是一种特殊类型的函数，用于实现多态性（Polymorphism），我们之前的案例中就用了。
+虚函数允许派生类（子类）重写基类（父类）中定义的函数，并在运行时根据对象的实际类型调用正确的函数实现。
+
+### 纯虚函数|pure virtual function
+>语法：
+
+```cpp
+class 类名
+{ 
+   virtual 类型 函数名(参数表) = 0 ; 
+};
+```
+在基类中定义虚函数，以便在派生类中重新定义该函数更好地适用于对象，但不希望基类中对虚函数给出有意义的实现，这个时候就会用到纯虚函数。
+
+```cpp
+class Shape {
+   protected:
+      int width, height;
+   public:
+      Shape( int a=0, int b=0)
+      {
+         width = a;
+         height = b;
+      }
+      // pure virtual function
+      virtual int area() = 0;
+};
+```
 ## 参考链接
 - [wiki](https://zh.wikipedia.org/wiki/c++)
 - [菜鸟教程]("https://www.runoob.com/c++/c++-functions.html")

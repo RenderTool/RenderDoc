@@ -34,6 +34,14 @@ export default sidebar({
             children: "structure",
         }
     ],
+    "/algorithm/": [
+        {
+            text: "目录",
+            prefix: "",
+            link: "",
+            children: "structure",
+        }
+    ],
     // "/tools/git/": [
     //     {
     //         "text": "GIT",

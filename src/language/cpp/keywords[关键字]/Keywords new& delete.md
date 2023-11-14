@@ -5,50 +5,35 @@ category:
 tags:
    - new
    - delete
+   - 内存四区
+   - 关键字
 ---
 <ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 `new`和`delete`是两个C++关键字用于动态分配和释放内存。
 </ChatMessage>
 
-## 隐藏式new和delete
+## 手动new和delete
 
- 早在一开始接触C++变量的时候就已经知道变量定义是在内存中开辟空间。
-这里的内存中其实就是我们之前提过的4大区中的栈（stack）。而stack是系统自动管理的，所以不需要new和delete。
-
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
-什么你还不清楚内存四区?巧了我也不会！你可以康康我之前的文章。
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+使用`new`操作符来创建对象会在堆（heap）上分配内存.<br>不使用`new`，直接声明对象会在栈（stack）上分配内存。
 </ChatMessage>
 
 
-1. **基本数据类型：** 对于基本数据类型（例如 `int`, `float`, `char`），它们的定义通常不涉及显式的 `new` 操作符。这些变量通常是在栈上分配的，而不是在堆上。例如：
+ 堆（Heap）操作： 使用new关键字来动态分配内存，创建对象，并返回指向该对象的指针。在堆上分配的内存需要手动释放，以避免内存泄漏。当您使用new创建对象时，对象的生命周期可以长于当前作用域。
 
-    ```cpp
-    int x = 42;  // 在栈上分配内存，不需要显式的 new
-    ```
+```cpp
+int* ptr = new int;  // 在堆上分配一个整数的内存空间
+delete ptr;         // 释放内存，避免内存泄漏
+```
 
-2. **自定义类型（类对象）：** 对于自定义类型，如果该类型的对象通过 `new` 关键字进行动态分配，则需要显式使用 `new`。例如：
+## 隐藏式new和delete
 
-    ```cpp
-    class MyClass {
-    public:
-        MyClass() {
-            // 构造函数
-        }
+栈（Stack）操作： 在栈上分配内存的对象会在其所在作用域结束时自动被销毁。栈上的内存管理由编译器自动处理，因此不需要显式释放内存。
 
-        ~MyClass() {
-            // 析构函数
-        }
-    };
+```cpp
+int num = 10;  // 在堆上分配一个整数的内存空间
+```
 
-    int main() {
-        // 显式使用 new 进行动态分配
-        MyClass* obj = new MyClass;
-
-        // ...
-
-        // 显式使用 delete 进行释放
-        delete obj;
-
-        return 0;
-    }
-    ```
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
+什么是栈!什么是堆！看来你还不清楚一些概念。
+</ChatMessage>
