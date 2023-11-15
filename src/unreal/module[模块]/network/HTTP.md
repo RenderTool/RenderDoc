@@ -26,8 +26,7 @@ HTTP（超文本传输协议）是一种用于在互联网上传输信息的应�
 | 默认端口     | 80                                      | 443                                                                        |
 | URL 示例    | http://                                 | https://                                                                   |
 
-
-![](..%2Fassets%2Fhttp.jpeg)
+![](..%2F..%2Fassets%2Fhttp.jpeg)
 
 ### HTTP请求操作
 

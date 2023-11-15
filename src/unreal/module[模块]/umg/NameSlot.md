@@ -12,25 +12,25 @@ category:
 
 ## 实现目标
 
-![](..%2Fassets%2Fdemonameslot.gif)
+![](..%2F..%2Fassets%2Fdemonameslot.gif)
 
 ## 实践
 
 1.在UMG控制板中添加命名插槽-NameSlot。
 
-![](..%2Fassets%2FNameSlot.jpg)
+![](..%2F..%2Fassets%2FNameSlot.jpg)
 
 2. 排好基本布局，确定固定内容和可变内容，可变内容由NameSlot组件占位。
 
-![](..%2Fassets%2Fnameslotroot.jpg)
+![](..%2F..%2Fassets%2Fnameslotroot.jpg)
 
 3. 新建一个继承自这个模板的UMG类,打开后可以看到多了一个自定义的NameSlot插槽。
 
-![](..%2Fassets%2Fnewslotchild.gif)
+![](..%2F..%2Fassets%2Fnewslotchild.gif)
 
 4. NameSlot插槽插入我们想要的UMG,这样我们就实现了模板多态，表现如下动画：
 
-![](..%2Fassets%2Fnameslot.gif)
+![](..%2F..%2Fassets%2Fnameslot.gif)
 
 ## 参考链接
 
