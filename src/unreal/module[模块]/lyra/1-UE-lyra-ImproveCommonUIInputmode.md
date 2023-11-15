@@ -23,7 +23,7 @@ category:
 这还不简单！构造函数里设置一下输入模式`游戏和UI`
 </ChatMessage>
 
-![](assets%2Fuiinputmode.jpg)
+![](..%2F..%2Fassets%2Fuiinputmode.jpg)
 
 >悲剧发生了！
 
@@ -32,9 +32,9 @@ category:
 </ChatMessage>
 
 
-![设置输入模式为游戏和UI后依然无法操作视口](assets%2Fgame%20view%20cannot%20move.gif)
+![设置输入模式为游戏和UI后依然无法操作视口](..%2F..%2Fassets%2Fgame%20view%20cannot%20move.gif)
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 如果没记错的话原系统中我们要修改输入模式确实是这几个节点。
 </ChatMessage>
 
@@ -48,32 +48,32 @@ category:
 最后发现设置里可以通过SupportsActivationFocus关闭来开启游戏和UI这种输入模式。完美！再次编译运行！
 </ChatMessage>
 
-![checkout.jpg](assets%2Fcheckout.jpg)
+![checkout.jpg](..%2F..%2Fassets%2Fcheckout.jpg)
 
 <ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 But！当你来回切换几个UI界面后，你发现你的视口又不能动了！总不能所有界面都设置SupportsActivationFocus吧！而且这卡顿是怎么回事啊！
 </ChatMessage>
 
-![](assets%2Fmenu.gif)
+![](..%2F..%2Fassets%2Fmenu.gif)
 
 <ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40">
 官方S一样的文档中也找不对应的节点只给了一个实现函数。
 </ChatMessage>
 
-![截自官方文档](assets%2Finputconfig.jpg)
+![截自官方文档](..%2F..%2Fassets%2Finputconfig.jpg)
 
 <hr>
 
 ## Lyra的实现
 
-![](assets%2Fgameandmenu.gif)
+![](..%2F..%2Fassets%2Fgameandmenu.gif)
 
 >后来我发现Lyra通过封装InputConfig和GameMouseCaptureMod两个核心模块完美解决了上面的问题。
 
 
-![](assets%2Flyrainputmode.jpg)
+![](..%2F..%2Fassets%2Flyrainputmode.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
 很好！是时候学习一下新科学知识了！
 </ChatMessage>
 
@@ -87,23 +87,23 @@ enum class EWidgetInputMode : uint8
 	Menu
 };
 ```
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40" >
 这个应该看得懂，默认的几种输入模式。
 </ChatMessage>
 
 * Default & Menu 鼠标只能操作UI
 
-![](assets%2Fmenu.gif)
+![](..%2F..%2Fassets%2Fmenu.gif)
 
 * GameAndMenu ：鼠标能操作UI，也能移动游戏视口
 
-![](assets%2Fgameandmenu.gif)
+![](..%2F..%2Fassets%2Fgameandmenu.gif)
 
 * Game:鼠标无法操作UI，只能移动游戏视口。
 
-![](assets%2Fgame.gif)
+![](..%2F..%2Fassets%2Fgame.gif)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40"  alignLeft>
 最终，BABA还是担心你看不懂，做了几个动画演示。
 </ChatMessage>
 
@@ -128,22 +128,30 @@ enum class EMouseCaptureMode : uint8
 
 ```
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40">
+
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 等等!Baba有个问题:Game模式下，一定不能控制UI吗？
 </ChatMessage>
 
->为了测试，我们给我们的按钮加了一个打印节点。
+
+<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+可以测试一下！给按钮加一个打印节点。
+</ChatMessage>
+
+![](..%2F..%2Fassets%2Fprinthello.jpg)
+
+<ChatMessage avatar="../../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+然后我们将鼠标永久捕获改成按下期间捕获。
+</ChatMessage>
+
+![](..%2F..%2Fassets%2Fmousebuhuo.gif)
 
 
-![](assets%2Fprinthello.jpg)
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+为什么Game模式下也能控制UI?
+</ChatMessage>
 
->我们将鼠标永久捕获改成按下期间捕获。
-
-![](assets%2Fmousebuhuo.gif)
-
->为什么Game模式下也能控制UI?
-
-<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40" alignLeft>
 从视觉上分析，鼠标按下期间捕获的过程相当于Menu和Game模式的切换，一结合也就变成了GameAndMenu的效果。
 </ChatMessage>
 
@@ -154,7 +162,7 @@ enum class EMouseCaptureMode : uint8
 
 >很多人应该和我一样，一开始压根不明白这个节点的意思。
 
-当一个UI元素接收到鼠标点击或触摸输入时，通常会有一个属性或方法可以设置为"Consume pointer input"。<br>
+当一个UI元素接收到鼠标点击或触摸输入时，通常会有一个属性或方法可以设置为"Consume pointer input"。
 这意味着该UI元素会消耗掉这个输入事件，阻止它继续传递到下层的UI元素或游戏场景中。
 
 <hr>
@@ -165,11 +173,11 @@ enum class EMouseCaptureMode : uint8
 
 例如：我想配置一个全局的输、鼠标交互模式。
 
- ![](assets%2FUCommonInputActionDomain.jpg)
+ ![](..%2F..%2Fassets%2FUCommonInputActionDomain.jpg)
 
 * Display in ActionBar :简单来说就是对应的按键UI显示在指定的动作栏中。类似下面的效果：
 
- ![](assets%2Faction%20bar.jpg)
+ ![](..%2F..%2Fassets%2Faction%20bar.jpg)
 
 ## 源码剖析
 
@@ -295,16 +303,13 @@ void UExorcistActivatableWidget::ValidateCompiledWidgetTree(const UWidgetTree& B
 打住打住！你管这叫源码剖析？
 </ChatMessage>
 
->很好!我们从头分析！
-
 ## 回顾
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
-我们先来重新复习一下CommonUI有哪些现成的Widget类
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+很好!我们从头分析！我们先来重新复习一下CommonUI有哪些现成的Widget类
 </ChatMessage>
 
-![](assets%2Fcommonui.jpg)
-
+![](..%2F..%2Fassets%2Fcommonuiroot.jpg)
 
 ## 扩展
 

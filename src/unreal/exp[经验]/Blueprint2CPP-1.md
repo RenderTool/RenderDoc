@@ -5,7 +5,7 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 测试不同传参方法对应的蓝图节点结果
 </ChatMessage>
 
@@ -13,11 +13,11 @@ category:
 
 ### 1. 新建一个蓝图函数库类
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 蓝图函数库是一个静态函数的合集，便于测试
 </ChatMessage>
 
-![](..%2F..%2Fassets%2Flibexpcpp.jpg)
+![](..%2Fassets%2Flibexpcpp.jpg)
 
 ### 2. 输入测试代码
 ```cpp
@@ -32,10 +32,10 @@ category:
 ```
 ### 3. 测试结果
 
-![](assets%2FUEvaluepass.jpg)
+![](..%2Fassets%2FUEvaluepass.jpg)
 
 ## 其他
 
 ### 蓝图中数组只能用引用传递。
 
-![](assets%2Fdefalutreference.gif)
+![](..%2Fassets%2Fdefalutreference.gif)

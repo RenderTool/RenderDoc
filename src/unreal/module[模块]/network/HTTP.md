@@ -5,19 +5,19 @@ category:
   - unreal
 ---
 
-## 目标
-
 <ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 本节目标：手撸一个HTTP插件
 </ChatMessage>
 
 ## 老生常谈
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 什么是HTTP?
 </ChatMessage>
 
->HTTP（超文本传输协议）是一种用于在互联网上传输信息的应用层协议。
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+HTTP（超文本传输协议）是一种用于在互联网上传输信息的应用层协议。
+</ChatMessage>
 
 | 协议         | 全称                                     | 描述                                                                       |
 |------------|----------------------------------------|----------------------------------------------------------------------------|

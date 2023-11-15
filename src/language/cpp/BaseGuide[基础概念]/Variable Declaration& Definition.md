@@ -26,7 +26,7 @@ int x = 42;  // 这是一个变量定义
 
 在上述代码中，`int x` 是变量声明和定义的组合，它告诉编译器分配一个整数类型的内存空间给变量 `x`，并将其初始化为 42。
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 需要注意的是，变量声明和定义可以分开进行，但通常在实际编程中，它们往往是同时进行的。
 </ChatMessage>
 

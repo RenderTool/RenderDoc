@@ -109,7 +109,7 @@ return 0;
 
 ## 正片
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 如果只是这样也太没劲了，为此Baba在UE中用蓝图节点模拟了一下值传递和值引用
 </ChatMessage>
 
@@ -129,7 +129,7 @@ return 0;
 
 ### 3.注意
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 注意如果你这里用+1是没有用的，要用自增。
 </ChatMessage>
 

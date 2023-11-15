@@ -7,11 +7,11 @@ category:
 ---
 ## 问题描述
 
-<ChatMessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 写完代码，感觉自我良好，IDE也没报错，编译！——>报错！
 </ChatMessage>
 
-![](assets%2Fbuilderror.jpg)
+![](..%2Fassets%2Fbuilderror.jpg)
 
 ## 解决思路
 
@@ -24,7 +24,7 @@ category:
 3. **确保依赖项正确链接**：
     - 确保项目正确链接了所需的库文件，一般情况下都是对应的`xxx.build.cs`没有引入模块依赖。
 
- ![](assets%2Fbuild.jpg)
+ ![](..%2Fassets%2Fbuild.jpg)
 
 4. **重新生成项目文件**：
     - 在 UE 中，尝试删除 `Intermediate` 和 `Saved` 文件夹，然后重新生成项目文件。这将清除中间文件并尝试重新构建项目。

@@ -13,75 +13,71 @@ actions:
   - text: 开始修炼
     link: /#🤞关于本站
     type: primary
-features:
-  - title: 技术聚焦
-    details: 以 UE4/5 C++ 为主线，专注于解决与 UE4/5 相关的技术问题。
-  - title: 踩坑记录
-    details: 包括多种技能的踩坑经验，涵盖 C++、Lua、Python、Js 等...
-  - title: 丰富表达
-    details: 图文代码结合，直观地展示解决方案，同时享受问题解决的过程。
+#features:
+#  - title: 技术聚焦
+#    details: 以 UE4/5 C++ 为主线，专注于解决与 UE4/5 相关的技术问题。
+#  - title: 踩坑记录
+#    details: 包括多种技能的踩坑经验，涵盖 C++、Lua、Python、Js 等...
+#  - title: 丰富表达
+#    details: 图文代码结合，直观地展示解决方案，同时享受问题解决的过程。
 
 
 
 ---
+<hr>
+
 ### 🤞关于本站
 
-欢迎你的到来，本站基于 [VuePress](https://theme-hope.vuejs.press/zh/) 的中文技术文档站点！虽然被称为技术站，却更像是我的个人开发日志。
-希望这里的内容能对你有所帮助！
+欢迎你的到来，本站是基于 [VuePress](https://theme-hope.vuejs.press/zh/) 的中文个人备忘随笔。
 
 我主要记录与建模、渲染技术、光线追踪、[UE4/UE5](https://docs.unrealengine.com/5.0/zh-CN/)、各类编程语言、以及各类工具使用等综合技术应用相关的内容。
+
+希望这里的内容能对你有所帮助！
 
 <hr>
 
 ### 主要形式：
 
->图文- 视频- 代码示例如下：
+### 1. 图文对话
+
+<ChatMessage avatar="./assets/emoji/hx.png" :avatarWidth="40">
+babaUE引擎怎么在屏幕中打印内容！
+</ChatMessage>
+
+<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+直接右键添加一个print节点就行啦！
+</ChatMessage>
+
+### 2. 外链引用-视频-插件等
 
 <iframe src="https://blueprintue.com/render/j0oxoqx7/" width="100%" height="500" scrolling="no" allowfullscreen></iframe>
 
 >蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)**
 
-<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
-baba绝对不会告诉你这个蓝图可以复制的。
+<ChatMessage avatar="./assets/emoji/dsyj.png" :avatarWidth="40">
+ 当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
 </ChatMessage>
 
-::: info
-* 当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
-:::
-
-
-::: code-tabs#shell
-
-@tab:active  cpp
+### 3. 代码演示
 
 ``` cpp
-void AYourGameCharacter::BeginPlay()
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "TEST.generated.h"
+
+UCLASS()
+class TEST_API UTEST : public UBlueprintFunctionLibrary
 {
-    // Super 表示调用父类的方法或属性，这里调用开始事件
-    Super::BeginPlay();
-    // 控制台中打野hello
-    UE_LOG(LogTemp, Warning, TEXT("hello"));
-}
+	GENERATED_BODY()
+
+	UFUNCTION(BlueprintCallable, Category = "TEST")
+	static void print();
+	
+};
 ```
 
-@tab lua
-
-```lua
-
--- 定义一个新的 Lua 类，继承自 Unreal Engine 的 AYourGameCharacter
-YourGameCharacter = AYourGameCharacter:new()
-
--- 重写 BeginPlay 方法
-function YourGameCharacter:BeginPlay()
-    -- 调用父类的 BeginPlay 方法
-    self:SuperBeginPlay()
-    
-    -- 控制台中打印 hello
-    UE_LOG("LogTemp", "Warning", "hello")
-end
-
-```
-:::
 
 <ChatMessage avatar="./assets/emoji/bqb (6).png" :avatarWidth="40">
  为了TA的视力健康，建议采用深色主题。

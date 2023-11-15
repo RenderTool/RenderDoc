@@ -15,7 +15,7 @@ article : false
 
 我接触的第一款游戏引擎不是UE，也不是起源、CE、U3D而是一款非常古董的3D游戏引擎.
 
-<ChatMessage avatar="../assets/emoji/hx.png" :avatarWidth="40">
+<ChatMessage avatar="../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
 太古老了我真的想不起名字了，只记得电驴上下载的本体，想起来再来补名字吧。
 </ChatMessage>
 
@@ -35,7 +35,7 @@ article : false
 ## 初窥 
 下载完DEMO后我发现，阻碍我第一步前进的便是前端编程语言JavaScript以及他用到的[threejs](https://threejs.org/docs/index.html#manual/zh/introduction/Creating-a-scene)(基于webgl)
 
-<ChatMessage avatar="../assets/emoji/hx.png" :avatarWidth="40">
+<ChatMessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40"  alignLeft>
 对于我来说简直堪比看天书。于是，我就找了几百集的js课程以及threejs课程进行简单入坑。
 </ChatMessage>
 
@@ -113,8 +113,8 @@ OpenGL（Open Graphics Library）是一个用于渲染2D和3D图形的跨平台�
 ## 转折
 >人们总是希望像电影主角那样，迎来某个剧情转折。
 
-<ChatMessage avatar="../assets/emoji/kclr.png" :avatarWidth="40">
-对不起，现实是残酷的，穷人只能坚信学习可能改变命运。
+<ChatMessage avatar="../assets/emoji/kclr.png" :avatarWidth="40"  alignLeft>
+抱歉！现实是残酷的，穷人只能坚信学习可能改变命运。
 </ChatMessage>
 
 ## 前进

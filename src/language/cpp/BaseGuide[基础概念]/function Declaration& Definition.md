@@ -77,7 +77,7 @@ int main() {
 
 带有{ }的就是定义，不带的就是声明。
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 这也是IDE中为什么点击函数声明时会弹窗前往定义。
 </ChatMessage>
 

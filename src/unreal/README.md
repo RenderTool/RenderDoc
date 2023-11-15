@@ -29,7 +29,7 @@ tag:
 
 1. [中文官网]("https://www.unrealengine.com/zh-CN/)
 
-![Download-Step1.png](assets%2Fdownload-step1.png)
+![](assets%2Fdownload-step1.png)
 
 2. 点击左上角下载按钮下载EpicGamesLauncher
 
@@ -55,7 +55,7 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 
 诚然，在编写前端应用和Python项目时，VSCode确实是一个非常优秀的选择。但在这里我强烈推荐你使用[Rider](https://www.jetbrains.com/zh-cn/rider/)。
 
-<ChatMessage avatar="../assets/emoji/bqb (1).png" :avatarWidth="40">
+<ChatMessage avatar="../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 同时，结合CodeGeeX、GitHub Copilot、Codeium Chat等AI代码补全插件。
 </ChatMessage>
 
@@ -86,7 +86,7 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 
 <hr>
 
-<ChatMessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40">
+<ChatMessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 书写md时候甚至有UI辅助。
 </ChatMessage>
 

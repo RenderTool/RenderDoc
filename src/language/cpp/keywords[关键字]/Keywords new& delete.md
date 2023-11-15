@@ -34,6 +34,10 @@ delete ptr;         // 释放内存，避免内存泄漏
 int num = 10;  // 在堆上分配一个整数的内存空间
 ```
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
-什么是栈!什么是堆！看来你还不清楚一些概念。
+<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+Baba什么是栈!什么是堆！
+</ChatMessage>
+
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+看来你还不清楚一些概念。
 </ChatMessage>

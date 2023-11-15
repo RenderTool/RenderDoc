@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-message">
+  <div class="chat-message" :class="{ 'align-left': alignLeft }">
     <div class="avatar">
       <img :src="avatar" :style="{ width: avatarWidth + 'px' }" alt="头像">
     </div>
@@ -12,8 +12,9 @@
 <script>
 export default {
   props: {
-    avatar: String, // 头像路径
-    avatarWidth: Number // 头像宽度
+    avatar: String,       // 头像路径
+    avatarWidth: Number,  // 头像宽度
+    alignLeft: Boolean    // 控制布局是否靠左，默认为 false
   }
 }
 </script>
@@ -25,9 +26,14 @@ export default {
   align-items: flex-start;
 }
 
+.align-left {
+  justify-content: flex-start;  /* 头像和聊天内容靠左布局 */
+  flex-direction: row-reverse;
+}
+
 .avatar img {
   max-width: 50px;
-  //border-radius: 50%;
+//border-radius: 50%;
   margin-right: 10px;
 }
 
@@ -35,7 +41,7 @@ export default {
   background-color: #e0e0e026;
   padding: 10px;
   border-radius: 4px;
-  //max-width: 60%;
+//max-width: 60%;
 }
 
 .message p {

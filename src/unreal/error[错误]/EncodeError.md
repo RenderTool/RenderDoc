@@ -7,7 +7,7 @@ category:
 
 ## 问题描述
 
-<ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 AddOnScreenDebugMessage突然打印不了中文了
 </ChatMessage>
 
@@ -15,15 +15,15 @@ AddOnScreenDebugMessage突然打印不了中文了
 
 ### 修改源文件对应的编码
 
-![](assets%2FUTF-8.jpg)
+![](..%2Fassets%2FUTF-8.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 你以为这样就结束了吗！
 </ChatMessage>
 
 ### 扩展阅读
 
-<ChatMessage avatar="../../../assets/emoji/bqb (3).png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40">
 BABA带你重新回顾一下字符编码的知识
 </ChatMessage>
 
@@ -41,11 +41,11 @@ BABA带你重新回顾一下字符编码的知识
 
 >**Ascll中为什么A是65？：**
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
 因为在ASCLL码表中被排到了65
 </ChatMessage>
 
-![Ascll128](assets%2FASCLL.png)
+![Ascll128](..%2Fassets%2FASCLL.png)
 
 ### 参考链接
 [UE官方推荐文档](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/)

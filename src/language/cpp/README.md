@@ -786,6 +786,62 @@ int main() {
 }
 
 ```
+### 多级继承和多重继承
+>很简单，多级继承好比一个类的有无穷无尽的孙子。而多重继承好比你继承的爸妈各自的基因。
+
+#### 多级继承
+```cpp
+// 基类（父类）
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// 派生类（子类）
+class MyChild: public MyClass {
+};
+
+// 派生类（孙类）
+class MyGrandChild: public MyChild {
+};
+
+int main() {
+  MyGrandChild myObj;
+  myObj.myFunction();
+  return 0;
+}
+```
+#### 多重继承
+```cpp
+// 基类
+class MyClass {
+  public:
+    void myFunction() {
+      cout << "Some content in parent class." ;
+    }
+};
+
+// 另一个基类
+class MyOtherClass {
+  public:
+    void myOtherFunction() {
+      cout << "Some content in another class." ;
+    }
+};
+
+// 派生类
+class MyChildClass: public MyClass, public MyOtherClass {
+};
+
+int main() {
+  MyChildClass myObj;
+  myObj.myFunction();
+  myObj.myOtherFunction();
+  return 0;
+}
+```
 
 ### 模板函数
 先来看一个函数重载案例：
@@ -921,6 +977,57 @@ class Shape {
       virtual int area() = 0;
 };
 ```
+
+
+### 封装 
+
+必须将类变量/属性声明为 private （不能从类外部访问）。
+如果希望其他人读取或修改私有成员的值，可以提供公共get和set方
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Employee {
+  private:
+    // 私有属性
+    int salary;
+
+  public:
+    // Setter
+    void setSalary(int s) {
+      salary = s;
+    }
+    // Getter
+    int getSalary() {
+      return salary;
+    }
+};
+
+int main() {
+  Employee myObj;
+  myObj.setSalary(50000);
+  cout << myObj.getSalary();
+  return 0;
+}
+```
+### c++异常处理
+
+<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+C++中的异常处理包括三个关键字： try, throw and catch:
+</ChatMessage>
+
+```cpp
+try {
+   // 要尝试的代码块
+  throw exception; // 出现问题时抛出异常
+}
+catch () {
+   // 处理错误的代码块
+}
+```
+
+
 ## 参考链接
 - [wiki](https://zh.wikipedia.org/wiki/c++)
 - [菜鸟教程]("https://www.runoob.com/c++/c++-functions.html")
