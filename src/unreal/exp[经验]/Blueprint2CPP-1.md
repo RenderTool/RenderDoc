@@ -38,4 +38,5 @@ category:
 
 ### 蓝图中数组只能用引用传递。
 
-![](..%2Fassets%2Fdefalutreference.gif)
+<GifWithButton src="../../assets/unrealgif/defalutreference.gif"/>
+

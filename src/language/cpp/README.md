@@ -576,6 +576,10 @@ int main() {
 ### 野指针
 >访问非法空间。
 
+### 数组指针
+
+![](assets%2FR.jpg)
+
 ## c++函数
 
 ![](assets%2Ffunction.png)

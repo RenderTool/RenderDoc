@@ -5,14 +5,13 @@ category:
   - u++
 ---
 
-![](..%2Fassets%2Ferrortip.png)
-
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 项目迁移后发现有一些原本C++派生蓝图找不到父类。
 </ChatMessage>
 
-## 问题复现
+![](..%2Fassets%2Ferrortip.png)
 
+## 问题复现
 
 <ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 迁移过来的项目C++派生的蓝图依然是之前项目的。
@@ -33,8 +32,8 @@ category:
 
 ![](..%2Fassets%2FnativeParent.jpg)
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
-确认会出问题
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+确认5.2会出问题
 </ChatMessage>
 
 ![](..%2Fassets%2Ftargeterror.jpg)

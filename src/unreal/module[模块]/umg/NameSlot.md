@@ -12,7 +12,8 @@ category:
 
 ## 实现目标
 
-![](..%2F..%2Fassets%2Fdemonameslot.gif)
+<GifWithButton src="../../../assets/unrealgif/demonameslot.gif"/>
+
 
 ## 实践
 
@@ -26,7 +27,7 @@ category:
 
 3. 新建一个继承自这个模板的UMG类,打开后可以看到多了一个自定义的NameSlot插槽。
 
-![](..%2F..%2Fassets%2Fnewslotchild.gif)
+<GifWithButton src="../../../assets/unrealgif/newslotchild.gif"/>
 
 4. NameSlot插槽插入我们想要的UMG,这样我们就实现了模板多态，表现如下动画：
 

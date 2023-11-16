@@ -17,7 +17,7 @@ export default navbar([
     children:["git/","github/","vscode/","vuepress/","rider/"],
   },
   "/algorithm/",  
-  "/category/",
+  "/timeline/",
     
   // {
   //   text: '开发工具',

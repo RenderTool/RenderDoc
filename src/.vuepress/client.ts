@@ -2,9 +2,11 @@
 import { defineClientConfig } from "@vuepress/client";
 // @ts-ignore
 import ChatMessage from "./components/ChatMessage.vue";
-
+// @ts-ignore
+import GifWithButton from './components/GifWithButton.vue';
 export default defineClientConfig({
   enhance: ({ app, router, siteData }) => {
     app.component("ChatMessage", ChatMessage);
+    app.component('GifWithButton', GifWithButton);
   },
 });

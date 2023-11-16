@@ -55,7 +55,7 @@ BABA用了Rider已经回不去了,如果你用VS这里是将是刷新VS项目。
 >所有节点的根目录都来自一个叫Object的东西，这里我们叫它UObject。  
 即：所有XXObject都继承自UObject。
 
-![](assets%2Fnewcppclass.gif)
+<GifWithButton src="../assets/unrealgif/newcppclass.gif"/>
 
 <ChatMessage avatar="../assets/emoji/kclr.png" :avatarWidth="40">
 你在说啥？啥是UObject？

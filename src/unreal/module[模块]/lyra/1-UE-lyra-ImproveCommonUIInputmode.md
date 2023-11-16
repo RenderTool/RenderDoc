@@ -31,8 +31,7 @@ category:
 运行后根本无法操作UI后面的场景！
 </ChatMessage>
 
-
-![设置输入模式为游戏和UI后依然无法操作视口](..%2F..%2Fassets%2Fgame%20view%20cannot%20move.gif)
+<GifWithButton src="../../../assets/unrealgif/gamenotmove.gif"/>
 
 <ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 如果没记错的话原系统中我们要修改输入模式确实是这几个节点。
@@ -54,7 +53,8 @@ category:
 But！当你来回切换几个UI界面后，你发现你的视口又不能动了！总不能所有界面都设置SupportsActivationFocus吧！而且这卡顿是怎么回事啊！
 </ChatMessage>
 
-![](..%2F..%2Fassets%2Fmenu.gif)
+<GifWithButton src="../../../assets/unrealgif/menu.gif"/>
+
 
 <ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40">
 官方S一样的文档中也找不对应的节点只给了一个实现函数。
@@ -66,7 +66,8 @@ But！当你来回切换几个UI界面后，你发现你的视口又不能动了
 
 ## Lyra的实现
 
-![](..%2F..%2Fassets%2Fgameandmenu.gif)
+<GifWithButton src="../../../assets/unrealgif/gameandmenu.gif"/>
+
 
 >后来我发现Lyra通过封装InputConfig和GameMouseCaptureMod两个核心模块完美解决了上面的问题。
 
@@ -93,15 +94,15 @@ enum class EWidgetInputMode : uint8
 
 * Default & Menu 鼠标只能操作UI
 
-![](..%2F..%2Fassets%2Fmenu.gif)
+<GifWithButton src="../../../assets/unrealgif/menu.gif"/>
 
 * GameAndMenu ：鼠标能操作UI，也能移动游戏视口
 
-![](..%2F..%2Fassets%2Fgameandmenu.gif)
+<GifWithButton src="../../../assets/unrealgif/gameandmenu.gif"/>
 
 * Game:鼠标无法操作UI，只能移动游戏视口。
 
-![](..%2F..%2Fassets%2Fgame.gif)
+<GifWithButton src="../../../assets/unrealgif/game.gif"/>
 
 <ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40"  alignLeft>
 最终，BABA还是担心你看不懂，做了几个动画演示。
@@ -144,8 +145,7 @@ enum class EMouseCaptureMode : uint8
 然后我们将鼠标永久捕获改成按下期间捕获。
 </ChatMessage>
 
-![](..%2F..%2Fassets%2Fmousebuhuo.gif)
-
+<GifWithButton src="../../../assets/unrealgif/mousebuhuo.gif"/>
 
 <ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 为什么Game模式下也能控制UI?

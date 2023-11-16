@@ -13,16 +13,18 @@ UE软件内通信几种方法
 
 >**语法：CE+函数名+空格+参数**
 
-![看图没啥好多说的](..%2Fassets%2Flevelfunction.gif)
+<GifWithButton src="../../../assets/unrealgif/levelfunction.gif"/>
 
 >**语法：KE+类名+函数名**
 
-![看图没啥好多说的](..%2Fassets%2Fkeclassfunction.gif)
+
+<GifWithButton src="../../../assets/unrealgif/keclassfunction.gif"/>
+
 
 ## 迭代查找|Iterative search
 
 <ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
-也有人有人管他叫直接通信，但他本质就是迭代查找
+迭代查找其实就是大海捞针。
 </ChatMessage>
 
 ### 蓝图
@@ -39,8 +41,7 @@ UE软件内通信几种方法
 
 ![](..%2Fassets%2Fdyonghans.png)
 
-
-![具体操作动图](..%2Fassets%2Frefencecom.gif)
+<GifWithButton src="../../../assets/unrealgif/refencecom.gif"/>
 
 <ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 细心的你应该已经发现了！关卡中必须都存在要通信的对象，不然会报错。
@@ -116,6 +117,7 @@ public:
 MyClass::MyFunction();
 ```
 <ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+
 
 所以`UGameplayStatics::GetActorOfClass` 可以直接调用，而不需要创建 `UGameplayStatics` 类的实例。
 
