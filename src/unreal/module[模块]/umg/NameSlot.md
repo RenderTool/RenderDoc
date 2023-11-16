@@ -31,7 +31,7 @@ category:
 
 4. NameSlot插槽插入我们想要的UMG,这样我们就实现了模板多态，表现如下动画：
 
-![](..%2F..%2Fassets%2Fnameslot.gif)
+<GifWithButton src="../../../assets/unrealgif/nameslot.gif"/>
 
 ## 参考链接
 
