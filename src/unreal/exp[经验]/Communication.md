@@ -13,12 +13,12 @@ UE软件内通信几种方法
 
 >**语法：CE+函数名+空格+参数**
 
-<GifWithButton src="../../../assets/unrealgif/levelfunction.gif"/>
+<GifWithButton src="../../assets/unrealgif/levelfunction.gif"/>
 
 >**语法：KE+类名+函数名**
 
 
-<GifWithButton src="../../../assets/unrealgif/keclassfunction.gif"/>
+<GifWithButton src="../../assets/unrealgif/keclassfunction.gif"/>
 
 
 ## 迭代查找|Iterative search
@@ -41,7 +41,7 @@ UE软件内通信几种方法
 
 ![](..%2Fassets%2Fdyonghans.png)
 
-<GifWithButton src="../../../assets/unrealgif/refencecom.gif"/>
+<GifWithButton src="../../assets/unrealgif/refencecom.gif"/>
 
 <ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 细心的你应该已经发现了！关卡中必须都存在要通信的对象，不然会报错。
