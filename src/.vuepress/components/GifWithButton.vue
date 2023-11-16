@@ -51,7 +51,7 @@ a {
   background-size: cover; /* 确保背景图片完全覆盖按钮 */
   border: none; /* 移除按钮的边框 */
   cursor: pointer; /* 添加指针样式，表示可以点击 */
-  z-index: 140;
+  z-index: 100;
   position: absolute;
   width: 30px;
   height: 30px;
