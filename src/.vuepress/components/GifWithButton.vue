@@ -1,8 +1,9 @@
 <template>
   <div class="boxstyle">
-    <img ref="gifContainer" :src="src" alt="GIF" :class="{ 'playing': isPlaying }" />
-    <a @click="togglePlay" :style="{ backgroundImage: 'url(' + buttonBackground + ')', opacity: isPlaying ? 0.5 : 1 }">
+    <img ref="gifContainer" :src="src" alt="GIF" :class="{ 'playing': isPlaying }" :style="{ opacity: isPlaying ? 0 : 1 }" />
+    <a @click="togglePlay" :style="{ backgroundImage: 'url(' + buttonBackground + ')', opacity: isPlaying ? 0 : 1 }">
     </a>
+
   </div>
 </template>
 
@@ -44,8 +45,14 @@ export default {
 .boxstyle {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
-
+img {
+  border-radius: 8px;
+  margin: auto;
+  transition: opacity 0.3s ease; /* 添加透明度过渡效果 */
+}
 a {
   background-image: url("../public/gif.svg")!important;
   background-size: cover; /* 确保背景图片完全覆盖按钮 */
