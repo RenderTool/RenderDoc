@@ -41,3 +41,28 @@ Baba什么是栈!什么是堆！
 <ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 看来你还不清楚一些概念。
 </ChatMessage>
+
+| 存储区域                             | 描述                   |
+|----------------------------------|----------------------|
+| 栈 (Stack)                        | 用于存储局部变量和函数调用的内存区域   |
+| 堆 (Heap)                         | 用于动态分配内存的区域          |
+| 全局/静态存储区 (Global/Static Storage) | 用于存储全局变量和静态变量的内存区域   |
+| 常量存储区 (Constant Storage)         | 用于存储常量数据的内存区域，如字符串常量 |
+
+
+#### 全局存储区（也称为全局区或数据区）
+
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+主要用于存储全局变量和静态变量。这个区域可以进一步细分为以下几个部分：
+</ChatMessage>
+
+1. **全局初始化数据段（Initialized Data Segment）：** 包含已经初始化的全局变量和静态变量。这些变量在程序运行之前已经被赋予了初始值。
+
+2. **全局未初始化数据段（Uninitialized Data Segment）：** 包含未经初始化的全局变量和静态变量。这些变量在程序运行之前没有被赋予初始值，它们会被系统初始化为默认的零值。
+
+3. **常量数据段（Constant Data Segment）：** 存储常量数据，如字符串常量。这些数据是只读的，程序在运行时不能修改这个区域的内容。
+
+4. **代码段（Code Segment）：** 存储程序的执行代码。这个部分是只读的，包含程序的机器指令。
+
+
+

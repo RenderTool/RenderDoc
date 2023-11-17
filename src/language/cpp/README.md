@@ -88,7 +88,7 @@ C++ 中的变量是程序可操作的存储区的名称。
 >语法：数据类型 & 变量名a = 变量名b
 
 <ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
-引用变量是一个别名，也就是说，它是某个已存在变量的另一个名字。一旦把引用初始化为某个变量，就可以使用该引用名称或变量名称来指向变量。
+引用变量就是给变量起一个别名。
 </ChatMessage>
 
 ```cpp
@@ -135,12 +135,23 @@ string& othername = mainname ;
 
 >常量的几种形式
 
-### 1. #define[宏常量]
+### 1. #define[宏常量]预处理[#c++预处理器]
 
->**语法:#define MACRO_NAME 值**
+>**语法:#define MACRO_NAME replacement-text**
 
 ```cpp
-#define day 7
+#include <iostream>
+using namespace std;
+ 
+#define PI 3.14159
+ 
+int main ()
+{
+ 
+    cout << "Value of PI :" << PI << endl; 
+ 
+    return 0;
+} 
 ```
 ### 2. const[修饰的变量]
 
@@ -579,6 +590,89 @@ int main() {
 ### 数组指针
 
 ![](assets%2FR.jpg)
+
+## c++预处理器
+
+1. `#define`宏
+
+2. `#ifndef #define NULL 0 #endif`
+>UE中很常见的编辑器使用
+````cpp
+#if WITH_EDITOR
+    ActorName = this->GetName();
+#endif
+}
+````
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+这里要特别注意，头文件中如果是变量则要用#if WITH_EDITOR_DATA
+</ChatMessage>
+
+3. `# 和 ## 运算符`
+
+`#` 和 `##` 是预处理运算符，它们用于宏定义和宏展开。下面是它们的简单示例：
+
+### `#` 预处理运算符
+
+`#` 运算符用于将宏参数转换为字符串字面量。这在创建带有参数的消息或调试信息时很有用。
+
+```c
+#include <stdio.h>
+
+#define STRINGIFY(x) #x
+
+int main() {
+    int num = 42;
+    printf("The value of num is: %s\n", STRINGIFY(num));
+    return 0;
+}
+```
+
+在这个例子中，`STRINGIFY` 宏将其参数转换为字符串字面量，使得 `STRINGIFY(num)` 在编译时展开为 `"num"`。
+
+### `##` 预处理运算符
+
+`##` 运算符用于连接两个标识符，创建新的标识符。这在宏定义中可以用于将参数连接到其他标识符上。
+
+```cpp
+#include <stdio.h>
+
+#define CONCAT(x, y) x##y
+
+int main() {
+    int xy = 42;
+    printf("The value of xy is: %d\n", CONCAT(x, y));
+    return 0;
+}
+```
+
+在这个例子中，`CONCAT` 宏使用 `##` 将 `x` 和 `y` 连接成一个新的标识符 `xy`，使得 `CONCAT(x, y)` 在编译时展开为 `xy`。
+
+需要注意的是，这些运算符在使用时需要小心，因为滥用可能导致代码可读性下降。
+
+4.预定义宏
+
+### `__LINE__, __FILE__, __DATE__, 和 __TIME__`
+
+```cpp
+#include <iostream>
+
+int main() {
+    // 获取当前行号
+    std::cout << "Current line number is: " << __LINE__ << std::endl;
+
+    // 获取当前文件名
+    std::cout << "Current file is: " << __FILE__ << std::endl;
+
+    // 获取编译日期
+    std::cout << "Compilation date is: " << __DATE__ << std::endl;
+
+    // 获取编译时间
+    std::cout << "Compilation time is: " << __TIME__ << std::endl;
+
+    return 0;
+}
+
+```
 
 ## c++函数
 
@@ -1031,6 +1125,59 @@ catch () {
 }
 ```
 
+## c++命名空间
+>语法：
+
+```cpp
+namespace 命名空间名 {
+   // 命名空间中的变量/函数
+}
+```
+>调用语法：
+
+```cpp
+命名空间名::code;
+```
+
+#### using 指令
+
+>使用 using namespace 指令，这样在使用命名空间时就可以不用在前面加上命名空间的名称。
+这个指令会告诉编译器，后续的代码将使用指定的命名空间中的名称。
+
+#### 命名空间可以镶嵌
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+// 第一个命名空间
+
+namespace first_space{
+   void func(){
+      cout << "Inside first_space" << endl;
+   }
+}
+// 第二个命名空间
+
+namespace second_space{
+   void func(){
+      cout << "Inside second_space" << endl;
+   }
+}
+int main ()
+{
+ 
+   // 调用第一个命名空间中的函数
+
+   first_space::func();
+   
+   // 调用第二个命名空间中的函数
+
+   second_space::func(); 
+ 
+   return 0;
+} 
+```
 
 ## 参考链接
 - [wiki](https://zh.wikipedia.org/wiki/c++)

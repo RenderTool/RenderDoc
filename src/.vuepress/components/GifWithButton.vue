@@ -47,6 +47,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   flex-direction: row-reverse;
+  margin: 1rem auto;
 }
 img {
   border-radius: 8px;
