@@ -52,10 +52,14 @@ babaUE引擎怎么在屏幕中打印内容！
 
 <iframe src="https://blueprintue.com/render/j0oxoqx7/" width="100%" height="500" scrolling="no" allowfullscreen></iframe>
 
->蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)**
+>蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)**当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
 
 <ChatMessage avatar="./assets/emoji/dsyj.png" :avatarWidth="40">
- 当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
+ 可我问的是C++怎么写？
+</ChatMessage>
+
+<ChatMessage avatar="./assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+上代码！
 </ChatMessage>
 
 ### 3. 代码演示
@@ -68,14 +72,19 @@ babaUE引擎怎么在屏幕中打印内容！
 #include "TEST.generated.h"
 
 UCLASS()
-class TEST_API UTEST : public UBlueprintFunctionLibrary
+class EXORCIST_API UTEST : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-
-	UFUNCTION(BlueprintCallable, Category = "TEST")
-	static void print();
 	
+public:
+	
+	UFUNCTION(BlueprintCallable, Category ="HelloWorld")
+	static void HelloUE()
+	{
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HelloWorld"));
+	}
 };
+
 ```
 
 
@@ -83,12 +92,12 @@ class TEST_API UTEST : public UBlueprintFunctionLibrary
  为了TA的视力健康，建议采用深色主题。
 </ChatMessage>
 
->如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
-> 
 ## 留情
 <ChatMessage avatar="./assets/emoji/hh.png" :avatarWidth="40">
-本站大多为个人踩坑合实践记录,如果你发现一些错误和纰漏实属正常。要么是我不懂，要么是我懒得写。
+本站大多为个人踩坑合实践记录,如果你发现一些错误和纰漏实属正常。要么是我不懂，要么是我还没写。
 </ChatMessage>
+
+>如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
 
 ## :email: 联系
 

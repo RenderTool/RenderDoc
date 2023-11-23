@@ -1,6 +1,6 @@
 ---
-title: 算法-Swap|交换函数
-order: 2
+title: Swap|交换函数
+order: 1
 category:
 - algorithm
 ---
@@ -33,6 +33,7 @@ category:
        return 0;
    }
    ```
+<GifWithButton src="../assets/algorithmgif/swap.gif"/>
 
 2. **使用 C++ 标准库中的 `std::swap`：**
 

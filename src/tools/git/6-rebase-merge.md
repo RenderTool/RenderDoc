@@ -1,6 +1,6 @@
 ---
-title: Git-变基(rebase)和合并(merge)区别？
-order : 7
+title: Git-6.变基(rebase)和合并(merge)区别？
+order : 6
 category:
    - Git
 tag:

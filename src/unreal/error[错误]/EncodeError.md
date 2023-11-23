@@ -1,6 +1,6 @@
 ---
-title: U++编码格式导致的中文乱码
-order : 1
+title: U++3.编码格式导致的中文乱码
+order : 3
 category:
   - u++
 ---

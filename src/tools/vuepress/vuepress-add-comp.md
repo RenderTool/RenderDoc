@@ -1,5 +1,5 @@
 ---
-title: vuepress-添加自定义组件
+title: vuepress-1.添加自定义组件
 order : 1
 category:
   - vuepress

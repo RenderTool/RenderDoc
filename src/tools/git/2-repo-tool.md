@@ -1,6 +1,6 @@
 ---
-title: Git-多仓库工具 Repo
-order : 3
+title: Git-2.多仓库工具 Repo
+order : 2
 category:
   - Git
 ---

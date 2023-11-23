@@ -1,6 +1,6 @@
 ---
-title: Git- 路径引发的思考
-order : 6
+title: Git-5.路径引发的思考
+order : 5
 category:
   - Git
 tag:

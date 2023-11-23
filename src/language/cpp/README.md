@@ -70,6 +70,18 @@ C++ 中的变量是程序可操作的存储区的名称。
 
 >**语法：数据类型 变量名 = 初始值。**
 
+### 变量基本原则
+
+1. 有意义
+2. 首字母不能是数字
+3. 大小写敏感
+4. 不能用关键字
+5. `__` `_`不会报错但不推荐
+
+![](assets%2Fvar.png)
+
+6. 名称长度不同平台现在不同
+
 ![感谢菜鸟教程的图片](assets%2Fcpp-variable-types-2020-12-14.png)
 
 | 类型   | 示例                                                   | 作用域      | 生命周期                  |
@@ -126,6 +138,56 @@ string& othername = mainname ;
    int x = 10;
    int &refX = x;  // & 用于声明 refX 是 x 的引用
    ```
+   
+## c++ 指针
+指针是一种特殊的变量，其存储的是内存地址，即另一个变量的地址。
+可以将指针看作是存储内存地址的变量，通过指针可以访问或操作该地址上存储的数据。
+>语法：type* var_name;
+
+
+### 初始化
+
+``` cpp
+//初始化指针
+int *p = NULL;
+```
+
+![](assets%2Fptr.png)
+
+``` cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    // 定义整数变量 b 并赋值为 10
+    int b = 10;
+
+    // 定义整型指针 p 并将其指向 b 的地址
+    int* p = &b;
+
+    // 打印 b 的地址
+    cout << "b 的地址: " << &b << endl;
+
+    // 打印指针 p 存储的地址，即 b 的地址
+    cout << "指针 p 存储的地址: " << p << endl;
+
+    // 打印指针 p 指向的值，即 b 的值
+    cout << "指针 p 指向的值: " << *p << endl;
+
+    // 打印指针 p 本身的地址
+    cout << "指针 p 本身的地址: " << &p << endl;
+
+    return 0;
+}
+
+```
+
+### 野指针
+>访问非法空间。
+
+### 数组指针
+
+![](assets%2FR.jpg)
 
 ## c++常量
 
@@ -270,6 +332,23 @@ int main()
 >**语法： string 变量名 = "字符串";**
 
 ![](assets%2Fstring.jpg)
+
+## c++数组
+
+> **语法: type arrayName [ arraySize ];**
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。<br>
+注意这里的数组长度 = 索引+1,因为索引从0开始。
+</ChatMessage>
+
+![](assets%2Farray.png)
+
+``` cpp
+-- 创建一个数组
+int myArray[5] = {10, 20, 30, 40, 50}
+```
+
 
 ### 数据类型—枚举
 
@@ -529,67 +608,6 @@ end
 string str = "Hello"
 ```
 
-## c++数组
-
-所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。
-
-> **语法: type arrayName [ arraySize ];**
-
-![](assets%2Farray.png)
-
-``` cpp
--- 创建一个数组
-int myArray[5] = {10, 20, 30, 40, 50}
-```
-## c++ 指针
-
-存储某个变量的地址的变量叫指针。
-
->语法：type* var_name;
-
-### 初始化
-
-``` cpp
-//初始化指针
-int *p = NULL;
-```
-
-![](assets%2Fptr.png)
-
-``` cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    // 定义整数变量 b 并赋值为 10
-    int b = 10;
-
-    // 定义整型指针 p 并将其指向 b 的地址
-    int* p = &b;
-
-    // 打印 b 的地址
-    cout << "b 的地址: " << &b << endl;
-
-    // 打印指针 p 存储的地址，即 b 的地址
-    cout << "指针 p 存储的地址: " << p << endl;
-
-    // 打印指针 p 指向的值，即 b 的值
-    cout << "指针 p 指向的值: " << *p << endl;
-
-    // 打印指针 p 本身的地址
-    cout << "指针 p 本身的地址: " << &p << endl;
-
-    return 0;
-}
-
-```
-
-### 野指针
->访问非法空间。
-
-### 数组指针
-
-![](assets%2FR.jpg)
 
 ## c++预处理器
 
@@ -1125,7 +1143,7 @@ catch () {
 }
 ```
 
-## c++命名空间
+### c++命名空间
 >语法：
 
 ```cpp
