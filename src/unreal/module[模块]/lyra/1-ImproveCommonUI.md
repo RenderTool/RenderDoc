@@ -1,6 +1,5 @@
 ---
-title: UE-Lyra中对CommonUI中Inputmode的封装。
-dir : 3
+title: Ly-1.Inputmode的封装。
 order : 1
 category:
   - unreal

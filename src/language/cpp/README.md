@@ -53,14 +53,21 @@ SPD芯片：记录标准工作状态、速度、响应时间
 *多行注释 
 */
 ```
+## c++helloworld
+
+```cpp
+#include <iostream>//引入头文件
+//空行（不是必须的）
+int main() {//返回int类型的主函数
+    std::cout << "Hello, World!" << std::endl;//打印输出
+    return 0;//返回值，写成任意整型都可以,也可以使用bool,因为C++会自动转换但不推荐哈。
+}
+
+```
 
 ## c++保留关键字
 
 ![](assets%2Fcppgjz.jpg)
-
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-记不住，根本记不住。
-</ChatMessage>
 
 ## c++变量
 
@@ -80,7 +87,7 @@ C++ 中的变量是程序可操作的存储区的名称。
 
 ![](assets%2Fvar.png)
 
-6. 名称长度不同平台现在不同
+6. 不同平台对最大名称长度限制不同
 
 ![感谢菜鸟教程的图片](assets%2Fcpp-variable-types-2020-12-14.png)
 
@@ -88,11 +95,6 @@ C++ 中的变量是程序可操作的存储区的名称。
 |------|------------------------------------------------------|----------|-----------------------|
 | 全局变量 | ` int globalVariable = 10;`                          | 整个程序     | 程序启动时分配内存，程序结束时销毁     |
 | 局部变量 | `void exampleFunction() { int localVariable = 5; } ` | 定义它们的代码块 | 函数、代码块执行时分配内存，执行结束时销毁 |
-
-
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
-请注意！为变量分配地址和存储空间的称为定义，不分配地址的称为声明。<a href="/RenderDoc/language/cpp/BaseGuide_基础概念_/Variable%20Declaration_%20Definition.html">参考链接</a>
-</ChatMessage>
 
 
 ### 引用变量
@@ -144,47 +146,10 @@ string& othername = mainname ;
 可以将指针看作是存储内存地址的变量，通过指针可以访问或操作该地址上存储的数据。
 >语法：type* var_name;
 
-
-### 初始化
-
 ``` cpp
 //初始化指针
 int *p = NULL;
 ```
-
-![](assets%2Fptr.png)
-
-``` cpp
-#include <iostream>
-using namespace std;
-
-int main() {
-    // 定义整数变量 b 并赋值为 10
-    int b = 10;
-
-    // 定义整型指针 p 并将其指向 b 的地址
-    int* p = &b;
-
-    // 打印 b 的地址
-    cout << "b 的地址: " << &b << endl;
-
-    // 打印指针 p 存储的地址，即 b 的地址
-    cout << "指针 p 存储的地址: " << p << endl;
-
-    // 打印指针 p 指向的值，即 b 的值
-    cout << "指针 p 指向的值: " << *p << endl;
-
-    // 打印指针 p 本身的地址
-    cout << "指针 p 本身的地址: " << &p << endl;
-
-    return 0;
-}
-
-```
-
-### 野指针
->访问非法空间。
-
 
 ## c++常量
 
@@ -309,7 +274,7 @@ int main() {
 ![对照UE引擎](assets%2Fdatatyoe.png)
 
 <ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-记不住！打死记不住！使用sizeof可以确定该类型占用内存大小。
+不用死记硬背！使用sizeof可以轻松确定该类型占用内存大小。
 </ChatMessage>
 
 >**语法:sizeof(变量名)**
@@ -327,6 +292,17 @@ int main()
 
 ### 数据类型-字符串
 >**语法： string 变量名 = "字符串";**
+
+当然可以还可以用`char`表示字符串
+
+```cpp
+char str[]  = "hello world";
+char str[] = {'h','e','l','l','o',' ','w','o','r','l','d',`\0`};//c语言风格不再推荐
+wchar_t tstr[] = L"hello world";
+char16_t tstr[] = u"hello world";
+char32_t tstr[] = U"hello world";
+
+```
 
 ![](assets%2Fstring.jpg)
 
@@ -704,6 +680,7 @@ int main() {
     retrun 表达式 
 }
 ```
+
 <hr>
 
 ### 函数调用

@@ -94,3 +94,11 @@ category:
 
 因此，`static const` 变量的内存分配通常在全局数据区。这种变量在程序启动时被初始化，而且在整个程序运行期间都不会被修改，所以它的值是常量且具有静态生命周期。
 
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这也是C++的三种存储特性：(栈存储)自动存储、(堆new|delete malloc|free)动态存储、(static)静态存储。
+</ChatMessage>
+
+>摘自 C++ Primer Plus 第6版 p247
+自动变量通常存储在栈中。
+这意味着执行代码块时，其中的变量将依次加入到栈中，而在离开代码块时，将按相反的顺序释放这些变量，这被称为后进先出（LIFO）。
+因此，在程序执行过程中，栈将不断地增大和缩小。

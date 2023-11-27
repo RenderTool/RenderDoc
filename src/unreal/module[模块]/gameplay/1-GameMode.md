@@ -1,6 +1,6 @@
 ---
-title: U++6.GameMode绑定
-order : 6
+title: GP-GameMode|游戏模式
+order : 1
 category:
   - u++
 ---

@@ -1,5 +1,5 @@
 ---
-title: macro|编辑器宏的注意事项
+title: Macro2.编辑器宏的注意事项
 order: 2
 category:
   - u++
@@ -16,11 +16,11 @@ tag:
 
 <hr>
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<ChatMessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
 Baba我的编辑器宏写上编译成功但打包失败了！
 </ChatMessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 让我康康！看来你还不知道这些区别！
 </ChatMessage>
 
@@ -37,7 +37,7 @@ Baba我的编辑器宏写上编译成功但打包失败了！
 // 仅在构建编辑器时编译的代码
 #endif  
 ```
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 
 这意味着在构建编辑器时，`WITH_EDITOR` 中的代码会被编译，而在独立构建中将被移除。它通常用于区分编辑器构建和游戏构建的代码。
 
@@ -53,7 +53,7 @@ if (GIsEditor)
   // 仅在编辑器中运行时执行的代码
 }
 ```
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 `GIsEditor` 用于检查是否在虚幻编辑器中运行，即使在 Play In Editor (PIE) 模式下也为 `true`。这对于需要在编辑器中执行特定代码的情况非常有用。
 
@@ -91,7 +91,7 @@ else
 
 ### `WITH_EDITORONLY_DATA`
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 
 `WITH_EDITORONLY_DATA` 是一个宏，用于在头文件中标记成员变量，这些变量仅在编辑器环境中可见，并且在游戏运行时被忽略。这对于在编辑器中使用特定数据或属性非常有用。
 
@@ -118,7 +118,7 @@ public:
 
 ### `WITH_EDITOR`
 
-<ChatMessage avatar="../../assets/emoji/bqb02.png" :avatarWidth="40" alignLeft>
+<ChatMessage avatar="../../../assets/emoji/bqb02.png" :avatarWidth="40" alignLeft>
 
 `WITH_EDITOR` 仍然是一个宏，但一般用于在 CPP 文件中标记与编辑器相关的代码块，例如某些特定于编辑器的逻辑，而不是用于标记成员变量。
 

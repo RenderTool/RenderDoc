@@ -13,7 +13,6 @@ category:
 
 ## 指针数组
 
-
 <ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40" >
 什么叫指针数组？
 </ChatMessage>
@@ -38,7 +37,7 @@ category:
 
 ![](..%2F..%2Fassets%2Fptrarray.jpg)
 
->语法：`typename* ArrayName[arraySize]`;
+>**语法：`typename* ArrayName[arraySize]`;**
 
 ```cpp
 #include <iostream>
@@ -76,9 +75,154 @@ int main() {
 </ChatMessage>
 
 <ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-在这里i没有对其他变量赋值，所以没有区别。but我有一篇专门写i++和++i的文章
+在这里i没有对其他变量赋值，所以没有区别。你可以康康我之前的文章《i++|++i区别》
 </ChatMessage>
 
+## 多维指针数组
+
+
+<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+讨论多维指针数组之前先来复习一下多维数组。比如：int arr[2][3]是什么意思？
+</ChatMessage>
+
+<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
+表示一个二维数组，2表示行数，3表示列数。
+</ChatMessage>
+
+```cpp
+int arr[2][3]=
+{
+    {1,2,3},
+    {4,5,6}
+}
+```
+<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+goodjob!int arr[2][3][4]呢？
+</ChatMessage>
+
+<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
+隔着套娃呢！这个我就迷糊了，2行 3列 4？
+</ChatMessage>
+
+<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+你可以这么理解，从左边开始：<br>
+arr[2][3][4]<br>
+arr[①][②][③]<br>
+- 每个①有2个数组②。<br>
+- 每个②有3个数组③。<br>
+- 每个③有4个元素。
+</ChatMessage>
+
+```cpp
+int arr[2][3][4] =
+{
+    {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    },
+    {
+        {13, 14, 15, 16},
+        {17, 18, 19, 20},
+        {21, 22, 23, 24}
+    }
+};
+```
+
+<ChatMessage avatar="../../../../assets/emoji/bqb (6).png" :avatarWidth="40" >
+那么说！其实就是一个数括号游戏。
+</ChatMessage>
+
+``` text
+
+arr[2][3][4]
+arr[①][②][③]
+|
+|-- [0]
+|   |
+|   |-- [0]
+|   |   |-- [0]
+|   |   |-- [1]
+|   |   |-- [2]
+|   |   |-- [3]
+|   |
+|   |-- [1]
+|   |   |-- [0]
+|   |   |-- [1]
+|   |   |-- [2]
+|   |   |-- [3]
+|   |
+|   |-- [2]
+|   |   |-- [0]
+|   |   |-- [1]
+|   |   |-- [2]
+|   |   |-- [3]
+|
+|-- [1]
+|   |
+|   |-- [0]
+|   |   |-- [0]
+|   |   |-- [1]
+|   |   |-- [2]
+|   |   |-- [3]
+|   |
+|   |-- [1]
+|   |   |-- [0]
+|   |   |-- [1]
+|   |   |-- [2]
+|   |   |-- [3]
+|   |
+|   |-- [2]
+|   |   |-- [0]
+|   |   |-- [1]
+|   |   |-- [2]
+|   |   |-- [3]
+```
+
+<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+多维指针数组依然是一个指针组成的数组。
+</ChatMessage>
+
+```cpp
+#include <iostream>
+
+int main() {
+    // 声明一个三维数组，2个矩阵，每个矩阵3行4列
+    int*** arr = new int**[2];
+
+    for (int i = 0; i < 2; ++i) {
+        arr[i] = new int*[3];
+        for (int j = 0; j < 3; ++j) {
+            arr[i][j] = new int[4];
+        }
+    }
+
+    // 初始化数组元素的值
+    int value = 1;
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < 4; ++k) {
+                arr[i][j][k] = value++;
+            }
+        }
+    }
+
+    // 访问数组元素
+    std::cout << "Value at (1,2,3): " << arr[1][2][3] << std::endl;
+
+    // 释放分配的内存
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            delete[] arr[i][j];
+        }
+        delete[] arr[i];
+    }
+    delete[] arr;
+
+    return 0;
+}
+
+```
 
 ## 数组指针
 <ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
@@ -111,7 +255,7 @@ int *p2 = array2;
 
 ### 图中案例
 
->语法 typename( * p)[n];
+>**语法 typename( * p)[n];**
 
 ```cpp
 #include <iostream>
@@ -136,6 +280,47 @@ int main() {
 
 <GifWithButton src="../../../../assets/unrealgif/arrayptr.gif"/>
 
+## 多维数组指针
+
+多维数组指针的基本语法如下：
+
+1. 声明二维数组指针：
+   ```cpp
+   int (*ptrTo2DArray)[Columns] = array2D;
+   ```
+   其中，`Columns` 是二维数组的列数，`array2D` 是二维数组的名字。
+
+2. 声明三维数组指针：
+   ```cpp
+   int (*ptrTo3DArray)[Rows][Columns] = array3D;
+   ```
+   其中，`Rows` 是三维数组的行数，`Columns` 是列数，`array3D` 是三维数组的名字。
+
+3. 访问元素：
+   ```cpp
+   value = ptrTo2DArray[i][j];
+   value = ptrTo3DArray[i][j][k];
+   ```
+   使用指针可以通过索引访问多维数组的元素。
+
+```cpp
+#include <iostream>
+int main() {
+    // 声明一个二维整数数组
+    int array2D[3][4] = {{1, 2, 3, 4},
+                         {5, 6, 7, 8},
+                         {9, 10, 11, 12}};
+
+    // 声明一个指向二维数组的指针
+    int (*ptrToArray2D)[4] = array2D;
+
+    // 使用指针访问数组元素
+    std::cout << "Value at (1,2): " << ptrToArray2D[1][2] << std::endl;
+
+    return 0;
+}
+
+```
 
 ## 参考链接
 

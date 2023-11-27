@@ -1,6 +1,6 @@
 ---
-title: U++2.蓝图节点输入输出控制实践
-order : 2
+title: U++3.C++控制蓝图节点输入输出
+order : 3
 category:
   - u++
 ---

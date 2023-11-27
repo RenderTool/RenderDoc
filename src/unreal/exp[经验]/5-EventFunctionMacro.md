@@ -1,5 +1,5 @@
 ---
-title: U++5.解析-函数|事件|宏
+title: U++5.函数|事件|宏函数
 order : 5
 category:
   - u++

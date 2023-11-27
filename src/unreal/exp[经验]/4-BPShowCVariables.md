@@ -1,6 +1,6 @@
 ---
-title: U++3.蓝图中显示C++变量
-order : 3
+title: U++4.C++变量在蓝图中显示
+order : 4
 category:
   - u++
 ---

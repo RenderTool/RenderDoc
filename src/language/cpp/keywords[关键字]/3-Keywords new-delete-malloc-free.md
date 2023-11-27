@@ -15,6 +15,7 @@ category:
 
       ```cpp
       int* myInt = new int;  // 动态分配一个 int
+      int* myArray = new int[10];  // 动态分配一个 int 数组
       MyClass* myObject = new MyClass();  // 动态分配一个 MyClass 对象
       ```
 
@@ -24,6 +25,7 @@ category:
       ```cpp
       delete myInt;      // 释放动态分配的 int
       delete myObject;   // 释放动态分配的 MyClass 对象
+      delete[] myArray;  // 数组的delete格式比较特殊
       ```
 
 ### `malloc` 和 `free`（C 中使用）
@@ -65,7 +67,5 @@ Baba什么是栈!什么是堆！
 | 全局/静态存储区 (Global/Static Storage) | 存放全局变量、静态变量和常量，在程序启动时分配，程序结束时释放。                             |
 | 栈区 (Stack)                       | 存放函数的局部变量、函数参数值等，由编译器自动分配释放，与函数调用相关。                         |
 | 堆区 (Heap)                        | 程序员可以通过 new 和 delete（或 malloc 和 free）用于动态内存管理，需要手动管理内存的生命周期。 |
-
-
 
 
