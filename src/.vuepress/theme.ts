@@ -23,7 +23,7 @@ export default hopeTheme({
 
   // sidebar
   sidebar,
-
+  
   //footer: "MIT 协议, 斯高和版权所有 © 2023",
 
   displayFooter: true,

@@ -1,5 +1,5 @@
 ---
-title: U++2.项目迁移蓝图父类重定向
+title: Error2.项目迁移蓝图父类重定向
 order : 2
 category:
   - u++
