@@ -1010,7 +1010,8 @@ int main() {
 ## c++多态
 C++多态(polymorphism)是通过虚函数来实现的，虚函数允许子类重新定义成员函数，而子类重新定义父类的做法称为覆盖(override)，或者称为重写。
 
-![](assets%2Fc16d7b91-9e62-4008-a36c-3d69b17ada95.png)
+![](assets%2Fc16d7b91-9e62-4008-a36c-3d69b17ada95-75b7d985.png)
+
 
 ### 虚函数|virtual function
 >语法父类：
