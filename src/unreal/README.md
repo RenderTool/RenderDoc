@@ -84,6 +84,10 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 
 ![](assets%2FA-REFRESH.png)
 
+>好消息是vs2022以后可以也可以选择是不是完全删除
+
+![](assets%2Fvs2022new.png)
+
 <hr>
 
 <ChatMessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>

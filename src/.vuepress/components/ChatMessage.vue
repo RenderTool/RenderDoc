@@ -32,7 +32,7 @@ export default {
 }
 
 .avatar img {
-  max-width: 50px;
+  max-width: 55px;
 //border-radius: 50%;
   margin-right: 10px;
 }

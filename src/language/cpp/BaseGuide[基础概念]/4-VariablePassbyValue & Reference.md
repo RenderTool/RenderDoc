@@ -1,21 +1,15 @@
 ---
-title: c++4.参数-值传递和引用
+title: c++4.参数传递
 order : 4
 category:
   - c++
 ---
 
 <ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
-值传递（Pass by Value）和引用传递（Pass by Reference）啥区别?
+值传递（Pass by Value）和引用传递（Pass by Reference）以及指针传递（Pass by Pointer）
 </ChatMessage>
 
-## 概念
-
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-值传递（Pass by Value）和引用传递（Pass by Reference）是两种不同的参数传递方式。
-</ChatMessage>
-
-### 值传递：
+### 值传递
 
 1. **传递方式：** 通过将实际参数的值复制给形式参数，函数得到的是实际数据的副本。
 
@@ -46,7 +40,7 @@ int main() {
 <GifWithButton src="../../../assets/unrealgif/vyy.gif"/>
 
 
-### 引用传递：
+### 引用传递
 
 1. **传递方式：** 通过将实际参数的地址传递给形式参数，函数得到的是实际数据的引用。
 
@@ -78,20 +72,16 @@ int main() {
 
 <GifWithButton src="../../../assets/unrealgif/vyy2.gif"/>
 
+### Const引用传递
 
-### const引用传递：
+1. **传递方式：** 通过将实际参数的引用传递给形式参数，函数得到的是实际数据的引用。使用`const`关键字表示在函数内不能修改实际参数的值。
 
-- **定义：** const引用传递是指通过将实际参数的地址传递给形式参数，而形式参数被声明为const引用，从而达到避免修改实际参数的目的。
+2. **对实参的影响：** 在函数内不允许对形式参数的值进行修改，以保持实际参数的不变性。
 
-- **优点：**
-  - 避免了对实际参数进行复制，因此没有额外的内存开销。
-  - 避免了对实际参数的修改，保护了实际参数的值。
+3. **内存开销：** 传递的是引用而不是值的副本，因此相比于值传递，内存开销较小。但在函数内部无法修改实际参数的值。
 
-- **使用场景：**
-  - 适用于需要传递大型对象而又不希望复制整个对象的情况。
-  - 适用于函数内部不需要修改实际参数的值，只是读取它的情况。
+4. **使用时机：** 适用于需要访问实际参数的值但不需要修改的情况，同时希望减小内存开销。
 
-- **示例：**
   ```cpp
   #include <iostream>
   using namespace std;
@@ -112,8 +102,38 @@ int main() {
 
 <GifWithButton src="../../../assets/unrealgif/vyy3.gif"/>
 
-在上述示例中，const引用传递避免了对实际参数的复制，同时通过const限制了函数内部对实际参数的修改。
-这样的设计在某些情况下能够提高程序的效率和安全性。
+在上述示例中，const引用传递避免了对实际参数的复制，同时限制了函数内部对实际参数的修改。
+
+### 指针传递
+
+1. **传递方式：** 通过将实际参数的地址传递给形式参数，函数得到的是实际数据的地址，可以通过该地址直接访问和修改实际参数的值。
+
+2. **对实参的影响：** 在函数内对形式参数所指向的地址的内容进行修改会影响实际参数的值。
+
+3. **内存开销：** 传递的是地址而不是值的副本，因此通常比值传递更节省内存，尤其对于大型对象或数据结构。
+
+4. **使用时机：** 适用于需要在函数内修改实际参数的值，或者当希望减小内存开销的情况。
+
+```cpp
+#include <iostream>
+using namespace std;
+
+//指针传递
+void incrementByPointer(int* x) {
+  if (x != nullptr)
+  {
+      cout << *x << endl;  // 输出实际参数的值
+      (*x)++;  // 通过指针修改实际参数的值
+  }
+}
+
+int main() {
+    int num = 5;
+    incrementByPointer(&num);  // 传递实际参数的地址
+    cout << num << endl;  // 输出修改后的实际参数的值，结果为6
+    return 0;
+}
+```
 
 ## 深浅拷贝
 
@@ -154,6 +174,7 @@ int main() {
 
 >对应的蓝图节点
 
+
 ![](..%2Fassets%2Freferenceorvalue.png)
 
 ![默认值传递](..%2Fassets%2Fvalueblueprint.png)
@@ -161,6 +182,10 @@ int main() {
 ![值引用](..%2Fassets%2Freferenceblueprint.png)
 
 ### 2.运行
+
+<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+如果用+=则需要重新对原始数据赋值操作，而++对变量进行自增的操作。至于用++i还是i++在这里没什么区别，我们后续文章也会讨论。
+</ChatMessage>
 
 ![默认参数是1](..%2Fassets%2Frunreference.gif)
 

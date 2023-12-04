@@ -38,10 +38,10 @@ int add(int a, int b) {
 ### 文件分离
 ::: code-tabs#cpp
 
-@tab cpp
+@tab 头文件中的函数声明现代C++风格
 
 ```cpp
-// 头文件中的函数声明现代C++风格
+
 // myfunctions.h
 #pragma once
 
@@ -50,10 +50,10 @@ int add(int a, int b) {
 void myFunction();
 
 ```
-@tab cpp
+@tab 头文件中的函数声明经典C风格
 
 ```cpp
-// 头文件中的函数声明经典C风格
+ 
 // myfunctions.h
 #ifndef MYFUNCTIONS_H
 #define MYFUNCTIONS_H
