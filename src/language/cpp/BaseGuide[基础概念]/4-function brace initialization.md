@@ -1,6 +1,6 @@
 ---
-title: c++3.函数花括号初始化
-order : 3
+title: c++4.函数花括号初始化
+order : 4
 category:
   - c++
 ---

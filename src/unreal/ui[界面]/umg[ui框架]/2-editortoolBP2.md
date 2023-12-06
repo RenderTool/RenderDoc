@@ -212,7 +212,7 @@ ok，咱们可以在我们自己的蓝图中做个简单测试。
 <GifWithButton src="../../../assets/unrealgif/gifprint.gif"/>
 
 <ChatMessage avatar="../../../assets/emoji/new8.png" :avatarWidth="50" >
-委托?咱们的《通信-CMD|委托|Cast》的那个委托？
+委托?咱们花了大篇幅将的那个委托？
 </ChatMessage>
 
 ![](..%2F..%2Fassets%2Fwt.png)
@@ -262,7 +262,6 @@ ok，咱们可以在我们自己的蓝图中做个简单测试。
     }
 
 ```
-当然！以下是使用中文格式化的信息：
 
 1. **`DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam` 宏：**
     - 这是一个宏，用于声明带有一个参数的动态多播委托。`FOnPropertyValueChanged` 是委托的类型名称，表示当某个属性值发生变化时触发的事件。在这里，`FName` 是参数类型，表示属性的名称。

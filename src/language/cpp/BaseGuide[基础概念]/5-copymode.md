@@ -1,6 +1,6 @@
 ---
-title: c++5.浅拷贝|深拷贝
-order : 5
+title: c++6.浅拷贝|深拷贝
+order : 6
 category:
   - c++
 ---

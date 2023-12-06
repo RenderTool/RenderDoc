@@ -466,10 +466,10 @@ private:
 2. **ExorcistToolCommands**：
 
 - 定义了插件的命令集合，这些命令可以被UE编辑器或者蓝图调用。
-- 这里的 `OpenPluginWindow` 可能是一个打开插件窗口的命令。
+- 这里的 `OpenPluginWindow` 是一个打开插件窗口的命令。
 
 3. **ExorcistToolStyle**：
-- 
+
 - 是插件的样式管理类，用于管理插件的Slate样式。Slate是UE的UI框架，
 - 该文件定义了样式的初始化、关闭以及重新加载等功能。
 

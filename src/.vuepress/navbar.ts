@@ -16,6 +16,12 @@ export default navbar([
     prefix: "/tools/",
     children:["git/","github/","vscode/","vuepress/","rider/"],
   },
+  {
+    text: '3D工具',
+    icon: "cube",
+    prefix: "/3Dtools/",
+    children:["vray/","3dsmax"],
+  },
   "/algorithm/",  
   "/timeline/",
     

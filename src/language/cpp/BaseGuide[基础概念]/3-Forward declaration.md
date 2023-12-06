@@ -1,6 +1,6 @@
 ---
-title: c++6.声明前置TODO
-order : 6
+title: c++3.声明前置
+order : 3
 category:
   - c++
 ---
