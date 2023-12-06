@@ -1,1 +1,0 @@
-import{_ as t,r as a,o as s,c as o,d as c,w as n,b as r}from"./app-ea047e72.js";const _={};function l(m,d){const e=a("ChatMessage");return s(),o("div",null,[c(e,{avatar:"../../assets/emoji/hh.png",avatarWidth:40},{default:n(()=>[r(" 什么是子系统？ ")]),_:1})])}const f=t(_,[["render",l],["__file","1-Subsystem.html.vue"]]);export{f as default};
