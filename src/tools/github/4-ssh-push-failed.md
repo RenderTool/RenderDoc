@@ -21,3 +21,19 @@ git@github.com: Permission denied (publickey). fatal: Could not read from remote
 ## 参考资料
 
 1. [CSDN](https://blog.csdn.net/W_317/article/details/106518894)
+
+## 问题复现
+
+1. cmd输入    
+
+```cmd
+   ssh-keygen -t rsa -C "xxxxxxxx@qq.com"
+```
+![](assets%2Fsshfail.png)
+
+2. 显示的目录会对应生成一个文件
+
+![](assets%2Fgenreatessh.png)
+
+3.然后将 `id_rsa.pub` 文件内容复制到github上。
+![sshkeyupdata.png](assets%2Fsshkeyupdata.png)
