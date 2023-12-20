@@ -1,6 +1,6 @@
 ---
-title: c++4.fstream|文件操作
-order : 4
+title: c++5.fstream|文件操作
+order : 5
 category:
   - c++
 ---

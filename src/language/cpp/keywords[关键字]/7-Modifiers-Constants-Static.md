@@ -1,6 +1,6 @@
 ---
-title: c++6.const|static|#defined
-order: 6
+title: c++7.const|static|#defined
+order: 7
 category:
    - c++
 ---

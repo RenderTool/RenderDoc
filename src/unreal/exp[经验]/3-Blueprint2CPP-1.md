@@ -19,7 +19,7 @@ category:
 
 ![](..%2Fassets%2Flibexpcpp.jpg)
 
-### 2. 输入测试代码
+### 2. Const控制
 ```cpp
 	UFUNCTION(BlueprintCallable, Category ="TEST",meta = ( tooltip = "值传递"))
 	static void PassbyValue(TArray<ACameraActor*>Camera, int32 test);
@@ -30,9 +30,24 @@ category:
 	UFUNCTION(BlueprintCallable, Category ="TEST",meta = ( tooltip = "const修饰的值引用"))
     	static void PassbyReference(TArray<ACameraActor*>& Camera,int32 &test);
 ```
-### 3. 测试结果
 
 ![](..%2Fassets%2FUEvaluepass.jpg)
+
+### 3. `UPARAM(ref)`
+
+```cpp
+UFUNCTION(BlueprintCallable)
+void FillDogInfo(FDogInfo& OutResult);
+
+UFUNCTION(BlueprintCallable)
+void UseAndFillDogInfo(
+    UPARAM(ref) FDogInfo& SearchParams);
+
+UFUNCTION(BlueprintCallable)
+void UseDogInfo(const FDogInfo& SearchParams);
+```
+
+![](..%2Fassets%2Fuparam-ref.jpg)
 
 ## 其他
 

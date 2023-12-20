@@ -1,6 +1,6 @@
 ---
-title: c++5.friend
-order : 5
+title: c++6.friend
+order : 6
 category:
   - c++
 ---

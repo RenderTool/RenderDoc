@@ -32,6 +32,14 @@ category:
        int32& Value = It.Value();
        // 对 Key 和 Value 进行操作
    }
+   
+   //传统写法
+   TMap<FString, int32> MyMap;
+   for TMap<FString, int32>::Iterator It(MyMap); It; ++It)
+   {
+       const FString& Key = It.Key();
+       int32& Value = It.Value();
+   }
    ```
 
 3. **TSet 迭代器：**

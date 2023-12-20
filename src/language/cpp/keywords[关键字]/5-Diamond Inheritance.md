@@ -1,6 +1,6 @@
 ---
-title: c++8.virtual-菱形继承|多态
-order : 8
+title: c++5.virtual-菱形继承|多态
+order : 5
 category:
   - c++
 ---

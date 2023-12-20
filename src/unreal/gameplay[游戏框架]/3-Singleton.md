@@ -10,11 +10,11 @@ category:
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
-确保一个类只有一个实例，并为其提供一个全局访问入口。
+不同的框架实现方法不同，在C++中单例一般是指确保一个类只有一个实例，并为其提供一个全局访问入口。
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-创建一个类后，怎么保证他有且只能有一个？
+可是，怎么确保一个类只能有一个实例呢？
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
@@ -22,7 +22,7 @@ category:
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-new一个对象呗。
+用new关键字，堆上新建一个对象。
 </ChatMessage>
 
 ```cpp
@@ -31,10 +31,12 @@ class MyClass {
 }
 int main() {
     MyClass* a = new MyClass();
+    //Do Someting
+    delete a;
 }
 ```
 <ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
-搜嘎！可是，该怎么限制用户的new操作呢？我总不能和用户说你不能new一个新实例吧！
+可是，该怎么限制用户的new操作呢？我总不能和用户说你不能new一个新实例吧！
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
@@ -62,7 +64,7 @@ public:
 };
 ```
 <ChatMessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
-如果我们把构造函数私有化你觉得会发生什么？
+我们都知道构造函数默认写在public中，如果我强制将他移动到private会发生什么？
 </ChatMessage>
 
 >类默认是私有的。
@@ -90,44 +92,43 @@ int main() {
 
 ![](..%2Fassets%2Fsington.jpg)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
-构造函数私有化了，限制了用户new的行为，但同时我们也无法创建第一个对象了。
-</ChatMessage>
-
 <ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-没错，我们已经成功限制了用户的new行为，问题也变成了怎么生成第一个实例！
+但换个角度思考，我们已经成功限制了用户的new行为，问题也变成了怎么生成第一个实例！
 现在你思考一下什么情况下不需要新建实例就能访问某个对象成员？
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/new3.png" :avatarWidth="55" >
-static关键字修饰的成员函数！可是这跟怎么生成第一个实例有什么关系？
+我记得static关键字修饰的成员函数！不需要实例化对象。
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/new2.png" :avatarWidth="55" alignLeft>
-你傻呀！现在new这条路已经不能走了，咱必须想办法开导它自己创建自己啊！
+是的，现在new这条路已经不能走了，咱可以用static将他的提到静态区。
 </ChatMessage>
 
 ```cpp
 #include <iostream>
 
-class Singleton {
+class Singleton 
+{
 
     // 将构造函数私有化
     Singleton() {}
 
 public:
 // 静态成员函数，用于获取类的唯一实例
-static Singleton& getInstance() {
+static Singleton& getInstance() 
+{
 static Singleton instance;
 return instance ;
 }
-void testfunction() {
+void testfunction() 
+{
 std::cout<<"testfunction"<<std::endl;
 }
 };
 
-int main() {
-
+int main() 
+{
     // 获取单例实例
     Singleton& singletonInstance = Singleton::getInstance();
     singletonInstance.testfunction();
@@ -145,8 +146,8 @@ int main() {
 ```cpp
 #include <iostream>
 
-class Singleton {
-
+class Singleton 
+{
     // 将构造函数私有化
     Singleton() {}
 
@@ -179,97 +180,17 @@ int main() {
 
 ![](..%2Fassets%2Fsingletonc%2B%2B.png)
 
-<ChatMessage avatar="../../assets/emoji/new7.png" :avatarWidth="40">
-可我今天就想用！你该不会是不会吧！
-</ChatMessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-Baba今天就让你开开眼！
-</ChatMessage>
-
-<ChatMessage avatar="../../assets/emoji/new3.png" :avatarWidth="55">
-那么怎么开始呢？
-</ChatMessage>
-
-
-### EngineSingleton
-
-::: code-tabs#language
-
-@tab GameSingleton.h
-```cpp
-#pragma once
-
-#include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
-#include "UObject/ObjectMacros.h"
-#include "GameSingleton.generated.h"
-
-UCLASS(Blueprintable,BlueprintType)
-class GAMECPP_API UGameSingleton : public UObject
-{
-	GENERATED_BODY()
-	UFUNCTION(BlueprintCallable)
-	static UGameSingleton* GetInstance();
-};
-
-```
-@tab GameSingleton.cpp
-```cpp
-#include "GameSingleton.h"
-
-UGameSingleton* UGameSingleton::GetInstance()
-{
-    if (GEngine)
-    {
-        UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);
-        return Instance;
-    }
-    return nullptr;
-}
-```
-:::
-
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
-可是你这也没有私有化构造啊！
-</ChatMessage>
-
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-没错，严格意义上这个类并不是单例，他只是强制将引擎GameSingleton转换成当前类。因此还需要在引擎设置中设置一下。
-</ChatMessage>
-
-![](..%2Fassets%2Fsetsingclass.png)
-
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
-如果不设置呢？
-</ChatMessage>
-
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-不好意思没有设置引擎会崩溃，大概是强制转换出现了问题。
-</ChatMessage>
-
-```cpp
-UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有设置强转失败
-```
-![](..%2Fassets%2Fnullptr.jpg)
-
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
-设置好然后呢？怎么验证他是单例呢？
-</ChatMessage>
-
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-这个好办，加入一些测试变量
-</ChatMessage>
+### 经典模式
 
 ::: code-tabs#language
 
 @tab GameSingleton.h
 
-```cpp{18}
+```cpp
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "UObject/ObjectMacros.h"
 #include "GameSingleton.generated.h"
 
@@ -278,12 +199,14 @@ class EXORCIST_API UGameSingleton : public UObject
 {
 	GENERATED_BODY()
 	
+private:
+	 UGameSingleton() {}
+public:
 	UFUNCTION(BlueprintCallable)
 	static UGameSingleton* GetInstance();
-	
 public:
 	UPROPERTY(BlueprintReadWrite)
-	int32 InstanceCount = 30;//初值30
+	int32 InstanceCount = 30;
 };
 ```
 @tab GameSingleton.cpp
@@ -292,13 +215,13 @@ public:
 
 UGameSingleton* UGameSingleton::GetInstance()
 {
-	if (GEngine)
+	static UGameSingleton* instance=nullptr;
+	if (instance==nullptr)
 	{
-		UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);
-		GEngine->AddOnScreenDebugMessage(1, 1.0f, FColor::White, FString::SanitizeFloat(Instance->InstanceCount), true, FVector2D(1, 1));
-		return Instance;
+		instance=NewObject<UGameSingleton>();
+		instance->AddToRoot();
 	}
-	return nullptr;
+	return instance;
 }
 ```
 :::
@@ -320,8 +243,150 @@ UGameSingleton* UGameSingleton::GetInstance()
 <GifWithButton src="../../assets/unrealgif/sington.gif"/>
 
 <ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-没错，他的生命周期和引擎是一样的，意味着在编辑器模式中的GEngine没有销毁这个变量就一直存在。
+没错，他的生命周期和引擎是一样的，意味着在编辑器模式中的GEngine没有销毁这个变量就一直存在。因此你可以看到另外一种写法：
 </ChatMessage>
+
+### EngineSingleton
+
+::: code-tabs#language
+
+@tab GameSingleton.h
+
+```cpp
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/ObjectMacros.h"
+#include "GameSingleton.generated.h"
+
+UCLASS(Blueprintable,BlueprintType)
+class EXORCIST_API UGameSingleton : public UObject
+{
+	GENERATED_BODY()
+	
+private:
+	 UGameSingleton() {}
+public:
+	UFUNCTION(BlueprintCallable)
+	static UGameSingleton* GetInstance();
+public:
+	UPROPERTY(BlueprintReadWrite)
+	int32 InstanceCount = 30;
+};
+
+
+```
+@tab GameSingleton.cpp
+```cpp
+#include "GameSingleton.h"
+
+UGameSingleton* UGameSingleton::GetInstance()
+{
+	if (GEngine)
+	{
+		UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);
+		if(Instance)
+		{
+		    return Instance;
+		}
+
+	}
+	return nullptr;
+}
+```
+:::
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+两者生命周期都等同于GEngine，所以编辑器中停止游戏并不会释放内存。
+</ChatMessage>
+
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+后面这种写法需要在设置中`项目设置`指定一下单例类。
+</ChatMessage>
+
+![](..%2Fassets%2Fsetsingclass.png)
+
+<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+如果不设置呢？
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+没有设置引擎会崩溃，因为他依赖GEngine的GameSingleton指针。
+</ChatMessage>
+
+```cpp
+UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有设置强转失败
+```
+![](..%2Fassets%2Fnullptr.jpg)
+
+### CDOSingleton
+
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+当然，还可以利用CDO来创建。
+</ChatMessage>
+
+![](..%2Fassets%2Fcdosingleton.png)
+
+::: code-tabs#language
+
+@tab MySingleton.h
+
+```cpp
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "MySingleton.generated.h"
+
+/**
+ * 
+ */
+UCLASS(BlueprintType,Blueprintable)
+class UMySingleton : public UObject
+{
+	GENERATED_BODY()
+public:
+   UMySingleton(const FObjectInitializer& ObjectInitializer);
+   
+   UFUNCTION(BlueprintPure, Category=MySingleton)
+   static UMySingleton* GetInstance();
+   
+   UFUNCTION(BlueprintCallable, Category=MySingleton)
+   void SetTestStr(FString InStr);
+   
+   UFUNCTION(BlueprintCallable, Category=MySingleton)
+   FString GetTestStr();
+private:
+    FString TestStr;
+};
+```
+@tab MySingleton.cpp
+```cpp
+#include "Singleton.h"
+
+UMySingleton::UMySingleton(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
+{
+}
+
+UMySingleton* UMySingleton::GetInstance()
+{
+    // 大多数情况下CDO不应该被修改（使用GetDefault），这里使用GetMutableDefault返回的是可修改版本。
+   return GetMutableDefault<UMySingleton>();
+}
+
+void UMySingleton::SetTestStr(FString InStr)
+{
+    TestStr = InStr;
+}
+
+FString UMySingleton::GetTestStr()
+{
+    return TestStr;
+}
+```
+:::
 
 ### GameInstance
 
@@ -342,34 +407,6 @@ UGameSingleton* UGameSingleton::GetInstance()
 
 ![](..%2Fassets%2Fgameinstanceprint.png)
 
-### 其他写法
-
-```cpp
-UCLASS()
-class HELLO_API UMyScoreManager : public UObject
-{
-    GENERATED_BODY()
-public:
-// 一些公用的函数或者Property
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-        float Score;
-
-    UFUNCTION(BlueprintPure,DisplayName="MyScoreManager")
-    static UMyScoreManager* Instance()
-    {
-        static UMyScoreManager* instance=nullptr;
-        if (instance==nullptr)
-        {
-            instance=NewObject<UMyScoreManager>();
-            instance->AddToRoot();
-        }
-        return instance;
-        //return GetMutableDefault<UMyScoreManager>();
-    }
-    UFUNCTION(BlueprintCallable)
-        void AddScore(float delta);
-};
-```
 
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
  蓝图函数库是单例吗？

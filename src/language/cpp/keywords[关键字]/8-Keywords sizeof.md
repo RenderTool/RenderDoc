@@ -1,6 +1,6 @@
 ---
-title: c++7.sizeof和内存对齐
-order : 7
+title: c++8.sizeof和内存对齐
+order : 8
 category:
   - c++
 ---
