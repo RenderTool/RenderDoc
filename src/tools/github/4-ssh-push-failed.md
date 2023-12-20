@@ -36,4 +36,5 @@ git@github.com: Permission denied (publickey). fatal: Could not read from remote
 ![](assets%2Fgenreatessh.png)
 
 3.然后将 `id_rsa.pub` 文件内容复制到github上。
+
 ![sshkeyupdata.png](assets%2Fsshkeyupdata.png)
