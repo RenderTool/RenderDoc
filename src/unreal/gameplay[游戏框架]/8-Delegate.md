@@ -1,6 +1,6 @@
 ---
-title: Macro4.Delegate|委托TODO
-order : 4
+title: GP8.Delegate|委托
+order : 8
 category:
   - u++
 ---
@@ -467,34 +467,3 @@ that can be Created one place and then added later.
 | `BindUFunction(UObject, FName("FunctionName"))`  | 用于本机和动态委托，将调用具有指定名称的 UFUNCTION                             |
 | `BindDynamic(UObject, &UClass::FunctionName)`    | 仅用于动态委托的便捷包装器，FunctionName 必须声明为 UFUNCTION                 |
 
-
-### 动态单播
-
-1. **创建委托**：创建一个委托类型的声明
-
-```cpp
-DECLARE_DYNAMIC_DELEGATE_OneParam(FOnAudioOutputDevicesObtained, const TArray<FAudioOutputDeviceInfo>&, AvailableDevices);
-```
-2. **定义委托函数**：
-```cpp    
-/**
-* Gets information about all audio output devices available in the system
-* @param OnObtainDevicesEvent - the event to fire when the audio endpoint devices have been retrieved
-*/
-UFUNCTION(BlueprintCallable, Category = "Audio", meta = (WorldContext = "WorldContextObject"))
-static void GetAvailableAudioOutputDevices(const UObject* WorldContextObject, const FOnAudioOutputDevicesObtained& OnObtainDevicesEvent);
-```
-3. **触发委托**：
-
-```cpp
-//获取音频输出设备委托
-UPROPERTY()
-FOnAudioOutputDevicesObtained OnObtainDevicesEvent;
-
-//使用BindUFunction绑定函数签名
-OnObtainDevicesEvent.BindUFunction(this, FName("OnObtainDevices"));
-
-//音频输出设备对应回调函数
-UFUNCTION(BlueprintCallable)
-void OnObtainDevices(TArray<FAudioOutputDeviceInfo> FAudioOutputDeviceInfo);
-```
