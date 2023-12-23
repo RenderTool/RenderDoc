@@ -169,6 +169,50 @@ int main() {
 }
 ```
 
+>也可以改写成动态内存分配创建单例对象（懒汉式）,这也是智能指针管理内存的核心思想之一，用户无需关心指针释放时机。
+
+```cpp
+#include <iostream>
+
+class Singleton 
+{
+    // 将构造函数私有化
+    Singleton() {}
+
+public:
+    static Singleton* getInstance() {
+        static Singleton* instance = nullptr;
+        if (instance == nullptr) {
+            instance = new Singleton;
+        }
+        return instance;
+    }
+
+    void testfunction() {
+        std::cout << "testfunction" << std::endl;
+    }
+
+    ~Singleton() {
+        // 在析构函数中释放动态分配的内存
+        if (instance != nullptr) {
+            delete instance;
+            instance = nullptr;
+        }
+    }
+};
+
+int main() {   
+    // 获取单例实例
+    Singleton* singletonInstance = Singleton::getInstance();
+    singletonInstance->testfunction();
+
+    // 在程序结束时，析构函数会被调用，释放动态分配的内存
+
+    return 0;
+}
+```
+
+
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 那么！UE中支持原生C++单例实现吗？
 </ChatMessage>
@@ -339,9 +383,6 @@ UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有
 #include "UObject/NoExportTypes.h"
 #include "MySingleton.generated.h"
 
-/**
- * 
- */
 UCLASS(BlueprintType,Blueprintable)
 class UMySingleton : public UObject
 {
@@ -395,8 +436,8 @@ FString UMySingleton::GetTestStr()
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-确实，他的表现确实很像我们的游戏实例，全局只有一个实例。但游戏实例的生命周期却没有EngineSingleton长。
-关卡结束运行就会释放内存空间。
+确实，他的表现确实很像我们的游戏实例，但游戏实例的生命周期却没有EngineSingleton长。
+关卡结束运行就会执行析构。
 </ChatMessage>
 
 <GifWithButton src="../../assets/unrealgif/gameinstancegif.gif"/>
@@ -407,6 +448,30 @@ FString UMySingleton::GetTestStr()
 
 ![](..%2Fassets%2Fgameinstanceprint.png)
 
+### Subsystem|子系统
+
+<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+严格意义上来说子系统并不是单例，但他的成员函数接口保证了只实例化一个子类，其中使用了一些高级C++特性和技巧，比如
+引用计数、多态、重写等。后续的子系统篇会有详细介绍。
+</ChatMessage>
+
+```cpp
+bool UGameUIManagerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
+{
+	if (!CastChecked<UGameInstance>(Outer)->IsDedicatedServerInstance())
+	{
+		TArray<UClass*> ChildClasses;
+		GetDerivedClasses(GetClass(), ChildClasses, false);
+
+		// Only create an instance if there is no override implementation defined elsewhere
+		return ChildClasses.Num() == 0;
+	}
+
+	return false;
+}
+```
+
+### 问题
 
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
  蓝图函数库是单例吗？

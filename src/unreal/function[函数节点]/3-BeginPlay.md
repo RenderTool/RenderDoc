@@ -148,6 +148,10 @@ void AActor::BeginPlay()
 
 ![](..%2Fassets%2Feventbegin%21.png)
 
+:::note
+`meta=(DisplayName = "BeginPlay")`
+用于修改显示节点名。
+:::
 
 <ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没错，这就解释了为什么继承的Actor执行后会先调用蓝图部分的函数再调用C++。

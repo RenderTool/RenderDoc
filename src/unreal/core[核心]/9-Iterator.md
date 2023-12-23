@@ -1,6 +1,6 @@
 ---
-title: TP1.迭代器[Iterator]
-order : 1
+title: core9.Iterator|迭代器
+order : 9
 category:
   - u++
 ---
