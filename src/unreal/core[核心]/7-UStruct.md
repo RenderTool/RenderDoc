@@ -1,6 +1,6 @@
 ---
-title: GP6.Struct[结构体]
-order : 6
+title: core7.UStruct|结构体
+order : 7
 category:
   - u++
 ---

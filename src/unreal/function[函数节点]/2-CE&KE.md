@@ -1,6 +1,6 @@
 ---
-title: CMD1.CE|KE
-order : 6
+title: FUN2.CE|KE
+order : 2
 category:
   - u++
 ---

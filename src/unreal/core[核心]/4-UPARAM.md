@@ -1,5 +1,5 @@
 ---
-title: Macro4.UPARAM
+title: core4.UPARAM
 order: 4
 category:
   - u++

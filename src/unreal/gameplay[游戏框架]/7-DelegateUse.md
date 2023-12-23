@@ -1,6 +1,6 @@
 ---
-title: GP9.Delegate|委托实践
-order : 9
+title: GP7.Delegate|委托实践
+order : 7
 category:
   - u++
 ---

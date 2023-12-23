@@ -1,5 +1,5 @@
 ---
-title: Macro2.GENERATED_BODY()
+title: core2.GENERATED_BODY()
 order: 2
 category:
   - u++

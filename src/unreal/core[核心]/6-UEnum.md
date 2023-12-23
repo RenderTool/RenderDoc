@@ -1,6 +1,6 @@
 ---
-title: GP7.Enum[枚举]
-order : 7
+title: core6.UEnum|枚举
+order : 6
 category:
   - u++
 ---

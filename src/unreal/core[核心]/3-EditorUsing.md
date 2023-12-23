@@ -1,5 +1,5 @@
 ---
-title: Macro3.WITH_EDITOR
+title: core3.WITH_EDITOR
 order: 3
 category:
   - u++

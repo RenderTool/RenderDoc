@@ -1,5 +1,5 @@
 ---
-title: GP5.Interface[接口]
+title: GP5.Interface|接口
 order : 5
 category:
   - u++

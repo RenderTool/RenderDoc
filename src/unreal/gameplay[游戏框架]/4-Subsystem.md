@@ -1,5 +1,5 @@
 ---
-title: GP4.子系统[Subsystem]TODO
+title: GP4.子系统|SubsystemTODO
 order : 4
 category:
   - u++
