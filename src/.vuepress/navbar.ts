@@ -14,7 +14,7 @@ export default navbar([
     text: '开发工具',
     icon: "screwdriver-wrench",
     prefix: "/tools/",
-    children:["git/","github/","vscode/","vuepress/","rider/"],
+    children:["git/","github/","vscode/","vuepress/","rider/","visualstudio/"],
   },
   {
     text: '3D工具',

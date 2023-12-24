@@ -211,6 +211,12 @@ int main() {
     return 0;
 }
 ```
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+
+ [Language/c++Designer/Singleton|单例](../../language/cpp/designer_设计模式_/1-Sington.html)
+
+</ChatMessage>
+
 
 
 <ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
@@ -481,7 +487,7 @@ bool UGameUIManagerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 蓝图函数库（Blueprint Function Library）并不是严格意义上的单例。蓝图函数库是一种特殊类型的类，通常用于存储一组静态函数，这些函数可供蓝图（Blueprint）图表中的蓝图调用。
 </ChatMessage>
 
-
+### 扩展
 
 [UE官方论坛](https://forums.unrealengine.com/t/singleton-pattern-in-c/430452)
 
