@@ -103,7 +103,6 @@ Good！如果我通过Buff或者一些游戏机制永久修改你的上下限，
 这里面我感觉最容易实现的是格子部分，用一张线条贴图进行平铺就行了！
 </ChatMessage>
 
-
 ![](..%2Fassets%2Fhp3.png)
 
 <ChatMessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
