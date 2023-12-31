@@ -1,8 +1,0 @@
-import{_ as t}from"./classadd-1a0a77d4.js";import{_ as i,r as o,o as c,c as l,d as n,w as s,e as p,b as e}from"./app-7db99f70.js";const r={},u=p('<ol><li>Rider添加一个类</li></ol><figure><img src="'+t+`" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure><ol start="2"><li>添加代码</li></ol><div class="language-cpp line-numbers-mode" data-ext="cpp"><pre class="language-cpp"><code><span class="token function">UENUM</span><span class="token punctuation">(</span>Meta <span class="token operator">=</span> <span class="token punctuation">(</span>Bitflags<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">enum</span> <span class="token keyword">class</span> <span class="token class-name">EColorBits</span>
-<span class="token punctuation">{</span>
-    ECB_Red<span class="token punctuation">,</span>
-    ECB_Green<span class="token punctuation">,</span>
-    ECB_Blue
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,4);function d(m,v){const a=o("ChatMessage");return c(),l("div",null,[n(a,{avatar:"../../assets/emoji/hh.png",avatarWidth:40},{default:s(()=>[e(" UEC++中怎么写Enum ")]),_:1}),n(a,{avatar:"../../assets/emoji/new9.png",avatarWidth:40,alignLeft:""},{default:s(()=>[e(" 安排! ")]),_:1}),u])}const f=i(r,[["render",d],["__file","6-UEnum.html.vue"]]);export{f as default};
