@@ -1,5 +1,5 @@
 ---
-title: GP3.单例|Singleton
+title: GP3.Singleton|单例
 order : 3
 category:
   - u++
