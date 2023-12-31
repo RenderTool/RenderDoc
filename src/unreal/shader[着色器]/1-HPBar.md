@@ -6,7 +6,7 @@ category:
 ---
 ## 导读
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 我想实现一个比较通用的血条材质类似LOL/守望/永劫那种。
 </ChatMessage>
 
@@ -16,7 +16,7 @@ category:
 别急着动手，先思考一下我们要实现哪些功能以及机制设定。
 </ChatMessage>
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 一个正常的血条修改看到需要有个加减值反馈，比如下面这样
 </ChatMessage>
 
@@ -28,7 +28,7 @@ category:
 这个是最简单基础的功能，但视觉上我们无法确定这个血量是从什么地方开始修改的。
 </ChatMessage>
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 我可以给他加个过度状态。
 </ChatMessage>
 
@@ -40,7 +40,7 @@ category:
 如果没有显示血量值阁下如何应对。
 </ChatMessage>
 
-<ChatMessage avatar="../../../assets/emoji/new11.png" :avatarWidth="55">
+<ChatMessage avatar="../../assets/emoji/new11.png" :avatarWidth="55">
 简单加个刻度就行了！比如一个格子10血。
 </ChatMessage>
 
@@ -52,19 +52,19 @@ category:
 Good！如果我通过Buff或者一些游戏机制永久修改你的上下限，阁下如何应对？
 </ChatMessage>
 
-<ChatMessage avatar="../../../assets/emoji/new11.png" :avatarWidth="55">
+<ChatMessage avatar="../../assets/emoji/new11.png" :avatarWidth="55">
 这还不简单，直接加上或者减少血条上下限不就行了！
 </ChatMessage>
 
 ![](..%2Fassets%2Fjizhixiugai%20.jpg)
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 小伙子想的挺美，你设计的UI可是固定尺寸的，总不能一修改就改UI尺寸吧！
 </ChatMessage>
 
 ![](..%2Fassets%2Fdehp.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 你这么说好像确实没法这么玩！
 </ChatMessage>
 
@@ -74,7 +74,7 @@ Good！如果我通过Buff或者一些游戏机制永久修改你的上下限，
 
 ![](..%2Fassets%2Fdshp2.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 还有一种情况，如果是临时效果比如类似免死技能呢？
 </ChatMessage>
 
@@ -85,7 +85,7 @@ Good！如果我通过Buff或者一些游戏机制永久修改你的上下限，
 ![](..%2Fassets%2Fhpbadi.png)
 
 
-<ChatMessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40">
+<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 也就是说需要实现这样？
 </ChatMessage>
 
