@@ -1,6 +1,7 @@
 import { defineUserConfig } from "vuepress";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
 import theme from "./theme.js";
+
 export default defineUserConfig({
 
   base: "/RenderDoc/",
@@ -13,10 +14,8 @@ export default defineUserConfig({
       indexContent: true,
     }),
   ],
-  
   theme,
   // Enable it with pwa
   shouldPrefetch: false,
 
-  
 });

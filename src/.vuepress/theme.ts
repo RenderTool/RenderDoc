@@ -1,7 +1,9 @@
 import {hopeTheme, PageInfo} from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
+
 export default hopeTheme({
+
   darkmode : "toggle",
   fullscreen: true,
   hostname: "https://rendertool.github.io/RenderDoc/",
@@ -9,7 +11,6 @@ export default hopeTheme({
     name: "Mr.Si",
     url: "https://rendertool.github.io/RenderDoc/",
   },
-
   iconAssets: "fontawesome-with-brands",
 
   logo: "./logo.svg",
@@ -38,8 +39,8 @@ export default hopeTheme({
   metaLocales: {
     editLink: "在 GitHub 上编辑此页",
   },
-  plugins: {
-    
+  plugins:
+    {
     blog: true,
     // You should generate and use your own comment service
     comment: {
@@ -122,6 +123,7 @@ export default hopeTheme({
 
     // uncomment these if you want a pwa
     pwa: {
+      update: "force",
       favicon: "/favicon.ico",
       cacheHTML: true,
       cachePic: true,
