@@ -5,9 +5,9 @@ category:
   - c++
 
 ---
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 `continue` 和 `break` 是两个在 C++ 中用于控制循环流程的关键字，有什么区别？
-</ChatMessage>
+</chatmessage>
 
 ## 实践
 

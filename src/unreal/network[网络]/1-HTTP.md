@@ -4,13 +4,13 @@ order: 1
 category:
   - unreal
 ---
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 什么是HTTP?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 HTTP（超文本传输协议）是一种用于在互联网上传输信息的应用层协议。
-</ChatMessage>
+</chatmessage>
 
 ## HTTP
 
@@ -23,51 +23,51 @@ HTTP（超文本传输协议）是一种用于在互联网上传输信息的应�
 
 <hr>
 
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 为什么会有HTTPS
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 它是HTTP的安全版本，通过使用TLS（Transport Layer Security）或其前身SSL（Secure Sockets Layer）协议，对数据进行加密和身份验证，从而保护数据的完整性和隐私。
-</ChatMessage>
+</chatmessage>
 
 ### HTTPS
 
 
 ![](..%2Fassets%2Fhttp.jpeg)
 
-<ChatMessage avatar=" ../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 HTTPS对应的通信时序
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fhttp-auth-sequence-diagram.jpg)
 
-<ChatMessage avatar=" ../../assets/emoji/kclr.png" :avatarWidth="40" >
+<chatmessage avatar=" ../../assets/emoji/kclr.png" :avatarWidth="40" >
 看不懂!我想知道浏览器里长啥样!
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 浏览器里一般是这样的,这个证书一般是要钱的!
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fhttps.jpg)
 
 <hr>
 
-<ChatMessage avatar=" ../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hh.png" :avatarWidth="40">
 很好,可是怎么在UE中用他!
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 别急,先把插件安排上!
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fhttpplugin.png)
 
-<ChatMessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 使用插件前,先了解一下HTTP基本流程.
-</ChatMessage>
+</chatmessage>
 
 
 ### HTTP基本流程
@@ -145,13 +145,13 @@ Content-Type: text/html
 
 <hr>
 
-<ChatMessage avatar=" ../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar=" ../../assets/emoji/hh.png" :avatarWidth="40" >
 看不懂!请求方法是什么?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 请求方法是客户端向服务器请求执行特定操作的方式。一般有以下几种请求方法:
-</ChatMessage>
+</chatmessage>
 
 
 ### HTTP请求操作
@@ -186,13 +186,13 @@ Content-Type: text/html
 
 <hr>
 
-<ChatMessage avatar=" ../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar=" ../../assets/emoji/hh.png" :avatarWidth="40" >
 响应头和请求头是两个概念嘛?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 是的，请求头和响应头是两个概念，它们分别指HTTP请求和HTTP响应中包含的头部信息。
-</ChatMessage>
+</chatmessage>
 
 1. **请求头（Request Headers）：**
     - 请求头是包含在HTTP请求中的信息，用于向服务器传递额外的元数据。请求头通常包括了客户端的信息、所期望的响应格式、身份验证凭证等。一些常见的请求头包括`User-Agent`、`Accept`、`Content-Type`等。
@@ -213,9 +213,9 @@ Content-Type: text/html; charset=UTF-8
 Cache-Control: max-age=3600
 ```
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 回到正题,官方的HTTP插件.
-</ChatMessage>
+</chatmessage>
 
 ## UEHTTP
 
@@ -229,9 +229,9 @@ Cache-Control: max-age=3600
 
 ### 主要节点
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 我们已经清楚HTTP的基本流程,简单来说需要实现请求和接收,官方优雅的封装了这一过程.
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fjtzyhttprequest.jpg)
 

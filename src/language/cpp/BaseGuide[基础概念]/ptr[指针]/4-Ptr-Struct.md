@@ -5,22 +5,22 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 说完了数组指针和指针数组随便讲讲结构体指针和类指针吧
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
 在讲结构体指针前先来复习一下结构体咱们定义吧
-</ChatMessage>
+</chatmessage>
 
 >语法：struct 结构体名称 { 成员列表 };
 
 ![](..%2F..%2Fassets%2Fstruct.png)
 
 ## 结构体指针
-<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 顾名思义，是一个结构体类型的<span style="color: #c0392b">指针</span>指向某个结构体。
-</ChatMessage>
+</chatmessage>
 
 >语法： struct 结构体名称 * 指针变量名 = & 结构体对象;
 
@@ -78,16 +78,16 @@ int main()
    delete pDog;
    ```
    
-<GifWithButton src="../../../../assets/unrealgif/structptr.gif"/>
+<gifwithbutton src="../../../../assets/unrealgif/structptr.gif"/>
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 如果不delete会怎么样？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 如果动态分配内存后，没有正确释放该内存，意味着这部分内存无法再被程序访问。<br>
 但系统仍然认为这部分内存被程序占用，从而造成内存资源的浪费。也就是我们常常说的内存泄漏。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
@@ -222,10 +222,10 @@ int main()
 
 ## 类指针
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 类指针和结构体指针在概念上非常相似，因为类（class）和结构体（struct）在 C++ 中都是用户自定义的数据类型。
 只不过需要注意的是类默认是私有的,需要用pulic关键字修饰
-</ChatMessage>
+</chatmessage>
 
 ![类默认私有](..%2F..%2Fassets%2Fclassptr.png)
 
@@ -268,9 +268,9 @@ int main() {
 ```
 ### 声明前置
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 当然结构体/类指针声明前置都是可以的
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>

@@ -4,13 +4,13 @@ order : 1
 category:
   - c++
 ---
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 Baba！什么地方用";"
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 在C++中，分号（;）是语句结束的标志。在几乎所有的C++语句中，都需要使用分号来表示语句的结束。以下是一些常见的情况：
-</ChatMessage>
+</chatmessage>
 
 
 1. **表达式结束：** 在赋值、函数调用、算术运算等表达式结束时，需要使用分号。例如：

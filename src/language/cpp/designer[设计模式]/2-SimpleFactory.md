@@ -7,10 +7,10 @@ category:
 
 ### SimpleFactory简单工厂
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 简单工厂（Simple Factory）是一种创建型设计模式，其目的是通过一个单独的工厂类来创建对象，而不直接在客户端代码中实例化对象。
 这种模式有助于将对象的创建过程封装起来，使客户端代码与具体对象的创建过程解耦。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FSimpleFactory.svg)
 

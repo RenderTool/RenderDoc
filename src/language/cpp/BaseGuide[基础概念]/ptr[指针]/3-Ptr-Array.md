@@ -5,33 +5,33 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 有了先前知识点的铺垫，现在正是理解数组指针|指针数组最佳时机
-</ChatMessage>
+</chatmessage>
 
 ## 概念
 
 ## 指针数组
 
-<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40" >
 什么叫指针数组？
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 先别急着抠字眼，先看看这些：字符串数组、结构体数组,这些你能想到什么？
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
 一堆字符串组成的数组和一堆结构体组成的数组呗
-</ChatMessage>
+</chatmessage>
 
 ![](..%2F..%2Fassets%2Fstringarray.png)
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 那么他换个马甲你就不认识？指针数组，不就是一堆指针组成的<span style="color: #c0392b">数组</span>嘛？
-</ChatMessage>
+</chatmessage>
 
 >UE中一堆`对象指针`组成的`数组`就是`指针数组`例如：TArray<ACameraActor*>Camera。（多直观易懂）
 
@@ -70,24 +70,24 @@ int main() {
 
 ## i++与++i
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
 我不理解！为什么这里用++i而不是i++，有什么区别嘛？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 在这里i没有对其他变量赋值，所以没有区别。你可以康康我之前的文章《i++|++i区别》
-</ChatMessage>
+</chatmessage>
 
 ## 多维指针数组
 
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 讨论多维指针数组之前先来复习一下多维数组。比如：int arr[2][3]是什么意思？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
 表示一个二维数组，2表示行数，3表示列数。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 int arr[2][3]=
@@ -96,22 +96,22 @@ int arr[2][3]=
     {4,5,6}
 }
 ```
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 goodjob!int arr[2][3][4]呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
 隔着套娃呢！这个我就迷糊了，2行 3列 4？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 你可以这么理解，从左边开始：<br>
 arr[2][3][4]<br>
 arr[①][②][③]<br>
 - 每个①有2个数组②。<br>
 - 每个②有3个数组③。<br>
 - 每个③有4个元素。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 int arr[2][3][4] =
@@ -129,9 +129,9 @@ int arr[2][3][4] =
 };
 ```
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (6).png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/bqb (6).png" :avatarWidth="40" >
 那么说！其实就是一个数括号游戏。
-</ChatMessage>
+</chatmessage>
 
 ``` text
 
@@ -179,9 +179,9 @@ arr[①][②][③]
 |   |   |-- [3]
 ```
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 多维指针数组依然是一个指针组成的数组。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -225,31 +225,31 @@ int main() {
 ```
 
 ## 数组指针
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
 Baba帮我康康我写的这个p2是不是就是数组指针？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 int array2[6] = {1, 2, 3, 4, 5, 6};
 int *p2 = array2;
 ```
-<ChatMessage avatar="../../../../assets/emoji//blzt.png" :avatarWidth="40"  alignLeft>
+<chatmessage avatar="../../../../assets/emoji//blzt.png" :avatarWidth="40"  alignLeft>
 你说的这个不叫数组指针，是一个普通指针。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
 数组指针不是直接可以用 指针指向数组首地址进行访问么?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji//bqb (2).png" :avatarWidth="40"  alignLeft>
+<chatmessage avatar="../../../../assets/emoji//bqb (2).png" :avatarWidth="40"  alignLeft>
 是的，实践证明确实首地址和整个数组地址一致，但你这个确实只是一个指向的是数组首元素的普通指针，看下面的程序调试图：
-</ChatMessage>
+</chatmessage>
 
 ![普通指针，指向数组首元素](..%2F..%2Fassets%2Fintptrarrayfirest.png)
 
-<ChatMessage avatar="../../../../assets/emoji//bqb (3).png" :avatarWidth="40"  alignLeft>
+<chatmessage avatar="../../../../assets/emoji//bqb (3).png" :avatarWidth="40"  alignLeft>
 真正的数组指针长这样：
-</ChatMessage>
+</chatmessage>
 
 ![保存的是整个数组的地址](..%2F..%2Fassets%2Farrayptrall.png)
 
@@ -278,7 +278,7 @@ int main() {
 ```
 ![内存图](..%2F..%2Fassets%2Fggbl.png)
 
-<GifWithButton src="../../../../assets/unrealgif/arrayptr.gif"/>
+<gifwithbutton src="../../../../assets/unrealgif/arrayptr.gif"/>
 
 ## 多维数组指针
 

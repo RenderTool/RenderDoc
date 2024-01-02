@@ -5,14 +5,14 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 函数指针是什么？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
 函数指针是指向函数的指针变量。允许你使用指针来存储和调用函数的地址。
 函数指针通常用于在运行时动态地选择要调用的函数，或者将函数作为参数传递给其他函数。
-</ChatMessage>
+</chatmessage>
 
 ![C Primer Plus（第6版）中文版](..%2F..%2Fassets%2Ffunctionptr.png)
 

@@ -9,9 +9,9 @@ tag:
 
 ## 问题详情
 
-<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 Git-变基(rebase)和合并(merge)区别？
-</ChatMessage>
+</chatmessage>
 
 ## 解析
 
@@ -53,9 +53,9 @@ Git-变基(rebase)和合并(merge)区别？
 
 ## 总结
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
 再多说就不礼貌了
-</ChatMessage>
+</chatmessage>
 
 - **合并**会保留原分支的完整历史记录，创建一个新的合并提交。
 - **变基**会将当前分支的所有提交都应用在目标分支的最新提交上，使提交历史更加线性。

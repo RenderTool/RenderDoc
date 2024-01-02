@@ -9,11 +9,11 @@ category:
 
 ![](..%2Fassets%2FList.png)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 `std::list` 是 C++ 标准模板库中的双向链表容器。它提供了一个能够高效进行插入和删除操作的数据结构，支持在序列的两端和任何位置进行快速插入和删除元素。
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fstllist.png)
 

@@ -5,17 +5,17 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 测试不同传参方法对应的蓝图节点结果
-</ChatMessage>
+</chatmessage>
 
 ## 实践
 
 ### 1. 新建一个蓝图函数库类
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 蓝图函数库是一个静态函数的合集，便于测试
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Flibexpcpp.jpg)
 
@@ -53,5 +53,5 @@ void UseDogInfo(const FDogInfo& SearchParams);
 
 ### 蓝图中数组只能用引用传递。
 
-<GifWithButton src="../../assets/unrealgif/defalutreference.gif"/>
+<gifwithbutton src="../../assets/unrealgif/defalutreference.gif"/>
 

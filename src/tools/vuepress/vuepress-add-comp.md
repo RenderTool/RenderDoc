@@ -10,9 +10,9 @@ category:
 vuepress添加自定义组件-以实现聊天气泡为例。
 
 ## 实现目标
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
   这是一条聊天消息。
-</ChatMessage>
+</chatmessage>
 
 ## 实现思路
 
@@ -63,9 +63,9 @@ vuepress添加自定义组件-以实现聊天气泡为例。
 ```
 ### 方案2：全局导入 Vue 组件
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
 很显然，方案1局限非常大，每次使用都要粘贴大量代码。
-</ChatMessage>
+</chatmessage>
 
 #### 1. 在`.vuepress`中添加目录`components`
 
@@ -134,11 +134,11 @@ export default {
 // .vuepress/client.ts
 import { defineClientConfig } from "@vuepress/client";
 // @ts-ignore
-import ChatMessage from "./components/ChatMessage.vue";
+import chatmessage from "./components/chatmessage.vue";
 
 export default defineClientConfig({
     enhance: ({ app, router, siteData }) => {
-        app.component("ChatMessage", ChatMessage);
+        app.component("chatmessage", chatmessage);
     },
 });
 
@@ -146,9 +146,9 @@ export default defineClientConfig({
 #### 5. 在对应的md中使用
 
 ```markdown
-<ChatMessage avatar="/assets/R.jpg" :avatarWidth="50">
+<chatmessage avatar="/assets/R.jpg" :avatarWidth="50">
   这是一条聊天消息。
-</ChatMessage>
+</chatmessage>
 ```
 
 ## 参考资料

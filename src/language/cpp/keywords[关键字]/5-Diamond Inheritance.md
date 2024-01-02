@@ -5,9 +5,9 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 Baba我遇到了奇怪问题！但我用下面的代码中`D`访问 `dataA`编译器会报错！
-</ChatMessage>
+</chatmessage>
 
 ## 菱形继承
 
@@ -34,30 +34,30 @@ int dataD;
 ```
 ![](..%2Fassets%2Flxjc.png)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
 看来你这是遇到菱形继承（钻石继承）问题了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 什么意思？什么是菱形继承？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 指一个派生类继承自两个直接或间接共同基类，形成了一个类似菱形的继承结构。<br>你的D继承了B和C，他们都间接或直接继承A。<br>
 这时候你去访问`dataA`，编译器会产生二义性，因为有两条路径可以到达 `A` 类，一条是通过 `B`，一条是通过 `C`。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 那该怎么解决呢？
-</ChatMessage>
+</chatmessage>
 
 ### 作用域运算符`::`
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 
 使用 **作用域运算符`::`** 可以解决菱形继承问题。
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fscopeslover.png)
 
@@ -93,11 +93,11 @@ int main() {
 
 ### 虚继承
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 
 使用 **虚继承（Virtual Inheritance）：** 可以解决菱形继承问题。
 
-</ChatMessage>
+</chatmessage>
 
 
 ```cpp
@@ -121,23 +121,23 @@ public:
     int dataD;
 };
 ```
-<ChatMessage avatar="../../../assets/emoji/new5.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/new5.png" :avatarWidth="40" alignLeft >
 
 使用虚继承应该根据具体情况来考虑，确保在解决继承二义性的同时不引入其他问题。
 - 虚继承可能会引入一些额外的开销。
 - 构造函数和析构函数的调用顺序可能会受到影响，需要特别小心。
 
-</ChatMessage>
+</chatmessage>
 
 ### 问题分析
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 可是有个问题，方法1作用域运算符可以直接用为什么还用用方法2的虚继承呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 你试着打印先通过B和C访问修改dataA后再打印通过B访问dataA结果，告诉我发生了什么？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 int main() {
@@ -149,25 +149,25 @@ int main() {
 }
 ```
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 咦？为什么dataA没有变成20！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fscoped.b.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 你再康康虚继承打印结果
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 变了！好神奇这是为什么？
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fviruald.a.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 可以借助编译器工具分析比对这两种写法区别。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2F..%2F..%2Funreal%2Fassets%2Fvscmd.jpg)
 
@@ -191,13 +191,13 @@ cl /d1 reportSingleClassLayout类名 文件名.cpp
 
 ![虚继承](..%2Fassets%2Fvbtable.png)
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 普通继承函数好像每次都会独立继承dataA,而虚继为什么dataA不见了？出现了一个vbptr?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft >
 这些其实是多态继承中的一个虚表概念。
-</ChatMessage>
+</chatmessage>
 
 1. **虚继承（Virtual Inheritance）：** 虚继承是一种通过在继承关系中使用 `virtual` 关键字来解决菱形继承（Diamond Inheritance）问题的技术。它确保在继承链中只有一个共享的基类子对象，从而避免了二义性。在虚继承中，最终派生类只保留一个基类子对象的实例。
 
@@ -235,52 +235,52 @@ vbi:       class  offset o.vbptr  o.vbte fVtorDisp
                A      20       0       4 0
 ```
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40" >
 我开始晕了！完全看不懂！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 首先你应该搞懂一个概念，指针是一个存储地址的变量。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 这个我明白！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 OK,那么这里的vbptr就是一个虚表指针，指向虚表
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 这个我也明白了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 上图中，是类D的内存分布，他的基类是B和C，他的虚基类是A。每个基类都有一个虚表指针 vbptr，指向相应的虚表。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Ftujie.png)
 
 ![](..%2Fassets%2Fvirualdtable.png)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 虚指针都在修改指向的dataA的值，意味着无论通过B还是C去修改都已经操作修改了dataA,这和普通的继承多次复制出现了本质区别。
-</ChatMessage>
+</chatmessage>
 
 ## 多态-虚函数
 
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 oK！现在我们已经通过虚继承解决了菱形多继承问题，现在我们我们来思考另外一个问题前，我们先移除菱形结构中的D类，然后在所有父子类中都添加一个同名函数。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 别了吧！我懒得思考。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 问题很简单，A和B都有一个speak函数，B继承自A。此时调用全局的speak写的参数列表中是A的对象引用，但我实际参数传入B对象，你觉得最终会打印什么？
-</ChatMessage>
+</chatmessage>
 
 
 ```cpp
@@ -309,30 +309,30 @@ int main() {
     return 0;
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 这还用想，肯定是打印B的 "Hello, B!"咯。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new2.png" :avatarWidth="55" alignLeft >
+<chatmessage avatar="../../../assets/emoji/new2.png" :avatarWidth="55" alignLeft >
 回答错误，请认真思考！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 为什么打印的是A的"Hello, A!"
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft >
 由于 speak 函数的参数类型是 A*，这是一个指向 A 类对象的指针，
 所以编译器在编译时会选择调用 A 类中的 speak 函数。属于早绑定的情况。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 您能不能别总是很突兀的冒出新的专业术语？什么叫早绑定？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft >
 看来咱们需要补一下编译方面的知识，编译流程包括了源代码到可执行文件的多个阶段，其中和绑定有关的是编译期和链接期。
-</ChatMessage>
+</chatmessage>
 
 ### 编译期：
 
@@ -360,26 +360,26 @@ int main() {
 
 - **晚绑定（动态绑定）：** 在运行时确定调用的函数或变量的地址。这通常涉及虚函数和虚表的机制。在 C++ 中，使用 `virtual` 关键字声明的虚函数就是为了实现晚绑定。晚绑定是通过虚表和虚指针的机制来实现的。
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft >
 
 代码中，`speak` 函数的参数类型是 `A*`，即一个指向 `A` 类对象的指针。
 当你将 `B` 类的对象传递给 `speak` 函数时，尽管你传递的是 `B` 类对象的地址，
 但是编译器在编译期就已经知道这是一个 `A` 类对象的指针，所以它会选择调用 `A` 类中的 `speak` 函数。
 这就是早绑定的过程，因为在编译期就已经确定了调用的函数。
 
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 那么是不是改成晚绑定就行了？怎么做呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new2.png" :avatarWidth="55" alignLeft >
+<chatmessage avatar="../../../assets/emoji/new2.png" :avatarWidth="55" alignLeft >
 
 不是已经说了吗！要实现晚绑定，需要在基类的虚函数声明中使用 `virtual` 关键字，并在派生类中使用 `override` 关键字，
 这样在运行时将根据对象的实际类型来调用相应的虚函数，实现了动态多态性。
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -409,17 +409,17 @@ int main() {
 }
 ```
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" >
 不严谨！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40" alignLeft>
 为什么不严谨？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" >
 你没判断空指针的情况。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -451,57 +451,57 @@ int main() {
     return 0;
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
 有进步！那么你觉得现在class B的sizeof是多少？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 B是一个类，函数和类分开存储，也就是说这是一个空类只占1个字节。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 你打印康康！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 为什么32下运行是4?
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fhellob4bit.png)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 还记得之前咱们虚继承中说的虚指针的概念嘛？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 我明白了！意味着这里用了 virtual函数，也拥有了一个虚指针？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 用开发者编译工具康康不就行知道了!
-</ChatMessage>
+</chatmessage>
 
 ![虚函数继承重写](..%2Fassets%2Fover.png)
 
 
 ![没有虚函数](..%2Fassets%2FWITHOUTOUVER.png)
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 现在这个虚指针好像不再指向vbtable，而是vftable莫非是虚函数表？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
 是的。不过要注意的是，一旦父类使用了虚函数，你继承后无论重写不重写都会有虚指针。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fjcwithoutoverride.png)
 
 ## 多态-纯虚函数
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft >
 父类中，虚函数很多时候往往只需要一个声明，而不需要定义，这时候可以改成纯虚函数的写法来优化。
 但要注意，这时候这个类就变成了抽象类，无法实例化。这也是UE中接口重要的实现方法。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -536,9 +536,9 @@ int main() {
 
 ## 多态总结
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40"  >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40"  >
 如果说virtual关键字在虚继承解决了菱形继承问题，那么virtual关键字在多态的时候解决了更多的问题！
-</ChatMessage>
+</chatmessage>
 多态性解决了在继承层次结构中的两个主要问题：
 
 1. **灵活性和可扩展性：** 多态性使得代码更加灵活和可扩展。通过使用基类指针或引用调用派生类对象的虚函数，可以在运行时动态选择执行不同的函数实现。这样，在不修改已有代码的情况下，可以轻松地添加新的派生类，使得系统更具扩展性。

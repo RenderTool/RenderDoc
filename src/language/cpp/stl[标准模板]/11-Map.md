@@ -7,13 +7,13 @@ category:
 
 ### Map|MutiMap
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 `std::map` 是 C++ 标准库中的关联容器，它提供了`key`键-`value`值对的存储和检索功能。每个键-值对在 `std::map` 中被称为一个元素。关联容器的一个重要特性是，它们按照键的顺序进行有序存储。
 
 `MutiMap`可以有重复的`key`值
 
-</ChatMessage>
+</chatmessage>
 
 
 ### 定义：
@@ -72,11 +72,11 @@ std::map<KeyType, ValueType> myMap;
 `std::pair` 通常用于表示键-值对，并且在 `std::map` 中的元素实际上就是 `std::pair` 类型的对象。每个元素都是一个由键和值组成的有序对。
 
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 例如，使用 `std::pair` 来插入元素到 `std::map`：
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>

@@ -4,9 +4,9 @@ order : 4
 category:
   - c++
 ---
-<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 Baba!我阅读UEHttp插件时有段代码我不太理解!
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 void UHttpBlueprintFunctionLibrary::MakeRequestHeader(const TMap<FString, FString>& Headers, FHttpHeader& OutHeader)
@@ -14,22 +14,22 @@ void UHttpBlueprintFunctionLibrary::MakeRequestHeader(const TMap<FString, FStrin
 	OutHeader = FHttpHeader{}.SetHeaders(Headers);
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 FHttpHeader是个结构体,为什么这里没初始化就可以直接调用成员函数SetHeaders(Headers)?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 看来你学的C++教程有点老啊,这里用了{}匿名初始化了FHttpHeader,如果我写成这样你是不是能看懂?
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 OutHeader = FHttpHeader{};
 OutHeader.SetHeaders(Headers);
 ```
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 然后再进一步翻译一下:
-</ChatMessage>
+</chatmessage>
 
 ```cpp{1}
 FHttpHeader TempHeader;  // 使用默认构造函数创建 FHttpHeader 对象
@@ -40,9 +40,9 @@ OutHeader = TempHeader;  // 将 TempHeader 赋值给 OutHeader
 ## 花括号{}初始化（brace initialization） 
 
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 C++11及以后的标准中被引入，允许使用花括号 {} 直接初始化对象并调用其成员函数。花括号{}语法在不同语境下有不同的用法:
-</ChatMessage>
+</chatmessage>
 
 1. **列表初始化**
 
@@ -121,21 +121,21 @@ C++11及以后的标准中被引入，允许使用花括号 {} 直接初始化�
 * **避免窄化转换：** 花括号初始化限制了窄化转换，提高了代码的类型安全性。
 * **可读性：** 这种写法直观地表达了对象的创建和初始化顺序，提高了代码的可读性。
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 要注意确保目标类型支持这种初始化形式，而且没有引起二义性或其他问题。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 什么叫避免窄化转换?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 什么叫二义性?字我都认识,就是不明白意思.
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 窄化转换（narrowing conversion）是指在将一种数据类型转换为另一种数据类型时，可能会导致数据的精度丢失或不安全的情况。
-</ChatMessage>
+</chatmessage>
 
 ## 窄化转换
 
@@ -161,9 +161,9 @@ integerNumber = {doubleNumber};  // 编译器将禁止这种窄化转换
 ```
 <hr>
 
-<ChatMessage avatar="../../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
 至于二义性,你小子基础不牢靠啊!早在函数重载的时候就提到过了.
-</ChatMessage>
+</chatmessage>
 
 ## 二义性
 

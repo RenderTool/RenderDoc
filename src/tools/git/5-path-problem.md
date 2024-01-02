@@ -9,9 +9,9 @@ tag:
 
 ## 问题详情
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 本地配置图片可以显示，实际部署显示图片404
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2F404.png)
 
@@ -22,17 +22,17 @@ tag:
 >1. 本地开发环境和部署服务器环境之间的路径解析方式不同所致。
 
 ``` html {1,1}
-<ChatMessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="/assets/emoji/blzt.png" :avatarWidth="40">
 处于项目的根目录，所以相对路径 blzt.png 可以直接找到图片。
-</ChatMessage>
+</chatmessage>
 ```
 
 ![](assets%2Frooturl.png)
 
 ``` html {1,1}
-<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="./assets/emoji/blzt.png" :avatarWidth="40">
 实际部署路径在
-</ChatMessage>
+</chatmessage>
 ```
 >2. 而在部署到服务器时，路径解析可能会以服务器的根目录为基准。
 
@@ -45,9 +45,9 @@ tag:
 要注意引用图片的资源路径位置变化，原本在同级路径引用，现在上一级路径引用。
 
 ``` html {1,1}
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 实际部署路径在
-</ChatMessage>
+</chatmessage>
 ```
 
 ``` text 

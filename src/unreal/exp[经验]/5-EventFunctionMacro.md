@@ -5,15 +5,15 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 蓝图脚本中，函数，事件，宏的区别
-</ChatMessage>
+</chatmessage>
 
 ## 执行引脚
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 事件只有一个输入引脚，函数有两个引脚|纯函数没有引脚，宏可以有多个
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Ffunction1.png)
 

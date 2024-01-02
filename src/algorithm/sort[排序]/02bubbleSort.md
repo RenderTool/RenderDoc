@@ -7,10 +7,10 @@ category:
 
 ## 冒泡排序 (Bubble Sort)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
 冒泡排序的基本思想是通过重复遍历要排序的列表， 比较每对相邻的元素，并且如果它们的顺序错误就交换它们。
 遍历列表的工作是重复地的，直到无需交换为止，这意味着列表已经排序完成。
-</ChatMessage>
+</chatmessage>
 
 ### 实现步骤
 
@@ -18,11 +18,11 @@ category:
 2. 第二次，剔除末尾，重复步骤1。
 3. 依此类推，进行第三次、第四次，直到整个数组有序。
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 冒泡排序的时间复杂度是O(n^2)，其中n是数组的长度，意味着要一共循环n^2次。
-</ChatMessage>
+</chatmessage>
 
-<GifWithButton src="../../assets/algorithmgif/bubblesort.gif"/>
+<gifwithbutton src="../../assets/algorithmgif/bubblesort.gif"/>
 
 ![](..%2Fassets%2Fbubble.jpg)
 

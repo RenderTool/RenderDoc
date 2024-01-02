@@ -5,22 +5,22 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 this指针是什么？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
 this 指针是一个指向当前对象的指针，它是作为类的非静态成员函数的隐含参数而存在的。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 this指针可以理解成第一人称我嘛？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
 可以将 this 视为当前对象的“自引用指针”。
 通过 this 指针，你可以在成员函数中访问对象的成员变量和其他成员函数，即使它们和局部变量或参数有相同的名称。
-</ChatMessage>
+</chatmessage>
 
 1. **区分同名变量：** 如果成员函数中存在与成员变量同名的局部变量或参数，那么在没有 `this` 指针的情况下，无法直接访问成员变量。`this` 指针允许明确指定使用对象的成员。
 
@@ -84,25 +84,25 @@ public:
 它有助于避免命名冲突，让代码更加可读、易于理解，并提供了对当前对象的直接访问。
 
 
-<ChatMessage avatar="../../../../assets/emoji/new2.png" :avatarWidth="60">
+<chatmessage avatar="../../../../assets/emoji/new2.png" :avatarWidth="60">
 另外，什么是非静态成员函数？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
 非静态成员函数也就是没有用static修饰的成员函数。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 也就是说static修饰的成员函数就叫静态成员函数，你的意思是必须写在某个对象的类内？外部的某个函数就不能用static修饰嘛？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
 那是当然。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new11.png" :avatarWidth="80">
+<chatmessage avatar="../../../../assets/emoji/new11.png" :avatarWidth="80">
 可是我这么写编译器并没有报错！
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -119,14 +119,14 @@ int main() {
 
 ```
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="50" alignLeft>
 那是因为你写的 test函数声明和定义已经调用都在同个文件中。
 现在你将这个test函数写在其他头文件中，然后在main中引入调用告诉我看到了什么？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new7.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/new7.png" :avatarWidth="40">
 依然编译成功！
-</ChatMessage>
+</chatmessage>
 
 ::: code-tabs#language
 
@@ -150,15 +150,15 @@ static void test()
 ```
 :::
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/bqb (2).png" :avatarWidth="50" alignLeft>
 good！你现在将函数的定义从头文件分离，写到一个新的cpp中。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
 
 写代码阶段没有报错提示，编译执行时提示我  `test.h(3, 13): [C2129] 静态函数“void test(void)”已声明但未定义` ！
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2F..%2Fassets%2Fstatic.png)
 
@@ -192,10 +192,10 @@ void test()
 ```
 :::
 
-<ChatMessage avatar="../../../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
 在 C++ 中，函数默认情况下是全局的（具有外部链接），但使用 static 关键字可以将函数的链接属性更改为内部链接，
 使其在同一文件中的其他文件看不到。现在尝试将你的static test的函数写到某个类中.
-</ChatMessage>
+</chatmessage>
 
 ::: code-tabs#language
 
@@ -231,17 +231,17 @@ void myclass::test()
 ```
 :::
 
-<ChatMessage avatar="../../../../assets/emoji/new7.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/new7.png" :avatarWidth="40">
 好神奇！竟然可以用了！而且我不需要创建这个对象实例！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 static修饰一个成员函数或者成员变量后，会将其存储在全局数据区，这也是我们可以直接用作用域访问符::直接访问而不创建实例的原因。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/new7.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/new7.png" :avatarWidth="40">
 可是！我现在依然可以用普通的创建类的实例来调用他耶？
-</ChatMessage>
+</chatmessage>
 
 ::: code-tabs#language
 
@@ -278,15 +278,15 @@ void myclass::test()
 ```
 :::
 
-<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 那是当然，现在你在你的类中尝试使用this指针，康康会出什么问题。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/bqb (5).png" :avatarWidth="40">
 
  编译器提示：`'this' 只能在非 static 成员函数或非 static 数据成员初始值设定项内使用`
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2F..%2Fassets%2Fstaticerror.png)
 
@@ -328,23 +328,23 @@ void myclass::test(int value)
 ```
 
 :::
-<ChatMessage avatar="../../../../assets/emoji/new2.png" :avatarWidth="60">
+<chatmessage avatar="../../../../assets/emoji/new2.png" :avatarWidth="60">
 除了这个static,有时候成员函数是个常函数用了const限定，好像也无法用this访问成员变量！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 没错，但你用const限定成员函数时，确实无法通过this访问成员变量。而且限定符 'const' 仅允许用于非 static 成员函数。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2F..%2Fassets%2Fstatic%20const.png)
 
-<ChatMessage avatar="../../../../assets/emoji/new2.png" :avatarWidth="60">
+<chatmessage avatar="../../../../assets/emoji/new2.png" :avatarWidth="60">
 那么非静态成员常函数我该怎么访问成员变量呢？有没有办法？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 有两种方法：
-</ChatMessage>
+</chatmessage>
 
 1. **mutable 成员变量：** 将需要在常成员函数中修改的成员变量声明为 `mutable`。
    `mutable` 关键字告诉编译器，即使在常成员函数中，这些成员变量仍然可以被修改。

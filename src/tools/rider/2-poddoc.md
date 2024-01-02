@@ -7,13 +7,13 @@ category:
 
 ## word转md
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 Word怎么转成MD?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 安排
-</ChatMessage>
+</chatmessage>
 
 ## 1.下载pandoc.exe
 
@@ -25,15 +25,15 @@ Word怎么转成MD?
 
 ## 3. Powershell或者CMD
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 使用时，在要转的文档目录空白处shift+右键打开Powershell
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2Fimage1.png)
  
-<ChatMessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 输入命令后回车
-</ChatMessage>
+</chatmessage>
 
 ```
 pandoc input.docx -o output.md
@@ -44,7 +44,7 @@ pandoc input.docx -o output.md
 
 ![](assets/image10.png)
 
-<GifWithButton src="../../assets/unrealgif/hpimpove6.gif"/>
+<gifwithbutton src="../../assets/unrealgif/hpimpove6.gif"/>
 
 ## 4.批量导出图片
 
@@ -52,17 +52,17 @@ pandoc input.docx -o output.md
 
 ## 5.命名修改
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 WPS或者其他工具批量重命名
-</ChatMessage>
+</chatmessage>
 
 ![](assets/image6.png)
 
 
 ![](assets/image8.png)
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar=" ../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 最后打开MD替换名称前缀就OK了
-</ChatMessage>
+</chatmessage>
 
 ![](assets/image9.png)

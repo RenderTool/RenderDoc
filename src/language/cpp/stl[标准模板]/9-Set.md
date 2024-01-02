@@ -7,9 +7,9 @@ category:
 
 ### Set/Multiset
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 Set/Multiset关联式容器，底层是二叉树（红黑树），会自动排序。
-</ChatMessage>
+</chatmessage>
 
 这两者的主要区别在于 `std::set` 中不允许重复的元素，而 `std::multiset` 允许重复的元素。
 
@@ -133,9 +133,9 @@ std::multiset<T> myMultiset;
 
 ### 自动排序
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40">
 我有个问题！你说会自动排序，那么我加入字符串阁下如何也应对?
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -156,7 +156,7 @@ int main()
       }
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 对于英文字符串，比较运算符默认按照字典序进行排序（即按照 ASCII 码顺序）。<br>
 对于中文及其他字符串，C++ 的比较运算符会根据字符串的字节顺序来进行比较。
-</ChatMessage>
+</chatmessage>

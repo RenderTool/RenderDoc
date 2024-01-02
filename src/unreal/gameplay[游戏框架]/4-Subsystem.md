@@ -5,20 +5,20 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 什么是子系统？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 虚幻引擎中的子系统是生命周期受控的自动实例化类。
 这些类提供了易用的扩展点，程序员可直接获得蓝图和Python公开，同时避免繁复的引擎类修改或覆盖。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fsubs.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 按照惯例，先看官方源码注释
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 /** Subsystems are auto instanced classes that share the lifetime of certain engine constructs
@@ -106,9 +106,9 @@ const TArray<UMyGameSubsystem*>& MySubsystems = GameInstance->GetSubsystemArray<
 
 ## 实践
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 按照官方文档做一遍。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fsubsst.png)
 
@@ -140,9 +140,9 @@ class EXORCIST_API UExorcistGameInstanceSubsystem : public UGameInstanceSubsyste
 :::
 
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 看来并没有什么特殊的，咱的类继承了UGameInstanceSubsystem，那么我们康康UGameInstanceSubsystem里面写了什么。
-</ChatMessage>
+</chatmessage>
 
 
 ::: code-tabs#language
@@ -198,9 +198,9 @@ UGameInstance* UGameInstanceSubsystem::GetGameInstance() const
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 好像也没什么特别的，大概就是这些内容
-</ChatMessage>
+</chatmessage>
 
 1. `UGameInstanceSubsystem` 类是一个抽象基类，继承自 `USubsystem`。这是一个用于定义游戏实例子系统的基础类。
 
@@ -213,21 +213,21 @@ UCLASS(Abstract, Within = GameInstance)
 3. `UGameInstance* UGameInstanceSubsystem::GetGameInstance() const` 方法返回与该子系统关联的游戏实例指针。它使用 `GetOuter()` 函数获取该子系统的外部对象，并将其转换为 `UGameInstance` 类型。
 
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 
 除了构造函数就只剩这个常量指针函数`GetGameInstance`。
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UGameInstance* GetGameInstance() const;
 ```
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 不对，一定要搞清楚这不是一个常量指针，而是一个常函数，只不过函数返回类型是一个指针`UGameInstance`。
 
-</ChatMessage>
+</chatmessage>
 
 ### 常函数&常量指针
 :::tip
@@ -241,9 +241,9 @@ UGameInstance* GetGameInstance() const;
 
 :::
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 GetGameInstance函数定义中的GetOuter()到底是什么啊？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UGameInstance* UGameInstanceSubsystem::GetGameInstance() const
@@ -252,65 +252,65 @@ UGameInstance* UGameInstanceSubsystem::GetGameInstance() const
 }
 ```
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 Cast是一个模板函数，很显然这里将GetOuter()返回值强转成UGameInstance类指针
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 我看网友是这样介绍Outer的
-</ChatMessage>
+</chatmessage>
 
 
 ![](..%2Fassets%2FOUTER.png)
 
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 那么请问你看完后理解了吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 一知半解。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 既然咱们理解不了，咱们应该抛开现象看本质，康康这个到底是一个什么东西！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fuobjcet.png)
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 从源码上来看`GetOuter()` 是 UObjectBase 类中的一个内联返回`UObject`指针的函数，用于获取当前对象的外部对象，即包含当前对象的对象。
-</ChatMessage>
+</chatmessage>
 
 ![返回的就是`UObject`](..%2Fassets%2Frtuobject.png)
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 这里的FORCEINLINE是什么？
-</ChatMessage>
+</chatmessage>
 
 ### `#defineFORCEINLINE__forceinline`
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 FORCEINLINE是一个宏，也就是`__forceinline` 用于强制将函数进行内联展开。
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fforceinline.png)
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 
 可是为什么我能在 `UGameInstanceSubsystem` 调到`UObjectBase`的成员函数呢？
 
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 这就和UE的继承结构有关了。这个类目开篇我们已经介绍过：<br>
 UE中几乎所有类都继承自 `UObject`，`UGameInstanceSubsystem` 类作为子系统也不例外。
 
-</ChatMessage>
+</chatmessage>
 
 ### 继承特性
 
@@ -333,40 +333,40 @@ UE中几乎所有类都继承自 `UObject`，`UGameInstanceSubsystem` 类作为�
 - 
 ![](..%2Fassets%2F1472587-20210719153141813-975261415.png)
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 也就是说通过GetOuter()将`UObject`指针强制转成`UGameInstance`类指针。然后绑定关联UGameInstance到UGameInstanceSubsystem是吗。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 是的，这样我们可以直接通过UGameInstanceSubsystem访问UGameInstance。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 自此，`UGameInstanceSubsystem`表象已经被我们摸透。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 既然是抽象基类，就意味着有纯虚函数接口。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fabstract.png)
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 这里除了一个构造函数和游戏实例指针也没有看到虚函数接口啊。
-</ChatMessage>
+</chatmessage>
 
 ### 抽象类
 :::note
 在C++中，学习继承和多态时我们知道，如果一个类包含至少一个纯虚函数，那么这个类就被认为是一个抽象类。
 :::
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 他标记成抽象类，且没有重写虚函数的操作，意味着某个父类中一定有一个纯虚函数。经过IDE追溯发现`USubsystem`中就有（见下面Subsystem头文件23行）
 
-</ChatMessage>
+</chatmessage>
 
 
 
@@ -453,13 +453,13 @@ UDynamicSubsystem::UDynamicSubsystem()
 
 :::
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 还真的是耶！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 现在我们来分析一下代码。
-</ChatMessage>
+</chatmessage>
 
 `USubsystem`中定义了两个类 `USubsystem` 和 `UDynamicSubsystem`。
 
@@ -478,32 +478,32 @@ UDynamicSubsystem::UDynamicSubsystem()
     - 包含一个默认构造函数 `UDynamicSubsystem()`。
 
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 我看到注释里有个CDO是什么意思啊。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fcdosingleton.png)
 
 [Class Default Object](https://blog.csdn.net/yuxikuo_1/article/details/102628605)
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 我还注意到这里有个友元类 `FSubsystemCollectionBase` 是用来干什么呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 那么，我们应该在我们的继承类里面写哪些东西呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 1.重写至少一个纯虚函数接口，让他变成非抽象类。<br>
 2.写入一些测试成员变量或者成员函数。<br>
 3.可以拿我们之前的单例做一次联动测试。
-</ChatMessage>
+</chatmessage>
 
 ::: code-tabs#language
 
@@ -619,22 +619,22 @@ UGameSingleton* UGameSingleton::GetInstance()
 
 >编译运行后任意关卡启动。
 
-<GifWithButton src="../../assets/unrealgif/singtongif.gif"/>
+<gifwithbutton src="../../assets/unrealgif/singtongif.gif"/>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 可是你明明已经重新运行了为什么打印的数字还是继续递增了？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 咱们在单例中介绍过了，我们实现的单例生命周期等同于GEngine，而自增运算符是对自身的运算操作，所以每次都会继续递增。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 可是为什么每次会增加两个数字呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 这就和我们实现的子系统有关了，我们在构造和析构各自调用了一次自增操作。重运行游戏，意味着重启游戏实例状态。<br>
 而我们的`GameInstanceSubsystem`的生命周期等同于`GameInstance`每次游戏停止，就会执行一次析构函数。
-</ChatMessage>
+</chatmessage>
 

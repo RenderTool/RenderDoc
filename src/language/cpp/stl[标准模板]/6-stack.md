@@ -7,9 +7,9 @@ category:
 
 ### stack
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 栈是一种后进先出（Last In, First Out，LIFO）的数据结构，只允许在栈顶进行插入和删除操作。
-</ChatMessage>
+</chatmessage>
 
 >`std::stack` 是 C++ 标准模板库中的容器适配器（container adapter），它基于某个底层容器（默认是 `std::deque`，
 但也可以是 `std::vector` 或 `std::list`）提供了栈（stack）的功能。

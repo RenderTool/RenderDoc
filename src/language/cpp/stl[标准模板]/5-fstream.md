@@ -5,13 +5,13 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 C++模板中有没有可以对文件读写操作的模板类？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 有啊，fstream就是
-</ChatMessage>
+</chatmessage>
 
 
 | 数据类型     | 描述                                                      |
@@ -37,11 +37,11 @@ C++模板中有没有可以对文件读写操作的模板类？
 
 ### 1. **包含头文件：**
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 首先，你需要包含 `<fstream>` 头文件。
 
-</ChatMessage>
+</chatmessage>
 
    ```cpp
    #include <fstream>
@@ -49,11 +49,11 @@ C++模板中有没有可以对文件读写操作的模板类？
 
 ### 2. **打开文件：**
 
-<ChatMessage avatar="../../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 
 使用文件流对象打开要读取或写入的文件。对于输入流（读取文件），使用 `ifstream`，对于输出流（写入文件），使用 `ofstream`。
 
-</ChatMessage>
+</chatmessage>
 
 
    ```cpp
@@ -71,9 +71,9 @@ C++模板中有没有可以对文件读写操作的模板类？
 
 ### 3. **检查文件是否成功打开：**
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 在打开文件后，你应该检查文件是否成功打开。如果文件打开失败，可能是因为文件不存在或者没有读写权限。
-</ChatMessage>
+</chatmessage>
 
    ```cpp
    if (inputFile.is_open()) {
@@ -85,11 +85,11 @@ C++模板中有没有可以对文件读写操作的模板类？
 
 ### 4. **读取和写入操作：**
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 对于输入流，你可以使用类似 `>>` 运算符进行从文件读取的操作。对于输出流，你可以使用 `<<` 运算符进行向文件写入的操作。
 
-</ChatMessage>
+</chatmessage>
 
 
    ```cpp
@@ -103,18 +103,18 @@ C++模板中有没有可以对文件读写操作的模板类？
 
 ### 5. **关闭文件：**
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 在完成文件操作后，记得关闭文件流。这有助于释放相关资源。
-</ChatMessage>
+</chatmessage>
 
    ```cpp
    inputFile.close();
    outputFile.close();
    file.close();
    ```
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 当对象被销毁时，文件流也会自动关闭，但显式关闭文件是个好的实践，特别是在程序较大或长时间运行时。
-</ChatMessage>
+</chatmessage>
 
 ### 完整案例
 

@@ -5,45 +5,45 @@ category:
   - unreal
 ---
 ## 导读
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 Baba，我遇到问题了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 说！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 我在我的角色类中添加了如下函数：
-</ChatMessage>
+</chatmessage>
 
 >按数字1可以Spawn生成Actor
 
 ![](..%2Fassets%2FspwanActor.png)
 
-<ChatMessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
 接着，我进行了简单网络同步测试。同时运行了客户端和服务端后，发现在客户端按1生成Actor，服务端并没有同步生成！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fclientreplicate.png)
 
-<ChatMessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
 然而，神奇的是在服务端按1时，客户端却同步了！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fserverreplicate.png)
 
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 我明明已经启用了网络复制！为什么客户端中按1，服务端没有同步生成？
-</ChatMessage>
+</chatmessage>
 
 ## Replication|复制
 
 >复制是服务器将信息/数据传递给客户端的行为。
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 案例中你应该只是启用了Actor的网络复制属性如下图：
-</ChatMessage>
+</chatmessage>
 
 ![中文](..%2Fassets%2Freplicate.png)
 
@@ -65,17 +65,17 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 
 ![](..%2Fassets%2Factorfz001.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 你想啊，如果客户端可以随便生成数据那岂不是外挂满天飞了？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
 对哦！这么说来客户端确实不应该生成Actor!
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 我们先来补充几个知识点！
-</ChatMessage>
+</chatmessage>
 
 ## 网络权威
 
@@ -85,17 +85,17 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 罗马音读音为 /əˈθɔːrəti/（英式发音）或 /əˈθɒrəti/（美式发音）。
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 客户端确实生成了Actor，但最终解释权在服务端，即服务器拥有绝对权限(Authority)
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fauthority.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 在UE，可以通过调用 `HasAuthority()` 来检查当前代码是否在具有 "Authority" 的实体上执行。例如：
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 if (HasAuthority())
@@ -112,21 +112,21 @@ if (HasAuthority())
 
 ![](..%2Fassets%2Fcsnode.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 可以看到客户端只有Remote权限没有Authority。
-</ChatMessage>
+</chatmessage>
 
-<GifWithButton src="../../assets/unrealgif/hpimpove5.gif"/>
+<gifwithbutton src="../../assets/unrealgif/hpimpove5.gif"/>
 
 ## 网络模型
 
- <ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+ <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 在多人在线游戏中，客户端通常是模仿服务器行为的，因为服务器负责游戏世界的状态和逻辑。这种架构被称为客户端-服务器模型。
- </ChatMessage>
+ </chatmessage>
 
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 突然官腔！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fonlinemode.png)
 
@@ -155,29 +155,29 @@ if (HasAuthority())
 
 ### GamePlay网络职责
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 GamePlay框架中各自对应的网络职责划分（大佬的图）
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FFramework_Network.svg)
 
 ### DS(Dedicated Server)服务器网络模型
 
- <ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+ <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 专用服务器的下的网络模型
- </ChatMessage>
+ </chatmessage>
 
 ![](..%2Fassets%2FFramework_Network_Two-.svg)
 
 ### RPC|Remote Procedure Calls
 
-<ChatMessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 你说客户端没有什么权限。可是！客户端总得发送我的按键消息吧！
-</ChatMessage>
+</chatmessage>
 
- <ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+ <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 是的，客户端总得通过一个方法去告诉服务器自己的行为，我们把这个过程称为RPC.
- </ChatMessage>
+ </chatmessage>
 
 "RPC" 是 "Remote Procedure Call"（远程过程调用）的缩写。它是一种通信协议和编程模型，用于在不同的计算机或进程之间调用远程服务或函数，就像调用本地函数一样。
 
@@ -191,15 +191,15 @@ GamePlay框架中各自对应的网络职责划分（大佬的图）
 2. **服务器(Server):** 响应RPC调用的一方。
 
 
-<ChatMessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
 6!所以我该怎么改才能让客户端生成的Actor能同步到服务器呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 理解还是有误！客户端没有权限生成Actor让**服务器**去同步（客户端不可靠）,我给你画个简单的流程请求图吧！
 
-</ChatMessage>
+</chatmessage>
 
 >注意这里的服务器描述可能不准确，LS确实是生成球体，而DS模式可能只是生成球体的代理。
 
@@ -207,9 +207,9 @@ GamePlay框架中各自对应的网络职责划分（大佬的图）
 
 
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 现在康康你原本的思路。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Ferrorpc.svg)
 

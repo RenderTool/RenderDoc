@@ -6,87 +6,87 @@ category:
 ---
 ### 导读
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 食用本文建议先了解什么是子系统！[直通车](../gameplay[游戏框架]/4-Subsystem.md)
 
-</ChatMessage>
+</chatmessage>
 
 ## EnhancedInput|增强输入系统
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 增强输入系统也是一个子系统，这里我们只负责记录一些子系统实践。
-</ChatMessage>
+</chatmessage>
 
 ### 1.插件
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 启用插件，UE5.1后已经内置
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage000.png)
 
 
 ### 2.项目设置
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 编辑（Edit）——>项目设置（Project Settings)——>按下图设置
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage001.png)
 
 ### 3.输入动作（Input Actions）
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 输入动作是系统和你的项目代码之间的连接。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage002.png)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 你这解释有点官腔啊！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没办法官方文档就是这么写的，具体C++部分再来细讲吧，这里你理解成一些行为和动作，比如跑步、走路、开火等。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage003.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 这样，我们就可以在蓝图中找到对应的动作节点了！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage004.png)
 
 ### 4. 输入映射上下文（Input Mapping Contexts）
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 有问题！你这里只是一些函数事件啊！按键呢按键去哪了？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 问的好，这些确实只是一些函数。我们需要使用Input Mapping Contexts将这些函数绑定到对应的触发按键。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage005.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 打开后配置对应的动作和按键就行了！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage006.png)
 
 #### 历史问题
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 这和传统的绑定方案有什么区别啊？怎么感觉更复杂了？
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage007.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 别急，我们康康传统绑定方法有哪些弱项：
-</ChatMessage>
+</chatmessage>
 
 - 复杂的输入机制无法满足。
 - 过于简陋，例如按住、双击、联合输入等都需要用户自己实现。
@@ -95,15 +95,15 @@ category:
 
 ### 5. 触发状态（Trigger State）
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 可是你这节点确实多出来好几个！能解释一下具体作用吗？
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage008.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 触发状态（Trigger State） 表示动作的当前状态，我们还是拿源码解释一下吧
-</ChatMessage>
+</chatmessage>
 
 
 ::: code-tabs#language
@@ -165,19 +165,19 @@ enum class ETriggerEvent : uint8
 
 ### 6. 修饰符（Modifiers）
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 不对啊！你这里只有一个IA_Move动作，可我明明需要WASD控制上下左右移动啊，难道不应该有4个Input Actions?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 这里需要引入一个Modifiers的概念，即同个动作在不同修饰函数状态下得到不同的结果。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage009.png)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 难怪一个IA_Move下有这么多Modifiers修饰的按键。
-</ChatMessage>
+</chatmessage>
 
 >增强输入支持来自一维源的输入，例如键盘的方向键或常用的"WASD"键配置；可通过应用正确的输入修饰符来实现此控制方案。
 具体而言，使用 负（Negate） 可以将某些键注册为负值，
@@ -187,41 +187,41 @@ enum class ETriggerEvent : uint8
 
 ### 7. 触发器（Triggers）
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 我发现除了Modifiers，为什么上面还有一个叫Triggers的东西?
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage011.png)
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 先拿官方的图糊弄你一下！后面源码解析会有详细解释
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage012.png)
 
 ### 8.子系统
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 哎！我才反应过来！这里只有动作事件和按键上下文绑定啊！我运行后没反应啊！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 这些上下文目前来说只是数据，别忘记咱的主角EnhancedInput子系统啊！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage013.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 子系统中的成员函数中有个叫`AddMappingContext`成员函数可以将这些数据传递进去注册。
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage014.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 看来咱不康康源码是没法再进一步理解了！
-</ChatMessage>
+</chatmessage>
 
 
 
@@ -229,9 +229,9 @@ enum class ETriggerEvent : uint8
 
 ### 1. 插件
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 老规矩先把插件开起来
-</ChatMessage>
+</chatmessage>
 
 ### 2. Build.cs引入模块
 
@@ -263,13 +263,13 @@ PrivateDependencyModuleNames.AddRange(new string[] { "EnhancedInput" });
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 为什么不在.h中引入全部呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 原则上除了编译时间以外没有区别，主要是防止交叉引用问题。
-</ChatMessage>
+</chatmessage>
 
 
 ### 5.子系统注册上下文
@@ -363,18 +363,18 @@ void ATP_ThirdPersonCharacter::Move(const FInputActionValue& Value)
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 我怎么感觉绑定的过程像委托呢？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 //Moving
 EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Move);
 ```
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 你的直觉是对的！源码如下：
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 /**
@@ -391,9 +391,9 @@ FEnhancedInputActionEventBinding& BindAction(const UInputAction* Action, ETrigge
 
 ### 7.Triggers是什么？
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 还记得之前糊弄你的Triggers图吗？现在给你康康他的庐山真面目。
-</ChatMessage>
+</chatmessage>
 
 >先看源码
 
@@ -424,38 +424,38 @@ TArray<TObjectPtr<UInputTrigger>> Triggers;
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 从源文件中可以看到ETriggerEvent只是InputTrigger类中的一个枚举。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage017.png)
 
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 接着配置的具体Trigger是继承自InputTrigger的子类或者孙类。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage018.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 这么说可能不够直观，我给你做个类图理解一下
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage019.svg)
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 搜嘎！也就是这里的设置trigger其实就是切换不同版本的InputTrigger？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 是的，切换到对应的继承版本会有对应的效果。你不看源码根本不能理解这个trigger。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage012.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 这里为什么有个final关键字？
-</ChatMessage>
+</chatmessage>
 
 :::note
 在C++中，关键字 `final` 用于表示某个类不能被其他类继承。例子中，`UInputTriggerDown` 类声明为 `final`，这意味着它是不可继承的，不能再派生出其他类。
@@ -467,17 +467,17 @@ TArray<TObjectPtr<UInputTrigger>> Triggers;
 
 ### 8.系统流程
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 现在我们大致理解一下执行流程，不要求记住。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fenhancedimage020.jpg)
 
 ### 8.子系统
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 最后请出我们的子系统。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UEnhancedInputLocalPlayerSubsystem : public ULocalPlayerSubsystem, public IEnhancedInputSubsystemInterface

@@ -5,11 +5,11 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 
 `SpawnActorFromClass`顾名思义，从类构建生成对象
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fspawnact.png)
 

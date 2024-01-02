@@ -7,11 +7,11 @@ category:
 
 ### Pair
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 `std::pair` 是 C++ 标准库中的一个模板类，用于存储两个元素的有序对。每个有序对都包含两个公共成员：`first` 和 `second`，分别用于表示有序对的第一个和第二个元素。
 
-</ChatMessage>
+</chatmessage>
 
 ### 定义：
 

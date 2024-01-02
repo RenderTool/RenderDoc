@@ -5,16 +5,16 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 内联函数（inline functions）是在C++中用于提高程序性能的一种手段。
-</ChatMessage>
+</chatmessage>
 
 ### 内联函数
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
 使用 inline 关键字，编译器会尝试在调用处直接展开函数的代码，而不是生成函数调用的指令。<br>
 这可以减少函数调用的开销，特别适用于简单的、频繁调用的小函数。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -42,16 +42,16 @@ int main()
 
 ### 内联命名空间
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 1. 编译器会将使用 `inline` 关键字修饰命名空间内的函数、类导出到所在的<span style="color: #c0392b">上一层</span>父空间中。<br>
 2. 镶嵌几个`inline`就移动几层。
 
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
 inline将ChildNamespace2内函数 移到 ChildNamespace
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -89,9 +89,9 @@ int main()
 }
 
 ```
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40">
 镶嵌几个inline就移动几层，注意看第五行的变化
-</ChatMessage>
+</chatmessage>
 
 
 ```cpp{5}
@@ -131,9 +131,9 @@ int main()
 
 ```
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
 但需要注意避免滥，像下面这种情况，外层存在同名类就会导致编译器报错（二义性）。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>

@@ -5,13 +5,13 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 上一篇咱们讨论完了++，这一篇顺带复习一下运算符重载吧。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 ok，咱们先来了解一下有哪些运算符。
-</ChatMessage>
+</chatmessage>
 
 ### 运算符
 
@@ -81,9 +81,9 @@ ok，咱们先来了解一下有哪些运算符。
 
 ### 运算符重载
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 在 C++ 中，运算符重载可以通过成员函数或全局函数来完成。以下是一些运算符的重载方式：
-</ChatMessage>
+</chatmessage>
 
 
 ## 1. **成员函数的运算符重载：**

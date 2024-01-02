@@ -9,15 +9,15 @@ article : false
 
 ## 我是
 
-<ChatMessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
 我是一个普通人，如果你希望通过看我的文章变成高手，不好意思我办不到。
-</ChatMessage>
+</chatmessage>
 
 我接触的第一款游戏引擎不是UE，也不是起源、CE、U3D而是一款非常古董的3D游戏引擎.
 
-<ChatMessage avatar="../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
 太古老了我真的想不起名字了，只记得电驴上下载的本体，想起来再来补名字吧。
-</ChatMessage>
+</chatmessage>
 
 
 直到上高中才接触的UE引擎，当时还是UE3(UDK)时代黄金，国内贴吧也是开荒阶。
@@ -35,22 +35,22 @@ article : false
 ## 初窥 
 下载完DEMO后我发现，阻碍我第一步前进的便是前端编程语言JavaScript以及他用到的[threejs](https://threejs.org/docs/index.html#manual/zh/introduction/Creating-a-scene)(基于webgl)
 
-<ChatMessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40"  alignLeft>
+<chatmessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40"  alignLeft>
 对于我来说简直堪比看天书。于是，我就找了几百集的js课程以及threejs课程进行简单入坑。
-</ChatMessage>
+</chatmessage>
 
 目的很纯粹，看懂他写的东西，能扩展。学了一段时间后，发现我还是太年轻了，他的整个框架几乎都是使用原始js+threejs。
 
-<ChatMessage avatar="../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/ybk.png" :avatarWidth="40">
 回头来看这确实是DEMO，因为真的一点不考虑模块和通用结构。
-</ChatMessage>
+</chatmessage>
 
 ## 深坑
 当我已经能大概看懂他框架部分后，发现另外一个严重的问题：他的render core部分不是用js写的，而是基于opengl es3写的shader。
 
-<ChatMessage avatar="../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/kclr.png" :avatarWidth="40">
 简直太可爱了（脏话），难不成还要学习opengl?
-</ChatMessage>
+</chatmessage>
 可是国内外的opengl教程都太少了，唯一能看到也只有官方的文档而已。可是，我想说可是，threejs基于webgl把能写的都写了,而他核心的渲染部分其实压根和opengl没关系。
 
 >后来我才搞懂语言和算法不是一个东西。
@@ -62,17 +62,17 @@ OpenGL（Open Graphics Library）是一个用于渲染2D和3D图形的跨平台�
 ## 摸索
 当时没有game101这种大佬级别的课程，于是我用了最笨的方法——骚扰作者。
 
-<ChatMessage avatar="../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/ybk.png" :avatarWidth="40">
 老外人还怪热情的，知道我是个初学者，耐心的推荐了一些书籍给我，其中就有经典的 <a href="https://zhuanlan.zhihu.com/p/128582904">《一周光线追踪》</a>
 <a href="https://www.pbrt.org/">《pbrt》</a>
 这是老外的<a href="https://erichlof.github.io/THREE.js-PathTracing-Renderer/"> github </a>
-</ChatMessage>
+</chatmessage>
 
 ## 僵局
 就这样，持续几个月后。我总算认识他写的东西了。
-<ChatMessage avatar="../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/kclr.png" :avatarWidth="40">
 只是认识了，里面的原理我是真看不懂，简直折磨。什么BVH、PBRShader、Raytracing、Pathtracing以及一大堆公式的代码化。
-</ChatMessage>
+</chatmessage>
 我已经意识到，如果没有扎实的数学、编程基础根本搞不定这个。于是我放弃所谓的简单魔改的想法，定下心来了解基础的光线追踪原理，至于CPP我依然没兴趣去学。
 
 ## 突变
@@ -83,17 +83,17 @@ OpenGL（Open Graphics Library）是一个用于渲染2D和3D图形的跨平台�
 这时候的我依然痴迷我都支线任务：js+Pathtracing，以至于荒废了学习UE的大好时光。  
 当我再次下载UE的时候以及是UE5.0Beta了，里面大量的新特性让我措手不及...
 
-<ChatMessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
 这时候的我对gameplay框架、GAS、网络模块等压根没有概念。
-</ChatMessage>
+</chatmessage>
 
 
 ## 主线
 一天，我梦中惊醒。我在干什么？我读书时的梦想到现在可一点都没实现。我到现在只是个简单会连连看（蓝图）的杂毛。
 
-<ChatMessage avatar="../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/hx.png" :avatarWidth="40">
 对不起，没有诋毁蓝图大佬的意思。
-</ChatMessage>
+</chatmessage>
 于是鬼使神差，我起床打得开了电脑。下了个说是推荐新人用的DEMO-lyra。
 可当我打开他工程中的的UMG时我傻了，几乎都是空的，甚至连GameMode都是空的。每个文件点开都会唤起我的VS2019。
 
@@ -113,9 +113,9 @@ OpenGL（Open Graphics Library）是一个用于渲染2D和3D图形的跨平台�
 ## 转折
 >人们总是希望像电影主角那样，迎来某个剧情转折。
 
-<ChatMessage avatar="../assets/emoji/kclr.png" :avatarWidth="40"  alignLeft>
+<chatmessage avatar="../assets/emoji/kclr.png" :avatarWidth="40"  alignLeft>
 抱歉！现实是残酷的，穷人只能坚信学习可能改变命运。
-</ChatMessage>
+</chatmessage>
 
 ## 前进
 活着，不放弃思考。

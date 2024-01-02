@@ -6,23 +6,23 @@ category:
 ---
 
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
 深拷贝和浅拷贝是什么？
-</ChatMessage>
+</chatmessage>
 
 ### 概念
 
 浅拷贝是对相同数据的共享引用，一个修改会影响到另一个。
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 浅拷贝中，传递的是引用，所以对引用的修改会反映在原始数据上。
-</ChatMessage>
+</chatmessage>
 
 而深拷贝是创建一个原始数据的独立副本，修改一个不会影响另一个。
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 深拷贝中，创建了一个新的数据副本，对其的修改不会影响原始数据。
-</ChatMessage>
+</chatmessage>
 
 
 

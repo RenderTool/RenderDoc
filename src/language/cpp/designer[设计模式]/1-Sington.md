@@ -7,9 +7,9 @@ category:
 
 ### Singleton|单例
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 一个类保证全局只有一个实例
-</ChatMessage>
+</chatmessage>
 
 ### 懒汉式（Lazy Initialization）
 

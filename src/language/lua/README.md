@@ -21,9 +21,9 @@ tag:
 Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放，
 其设计目的是为了嵌入应用程序中，比如我们的主角[unreal engine]("https://www.unrealengine.com/zh-CN/download")
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 跟BABA一起念 Lua/'lua/（噜啊）
-</ChatMessage>
+</chatmessage>
 
 <!-- more -->
 
@@ -36,9 +36,9 @@ Lua 是一种轻量小巧的脚本语言，用标准C语言编写并以源代码
 print("Hello World！")
 ```
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 这里的print是内建函数，有点类似cpp中的std标注库中的函数。
-</ChatMessage>
+</chatmessage>
 
 ## lua注释
 
@@ -71,9 +71,9 @@ print("Hello World！")
 | true     | 布尔真值           |     | until    | 循环结束条件       |
 | while    | While 循环         |     | goto     | 跳转到标签         |
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 记不住，根本记不住。
-</ChatMessage>
+</chatmessage>
 
 ## lua变量
 
@@ -82,9 +82,9 @@ print("Hello World！")
 | 全局变量   | 默认情况下总是全局变量 | 可以在任何地方被访问和修改。想删除一个全局变量，只需要将变量赋值为nil。 |
 | 局部变量   | local b = 5  | 仅在声明它的作用域内可见和访问。           |
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 BABA多一句，这里不是null是nil
-</ChatMessage>
+</chatmessage>
 
 ## lua常量
 在Lua中，没有明确的语法用于定义常量，如在其他编程语言中使用 const 或 final 关键字。  
@@ -163,9 +163,9 @@ while (i < 10) {
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
 可以理解成{}代码块用do end来表示。
-</ChatMessage>
+</chatmessage>
 
 ### repeat...until
 
@@ -191,9 +191,9 @@ do{
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 for 和 while 循环的条件语句在当前循环执行开始时判断<br>而 repeat...until 循环的条件语句在当前循环结束后判断。
-</ChatMessage>
+</chatmessage>
 
 ## lua条件语句
 ### if
@@ -221,9 +221,9 @@ if (true) {
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
 可以理解成{}代码块用then end来表示。
-</ChatMessage>
+</chatmessage>
 
 ## lua函数
 
@@ -271,11 +271,11 @@ print(greeting)  -- 输出 hello
 print(flag)      -- 输出 true
 ```
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 1.这里的函数定义特性更像JS中的function name (){} ,因为变量类型是自动的。<br>
 2.不同于C++的auto,<span style="color: red;"> auto
 </span>是一种推导机制，一旦赋值特定类型，就不能再改变。
-</ChatMessage>
+</chatmessage>
 
 ### 可变参数
 >Lua 函数可以接受可变数目的参数，和 C 语言类似<br>在函数参数列表中使用三点 ... 表示例如：
@@ -309,9 +309,9 @@ print(add(3,4,5,6,7))  --->25
 | 右移           | 无               | >>           |
 | 取余           | %                | %            |
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 记不住，根本记不住。咱们只需记一个特殊的就行了。
-</ChatMessage>
+</chatmessage>
 
 >特殊的LUA中有个一元运算符#，表示取字符串长度.
 
@@ -340,9 +340,9 @@ print(str)  -- 输出 "Hello, World!"
 
 <hr>
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 你在说啥？单引号和双引号区别:
-</ChatMessage>
+</chatmessage>
 
 1. **转义字符：**
     - 在双引号字符串中，可以直接使用单引号，而不需要转义。反之亦然。

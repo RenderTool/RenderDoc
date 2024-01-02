@@ -7,13 +7,13 @@ tag:
   - Specifiers
 ---
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 GENERATED_BODY()有什么作用?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
-</ChatMessage>
+</chatmessage>
 
 
 

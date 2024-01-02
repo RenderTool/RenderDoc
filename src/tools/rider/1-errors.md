@@ -9,9 +9,9 @@ category:
 
 ## 问题复现
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 BABA不想再重新做了，直接网图了。
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2Fimage3.png)
 
@@ -24,9 +24,9 @@ BABA不想再重新做了，直接网图了。
 >UE5.2的源码Github中下载[DirectX.Build.cs](https://github.com/EpicGames/UnrealEngine/blob/5.2/Engine/Source/ThirdParty/Windows/DirectX/DirectX.Build.cs)  
 放入<span style = "color : red ;">UE_5.2(UE根目录)\Engine\Source\ThirdParty\Windows\DirectX</span>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 打不开链接就直接新建一个DirectX.Build.cs
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2FSAVE.jpg)
 

@@ -16,11 +16,11 @@ category:
 
 ## `const` |`static`|`#defined`
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 
 在 C++ 中，`const`、`static` 和 `#define` 可以被视为修饰符或者说是关键字，因为它们都用于修改标识符（变量、函数、宏等）的属性或行为。
 
-</ChatMessage>
+</chatmessage>
 
 ![[csdn](https://blog.csdn.net/m0_59738220/article/details/123466360?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-1-123466360-blog-80678967.235%5Ev38%5Epc_relevant_anti_t3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-1-123466360-blog-80678967.235%5Ev38%5Epc_relevant_anti_t3&utm_relevant_index=2)](..%2Fassets%2Fconststatic.png)
 
@@ -77,15 +77,15 @@ category:
 
 <hr>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 问题来了,static const 变量 阁下如何应对?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/kclr.png" :avatarWidth="40" >
 
 难得让我装个B!`static const` 变量在内存中的存储位置通常是在全局数据区。这是因为：
 
-</ChatMessage>
+</chatmessage>
 
 
 1. **`static`：** 使用 `static` 关键字使得变量具有静态生命周期，即在程序运行期间始终存在，而不是在函数调用结束后被销毁。
@@ -94,9 +94,9 @@ category:
 
 因此，`static const` 变量的内存分配通常在全局数据区。这种变量在程序启动时被初始化，而且在整个程序运行期间都不会被修改，所以它的值是常量且具有静态生命周期。
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 这也是C++的三种存储特性：(栈存储)自动存储、(堆new|delete malloc|free)动态存储、(static)静态存储。
-</ChatMessage>
+</chatmessage>
 
 >摘自 C++ Primer Plus 第6版 p247
 自动变量通常存储在栈中。

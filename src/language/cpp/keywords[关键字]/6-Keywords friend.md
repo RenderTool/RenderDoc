@@ -4,30 +4,30 @@ order : 6
 category:
   - c++
 ---
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 之前咱介绍了class中的三个访问控制修饰符`public`、`protected` 和 `private`
 其中`private`控制的成员属性和函数是不是只能通过本身访问。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 并不绝对，你可以用友元函数开放权限。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40" >
 就像开放权限给我的好朋友查看的意思？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 没错，可以这样理解。友元函数的存在就像是你的类把某个函数声明为“好朋友”，允许它访问类的私有成员。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new3.png" :avatarWidth="50" >
+<chatmessage avatar="../../../assets/emoji/new3.png" :avatarWidth="50" >
 那具体该怎么用呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 友元函数的声明通常放在类的定义中，并使用 friend 关键字。有几个特性：
-</ChatMessage>
+</chatmessage>
 
 1. **访问私有成员：** 如果有一些与类密切相关的非成员函数需要访问类的私有成员，
 但这些函数不适合成为类的成员函数，可以将它们声明为友元函数，以便访问类的私有部分。
@@ -72,12 +72,12 @@ category:
         return Complex(a.real + b.real, a.imag + b.imag);
     }
     ```
-<ChatMessage avatar="../../../assets/emoji/new11.png" :avatarWidth="55" >
+<chatmessage avatar="../../../assets/emoji/new11.png" :avatarWidth="55" >
 可是如果滥用，岂不是这个`private`就形同虚设，也就破坏了类的封装性。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 是的，过度使用友元函数还可能可能导致代码难以维护和理解。<br>
 一般来说，尽量在类内部提供成员函数来实现需要访问私有成员的操作，而只在确实需要时才使用友元函数。
-</ChatMessage>
+</chatmessage>
 

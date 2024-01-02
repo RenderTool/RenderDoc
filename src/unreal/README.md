@@ -17,9 +17,9 @@ tag:
 ## UnrealEngine
 
 虚幻引擎（英语：Unreal Engine）是一款由Epic Games开发的游戏引擎。
-<ChatMessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/blzt.png" :avatarWidth="40">
 这也是本站的主要精力输出点。
-</ChatMessage>
+</chatmessage>
 
 ## 前言
 
@@ -33,9 +33,9 @@ tag:
 
 2. 点击左上角下载按钮下载EpicGamesLauncher
 
-<ChatMessage avatar="../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/hx.png" :avatarWidth="40">
 这里的<a href="https://store.epicgames.com/zh-CN/">EpicGamesLauncher</a>并不是引擎本体，类似Steam游戏平台的启动器。
-</ChatMessage>
+</chatmessage>
 
 
 ![Download-Step2.jpg](assets%2Fdownload-step2.jpg)
@@ -45,9 +45,9 @@ tag:
 如果你熟悉C++并尝试接触UEC++，你会发现阻碍你前进的主要并非C++语言本身，而是需要熟悉UE自身的框架以及非人类阅读的官方API.
 UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-hans/downloads/)，但它对UE的代码提示并不十分友好。
 
-<ChatMessage avatar="../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/bqb (4).png" :avatarWidth="40">
 即使使用了一些辅助插件（小番茄），仍然难以满足需求。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
@@ -55,9 +55,9 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 
 诚然，在编写前端应用和Python项目时，VSCode确实是一个非常优秀的选择。但在这里我强烈推荐你使用[Rider](https://www.jetbrains.com/zh-cn/rider/)。
 
-<ChatMessage avatar="../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 同时，结合CodeGeeX、GitHub Copilot、Codeium Chat等AI代码补全插件。
-</ChatMessage>
+</chatmessage>
 
 ## 试试Rider吧
 
@@ -78,9 +78,9 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 6. 重新打开UE编辑器
 ```
 
-<ChatMessage avatar="../assets/emoji/bqb (3).png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/bqb (3).png" :avatarWidth="40">
 不好意思，Rider可以按delete和刷新项目按钮为所欲为。
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2FA-REFRESH.png)
 
@@ -90,17 +90,17 @@ UE默认使用[Microsoft Visual Studio](https://visualstudio.microsoft.com/zh-ha
 
 <hr>
 
-<ChatMessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 书写md时候甚至有UI辅助。
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2Fmdtip.png)
 
 <hr>
 
-<ChatMessage avatar="../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar="../assets/emoji/bqb (6).png" :avatarWidth="40">
 添加文件时,会IDE会根据当前项目框架智能显示支持的格式。
-</ChatMessage>
+</chatmessage>
 
 ![前端框架时](assets%2Fcodetemple.png)
 

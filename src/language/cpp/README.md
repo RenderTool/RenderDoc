@@ -20,9 +20,9 @@ tag:
 
 C++是一种被广泛使用的计算机程序设计语言。它是一种通用程序设计语言，支持多重编程范式，例如过程化程序设计、面向对象程序设计、泛型程序设计和函数式程序设计等。
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 比雅尼·斯特劳斯特鲁普博士在贝尔实验室工作期间在20世纪80年代发明并实现了C++。
-</ChatMessage>
+</chatmessage>
 
 <!-- more -->
 
@@ -37,9 +37,9 @@ SPD芯片：记录标准工作状态、速度、响应时间
 
 ## c++注释
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 注释后编译器不会再执行，在UE中亦是如此。
-</ChatMessage>
+</chatmessage>
 
 1. 单行注释用：
 
@@ -72,9 +72,9 @@ int main() {//返回int类型的主函数
 
 ## c++变量
 
-<ChatMessage avatar="../../assets/emoji/bqb02.png" :avatarWidth="45">
+<chatmessage avatar="../../assets/emoji/bqb02.png" :avatarWidth="45">
 C++ 中的变量是程序可操作的存储区的名称。
-</ChatMessage>
+</chatmessage>
 
 >**语法：数据类型 变量名 = 初始值。**
 
@@ -102,9 +102,9 @@ C++ 中的变量是程序可操作的存储区的名称。
 
 >语法：数据类型 & 变量名a = 变量名b
 
-<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
 引用变量就是给变量起一个别名。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <string>
@@ -121,9 +121,9 @@ string& othername = mainname ;
   *+--- 关云长
 */
 ```
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 在C++中，“&” 符号的用法确实有点让人迷惑，具体取决于上下文。
-</ChatMessage>
+</chatmessage>
 
 
 1. **取地址：**
@@ -154,9 +154,9 @@ int *p = NULL;
 
 ## c++常量
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 常量是固定值，在程序执行期间不会改变。这些固定的值，又叫做字面量
-</ChatMessage>
+</chatmessage>
 
 >常量的几种形式
 
@@ -274,9 +274,9 @@ int main() {
 
 ![对照UE引擎](assets%2Fdatatyoe.png)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 不用死记硬背！使用sizeof可以轻松确定该类型占用内存大小。
-</ChatMessage>
+</chatmessage>
 
 >**语法:sizeof(变量名)**
 
@@ -311,10 +311,10 @@ char32_t tstr[] = U"hello world";
 
 > **语法: type arrayName [ arraySize ];**
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。<br>
 注意这里的数组长度 = 索引+1,因为索引从0开始。
-</ChatMessage>
+</chatmessage>
 
 ![](assets%2Farray.png)
 
@@ -337,9 +337,9 @@ enum Color {
 };
 Color myColor = Red;
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 C++11 引入了枚举类，也称为范围枚举。枚举类的语法更严格，它引入了作用域。这也是UE中主流枚举
-</ChatMessage>
+</chatmessage>
 
 #### 枚举类（Scoped Enumerations / Enum Classes）：
 
@@ -366,9 +366,9 @@ struct Point {
     int y;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 细心的你可能已经注意到了struct和class很像，只不过struct成员都是public,class可以prvate成员。
-</ChatMessage>
+</chatmessage>
 
 >UE中结构体
 
@@ -426,9 +426,9 @@ struct FPerson
 | 指针运算符         | 用于声明指针及操作指针                            | `*, ->`                                                   |
 | new和delete运算符 | 用于动态分配和释放内存                            | `new, delete`                                             |
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 记不住，根本记不住。
-</ChatMessage>
+</chatmessage>
 
 ### static_cast
 
@@ -515,9 +515,9 @@ end
 
 :::
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
 满足条件后循环
-</ChatMessage>
+</chatmessage>
 
 ### 3. do while
 
@@ -543,9 +543,9 @@ until (i > 10)
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 先循环再判断条件。
-</ChatMessage>
+</chatmessage>
 
 ## c++条件语句
 ### 1.if
@@ -595,9 +595,9 @@ string str = "Hello"
 #endif
 }
 ````
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 这里要特别注意，头文件中如果是变量则要用#if WITH_EDITOR_DATA
-</ChatMessage>
+</chatmessage>
 
 3. `# 和 ## 运算符`
 
@@ -694,9 +694,9 @@ int main() {
 | 实参（实际参数）  | 函数调用中的参数，是实际传递给函数的值        | `printNumber(42)`，其中 `42` 是实参                                   |
 | 可变参数 (模板) | 函数定义中使用的特殊参数，允许函数接受不定数量的实参 | `void printValues(T value, Args... args)`，其中 `Args...` 表示可变参数模板 |
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 c++ 使用三点 ... 表示可变参数。
-</ChatMessage>
+</chatmessage>
 
 ### 默认实参
 默认实参（Default Arguments）是 C++ 函数的一种特性。声明时特定函数指定某些值，但想要注意一旦出现默认参数，后面都需要有参数。调用时可以省略这些参数。  
@@ -795,9 +795,9 @@ MyClass(const float* a);//底层const可以重载
 ```
 #### 函数匹配
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 编译器自动选择版本的过程叫函数匹配，是自动完成的，但需要注意二义问题。
-</ChatMessage>
+</chatmessage>
 
 
 2. 函数重写（Overriding）
@@ -934,9 +934,9 @@ return a + b;
 }
 ```
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 每一次增加一个数据类型，就得重写写一次函数，使得代码非常冗余，模板函数应需而生。
-</ChatMessage>
+</chatmessage>
 
 >语法：`template<typename T>`
 
@@ -1091,9 +1091,9 @@ int main() {
 ```
 ### c++异常处理
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 C++中的异常处理包括三个关键字： try, throw and catch:
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 try {

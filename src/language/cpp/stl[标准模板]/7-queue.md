@@ -7,9 +7,9 @@ category:
 
 ### queue
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 队列是一种先进先出（First In, First Out，FIFO）的数据结构，即最先进队列的元素将最先被取出。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fqueue.png)
 

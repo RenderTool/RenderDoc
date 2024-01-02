@@ -40,13 +40,13 @@ actions:
 
 ### 1. 图文对话
 
-<ChatMessage avatar="./assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="./assets/emoji/hx.png" :avatarWidth="40">
 babaUE引擎怎么在屏幕中打印内容！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="./assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="./assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 直接右键添加一个print节点就行啦！
-</ChatMessage>
+</chatmessage>
 
 ### 2. 外链引用-视频-插件等
 
@@ -54,13 +54,13 @@ babaUE引擎怎么在屏幕中打印内容！
 
 >蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)**当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
 
-<ChatMessage avatar="./assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="./assets/emoji/dsyj.png" :avatarWidth="40">
  可我问的是C++怎么写？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="./assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="./assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
 上代码！
-</ChatMessage>
+</chatmessage>
 
 ### 3. 代码演示
 
@@ -88,14 +88,14 @@ public:
 ```
 
 
-<ChatMessage avatar="./assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar="./assets/emoji/bqb (6).png" :avatarWidth="40">
  为了TA的视力健康，建议采用深色主题。
-</ChatMessage>
+</chatmessage>
 
 ## 留情
-<ChatMessage avatar="./assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="./assets/emoji/hh.png" :avatarWidth="40">
 本站大多为个人踩坑合实践记录,如果你发现一些错误和纰漏实属正常。要么是我不懂，要么是我还没写。
-</ChatMessage>
+</chatmessage>
 
 >如果你更深入的了解我，建议你看下我写的 [写在前面](/preface/README.md)
 

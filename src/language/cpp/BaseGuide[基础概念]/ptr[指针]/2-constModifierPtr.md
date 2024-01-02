@@ -5,25 +5,25 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hh.png" :avatarWidth="40">
 Baba!你不是说指针是一个存储地址的变量吗？加了const还能算变量吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 还记得指针的两大能力吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" >
 等我翻翻笔记：
-</ChatMessage>
+</chatmessage>
 
 ![](..%2F..%2Fassets%2Fptrabs.jpg)
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 
 当你用 const 修饰指针，这时候限制了`指针修改指向（某个变量）的值`的能力，但不妨碍你换个地址给这个指针变量啊。
 
-</ChatMessage>
+</chatmessage>
 
 
 ![](..%2F..%2Fassets%2Fptrconst.jpg)
@@ -60,13 +60,13 @@ int main()
     // *p = 10;  // 这将导致编译错误
 }
 ```
-<GifWithButton src="../../../../assets/unrealgif/constaptr.gif"/>
+<gifwithbutton src="../../../../assets/unrealgif/constaptr.gif"/>
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" >
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" >
 
 搜嘎！那么反过来const相当于限制了`指针指向某个地址的能力`,但不妨碍我们修改指向（某个变量）的值。
 
-</ChatMessage>
+</chatmessage>
 
 #### 顶层 const（Top-level const）:指针常量
 
@@ -83,9 +83,9 @@ int main()
    p = nullptr;  // 这将导致编译错误
    ```
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40" alignLeft>
 很好！Baba再给你几种无脑记忆方法。
-</ChatMessage>
+</chatmessage>
 
 #### 1. 指针 = 地址，都在修饰指针，谁在前谁只读
 

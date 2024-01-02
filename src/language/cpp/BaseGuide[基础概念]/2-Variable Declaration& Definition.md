@@ -5,9 +5,9 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 变量声明和定义
-</ChatMessage>
+</chatmessage>
 
 ## 概念
 
@@ -33,9 +33,9 @@ int c = {42};//也是一个变量定义
 2.  `int y` 使用了{}初始化了 `y`，默认不赋值是0，是现代C++的写法，[后续章节](./3-function%20brace%20initialization.html)中就有描述。
 3.  `int c` 也使了{}初始化，并且赋值42。
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 需要注意的是，变量声明和定义可以分开进行，但通常在实际编程中，它们往往是同时进行的。
-</ChatMessage>
+</chatmessage>
 
 ## 总结
 为变量分配地址和存储空间的称为定义，不分配地址的称为声明。

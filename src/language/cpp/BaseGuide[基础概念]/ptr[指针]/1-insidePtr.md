@@ -6,13 +6,13 @@ category:
 ---
 ## inside指针
 
-<ChatMessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../../assets/emoji/hx.png" :avatarWidth="40">
 一直在说指针，可我怎么就怎么迷糊呢？能不能帮我理解理解？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 牢记这几个概念：
-</ChatMessage>
+</chatmessage>
 
 ## 概念
 
@@ -69,11 +69,11 @@ int main() {
 
 ### 解析
 
-<GifWithButton src="../../../../assets/unrealgif/ptr.gif"/>
+<gifwithbutton src="../../../../assets/unrealgif/ptr.gif"/>
 
-<ChatMessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
    可以看到IDE可视化非常直观的将一个地址给到了指针p变量。
-</ChatMessage>
+</chatmessage>
 
 1. **指针的声明和定义：**（和之前文章<span style="color: #c0392b">变量声明和定义</span>通）当你声明一个指针时，你正在告诉编译器：“我有一个指针，它将存储某个特定类型的地址。”在 `int* p;` 这个声明中，`p` 被定义为一个能够存储 `int` 类型地址的指针。
 

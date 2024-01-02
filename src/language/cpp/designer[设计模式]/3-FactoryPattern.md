@@ -7,10 +7,10 @@ category:
 
 ### FactoryPattern
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 工厂模式（Factory Pattern）是一种创建型设计模式，它提供了一个接口，用于创建对象的实例，但允许子类在改变实例化类的类型时，仍保持一致的创建接口。
 工厂模式主要包括工厂方法模式和抽象工厂模式两种变体。
-</ChatMessage>
+</chatmessage>
 
 ### 工厂方法模式（Factory Method Pattern）：
 

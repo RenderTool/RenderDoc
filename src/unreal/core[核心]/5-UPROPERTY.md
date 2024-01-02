@@ -7,29 +7,29 @@ tag:
   - Specifiers
 ---
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 UPROPERTY是啥啊？
-</ChatMessage>
+</chatmessage>
 
 ### UPROPERTY定义
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 `UPROPERTY` 是一个宏（macro），用于声明类的属性。这个宏允许你定义在UE编辑器中可以编辑和序列化的属性。`UPROPERTY` 主要用于声明类的成员变量，并指定它们的元数据以及在UE编辑器中的显示行为。
 
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 还是不理解！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 你知道C++的变量声明和定义语法吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 这个倒是知道
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 //声明一个变量
@@ -37,31 +37,31 @@ int32 MyInt;
 //定义一个变量
 int32 MyInt = 0;
 ```
-<ChatMessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 Good!那么现在这个变量你知道怎么暴露给UE编辑器的蓝图使用吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40">
 
 搜得寺内！这个`UPROPERTY`莫非就是一个暴露变量给蓝图反射的一个宏！
 
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 
 没错，当然`UPROPERTY` 不仅仅是用于声明类的属性，还用于将这些属性暴露给反射系统，以便在蓝图中访问和编辑。这种方式称为"Reflection"（反射）。
 
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="45">
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="45">
 具体怎么用呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 
 在变量前加上`UPROPERTY` 并在`()`内填入对应的参数(元数据标记)
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #pragma once
@@ -94,13 +94,13 @@ public:
 };
 ```
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" >
 我不明白，这些有什么区别吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 别急，听老夫慢慢道来！
-</ChatMessage>
+</chatmessage>
 
 ## 属性说明符
 
@@ -230,7 +230,7 @@ UPROPERTY(EditAnywhere, Category="AdvancedDisplay", AdvancedDisplay)
 	bool AdvancedDisplay;
 ```
 
-<GifWithButton src="../../assets/unrealgif/adisplay.gif"/>
+<gifwithbutton src="../../assets/unrealgif/adisplay.gif"/>
 
 ## InlineEditConditionToggle
 >内联联动

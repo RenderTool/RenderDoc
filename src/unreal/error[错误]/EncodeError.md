@@ -6,27 +6,27 @@ category:
 ---
 
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 Baba!AddOnScreenDebugMessage突然打印不了中文了
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 修改源文件对应的编码
-</ChatMessage>
+</chatmessage>
 
 ### 解决思路
 
 ![](..%2Fassets%2FUTF-8.jpg)
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 你以为这样就结束了吗！
-</ChatMessage>
+</chatmessage>
 
 ### 扩展阅读
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
 BABA带你重新回顾一下字符编码的知识
-</ChatMessage>
+</chatmessage>
 
 | 术语      | 描述                                                                       |
 |---------|--------------------------------------------------------------------------|
@@ -40,14 +40,14 @@ BABA带你重新回顾一下字符编码的知识
 
 <hr>
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 Ascll中为什么A是65？
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 因为在ASCLL码表中被排到了65
-</ChatMessage>
+</chatmessage>
 
 ![Ascll128](..%2Fassets%2FASCLL.png)
 

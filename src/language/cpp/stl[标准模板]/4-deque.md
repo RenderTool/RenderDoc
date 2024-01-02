@@ -7,23 +7,23 @@ category:
 
 ### deque
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 前面我们提到了vector是单端数组，遵循左闭右开，那么有没有两边都能插入元素的数组？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
 还真有，deque就是一个。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fdequevector.png)
 
 ### `std::deque` 定义：
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 
 `std::deque`（双端队列Double Ended Queue）是 C++ 标准库中的容器，它允许在两端高效地进行插入和删除操作。
 
-</ChatMessage>
+</chatmessage>
 
 ::: code-tabs#language
 
@@ -43,26 +43,26 @@ template < class T, class Alloc = allocator<T> > class deque;
 
 :::
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 我不理解，vector是连续内存空间，导致不能头部插入新元素，那么deque却可以，他是如何实现的呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 因为他用到了中控器（controller）来管理块状结构。这个中控器负责维护对块的引用以及块之间的连接关系。每个块内部的元素是连续存储的，但不同块之间的元素不一定是连续的。
-</ChatMessage>
+</chatmessage>
 
 
 ![](..%2Fassets%2Fdequesx.png)
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 问题来了，那么我怎么遍历呢？你都不是连续空间了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
 
 看来你还是停留在普通数组的for遍历实现阶段上，咱们已经说了几乎每个容器都有自己的迭代器，`std::deque` 也提供了迭代器（iterator）来进行遍历，迭代器会隐藏底层的实现细节，使得用户无需关心具体的内存结构。
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -81,11 +81,11 @@ int main() {
     return 0;
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
 
 顺带提的是，`deque`由于用到了中控器，意味着他的执行访问效率是没有`vector`高的。
 
-</ChatMessage>
+</chatmessage>
 
 ### deque VS ector
 
@@ -107,15 +107,15 @@ int main() {
 
 ### 中控区
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 我还是不理解中控区是什么？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
 
 中控区（Controller）是 `std::deque` 内部用于管理块状结构的一个组件。它本质上是一个数据结构，用于维护对块的引用以及块之间的连接关系。
 
-</ChatMessage>
+</chatmessage>
 
 1. **指向前端块的指针（Front Block Pointer）：** 指向双端队列的前端块。
 2. **指向后端块的指针（Back Block Pointer）：** 指向双端队列的后端块。

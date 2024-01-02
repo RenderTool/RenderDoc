@@ -5,14 +5,14 @@ category:
   - unreal
 ---
 ## 导读
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 创建复杂的用户界面时，可能需要重用大量模板化的小部件，例如：切换菜单时能不能通过一个模板实现修改部分内容，而保持部分内容不变。<br>
 命名槽小组件-NameSlot专门用于在模板化 UI 中充当占位符。
-</ChatMessage>
+</chatmessage>
 
 ## 实现目标
 
-<GifWithButton src="../../../assets/unrealgif/demonameslot.gif"/>
+<gifwithbutton src="../../../assets/unrealgif/demonameslot.gif"/>
 
 
 ## 实践
@@ -27,11 +27,11 @@ category:
 
 3. 新建一个继承自这个模板的UMG类,打开后可以看到多了一个自定义的NameSlot插槽。
 
-<GifWithButton src="../../../assets/unrealgif/newslotchild.gif"/>
+<gifwithbutton src="../../../assets/unrealgif/newslotchild.gif"/>
 
 4. NameSlot插槽插入我们想要的UMG,这样我们就实现了模板多态，表现如下动画：
 
-<GifWithButton src="../../../assets/unrealgif/nameslot.gif"/>
+<gifwithbutton src="../../../assets/unrealgif/nameslot.gif"/>
 
 ## 参考链接
 

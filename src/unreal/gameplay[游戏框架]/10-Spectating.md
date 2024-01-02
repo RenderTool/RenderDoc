@@ -9,13 +9,13 @@ category:
 
 观战系统直观的分为两类，一类是主动观战系统比如比赛、观战模式。一类则是被动的，比如死亡观战。
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 网络上好像很少有讲观战系统的！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 那么今天我们来简单品尝一下观战系统！别慌，EpicBaba该写的都写的差不多了！
-</ChatMessage>
+</chatmessage>
 
 ### 1.观战类|SpectatorPawn
 

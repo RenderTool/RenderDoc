@@ -7,9 +7,9 @@ category:
 
 ## 问题描述
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 怎么在蓝图中显示C++变量？
-</ChatMessage>
+</chatmessage>
 
 ## 解决思路
 

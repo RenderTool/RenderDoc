@@ -5,10 +5,10 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 在编程中，前置声明是指在使用某个标识符之前提前声明该标识符，而不是直接包含其定义。
 前置声明可以应用于函数、类、结构体等标识符。以下是使用前置声明的一些好处：
-</ChatMessage>
+</chatmessage>
 
 1. **解决循环依赖：** 当两个或多个头文件相互包含时，可能会导致循环依赖的问题。通过使用前置声明，可以在一个头文件中声明另一个头文件中的类或函数，而不需要包含整个定义。
 

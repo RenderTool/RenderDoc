@@ -5,9 +5,9 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 迭代器通常是用于循环访问集合（例如数组、映射、集合等）中的元素的工具。UE提供了多种类型的迭代器，其中一些常见的包括：
-</ChatMessage>
+</chatmessage>
 
 1. **TArray 迭代器：**
     - `TArray` 是UE中用于动态数组的模板类。它提供了多种迭代器，如 `TArray<T>::Iterator`，`TArray<T>::ConstIterator` 等。使用迭代器可以循环遍历数组中的元素。

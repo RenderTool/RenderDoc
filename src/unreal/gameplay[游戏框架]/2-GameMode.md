@@ -5,9 +5,9 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 使用C++来绑定GameMode的方法
-</ChatMessage>
+</chatmessage>
 
 ## 1. 新建GameMode类
 
@@ -35,9 +35,9 @@ AMainMenuGameMode::AMainMenuGameMode()
     PlayerControllerClass = AMenuPlayerController::StaticClass();    
 }
 ```
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 这里的PlayerControllerClass是GameMode父类中定义的subclass(子类)
-</ChatMessage>
+</chatmessage>
 
 >以下截取自：GameModeBase.h,其他类类似写法。
 
@@ -50,8 +50,8 @@ AMainMenuGameMode::AMainMenuGameMode()
 ![](..%2Fassets%2Fgamemodesuper.jpg)
 
 ## 3. 编译使用OR派生蓝图
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 可以在c++类目录中看到这个GameMode类，也可以再次基于这个GameMode派生蓝图类。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fgamemodecpp2bp.png)

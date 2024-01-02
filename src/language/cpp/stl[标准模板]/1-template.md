@@ -5,9 +5,9 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 每一次增加一个数据类型，就得重写写一次函数，使得代码非常冗余，有没有办法改进？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 //这是普通函数写法
@@ -20,27 +20,27 @@ double add(double a , double b){
 }
 ```
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 你可以使用函数模板。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
 怎么用呢？
-</ChatMessage>
+</chatmessage>
 
 ## 函数模板
 
 >语法：`template<typename T>`
 
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 当然一些调用规则需要牢记
-</ChatMessage>
+</chatmessage>
 
 ## 调用规则
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 你觉得下面的函数会调用那个版本？
-</ChatMessage>
+</chatmessage>
 
 
 ```cpp
@@ -66,36 +66,36 @@ int main()
     std::cout << max(a, b) << std::endl;
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
 我觉得应该会调用模板吧。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 然而事实上是优先调用普通函数，有多个函数或模板可以匹配调用时，编译器会选择最特定的版本。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fptfunction.png)
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 那么我怎么强制他使用我的模板版本重载呢？
-</ChatMessage>
+</chatmessage>
 
 ### 2. 空模板参数列表强制使用模板|显式指定模板参数
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 
 很简单，调用时加一对`<>`即可。
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
   std::cout << max<>(a, b) << std::endl;
 ```
 ![](..%2Fassets%2Ftemplatefunc.png)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 当然，这不是绝对的，如果有一个更好的匹配时，也会优先使用模板函数
-</ChatMessage>
+</chatmessage>
 
 ### 3.有更好的匹配时，优先使用模板|如：使用不同数据类型
 
@@ -107,9 +107,9 @@ int main() {
 }
 ```
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 但需注意窄化转换。
-</ChatMessage>
+</chatmessage>
 
 ### 4.强制类型转换
 
@@ -122,9 +122,9 @@ int main() {
 ```
 ### 5. 模板特化
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 模板并不是万能的，就拿这个例子来说，我们传入数组你看会发生什么？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 int main() {
@@ -133,15 +133,15 @@ int main() {
     std::cout << max(a, b) << std::endl;  // 使用不同类型的参数，可能更容易匹配模板函数
 }
 ```
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 打印了一串地址耶！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Farray.jpg)
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 没错，这时候咱们就需要特殊的处理一下这个版本，让他可以传入数组。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -196,9 +196,9 @@ int main() {
 
 ### 类模板成员函数创建时机
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 类模板（Class Template）和普通类（Non-Template Class）之间的主要区别在于成员函数的实例化时机。
-</ChatMessage>
+</chatmessage>
 
 * **普通类：**
     - 成员函数的定义和实现通常在类的声明中完成。

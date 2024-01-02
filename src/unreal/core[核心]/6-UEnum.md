@@ -5,13 +5,13 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 UEC++中怎么写Enum
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
 安排!
-</ChatMessage>
+</chatmessage>
 
 
 ### 常规

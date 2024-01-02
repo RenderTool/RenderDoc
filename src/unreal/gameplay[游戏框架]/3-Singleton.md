@@ -5,25 +5,25 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 什么是单例?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 不同的框架实现方法不同，在C++中单例一般是指确保一个类只有一个实例，并为其提供一个全局访问入口。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 可是，怎么确保一个类只能有一个实例呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 你先回答我，定义一个类后你是通过什么办法来新建实例的？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 用new关键字，堆上新建一个对象。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -35,17 +35,17 @@ int main() {
     delete a;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
 可是，该怎么限制用户的new操作呢？我总不能和用户说你不能new一个新实例吧！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 你可以先康康一个普通类初始化后默认会有哪些操作？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" >
 这还不简单，一个类默认拥有bigfour,即四个初始化操作。
-</ChatMessage>
+</chatmessage>
 
 1. **默认构造函数 (Default Constructor):** 如果你没有为类定义任何构造函数，编译器将生成一个无参的默认构造函数。它用于创建对象时的初始化，例如 `MyClass obj;`。
 
@@ -63,9 +63,9 @@ public:
     ~MyClass() {}
 };
 ```
-<ChatMessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
 我们都知道构造函数默认写在public中，如果我强制将他移动到private会发生什么？
-</ChatMessage>
+</chatmessage>
 
 >类默认是私有的。
 
@@ -86,24 +86,24 @@ int main() {
     return 0;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 还能发生什么，编译器报错呗。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fsington.jpg)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 但换个角度思考，我们已经成功限制了用户的new行为，问题也变成了怎么生成第一个实例！
 现在你思考一下什么情况下不需要新建实例就能访问某个对象成员？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new3.png" :avatarWidth="55" >
+<chatmessage avatar="../../assets/emoji/new3.png" :avatarWidth="55" >
 我记得static关键字修饰的成员函数！不需要实例化对象。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new2.png" :avatarWidth="55" alignLeft>
+<chatmessage avatar="../../assets/emoji/new2.png" :avatarWidth="55" alignLeft>
 是的，现在new这条路已经不能走了，咱可以用static将他的提到静态区。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -135,13 +135,13 @@ int main()
     return 0;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/new3.png" :avatarWidth="55" >
+<chatmessage avatar="../../assets/emoji/new3.png" :avatarWidth="55" >
 妙啊！也就是说利用static函数和他沟通，让他自己创造自己！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 孺子可教！改成指针传递也是可以的
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -211,21 +211,21 @@ int main() {
     return 0;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 
  [Language/c++Designer/Singleton|单例](../../language/cpp/designer_设计模式_/1-Sington.html)
 
-</ChatMessage>
+</chatmessage>
 
 
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 那么！UE中支持原生C++单例实现吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 支持！但官方不推荐使用！官方推荐我们使用subsystem
-</ChatMessage>
+</chatmessage>
 
 
 ![](..%2Fassets%2Fsingletonc%2B%2B.png)
@@ -276,25 +276,25 @@ UGameSingleton* UGameSingleton::GetInstance()
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 蓝图中通过实例指针修改成员变量，然后跳转关卡或者重新打开打印一下康康不就知道了！`
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fsetsing.png)
 
 
-<GifWithButton src="../../assets/unrealgif/ramdonsington.gif"/>
+<gifwithbutton src="../../assets/unrealgif/ramdonsington.gif"/>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 我发现他重写打开关卡后他设置的值依然是上一次！只有在引擎彻底重启后数值才恢复成30。
-</ChatMessage>
+</chatmessage>
 
 
-<GifWithButton src="../../assets/unrealgif/sington.gif"/>
+<gifwithbutton src="../../assets/unrealgif/sington.gif"/>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 没错，他的生命周期和引擎是一样的，意味着在编辑器模式中的GEngine没有销毁这个变量就一直存在。因此你可以看到另外一种写法：
-</ChatMessage>
+</chatmessage>
 
 ### EngineSingleton
 
@@ -346,24 +346,24 @@ UGameSingleton* UGameSingleton::GetInstance()
 ```
 :::
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 两者生命周期都等同于GEngine，所以编辑器中停止游戏并不会释放内存。
-</ChatMessage>
+</chatmessage>
 
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 后面这种写法需要在设置中`项目设置`指定一下单例类。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fsetsingclass.png)
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 如果不设置呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 没有设置引擎会崩溃，因为他依赖GEngine的GameSingleton指针。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有设置强转失败
@@ -372,9 +372,9 @@ UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有
 
 ### CDOSingleton
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 当然，还可以利用CDO来创建。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fcdosingleton.png)
 
@@ -437,29 +437,29 @@ FString UMySingleton::GetTestStr()
 
 ### GameInstance
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 好像和游戏实例差不多耶！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 确实，他的表现确实很像我们的游戏实例，但游戏实例的生命周期却没有EngineSingleton长。
 关卡结束运行就会执行析构。
-</ChatMessage>
+</chatmessage>
 
-<GifWithButton src="../../assets/unrealgif/gameinstancegif.gif"/>
+<gifwithbutton src="../../assets/unrealgif/gameinstancegif.gif"/>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 使用了open+level重新打开了这个关卡。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fgameinstanceprint.png)
 
 ### Subsystem|子系统
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 严格意义上来说子系统并不是单例，但他的成员函数接口保证了只实例化一个子类，其中使用了一些高级C++特性和技巧，比如
 引用计数、多态、重写等。后续的子系统篇会有详细介绍。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 bool UGameUIManagerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
@@ -479,13 +479,13 @@ bool UGameUIManagerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 
 ### 问题
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
  蓝图函数库是单例吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
 蓝图函数库（Blueprint Function Library）并不是严格意义上的单例。蓝图函数库是一种特殊类型的类，通常用于存储一组静态函数，这些函数可供蓝图（Blueprint）图表中的蓝图调用。
-</ChatMessage>
+</chatmessage>
 
 ### 扩展
 

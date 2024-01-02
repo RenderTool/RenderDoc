@@ -7,35 +7,35 @@ tag:
   - Specifiers
 ---
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="45">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="45">
 Baba我遇到困难了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 怎么了？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="45">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="45">
 这里的UPARAM是啥啊？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 	UFUNCTION(BlueprintCallable, BlueprintCosmetic, Category = "Global UI Extensions")
 	static UCommonActivatableWidget* PushContentToLayer_ForPlayer(const ULocalPlayer* LocalPlayer, UPARAM(meta = (Categories = "UI.Layer")) FGameplayTag LayerName, UPARAM(meta = (AllowAbstract = false)) TSubclassOf<UCommonActivatableWidget> WidgetClass);
 ```
 ## UPARAM
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 UPARAM 是用于更改函数参数行为的宏。
-</ChatMessage>
+</chatmessage>
 
 
 ::: note
 ### `UPARAM(DisplayName="abc")`
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 允许重命名函数中的参数。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UFUNCTION(BlueprintCallable)
@@ -48,13 +48,13 @@ void TestFun(
 ### `UPARAM(ref)`
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 修改输入输出
-</ChatMessage>
+</chatmessage>
 
- <ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+ <chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 默认情况下，一个使用引用传递参数的 BlueprintCallable 函数会将该参数作为输出引脚（返回值）而不是输入引脚暴露。可以通过使用 UPARAM(ref) 宏来改变这种行为。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UFUNCTION(BlueprintCallable)
@@ -74,9 +74,9 @@ void UseDogInfo(const FDogInfo& SearchParams);
 ###  `UPARAM(meta=(Categories)`
 :::
 
-<ChatMessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 限制 Gameplay 标签
-</ChatMessage>
+</chatmessage>
 
 >如果没有现在分组，Gametag会显示所有标签。
 
@@ -97,9 +97,9 @@ void UseDogInfo(const FDogInfo& SearchParams);
 ###  `UPARAM(meta=(AllowAbstract=true))`
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 允许抽象选择类
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 UFUNCTION(BlueprintCallable, Category = "Composure", meta = (DeterminesOutputType = "OutputType"))

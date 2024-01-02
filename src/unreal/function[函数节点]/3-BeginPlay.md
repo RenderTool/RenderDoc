@@ -4,19 +4,19 @@ order : 3
 category:
   - u++
 ---
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 
 C++中的`BeginPlay`是不是就是蓝图中的`EventBeginPlay`
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fbeginplay.png)
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
 
 回答问题之前我们先看看C++的`BeginPlay`
 
-</ChatMessage>
+</chatmessage>
 
 >新建一个测试actor
 
@@ -46,9 +46,9 @@ public:
 		
 };
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 我们已经看到了继承重写的BeginPlay函数，现在我们往定义中添加一些测试代码
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 void AMyTest::BeginPlay()
@@ -57,43 +57,43 @@ void AMyTest::BeginPlay()
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("C++ BeginPlay"));
 }
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 接着我们在派生的蓝图EventBeginPlay中也写一份打印，你觉得打印顺序是什么？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 蓝图派生自C++的actor，那么应该先打印C++的内容然后打印BP的内容。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 确实，按照我们的惯性思维这里的`EventBeginPlay`和`C++BeginPlay`认为是一个东西,所以应该先打印父项部分再打印子项，可事实真的这样吗？
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fbpfirst.png)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 为什么先打印的BP?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 说明我们调用C++BeginPlay 之前 已经调用了BP部分的函数。我们可以去源码中康康猫腻在哪！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Factorbeginplay.png)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 
 可是继承的父类Actor中 `BeginPlay`只是一个虚函数，而且没有宏标记！他是怎么映射到蓝图中的?
 
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 起初我也以为是父类标记了`BeginPlay`的`UPROPERTY`,子类可以省略不写。现在看来并不是这样。我们康康定义的源码写了什么!
 
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 void AActor::BeginPlay()
@@ -140,11 +140,11 @@ void AActor::BeginPlay()
 }
 ```
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" >
 
 我发现他结尾调用了`ReceiveBeginPlay`！这个函数的声明的`UPROPERTY`元数据属性中就有 `meta=(DisplayName = "BeginPlay")`!!!
 
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Feventbegin%21.png)
 
@@ -153,9 +153,9 @@ void AActor::BeginPlay()
 用于修改显示节点名。
 :::
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没错，这就解释了为什么继承的Actor执行后会先调用蓝图部分的函数再调用C++。
-</ChatMessage>
+</chatmessage>
 
 >因为我们加了Super::BeginPlay();所以执行顺序如下：
 1. 重写后的Actor`BeginPlay`

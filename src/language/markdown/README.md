@@ -18,9 +18,9 @@ tag:
 
 Markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 跟BABA一起念 US /ˈmɑːrk.daʊn/ markdown（马克当）
-</ChatMessage>
+</chatmessage>
 
 <!-- more -->
 

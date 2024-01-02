@@ -4,9 +4,9 @@ order : 1
 category:
   - c++
 ---
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 Namespace的作用域
-</ChatMessage>
+</chatmessage>
 
 1. 每个命名空间定义引入一个作用范围，包含该命名空间的所有内容。
 

@@ -52,9 +52,9 @@ Commit message 包括三个部分：
 
 ### 1. 模板
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 对不起我是真记不住。
-</ChatMessage>
+</chatmessage>
 
 提交信息最好在在[模板](https://www.npmjs.com/package/commitizen)的约束下：
 

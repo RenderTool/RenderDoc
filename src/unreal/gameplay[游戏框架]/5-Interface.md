@@ -5,17 +5,17 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 UEC++中怎么写接口？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 你指的是接口类吧！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 是的，我知道多态虚函数本身也是接口，我想知道UE中有没有什么特殊的地方。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
     class IMyInterface
@@ -33,9 +33,9 @@ UEC++中怎么写接口？
     };
 ```
     
-<ChatMessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
 安排!
-</ChatMessage>
+</chatmessage>
 
 ### 简单实践
 
@@ -108,13 +108,13 @@ void UMyClass::MyMethod_Implementation()
 
 ### BlueprintNativeEvent & BlueprintImplementableEvent
 
-<ChatMessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" >
+<chatmessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" >
 传统的接口概念差不多，但多了一个BlueprintNativeEvent宏标记！和BlueprintImplementableEvent什么区别？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
 看文档：
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FBLUEPRINTNATIVEENVENT.png)
 

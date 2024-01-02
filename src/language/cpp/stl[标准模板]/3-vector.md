@@ -7,17 +7,17 @@ category:
 
 ### vector
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 Baba能不能带我手把手体验vector容器一下怎么用?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
 安排！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 vector 是 C++ 标准模板库（STL）中的一个是可以改变大小的序列容器，序列容器严格按线性顺序存储元素。本质上是一个类模板，还记得类模板的特性吗？在使用类模板时，需要对其进行实例化。
-</ChatMessage>
+</chatmessage>
 
 
 1. **静态空间 vs. 动态扩展**：
@@ -38,9 +38,9 @@ vector 是 C++ 标准模板库（STL）中的一个是可以改变大小的序�
 
 ### 实例化vector
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 既然vector本质是一个类模板，那么我们用它的时候也需要实例化对象。
-</ChatMessage>
+</chatmessage>
 
 ::: code-tabs#language
 
@@ -60,13 +60,13 @@ template < class T, class Alloc = allocator<T> > class vector;
 
 ### 基本方法
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 ok，现在我们怎么进行增删改查呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 调用对应的成员方法即可。
-</ChatMessage>
+</chatmessage>
 
 >这是vector[成员函数参考](https://en.cppreference.com/w/cpp/container/vector)
 
@@ -119,13 +119,13 @@ int main() {
 
 ### 迭代器
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 现在我想取出所有元素，我还能用遍历吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 他的本质是一个模板类，不能用传统的for循环依靠指针遍历数组，但底层已经封装了遍历的方法，我们管他叫迭代器。
-</ChatMessage>
+</chatmessage>
 
 
 ```cpp
@@ -162,27 +162,27 @@ int main() {
 
 #### 1. 为什么要用迭代器遍历
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 我看见你用*it输出到屏幕，莫非这个迭代器（iterator）是一个指针？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 
 在这里你可以把他当作指针用，但`迭代器`其实是一种用于访问、操作容器（如数组、列表、集合等）元素的抽象接口。
 
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 #### 2.动态开辟空间问题优化-预留空间
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 我听他们说每次vector新加元素都会动态开辟一个新的空间，怎么验证呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 很简单，可以用一个指针来验证。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -202,25 +202,25 @@ int main() {
 }
 ```
 
-<ChatMessage avatar="../../../assets/emoji/new3.png" :avatarWidth="50">
+<chatmessage avatar="../../../assets/emoji/new3.png" :avatarWidth="50">
 妙啊！意味着如果首地址更换了指针就会被重新赋值，num也会递增就得到了重新分配地址的次数了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 一般来说他默认分配的内存已经够用了，上面执行了100000次也就分配了几次。但对于更大的数据来说，能不能再优化减少动态分配的次数呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 你想到的问题官方也想到了。为此增加了一个叫预留空间函数——reserve(int size)。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 ### 3. front和begin区别
 
-<ChatMessage avatar="../../../assets/emoji/new3.png" :avatarWidth="50">
+<chatmessage avatar="../../../assets/emoji/new3.png" :avatarWidth="50">
 front和begin区别有啥区别啊？
-</ChatMessage>
+</chatmessage>
 
 
 1. **`begin()` 函数：**
@@ -245,9 +245,9 @@ front和begin区别有啥区别啊？
 - `begin()` 返回一个迭代器，主要用于遍历容器元素。
 - `front()` 返回第一个元素的引用，主要用于访问或修改第一个元素的值。
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 请注意，使用 `front()` 之前需要确保 `std::vector` 不为空，因为对于空的 `std::vector` 调用 `front()` 是未定义行为,最好使用 empty() 函数进行检查。
-</ChatMessage>
+</chatmessage>
 
 
 

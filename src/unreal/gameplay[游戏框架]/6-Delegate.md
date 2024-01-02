@@ -6,23 +6,23 @@ category:
 ---
 ## 委托|Delegate
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 委托字面上来说就是委托别人帮忙介绍认识，双方并没有直接接触。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" >
 这么说，委托有点像《猫和老鼠——送信使者》,Jerry写信给他的女朋友，让他的侄子帮忙送。Jerry和他女朋友并没有直接接触，而是通过委托侄子传递。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Ftomandjerry.jpg)
 
-<ChatMessage avatar="../../assets/emoji/new3.png" :avatarWidth="55"  alignLeft>
+<chatmessage avatar="../../assets/emoji/new3.png" :avatarWidth="55"  alignLeft>
 确实，这个比喻很形象。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new7.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new7.png" :avatarWidth="40" alignLeft>
 关于UE委托的要点如下：
-</ChatMessage>
+</chatmessage>
 
 1. **泛型但类型安全的方式：**
    - 委托是一种泛型但类型安全的机制，允许在运行时动态绑定到对象的成员函数。这意味着你可以在不知道对象类型的情况下，安全地调用其成员函数。
@@ -41,9 +41,9 @@ category:
 
 ## 源码一览
 
-<ChatMessage avatar="../../assets/emoji/new0.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new0.png" :avatarWidth="40" alignLeft>
 康康EpicBaba在UE引擎中对委托的注释吧。
-</ChatMessage>
+</chatmessage>
 
 >**以下注释来自Engine\Source\Runtime\Core\Public\Delegates\Delegate.h**
 
@@ -184,13 +184,13 @@ to use for each function signature type, and the binding table to see options an
     - 查看文档注释底部的签名表，以了解每种函数签名类型使用的宏名称。
     - 查看绑定表，了解绑定的选项和注意事项。
 
-<ChatMessage avatar="../../assets/emoji/new8.png" :avatarWidth="55">
+<chatmessage avatar="../../assets/emoji/new8.png" :avatarWidth="55">
 payload变量是什么意思？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new7.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new7.png" :avatarWidth="40" alignLeft>
 在编程中，"payload" 通常指的是一种携带或包含有效数据的部分。在这里指委托（delegate）中可以携带的附加数据。例如：
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPropertyValueChanged, FName, PropertyName);

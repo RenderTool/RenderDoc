@@ -5,11 +5,11 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" >
 函数对象（Function Object），也称为仿函数（Functor），是C++中的一种特殊对象，它可以像函数一样被调用。
 函数对象实际上是一个类的实例，该类重载了函数调用运算符 `operator()`。通过重载 `operator()`，
 对象可以被当做函数来使用，提供了一种比普通函数更灵活的方式来实现函数行为。
-</ChatMessage>
+</chatmessage>
       
 ```cpp
 #include <iostream>

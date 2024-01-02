@@ -85,9 +85,9 @@ git rm -r --cached .
 ```
 ## 总结
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 人生苦短，用IDE吧。
-</ChatMessage>
+</chatmessage>
 
 > 以rider为例,通过界面可以设置哪些文件进行管理排除，简直不要太方便。
 

@@ -7,11 +7,11 @@ category:
 
 ## 选择排序 (Selection Sort)
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40">
 简单选择排序是通过不断选择剩余元素中的最小值，并将其放在已排序部分的末尾。
-</ChatMessage>
+</chatmessage>
 
-<GifWithButton src="../../assets/algorithmgif/selctionsort.gif"/>
+<gifwithbutton src="../../assets/algorithmgif/selctionsort.gif"/>
 
 ### 实现步骤
 
@@ -19,9 +19,9 @@ category:
 2. 再从剩余`未排序`元素中继续寻找最小（大）元素，然后放到`已排序`序列的末尾。
 3. 以此类推，直到所有元素均排序完毕。
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 时间复杂度是O(n^2)，其中n是数组的长度，优势在于交换次数相对较少，且不受输入数据分布的影响(相对稳定)。
-</ChatMessage>
+</chatmessage>
 
 
 ### 代码实现

@@ -7,17 +7,17 @@ tag:
   - Specifiers
 ---
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 C++的指针就已经谈虎色变了，UE中的所谓的智能指针会不会更难？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 首先，我们应该先理解为什么要用到智能指针。在这之前你先告诉我我们是怎么利用指针动态分配内存的？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 这个倒不难，C++中用new来申请堆上的内存空间，用delete释放对应的内存。
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 #include <iostream>
@@ -35,10 +35,10 @@ int main() {
     delete a;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 Good!但这只是一个非常简单的甚至算不上项目的Demo，如果到具体的项目中，这个MyClass指针往往不会使用后里面释放。
 这时候引入了一个叫做智能指针的内存管理工具，解决了以下几个与手动内存管理相关的问题：
-</ChatMessage>
+</chatmessage>
 
 1. **自动释放内存：**
    - 通过使用智能指针，可以自动在对象不再需要时释放相关的内存。这有助于防止内存泄漏，即程序运行时没有释放不再使用的内存。
@@ -58,19 +58,19 @@ Good!但这只是一个非常简单的甚至算不上项目的Demo，如果到�
 6. **循环引用的处理：**
    - 在使用 `std::shared_ptr` 时，当存在循环引用（两个对象相互引用）时，智能指针可以通过引用计数解决循环引用导致的内存泄漏问题。
 
-<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
 好家伙！一口气出现几个我只看过没理解透彻的词汇出来！怎么就实现自动释放内存了？又怎么。。。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 别急！我们慢慢深入。首先你先告诉我，如果你来设计一个所谓的智能指针，你会怎么保证他自动分配？防止重复释放？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
 
 无非就是自己写一个模板类，然后重写`BigFour`
 
-</ChatMessage>
+</chatmessage>
 
 :::note
 `BigFour`C++专栏中已经介绍过了
@@ -140,9 +140,9 @@ int main() {
     return 0;
 }
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没错，一个简单指针模板类就这么实现了！但还谈不上`智能`。
-</ChatMessage>
+</chatmessage>
 
 1. **TSharedPtr：** 代表共享所有权的智能指针。多个 `TSharedPtr` 实例可以共享相同的对象，当最后一个引用超出范围时，对象会被销毁。
 

@@ -4,17 +4,17 @@ order: 4
 category:
    - c++
 ---
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 在面向对象编程中，`public`、`protected` 和 `private` 是访问控制修饰符，用于控制类的成员（属性和方法）对外的可见性。
-</ChatMessage>
+</chatmessage>
 
 ## 类(class)中
 
 ### 访问控制
 
-<ChatMessage avatar="../../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/ybk.png" :avatarWidth="40">
 class默认是private,对自己可见。
-</ChatMessage>
+</chatmessage>
 
 
 ![](..%2Fassets%2Fpublicchat.png)
@@ -74,14 +74,14 @@ private:
 
 ### 控制继承
 
-<ChatMessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40">
 `private` 派生的类中能访问到吗？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 使用 private 继承时，基类的 private 成员确实被继承了，但在派生类中的访问权限发生了改变。
 不同的继承方法，继承后的成员属性也会变化：
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fpuprpv.png)
 
@@ -152,15 +152,15 @@ private:
 | Private   | Yes  | No  | No   |
 
 
-<ChatMessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
 那么`private` 修饰的类成员变量和函数一定只能通过自己访问是吧。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 并不一定，这个问题可以在下一章中得到答案。
-</ChatMessage>
+</chatmessage>
 
 ## 结构体(struct)中
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 struct默认都是Public
-</ChatMessage>
+</chatmessage>

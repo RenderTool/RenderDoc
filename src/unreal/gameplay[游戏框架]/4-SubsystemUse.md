@@ -7,9 +7,9 @@ category:
 
 ## Subsystem|实践
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 Subsystem|实践
-</ChatMessage>
+</chatmessage>
 
 ### 1. 继承对应的子系统
 

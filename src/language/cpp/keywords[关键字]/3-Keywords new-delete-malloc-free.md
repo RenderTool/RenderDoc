@@ -4,9 +4,9 @@ order: 3
 category:
    - c++
 ---
-<ChatMessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
 `new`和`delete``malloc`和`free`区别
-</ChatMessage>
+</chatmessage>
 
 ### `new` 和 `delete`（C++ 中使用）
 
@@ -53,13 +53,13 @@ category:
 
 在 C++ 中，通常建议使用 `new` 和 `delete` 进行动态内存管理，因为它们更符合 C++ 对象模型，并提供了更多的类型安全和便利性。
 
-<ChatMessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
 Baba什么是栈!什么是堆！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 看来你还不清楚一些概念。
-</ChatMessage>
+</chatmessage>
 
 
 1. **Code Segment (代码区):**

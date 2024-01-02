@@ -5,9 +5,9 @@ category:
   - u++
 ---
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 TMap是UE提供的高性能的关联容器，用于存储键值对的模板容器，其中键和值可以是任何类型。类似于C++标准库中的 std::map 或 std::unordered_map。
-</ChatMessage>
+</chatmessage>
 
 ### 定义
 

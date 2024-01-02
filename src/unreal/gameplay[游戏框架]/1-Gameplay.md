@@ -10,12 +10,12 @@ category:
 <!-- more -->
 
 ## 导读
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 1、食用本文前你应该已经了解UE的一些基本操作,包括下载安装、打开工程、资源导入导出、关卡等概念。<br>
 2、有一定的（C++）编程基础，但不是必须的。<br>
 3、本章将试图初步了解UE GamePlay架构。<br>
 4、最终尝试用CPP在我们的屏幕上打印一个HelloWorld。
-</ChatMessage>
+</chatmessage>
 
 ## UE启动
 >心血来潮！我要自己搞一个游戏！UE启动！
@@ -24,13 +24,13 @@ category:
 
 ![](..%2Fassets%2FhelloworldUE.jpg)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 什么我不会CPP!
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 如果你不会CPP建议你去下方查考链接观看CPP基础教程，或者等我的CPP入门介绍篇。
-</ChatMessage>
+</chatmessage>
 
 ## 2.添加第一个C++类
 
@@ -39,65 +39,65 @@ category:
 
 ![](..%2Fassets%2Fnewcppclass.png)
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 BABA用了Rider已经回不去了,如果你用VS这里是将是刷新VS项目。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 弹出的窗口让人一脸懵逼！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Factorpublicobject.jpg)
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 看不懂，根本看不懂。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
 虽然看不懂这些东西是干啥的，但细心的你应该发现:<br>
 所有节点的根目录都来自一个叫Object的东西，这里我们叫它UObject。<br>
 即：所有XXObject都继承自UObject。
-</ChatMessage>
+</chatmessage>
 
-<GifWithButton src="../../assets/unrealgif/newcppclass.gif"/>
+<gifwithbutton src="../../assets/unrealgif/newcppclass.gif"/>
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 你在说啥？啥是UObject？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 很好！看来下一步之前需要搞清楚几个基本概念
-</ChatMessage>
+</chatmessage>
 
 ## UObject|UE对象
 
 >什么是UObject?
 
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 在 Unreal Engine 中 <br>
 ·UObject几乎是所有对象的基类，包括角色、物体、组件、纹理、材质等等。<br>
 ·UObject 提供了许多基本的功能和特性，例如内存管理、反射（Reflection）、属性系统、蓝图扩展等。<br>
-</ChatMessage>
+</chatmessage>
 
 ![例如：Actor继承自UObject](..%2Fassets%2Factorpublicobject.jpg)
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 确实耶！对比蓝图版，C++类中多了许多编辑器类，代码在手为所欲为。
-</ChatMessage>
+</chatmessage>
 
 ![左边C++右边蓝图](..%2Fassets%2Fslate.jpg)
 
 <hr>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 如果把UObject理解成混沌之力，凝聚成一个一个对象。现在这些对象只是原始部落时代的人类，没有规则、秩序。
 Epicbaba作为造物主，当然需要给自己的UE宇宙制定一些界面准则——GamePlay。
-</ChatMessage>
+</chatmessage>
 
 ## UE-GamePlay架构
-<ChatMessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 现在请你暂停阅读，你会怎么制定这些准则，让你的游戏世界正常运作？
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FGameFramework.jpg)
 
@@ -108,14 +108,14 @@ Epicbaba作为造物主，当然需要给自己的UE宇宙制定一些界面准�
 <br>这些PlayerController允许玩家持有游戏中的Pawn，以便在关卡中有物理表示。
 <br>PlayerController还为玩家提供了输入功能按钮、平视显示器（简称HUD）和用于处理摄像机视图的PlayerCameraManager。
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 官方你在说啥？我脑子不够用了！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 总结成一个基本公式：<br>
 游戏规则 + 3C + 游戏界面 = 基础GamePlay。<br>
-</ChatMessage>
+</chatmessage>
 
 >下面会详细介绍每一项
 
@@ -128,9 +128,9 @@ Epicbaba作为造物主，当然需要给自己的UE宇宙制定一些界面准�
     - AInfo (public AActor)
         - AActor (public UObject)
 
-<ChatMessage avatar="../../assets/emoji/bqb02.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb02.png" :avatarWidth="40" alignLeft>
 GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规则、逻辑和行为。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FGameMode.jpg)
 
@@ -156,49 +156,49 @@ GameMode（游戏模式）是一个非常重要的类，它决定了游戏的规
     - AInfo (public AActor)
         - AActor (public UObject)
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
 Game State 就是指游戏状态。它管理了所有已连接的客户端，并且实时追踪游戏层面的属性并把它们分发给远程客户端。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 ### ③ Camera|游戏相机
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 3C之一Camera
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 ### ④ Character|游戏角色
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 3C之一Character
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 ### ⑤ Controller|控制器
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
 3C之一Controller
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 ### ⑥ GameUI|游戏UI
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 比如血条、切枪图标等。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 ### Component|组件
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
 组件 是一种特殊类型的 对象，Actor 可以将组件作为子对象附加到自身。组件适用于共享相同的行为，例如显示视觉表现、播放声音
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FUEComponent.png)
 
@@ -215,47 +215,47 @@ Game State 就是指游戏状态。它管理了所有已连接的客户端，并
 | USceneComponent          | 在场景中构建组件层次结构，可作为父组件   |
 | UWidgetComponent         | 将2D UI嵌入3D世界，显示UMG部件  |
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 记不住根本记不住！这里BABA推荐我看<a href="./exp_经验_/1-Blueprint2CPP.html">蓝图节点对应CPP的探索与解析</a>
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
 
 ### UWorld|游戏世界
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" >
 现在框架有了好比游戏内剧本、演员、相机等道具都齐活了！可拍摄地呢?导演呢？谁是BOSS?
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 拍摄地当然是要放在世界里啊，当然这个“世界”指的是我们的UWorld。
-</ChatMessage>
+</chatmessage>
 
 ![关卡](..%2Fassets%2Flevel.jpg)
 
 ### ULevel|游戏关卡
 
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40" >
 可一个世界不一定只有一个国家，像我们真实世界就有好多国家.
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 是的，你口中的好多国家其实就是Ulevel.实际上是受硬件限制，不得不将这个大世界分成若干块，然后按需加载。<br>
  <span style="color: #c0392b">N*ULeveL => UWorld </span>
-</ChatMessage>
+</chatmessage>
 
 ![若干小关卡组成大世界](..%2Fassets%2Fuworld.jpg)
 
 
 ### WorldContext|世界上下文
-<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 问题又来了！我们玩的很多游戏好像不止一张地图哦！也就是不止一个World!如果玩家去另外一个世界丢失记忆（游戏数据）可不是一件好事。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 EPICbaba给我们的UE奈何桥留了个后门-WorldContext，通过WorldContext可以连接各个界面而保持记忆。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
@@ -263,13 +263,13 @@ EPICbaba给我们的UE奈何桥留了个后门-WorldContext，通过WorldContext
 
 ### GameInstance|游戏实例
 
-<ChatMessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 似乎我们已经从人界跳脱，来到了其他界面。前文我们讨论了后门-WorldContext的事情，看毕竟这只是一个后门，到底谁能开启掌管这个后门呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 GameInstance就是这么一个掌权者，管理这些“后门”。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fgameinstancecpp.jpg)
 
@@ -280,40 +280,40 @@ GameInstance就是这么一个掌权者，管理这些“后门”。
 天地除开，诞生了第一缕`UObject`，各自进化成Actor+Component、Level、World、WorldContext、GameInstance等。  
 有这么一天，UEngine大佬出现自称为帝，掌管所有UObject，还给各种UObject划分职责。有的管理游戏逻辑、有的管理游戏表现、有的管理游戏数据。
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 没错，这就是经典的MVC->数据（Model）、表现（View）、逻辑（Controller）
-</ChatMessage>
+</chatmessage>
 
 **Object->Actor+Component->Level->World->WorldContext->GameInstance->Engine**
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 最终一个由大帝——UEngine掌管的宇宙诞生了。
-</ChatMessage>
+</chatmessage>
 
 
 ## 真神
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
 说到底还是程序员在管理这些东西，可是“它们”内部之前的矛盾一不小心就会激化。比如：垃圾怎么倒啊！某管理员权限越级啊！
 这时候我们需要介入调和、整顿。
-</ChatMessage>
+</chatmessage>
 
 ### UE-Refection|UE反射
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40" alignLeft>
 C++中并没有类似JAVA的反射机制，但EpicBABA的UE引擎已经帮我们实现了。
-</ChatMessage>
+</chatmessage>
 
 >篇幅限制，这里不做反射的深入，具体可以看后续的反射机制篇。
 
 可以先参考[官方文档](https://docs.unrealengine.com/5.3/zh-CN/reflection-system-in-unreal-engine/)
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
 简单来说虚幻引擎反射系统 使用宏为提供引擎和编辑器各种功，封装你的类。在使用 虚幻引擎（UE） 时，可以使用标准的C++类、函数和变量。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" >
 Baba我不知道什么叫宏耶！
-</ChatMessage>
+</chatmessage>
 
 
 `宏（英语：Macro），是一种批量处理的称谓。 计算机科学里的宏是一种抽象（Abstraction），它根据一系列预定义的规则替换一定的文本模式。
@@ -321,9 +321,9 @@ Baba我不知道什么叫宏耶！
 
 ### UHT|Unreal Header Tool（虚幻头文件工具）
 
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 UHT是一个用于生成C++类和相关代码的预处理器工具，它将特定的宏和标记解析成C++代码，以便在编译时构建项目。大致流程如下：
-</ChatMessage>
+</chatmessage>
 
 ``` markdown
 1. 源代码
@@ -358,19 +358,19 @@ UHT是一个用于生成C++类和相关代码的预处理器工具，它将特�
 
 
 <hr>
-<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40" >
 解决完这些矛盾、纠纷后怎么保存我们建立的”宇宙“呢？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 不得不引入一个叫做资源打包的概念。
-</ChatMessage>
+</chatmessage>
 
 ### UPK|UE包文件组成
 
-<ChatMessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40" alignLeft>
 Unreal Package 文件，它是Unreal Engine（虚幻引擎）中用于存储游戏资源和数据的一种文件格式。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2FUEpakage.jpg)
 
@@ -387,9 +387,9 @@ UPK 文件仍然存在于早期版本的Unreal Engine中。<br>
 
 ### Subsystem|子系统
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40" alignLeft>
 子系统是一组在整个引擎中提供特定功能的类和接口，它们可以独立于Gameplay存在并提供额外的功能和服务。后续会有实践篇，更加深入体验一下。
-</ChatMessage>
+</chatmessage>
 
 | 子系统     | 继承自的类                    |
 |---------|--------------------------|
@@ -405,9 +405,9 @@ UPK 文件仍然存在于早期版本的Unreal Engine中。<br>
 
 ## 3. 选择蓝图函数库类
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 是不是已经快要忘记咱们的主线任务啦！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Flibexpcpp.jpg)
 
@@ -457,9 +457,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 //后续省略.....
 
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
 之前我们已经介绍过UHT,通过观察，UHT确实将一些宏标记”翻译“成具体代码提交给了编译器。
-</ChatMessage>
+</chatmessage>
 
 ## 5. 新建一个HelloWorld函数
 
@@ -508,17 +508,17 @@ void UTEST::TESTFUNC()
 ```
 ![ideaicode2.jpg](..%2Fassets%2Fideaicode2.jpg)
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 再次安利一波AI补全插件，只需记住类的开头基本都能补出来！
-</ChatMessage>
+</chatmessage>
 
 ## 6. 编译，在关卡蓝图检验。
 
 ![](..%2Fassets%2Ftesthelloworld.png)
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 我们之前命名为TESTFUNC，分组在TEST已经成功映射到蓝图中了！
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Ftestfunlist.jpg)
 
@@ -526,9 +526,9 @@ void UTEST::TESTFUNC()
 
 ## 7.运行查看成果！
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 点击播放后，窗口中也成功打印红色的hello world!
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fsuccesshelloworld.png)
 

@@ -33,7 +33,7 @@ category:
        return 0;
    }
    ```
-<GifWithButton src="../assets/algorithmgif/swap.gif"/>
+<gifwithbutton src="../assets/algorithmgif/swap.gif"/>
 
 2. **使用 C++ 标准库中的 `std::swap`：**
 

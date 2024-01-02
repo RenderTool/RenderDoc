@@ -5,9 +5,9 @@ category:
   - c++
 ---
 
-<ChatMessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40">
 值传递（Pass by Value）和引用传递（Pass by Reference）以及指针传递（Pass by Pointer）
-</ChatMessage>
+</chatmessage>
 
 ### 值传递
 
@@ -37,7 +37,7 @@ int main() {
     return 0;
 }
 ```
-<GifWithButton src="../../../assets/unrealgif/vyy.gif"/>
+<gifwithbutton src="../../../assets/unrealgif/vyy.gif"/>
 
 
 ### 引用传递
@@ -70,7 +70,7 @@ int main() {
 }
 ```
 
-<GifWithButton src="../../../assets/unrealgif/vyy2.gif"/>
+<gifwithbutton src="../../../assets/unrealgif/vyy2.gif"/>
 
 ### Const引用传递
 
@@ -100,7 +100,7 @@ int main() {
   }
   ```
 
-<GifWithButton src="../../../assets/unrealgif/vyy3.gif"/>
+<gifwithbutton src="../../../assets/unrealgif/vyy3.gif"/>
 
 在上述示例中，const引用传递避免了对实际参数的复制，同时限制了函数内部对实际参数的修改。
 
@@ -137,13 +137,13 @@ int main() {
 
 ## 深浅拷贝
 
-<ChatMessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/bqb (4).png" :avatarWidth="40">
 按你这么说也就是说值传递是深拷贝？引用传递是浅拷贝喽？
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 不完全正确！，我们还是得根据实际情况判断是什么拷贝。
-</ChatMessage>
+</chatmessage>
 
 1. **值传递（Pass by Value）：**
   - 在值传递中，函数参数是原始值的拷贝，即创建了一个局部变量并将原始值的内容复制到局部变量中。
@@ -156,19 +156,19 @@ int main() {
 
 
 
-<ChatMessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 我不理解！我只是经常听他们提到<span style="color: #c0392b;font-size: 1.2rem">深浅拷贝</span>。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 后续文章再做讨论吧。
-</ChatMessage>
+</chatmessage>
 
 ## 正片
 
-<ChatMessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
 贴心Baba在UE中用蓝图节点模拟了一下值传递和值引用
-</ChatMessage>
+</chatmessage>
 
 ### 1.创建
 
@@ -183,9 +183,9 @@ int main() {
 
 ### 2.运行
 
-<ChatMessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 如果用+=则需要重新对原始数据赋值操作，而++对变量进行自增的操作。至于用++i还是i++在这里没什么区别，我们后续文章也会讨论。
-</ChatMessage>
+</chatmessage>
 
 ![默认参数是1](..%2Fassets%2Frunreference.gif)
 

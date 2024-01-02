@@ -31,9 +31,9 @@ tag:
 > 一个托管和协作管理 Git 仓库的"同性交友"平台
 
 ### 3. GIT基本概念
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
 在Git中几个基本概念
-</ChatMessage>
+</chatmessage>
 
 1. **工作区（Workspace）：** 你在本地计算机上用来编辑、修改和保存文件的目录，包含了项目的实际文件。
 
@@ -48,9 +48,9 @@ tag:
 ## 实践
 
 ### 1. 配置
-<ChatMessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
  对所有本地仓库的用户信息进行配置
-</ChatMessage>
+</chatmessage>
 
 ``` sh
 git config --global user.name "你的名字"
@@ -58,9 +58,9 @@ git config --global user.email "你的邮箱"
 ```
 ### 2.初始化
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 配置完信息后，就可以「创建目录并初始化自己的本地仓库」
-</ChatMessage>
+</chatmessage>
 
 ``` sh
 $ mkdir testfolder             # 创建一个名为 testfolder 的文件夹
@@ -76,9 +76,9 @@ $ git init                     # 初始化本地仓库，创建了一个新的 G
 ### 3.创建仓库
 
 * 添加 - **`git add`**
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 在接下来的操作中，你可以做一些修改，并通过以下命令将它们提交到版本库中
-</ChatMessage>
+</chatmessage>
 
 ``` sh
 $ git add <文件名>              # 将文件添加到暂存区
@@ -92,9 +92,9 @@ $ git commit -m "提交信息"      # 提交暂存区中的修改，并附上提
 <hr>
 
 * 远程 - 连接 -  **`git remote`**
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
   如果有远程仓库，可以使用这个命令和远程仓库连接起来。
-</ChatMessage>
+</chatmessage>
 
 ``` sh
 $ git remote add origin [远程仓库的URL]
@@ -103,9 +103,9 @@ $ git remote add origin [远程仓库的URL]
 <hr>
 
 * 远程- 克隆 - **`git clone`** 
-<ChatMessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
 不需要 git init(初始化) 和 mkdir（创建文件夹）操作，最多就是cd（切换）到想放的目录。
-</ChatMessage>
+</chatmessage>
 
 ``` sh
 $ git clone <远程仓库的URL>
@@ -115,9 +115,9 @@ $ git clone <远程仓库的URL>
 <hr>
 
 * 远程推送 -**`git push`**
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 将本地仓库的内容推送到远程仓库中
-</ChatMessage>
+</chatmessage>
 
 ``` sh
 $ git push origin main
@@ -136,9 +136,9 @@ $ git push -u origin <本地分支名>
 | git fetch        | 从远程仓库获取最新的代码和分支信息，但不合并 | `git fetch <远程仓库>`              |
 | git pull         | 获取远程仓库的最新代码并将其合并到当前分支  | `git pull <远程仓库> <分支名>`       |
 
-<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 <span style="color: #c0392b">git pul</span>相当于先执行<span style="color: #c0392b">git fetch</span>，再紧接着执行 <span style="color: #c0392b">git merge</span>将远程仓库的代码合并到本地分支中。
-</ChatMessage>
+</chatmessage>
 
 <hr>
 
@@ -164,9 +164,9 @@ git branch | grep 'fix/*' | xargs git branch -D
 | `git merge [branch]`          | 将指定分支的历史合并到当前分支                     |
 | `git branch -d [branch-name]`  | 删除指定的分支                                     |
 
-<ChatMessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 记不住根本记不住。
-</ChatMessage>
+</chatmessage>
 
 ### 6.其他
 * 日志 - **`git log`**

@@ -10,26 +10,26 @@ category:
 
 ### 节点介绍
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
 GetActorOfClass是一个UGameplayStatics类中的静态函数，在世界中找到指定类的第一个Actor
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fgetactorofclass.jpg)
 
 ### 节点案例
 
-<GifWithButton src="../../assets/unrealgif/refencecom.gif"/>
+<gifwithbutton src="../../assets/unrealgif/refencecom.gif"/>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 为什么不放在一个关卡会报错。
-</ChatMessage>
+</chatmessage>
 
 
 ### c++剖析
 
-<ChatMessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
 Baba先带你康康  <span style="color: #c0392b;">getactorofclass</span>节点源码实现原理吧.
-</ChatMessage>
+</chatmessage>
 
 #### GameplayStatics.h
 
@@ -44,20 +44,20 @@ UFUNCTION(BlueprintCallable, Category="Actor", meta=(WorldContext="WorldContextO
 static class AActor* GetActorOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass);
 ```
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 
 一个普通静态函数，返回类型是 `AActor*`，即指向 `AActor` 类的指针。<br>
 在C++中，`static` 关键字用于指示该函数是属于类而不是类的实例，并且可以直接通过类名来调用，而不需要创建类的实例。
 
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 Baba我不懂什么叫创建类的实例！
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 给你举个例子吧！
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 class MyClass {
@@ -86,12 +86,12 @@ public:
 // 直接调用静态函数
 MyClass::MyFunction();
 ```
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
 这里static修饰的了函数,因此
 `UGameplayStatics::GetActorOfClass` 可以直接调用，而不需要创建 `UGameplayStatics` 类的实例。
 
-</ChatMessage>
+</chatmessage>
 
 #### GameplayStatics.cpp
 
@@ -123,14 +123,14 @@ AActor* UGameplayStatics::GetActorOfClass(const UObject* WorldContextObject, TSu
 }
 
 ```
-<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 由此可见，getactorofclass的本质就是利用迭代器在世界中迭代查找指定类的第一个Actor。
 关于迭代器，请参考我的Template[模板]
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40">
 搜嘎！难怪都要放入关卡中。
-</ChatMessage>
+</chatmessage>
 
 ## GetAllActorOfClass
 
@@ -138,9 +138,9 @@ AActor* UGameplayStatics::GetActorOfClass(const UObject* WorldContextObject, TSu
 
 ### 节点介绍
 
-<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
 GetAllActorOfClass顾名思义找到在世界中找到指定类的所有Actor
-</ChatMessage>
+</chatmessage>
 
 #### GameplayStatics.h
 
@@ -183,13 +183,13 @@ void UGameplayStatics::GetAllActorsOfClass(const UObject* WorldContextObject, TS
 ```
 ### 问题
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="50">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="50">
 为什么一开始就清空了数组,我也没见到节点有传入数组啊？<br>
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
 你注意UFUNCTION宏meta（元数据）的描述了吗？
-</ChatMessage>
+</chatmessage>
 
 `DeterminesOutputType` 和 `DynamicOutputParam` 是 UFUNCTION 宏的元数据，用于在蓝图中更好地处理输出参数的类型。
 
@@ -199,13 +199,13 @@ void UGameplayStatics::GetAllActorsOfClass(const UObject* WorldContextObject, TS
 2. **`DynamicOutputParam`：**
     - 当指定了 `DynamicOutputParam` 元数据时，它表示函数的输出参数是动态生成的，而不是静态指定的。在函数签名中，你可以看到这个参数被标记为 `&OutActors`，这就是动态输出参数的示例。
 
-<ChatMessage avatar="../../assets/emoji/hh.png" :avatarWidth="50">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="50">
 那么这个节点会强制变成输出节点吗？比如我加了const修饰。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/new7.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new7.png" :avatarWidth="50" alignLeft>
 测试一下不就行了！
-</ChatMessage>
+</chatmessage>
 
 ```cpp
    //没用const限定
@@ -234,25 +234,25 @@ void UTEST::TestFun(TArray<AActor*>& OutActors)
 
 ![](..%2Fassets%2Fconstwithoutconst.png)
 
-<ChatMessage avatar="../../assets/emoji/new8.png" :avatarWidth="50">
+<chatmessage avatar="../../assets/emoji/new8.png" :avatarWidth="50">
 测试结果看来const修饰后会将数组变成输入节点。
-</ChatMessage>
+</chatmessage>
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 没错，而且我们测试代码中给2个空指针到这个指针数组中，测试结果也是打印2.
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fwss.png)
 
-<ChatMessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 const修饰后数组变成只读，需要我们自己传入数据。
-</ChatMessage>
+</chatmessage>
 
 ![](..%2Fassets%2Fxd.png)
 
-<ChatMessage avatar="../../assets/emoji/new8.png" :avatarWidth="50">
+<chatmessage avatar="../../assets/emoji/new8.png" :avatarWidth="50">
 const强制变成只读这没毛病，但动态生成我还是抱有怀疑态度，如果我们去掉DynamicOutputParam呢？还会打印2吗？
-</ChatMessage>
+</chatmessage>
 
 ```cpp
 //没有meta
@@ -272,9 +272,9 @@ void UTEST::TestFun3(TArray<AActor*>& OutActors)
 
 ![](..%2Fassets%2Fyjsc.png)
 
-<ChatMessage avatar="../../assets/emoji/new3.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new3.png" :avatarWidth="50" alignLeft>
 居然还是可以！看来系统自动帮我们初始化了一个指针数组。
-</ChatMessage>
+</chatmessage>
 
 
 结论：
