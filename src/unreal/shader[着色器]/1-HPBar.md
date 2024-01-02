@@ -1,5 +1,5 @@
 ---
-title: shader1.从血条材质开始
+title: SD1.从血条材质开始
 order: 1
 category:
   - unreal

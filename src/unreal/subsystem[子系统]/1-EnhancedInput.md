@@ -1,0 +1,504 @@
+---
+title: S1.EnhancedInput
+order : 1
+category:
+  - u++
+---
+### 导读
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+食用本文建议先了解什么是子系统！[直通车](../gameplay[游戏框架]/4-Subsystem.md)
+
+</ChatMessage>
+
+## EnhancedInput|增强输入系统
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+增强输入系统也是一个子系统，这里我们只负责记录一些子系统实践。
+</ChatMessage>
+
+### 1.插件
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+启用插件，UE5.1后已经内置
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage000.png)
+
+
+### 2.项目设置
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+编辑（Edit）——>项目设置（Project Settings)——>按下图设置
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage001.png)
+
+### 3.输入动作（Input Actions）
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+输入动作是系统和你的项目代码之间的连接。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage002.png)
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+你这解释有点官腔啊！
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+没办法官方文档就是这么写的，具体C++部分再来细讲吧，这里你理解成一些行为和动作，比如跑步、走路、开火等。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage003.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这样，我们就可以在蓝图中找到对应的动作节点了！
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage004.png)
+
+### 4. 输入映射上下文（Input Mapping Contexts）
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+有问题！你这里只是一些函数事件啊！按键呢按键去哪了？
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+问的好，这些确实只是一些函数。我们需要使用Input Mapping Contexts将这些函数绑定到对应的触发按键。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage005.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+打开后配置对应的动作和按键就行了！
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage006.png)
+
+#### 历史问题
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+这和传统的绑定方案有什么区别啊？怎么感觉更复杂了？
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage007.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+别急，我们康康传统绑定方法有哪些弱项：
+</ChatMessage>
+
+- 复杂的输入机制无法满足。
+- 过于简陋，例如按住、双击、联合输入等都需要用户自己实现。
+- 性能不足，需要自己写切换逻辑，不同情况需要自己判断优先级。
+
+
+### 5. 触发状态（Trigger State）
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+可是你这节点确实多出来好几个！能解释一下具体作用吗？
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage008.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+触发状态（Trigger State） 表示动作的当前状态，我们还是拿源码解释一下吧
+</ChatMessage>
+
+
+::: code-tabs#language
+
+@tab 原版
+
+```cpp
+enum class ETriggerEvent : uint8
+{
+	// No significant trigger state changes occurred and there are no active device inputs
+	None		= (0x0)		UMETA(Hidden),
+
+	// Triggering occurred after one or more processing ticks
+	Triggered	= (1 << 0),	// ETriggerState (None -> Triggered, Ongoing -> Triggered, Triggered -> Triggered)
+	
+	// An event has occurred that has begun Trigger evaluation. Note: Triggered may also occur this frame.
+	Started		= (1 << 1),	// ETriggerState (None -> Ongoing, None -> Triggered)
+
+	// Triggering is still being processed
+	Ongoing		= (1 << 2),	// ETriggerState (Ongoing -> Ongoing)
+
+	// Triggering has been canceled
+	Canceled	= (1 << 3),	// ETriggerState (Ongoing -> None)
+
+	// The trigger state has transitioned from Triggered to None this frame, i.e. Triggering has finished.
+	// NOTE: Using this event restricts you to one set of triggers for Started/Completed events. You may prefer two actions, each with its own trigger rules.
+	// TODO: Completed will not fire if any trigger reports Ongoing on the same frame, but both should fire. e.g. Tick 2 of Hold (= Ongoing) + Pressed (= None) combo will raise Ongoing event only.
+	Completed	= (1 << 4),	// ETriggerState (Triggered -> None)
+};
+```
+
+@tab 翻译
+
+```cpp
+enum class ETriggerEvent : uint8
+{
+	// 没有发生显著的触发状态变化，且没有活动的设备输入
+	None		= (0x0)		UMETA(Hidden),
+
+	// 在一个或多个处理帧之后触发
+	Triggered	= (1 << 0),	// ETriggerState (None -> Triggered, Ongoing -> Triggered, Triggered -> Triggered)
+	
+	// 发生了开始触发器求值的某个事件。注意：本帧也可能发生 Triggered 状态。
+	Started		= (1 << 1),	// ETriggerState (None -> Ongoing, None -> Triggered)
+
+	// 触发仍在进行处理
+	Ongoing		= (1 << 2),	// ETriggerState (Ongoing -> Ongoing)
+
+	// 触发已被取消
+	Canceled	= (1 << 3),	// ETriggerState (Ongoing -> None)
+
+	// 触发状态在本帧从 Triggered 转换为 None，即触发已完成。
+	// 注意：使用此事件将限制您对于 Started/Completed 事件的触发规则。您可能更喜欢两个动作，每个都有自己的触发规则。
+	// TODO: 如果同一帧内任何触发器报告 Ongoing，则 Completed 不会触发，但两者都应触发。例如，Hold（= Ongoing） + Pressed（= None）组合的第 2 帧将仅触发 Ongoing 事件。
+	Completed	= (1 << 4),	// ETriggerState (Triggered -> None)
+};
+```
+:::
+
+### 6. 修饰符（Modifiers）
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+不对啊！你这里只有一个IA_Move动作，可我明明需要WASD控制上下左右移动啊，难道不应该有4个Input Actions?
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这里需要引入一个Modifiers的概念，即同个动作在不同修饰函数状态下得到不同的结果。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage009.png)
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+难怪一个IA_Move下有这么多Modifiers修饰的按键。
+</ChatMessage>
+
+>增强输入支持来自一维源的输入，例如键盘的方向键或常用的"WASD"键配置；可通过应用正确的输入修饰符来实现此控制方案。
+具体而言，使用 负（Negate） 可以将某些键注册为负值，
+而使用 交换输入轴值（Swizzle Input Axis Values） 可以将某些键注册为Y轴，而不是默认的X轴值：
+
+![](..%2Fassets%2Fenhancedimage010.png)
+
+### 7. 触发器（Triggers）
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+我发现除了Modifiers，为什么上面还有一个叫Triggers的东西?
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage011.png)
+
+<ChatMessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+先拿官方的图糊弄你一下！后面源码解析会有详细解释
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage012.png)
+
+### 8.子系统
+
+<ChatMessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+哎！我才反应过来！这里只有动作事件和按键上下文绑定啊！我运行后没反应啊！
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这些上下文目前来说只是数据，别忘记咱的主角EnhancedInput子系统啊！
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage013.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+子系统中的成员函数中有个叫`AddMappingContext`成员函数可以将这些数据传递进去注册。
+
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage014.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+看来咱不康康源码是没法再进一步理解了！
+</ChatMessage>
+
+
+
+## 快速上手
+
+### 1. 插件
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+老规矩先把插件开起来
+</ChatMessage>
+
+### 2. Build.cs引入模块
+
+
+```cpp
+PrivateDependencyModuleNames.AddRange(new string[] { "EnhancedInput" });
+```
+
+### 3. 准备Character
+
+>你也可以直接用第三人称模板作为参考，这里主要是康康基本流程为后续源码展开做一个铺垫
+
+![](..%2Fassets%2Fenhancedimage016.png)
+
+### 4. 引入头文件
+
+::: code-tabs#language
+
+@tab MyCharacter.h
+```cpp
+#include "InputActionValue.h"
+```
+@tab MyCharacter.cpp
+
+```cpp
+#include "Components/InputComponent.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
+```
+:::
+
+<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+为什么不在.h中引入全部呢？
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+原则上除了编译时间以外没有区别，主要是防止交叉引用问题。
+</ChatMessage>
+
+
+### 5.子系统注册上下文
+
+::: code-tabs#language
+@tab MyCharacter.h
+
+```cpp
+UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+class UInputMappingContext* DefaultMappingContext;
+```
+@tab MyCharacter.cpp
+```cpp
+void ATP_ThirdPersonCharacter::BeginPlay()
+{
+	// Call the base class  
+	Super::BeginPlay();
+
+	//Add Input Mapping Context
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(DefaultMappingContext, 0);
+		}
+	}
+}
+```
+:::
+
+### 6.绑定InputAction
+
+::: code-tabs#language
+@tab MyCharacter.h
+
+```cpp
+
+	/** Move Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* MoveAction;
+	
+protected:
+
+    // APawn interface
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	/** Called for movement input */
+	void Move(const FInputActionValue& Value);
+
+```
+@tab MyCharacter.cpp
+```cpp
+//////////////////////////////////////////////////////////////////////////
+// Input
+
+void ATP_ThirdPersonCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+{
+	// Set up action bindings
+	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) {
+		
+		//Moving
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Move);
+
+	}
+
+}
+
+void ATP_ThirdPersonCharacter::Move(const FInputActionValue& Value)
+{
+	// input is a Vector2D
+	FVector2D MovementVector = Value.Get<FVector2D>();
+
+	if (Controller != nullptr)
+	{
+		// find out which way is forward
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+		// get forward vector
+		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+	
+		// get right vector 
+		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+		// add movement 
+		AddMovementInput(ForwardDirection, MovementVector.Y);
+		AddMovementInput(RightDirection, MovementVector.X);
+	}
+}
+
+```
+:::
+
+<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+我怎么感觉绑定的过程像委托呢？
+</ChatMessage>
+
+```cpp
+//Moving
+EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATP_ThirdPersonCharacter::Move);
+```
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+你的直觉是对的！源码如下：
+</ChatMessage>
+
+```cpp
+/**
+* Binds to an object UFUNCTION
+*/
+FEnhancedInputActionEventBinding& BindAction(const UInputAction* Action, ETriggerEvent TriggerEvent, UObject* Object, FName FunctionName)
+{
+	TUniquePtr<FEnhancedInputActionEventDelegateBinding<FEnhancedInputActionHandlerDynamicSignature>> AB = MakeUnique<FEnhancedInputActionEventDelegateBinding<FEnhancedInputActionHandlerDynamicSignature>>(Action, TriggerEvent);
+	AB->Delegate.BindDelegate(Object, FunctionName);
+	AB->Delegate.SetShouldFireWithEditorScriptGuard(bShouldFireDelegatesInEditor);
+	return *EnhancedActionEventBindings.Add_GetRef(MoveTemp(AB));
+}
+```
+
+### 7.Triggers是什么？
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+还记得之前糊弄你的Triggers图吗？现在给你康康他的庐山真面目。
+</ChatMessage>
+
+>先看源码
+
+::: code-tabs#language
+
+@tab InputAction.h原文
+
+```cpp
+/**
+* Trigger qualifiers. If any trigger qualifiers exist the action will not trigger unless:
+* At least one Explicit trigger in this list has been met.
+* All Implicit triggers in this list are met.
+*/
+UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite, Category = Action)
+TArray<TObjectPtr<UInputTrigger>> Triggers;
+```
+
+@tab InputAction.h 翻译
+
+```cpp
+/**
+* 触发条件修饰符。如果存在任何触发条件修饰符，则该动作只有在以下情况下才会触发：
+* 至少一个明确触发条件在此列表中已满足。
+* 此列表中的所有隐含触发条件都已满足。
+*/
+ UPROPERTY(EditAnywhere, Instanced, BlueprintReadWrite, Category = Action)
+TArray<TObjectPtr<UInputTrigger>> Triggers;
+```
+:::
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+从源文件中可以看到ETriggerEvent只是InputTrigger类中的一个枚举。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage017.png)
+
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+接着配置的具体Trigger是继承自InputTrigger的子类或者孙类。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage018.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这么说可能不够直观，我给你做个类图理解一下
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage019.svg)
+
+<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+搜嘎！也就是这里的设置trigger其实就是切换不同版本的InputTrigger？
+</ChatMessage>
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+是的，切换到对应的继承版本会有对应的效果。你不看源码根本不能理解这个trigger。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage012.png)
+
+<ChatMessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40">
+这里为什么有个final关键字？
+</ChatMessage>
+
+:::note
+在C++中，关键字 `final` 用于表示某个类不能被其他类继承。例子中，`UInputTriggerDown` 类声明为 `final`，这意味着它是不可继承的，不能再派生出其他类。
+
+1. **性能优化：** 编译器可以对 `final` 类进行更多的优化，因为它知道没有其他类会继承它。
+2. **代码安全性：** 防止其他开发者错误地继承并修改该类的行为，从而确保该类的稳定性。
+   :::
+
+
+### 8.系统流程
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+现在我们大致理解一下执行流程，不要求记住。
+</ChatMessage>
+
+![](..%2Fassets%2Fenhancedimage020.jpg)
+
+### 8.子系统
+
+<ChatMessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+最后请出我们的子系统。
+</ChatMessage>
+
+```cpp
+UEnhancedInputLocalPlayerSubsystem : public ULocalPlayerSubsystem, public IEnhancedInputSubsystemInterface
+UEnhancedInputWorldSubsystem : public UWorldSubsystem, public IEnhancedInputSubsystemInterface
+```
+
+![](..%2Fassets%2Fenhancedimage015.png)
+
+## Debug
+
+```cpp
+showdebug enhancedinput
+```
+
+## 参考资料
+
+[UE5学习笔记\|增强输入系统EnhancedInput_鹿野明的博客-CSDN博客](https://blog.csdn.net/weixin_55901138/article/details/130639164)
+
+[虚幻引擎中的增强输入 \| 虚幻引擎5.1文档(unrealengine.com)](https://docs.unrealengine.com/5.1/zh-CN/enhanced-input-in-unreal-engine/)
+
+[UE5 C++ Enhanced Input - 2 - Bind C++ Functions to Input Actions - YouTube](https://www.youtube.com/watch?v=fW1pXOAIviw)
+
+
+

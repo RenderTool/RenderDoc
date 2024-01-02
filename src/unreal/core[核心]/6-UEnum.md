@@ -13,6 +13,9 @@ UEC++中怎么写Enum
 安排!
 </ChatMessage>
 
+
+### 常规
+
 1. Rider添加一个类
 
 ![](..%2Fassets%2Fclassadd.png)
@@ -29,3 +32,20 @@ enum class EColorBits
     ECB_Blue
 };
 ```
+### 声明前置
+
+::: code-tabs#language
+@tab .h
+```cpp
+enum class EColorBits: uint8;
+```
+@tab .cpp
+```cpp
+enum class EColorBits: uint8;
+{
+    ECB_Red,
+    ECB_Green,
+    ECB_Blue
+};
+```
+:::

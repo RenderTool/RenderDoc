@@ -39,32 +39,33 @@ UEC++中怎么写接口？
 
 ### 简单实践
 
-1. 继承`UInterface`定义
+1. 继承`UInterface`
 
 ::: note
-声明接口类与声明普通的虚幻类相似，但仍有两个主要区别。首先，接口类使用UINTERFACE宏而不是UCLASS宏，且直接从"UInterface"而不是"UObject"继承。
+声明接口类与声明普通的虚幻类相似，但仍有几个区别。<br>
+1.接口类使用UINTERFACE宏而不是UCLASS宏.<br>
+2.继承自"UInterface"而不是"UObject"。<br>
+3.依然可以使用传统虚函数方法定义接口。
 :::
 
 ```cpp
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "GameInterface.generated.h"
+#include "MyInterface.generated.h"
 
 UINTERFACE(MinimalAPI)
-class UGameInterface : public UInterface
+class UMyInterface : public UInterface//继承自UInterface
 {
 	GENERATED_BODY()
 };
 
-class MYPROJECT_API IGameInstanceInterface
+class MYPROJECT_API IMyInterface//使用时继承这个即可。
 {
 	GENERATED_BODY()
 public:
-	//传入相机id、目标相机id
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "CameraInterface")
 	void  IChangeCamera (int32 CameraID,float CameraSwitchTime) ;
 
@@ -79,17 +80,17 @@ public:
 ```cpp
 #pragma once
 #include "CoreMinimal.h"
-#include "GameInterface.h"
+#include "MyInterface.h"
 #include "MyClass.generated.h"
 
 // 声明类并实现接口
 UCLASS()
-class MYPROJECT_API UMyClass : public UObject, public IGameInterface
+class MYPROJECT_API UMyClass : public UObject, public IMyInterface
 {
     GENERATED_BODY()
 
 public:
-    virtual void IChangeCamera_Implementation() override;
+    virtual void IChangeCamera_Implementation() override;//重写虚函数。
 };
 ```
 
@@ -108,11 +109,11 @@ void UMyClass::MyMethod_Implementation()
 ### BlueprintNativeEvent & BlueprintImplementableEvent
 
 <ChatMessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" >
-我发现了猫腻！他和传统的接口概念差不多，但多了一个BlueprintNativeEvent宏标记！他和BlueprintImplementableEvent什么区别？
+传统的接口概念差不多，但多了一个BlueprintNativeEvent宏标记！和BlueprintImplementableEvent什么区别？
 </ChatMessage>
 
 <ChatMessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
-看看官方解释：
+看文档：
 </ChatMessage>
 
 ![](..%2Fassets%2FBLUEPRINTNATIVEENVENT.png)
