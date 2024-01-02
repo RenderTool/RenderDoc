@@ -29,16 +29,12 @@ category:
    在类中定义委托的实例：
 
    ```cpp
-   UCLASS()
-   class MYPROJECT_API AMyActor : public AActor
-   {
-       GENERATED_BODY()
-
-   public:
        FMyDelegate MyDelegate;
+      
+       UFUNCTION(BlueprintAssignable, Category = "MyCategory")
        FMyMulticastDelegate MyMulticastDelegate;
+   
        FMyDelegateWithParam MyDelegateWithParam;
-   };
    ```
 
 3. **绑定和解绑委托：**
