@@ -1,12 +1,12 @@
 ---
-title: GP7.Delegate|委托实践
+title: GP7.Delegate|实践球体触发器为例
 order : 7
 category:
   - u++
 ---
-## 委托实践|Delegate
+## 基本流程回顾
 
-1. **声明委托：**
+### 1. **声明委托：**
 
    ```cpp
    DECLARE_DELEGATE(FMyDelegate);
@@ -23,8 +23,13 @@ category:
    ```cpp
    DECLARE_DELEGATE_OneParam(FMyDelegateWithParam, int32);
    ```
+   需要注意！参数要求带名称用`,`隔开
 
-2. **定义委托实例：**
+  ```cpp
+    DECLARE_MULTICAST_DELEGATE_ThreeParams(FMyDelegate, int32, float, FString);
+   ```
+
+### 2. **定义委托实例：**
 
    在类中定义委托的实例：
 
@@ -37,7 +42,7 @@ category:
        FMyDelegateWithParam MyDelegateWithParam;
    ```
 
-3. **绑定和解绑委托：**
+### 3. **绑定和解绑委托：**
 
    在构造函数或其他地方绑定和解绑委托：
 
@@ -61,7 +66,7 @@ category:
    }
    ```
 
-4. **委托的回调函数：**
+### 4. **委托的回调函数：**
 
    定义委托回调的成员函数：
 
@@ -85,7 +90,7 @@ category:
    }
    ```
 
-5. **触发委托：**
+### 5. **触发委托：**
 
    在适当的地方触发委托：
 
@@ -102,3 +107,99 @@ category:
        MyDelegateWithParam.ExecuteIfBound(42);
    }
    ```
+
+
+## 球体例子
+
+### 1. 新建Actor类添加对应组件
+
+```cpp
+//静态网格物体
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "EquipmentMesh", meta = (AllowPrivateAccess = "true"))
+TObjectPtr<UStaticMeshComponent> StaticMesh;
+
+// 球形触发器
+UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Trigger", meta = (AllowPrivateAccess = "true"))
+TObjectPtr<USphereComponent> TriggerSphere;
+
+```
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+误区：是球体组件委托不是Actor的Over函数
+</chatmessage>
+
+![这是Actor自身的触发函数](..%2Fassets%2FDelegateUse001.png)
+
+### 2. 球体组件委托绑定
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+既然是组件本身的委托，必然是组件的成员函数，意味着要用组件来绑定委托。
+</chatmessage>
+
+![](..%2Fassets%2FDelegateUse002.png)
+
+
+
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" >
+那么绑定时机呢？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+一般在BeginPlay中，不推荐在构造函数中，容易出现线程安全问题。
+</chatmessage>
+
+:::note
+线程安全（Thread Safety）是指一个程序或者代码在多线程环境下执行时，能够保持正确的行为。当多个线程同时访问共享的数据或资源时，如果没有适当的同步机制，可能导致不确定的结果，甚至引发一些难以调试和修复的问题。线程安全的目标是确保在多线程环境中程序的行为是可预测和正确的。
+
+1. **竞态条件（Race Condition）：** 当两个或多个线程同时访问共享资源，并且至少一个线程对资源进行了写操作，就可能发生竞态条件。这可能导致不一致的结果，因为线程执行的顺序是不确定的。
+
+2. **互斥锁（Mutex）：** 互斥锁是一种用于保护共享资源的同步机制。它确保在任何时刻，只有一个线程能够访问共享资源，其他线程必须等待锁被释放。
+
+3. **死锁（Deadlock）：** 死锁是指两个或多个线程无限期地阻塞等待彼此持有的锁。这种情况会导致程序无法继续执行。
+
+4. **原子操作（Atomic Operation）：** 原子操作是不可被中断的操作，它在执行时不会被其他线程干扰。在多线程环境中，原子操作可以用来确保某些操作的完整性，而不会受到其他线程的影响。
+
+5. **可重入性（Reentrancy）：** 可重入性是指一个函数可以被多个线程同时调用，而不会导致不确定的行为。函数内部使用的资源应该是线程私有的或者受到适当的同步控制。
+
+:::
+
+```cpp
+void AEquipmentBase::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	TriggerSphere->OnComponentBeginOverlap.AddDynamic(this, &AEquipmentBase::OnBeginOverlap);
+	
+	TriggerSphere->OnComponentEndOverlap.AddDynamic(this, &AEquipmentBase::OnEndOverlap);
+}
+```
+
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" >
+我明白了！你这其实是组件中定义了委托，在其他类中绑定了回调函数，组件触发了对应的绑定函数也就触发了！
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+没错！这就是委托的订阅机制，也称观察者模式。
+</chatmessage>
+
+### 3. 回调函数
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+回调函数就简单了！我们可以根据球体的委托定义对应参数个数的回调函数。
+</chatmessage>
+
+![](..%2Fassets%2FDelegateUse003.png)
+
+```cpp
+void OnBeginOverlap( UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+```
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+注意参数别漏抄少抄!
+</chatmessage>
+
+![](..%2Fassets%2FDelegateUse004.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+然后对应的函数写一下就ok！
+</chatmessage>
