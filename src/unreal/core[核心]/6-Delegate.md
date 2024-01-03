@@ -1,6 +1,6 @@
 ---
-title: GP6.Delegate|委托
-order : 6
+title: c6.Delegate|委托
+order : 600
 category:
   - u++
 ---

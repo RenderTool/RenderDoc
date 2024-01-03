@@ -1,6 +1,6 @@
 ---
-title: GP3.Singleton|单例
-order : 3
+title: c3.Singleton|单例
+order : 300
 category:
   - u++
 ---

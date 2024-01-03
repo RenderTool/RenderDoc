@@ -1,5 +1,5 @@
 ---
-title: core6.UEnum|枚举
+title: F6.UEnum|枚举
 order : 6
 category:
   - u++

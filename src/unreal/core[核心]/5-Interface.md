@@ -1,6 +1,6 @@
 ---
-title: GP5.Interface|接口
-order : 5
+title: c5.Interface|接口
+order : 500
 category:
   - u++
 ---

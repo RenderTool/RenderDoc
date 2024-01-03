@@ -1,7 +1,7 @@
 ---
-title: GP1.GamePlay|导言
+title: c1.GamePlay|导言
 #icon: download
-order : 2
+order : 1
 category:
   - u++
 ---

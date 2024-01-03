@@ -1,6 +1,6 @@
 ---
-title: FUN4.SpawnActorFromClass
-order : 4
+title: F14.SpawnActorFromClass
+order : 14
 category:
   - u++
 ---

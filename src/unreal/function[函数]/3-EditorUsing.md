@@ -1,5 +1,5 @@
 ---
-title: core3.WITH_EDITOR
+title: F3.WITH_EDITOR
 order: 3
 category:
   - u++

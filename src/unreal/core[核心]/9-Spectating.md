@@ -1,6 +1,6 @@
 ---
-title: GP10.Spectating System|观战系统
-order : 10
+title: c9.Spectating System|观战系统
+order : 900
 category:
   - u++
 ---

@@ -1,5 +1,5 @@
 ---
-title: core7.UStruct|结构体
+title: F7.UStruct|结构体
 order : 7
 category:
   - u++

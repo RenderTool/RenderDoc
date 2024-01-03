@@ -1,5 +1,5 @@
 ---
-title: core8.TMap|映射表
+title: F8.TMap|映射表
 order: 8
 category:
   - u++

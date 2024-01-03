@@ -1,6 +1,6 @@
 ---
-title: GP2.GameMode|游戏模式
-order : 2
+title: c2.GameMode|游戏模式
+order : 200
 category:
   - u++
 ---

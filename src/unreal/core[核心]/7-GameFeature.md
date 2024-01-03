@@ -1,6 +1,6 @@
 ---
-title: GP9.GF|GameplayFeature
-order : 9
+title: c7.GF|GameplayFeature
+order : 700
 category:
   - u++
 ---
