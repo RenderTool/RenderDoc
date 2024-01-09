@@ -1,5 +1,5 @@
 ---
-title: NT-3.GamePlayNetWorkTODO
+title: NT-3.网络复制|TODO
 order: 30
 category:
   - unreal
@@ -56,7 +56,6 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
     bReplicates = true;
-    bReplicateMovement = true;
 }
 ```
 
@@ -110,13 +109,87 @@ if (HasAuthority())
 ![展开](..%2Fassets%2Fhasauthoritynode.png)
 
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+为了更进一步，我们翻看翻看源码。
+</chatmessage>
+
+![](..%2Fassets%2Fnetwork001.png)
+
+### ENetRole|Remote
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+可以看到实际它调用了GetLocalRole()
+</chatmessage>
+
+```cpp
+GetLocalRole() == ROLE_Authority
+```
+
+![](..%2Fassets%2Fnetwork002.png)
+
+<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
+这不就是个枚举值吗?
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+没错，但其中几个概念我们需要搞懂。也可以参考[文档](https://docs.unrealengine.com/4.27/zh-CN/InteractiveExperiences/Networking/Actors/Roles/)
+
+</chatmessage>
+
+::: code-tabs#language
+
+@tab 原文
+
+```cpp
+/** The network role of an actor on a local/remote network context */
+UENUM()
+enum ENetRole : int
+{
+	/** No role at all. */
+	ROLE_None,
+	/** Locally simulated proxy of this actor. */
+	ROLE_SimulatedProxy,
+	/** Locally autonomous proxy of this actor. */
+	ROLE_AutonomousProxy,
+	/** Authoritative control over the actor. */
+	ROLE_Authority,
+	ROLE_MAX,
+};
+```
+@tab 翻译
+```cpp
+/** 在本地/远程网络环境中，演员的网络角色 */
+UENUM()
+enum ENetRole : int
+{
+	/** 没有角色。 */
+	ROLE_None,
+	/** 该演员的本地模拟代理。 */
+	ROLE_SimulatedProxy,
+	/** 该演员的本地自治代理。 */
+	ROLE_AutonomousProxy,
+	/** 对该演员的权威控制。 */
+	ROLE_Authority,
+	ROLE_MAX,
+};
+```
+:::
+
+
+
 ![](..%2Fassets%2Fcsnode.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-可以看到客户端只有Remote权限没有Authority。
+可以看到客户端的角色只有Remote权限没有Authority。
 </chatmessage>
 
+>Character继承Pawn，Pawn继承Actor，本质还是Actor所以可以调到。
+
 <gifwithbutton src="../../assets/unrealgif/hpimpove5.gif"/>
+
+
+
 
 ## 网络模型
 
@@ -282,3 +355,5 @@ GamePlay框架中各自对应的网络职责划分（大佬的图）
 [《守望先锋》中的网络脚本武器和能力](https://www.gdcvault.com/play/1024041/Networking-Scripted-Weapons-and-Abilities)
 
 [大佬博客](https://cedric-neukirchen.net/docs/multiplayer-compendium/additional-resources)
+
+[官方论坛](https://forums.unrealengine.com/t/who-has-authority-server-or-client-and-when/247708/7)
