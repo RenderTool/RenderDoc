@@ -178,7 +178,7 @@ JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，�
 然而这些数据并非空穴来风，需要一个远程物理机器保存，比如百度网盘能够保存你的文件数据，这里我们有专门的数据库和存储空间保存用户的个人信息。
 </chatmessage>
 
-## 进一步构思 
+## 进一步构思1 
 
 >Table+子系统+资产实现配表驱动
 
@@ -221,3 +221,47 @@ JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，�
    - 子系统应当暴露接口，用于注册交互键，可能涉及 UI 的绑定以及信息更新。
    - 示例：子系统接口`RegisterInteractionKey`。
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这个想法初始构思是好的，实际操作起来对一些不知情的人员来说并不友好，因为这种表格数据过于通用，眼花缭乱是常态，必须配有契约式的文档。
+</chatmessage>
+
+## 进一步构思2
+
+### 1. 子系统 (`UInventorySubsystem`)
+
+这里强调子系统的管理权限，仅限于处理管理层面的逻辑接口。类似于图书馆管理员，负责帮助用户快速定位，注册，注销等。
+
+### 2. 总表 (`TotalConfig`)
+
+- TMap维护子类`SubConfig`资产。
+- TArray维护`ItemFragments`。
+- 添加行为而不是注册，通过`AddTotalConfig`在子系统中维护这些数据。可以配置一些通用的`ItemFragments`动作，例如统一的交互按键。
+
+### 3. 子表 (`SubConfig`)
+
+- TMap维护子类`InventoryItemDefinition`资产。
+- TArray维护`ItemFragments`。
+- 不将所有数据放在总表中，考虑资源加载、搜索效率以及资产分类管理思想。
+- 可以配置通用的`ItemFragments`动作。
+
+### 4. 部门经理 (`InventoryItemDefinition`)
+
+- TArray维护`ItemFragments`。
+- `ItemFragments`作为末端动作，具有最高的重写权限。
+
+### 5. 组员 (`ItemFragments`)
+
+- 负责编写具体的逻辑动作，例如添加UI、配置属性等。
+- 作为具体动作的承载者。
+
+### 6. 思考：
+
+- **物体（Item）**: 类似于一个具体的手机实例，负责实际的功能和行为。物体上不再有业务逻辑。
+
+- **子系统（Subsystem）**: 例如公司的管理团队，拥有一些特定的权限和职责，如注册、注销、培训等。子系统的任务是管理和协调底下的各个部门经理（`InventoryItemDefinition`）。
+
+- **InventoryItemDefinition（部门经理）**: 类似于公司的各个部门经理，负责管理底下的组员（`ItemFragments`）。每个经理有一些特定的规范和职责，定义了部门的标准和行为。
+
+- **ItemFragments（组员）**: 这是部门里的具体员工，专注于各自的专业能力，如播放功能、发送消息等。他们遵循由经理规定的标准和流程来提交任务。
+
+![](..%2Fassets%2Fnetwork003.png)
