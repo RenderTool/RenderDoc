@@ -1,5 +1,5 @@
 ---
-title: F10.SPTR|智能指针TODO
+title: F10.Class&OBJ|类和对象
 order: 10
 category:
   - u++
@@ -7,174 +7,120 @@ tag:
   - Specifiers
 ---
 
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-C++的指针就已经谈虎色变了，UE中的所谓的智能指针会不会更难？
+### 类和对象
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+类和对象什么区别？
 </chatmessage>
 
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-首先，我们应该先理解为什么要用到智能指针。在这之前你先告诉我我们是怎么利用指针动态分配内存的？
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-这个倒不难，C++中用new来申请堆上的内存空间，用delete释放对应的内存。
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+这个叫类
 </chatmessage>
 
 ```cpp
-#include <iostream>
-class MyClass {
+class Person {
 public:
-    MyClass() {
-        std::cout << "MyClass()" << std::endl;
-    }
-    ~MyClass() {
-        std::cout << "~MyClass()" << std::endl;
-    }
+    string Name;
+    int Age;
 };
-int main() {
-    MyClass* a = new MyClass();
-    delete a;
-}
 ```
-<chatmessage avatar="../../assets/emoji/bqb (6).png" :avatarWidth="40" alignLeft>
-Good!但这只是一个非常简单的甚至算不上项目的Demo，如果到具体的项目中，这个MyClass指针往往不会使用后里面释放。
-这时候引入了一个叫做智能指针的内存管理工具，解决了以下几个与手动内存管理相关的问题：
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+根据这个类实例化的叫对象
 </chatmessage>
-
-1. **自动释放内存：**
-   - 通过使用智能指针，可以自动在对象不再需要时释放相关的内存。这有助于防止内存泄漏，即程序运行时没有释放不再使用的内存。
-
-2. **防止重复释放：**
-   - 智能指针通过引用计数或拥有者模式等机制，可以防止多次释放同一块内存。这减少了因释放已经释放的内存而导致的运行时错误。
-
-3. **简化代码：**
-   - 使用智能指针可以简化代码，避免手动管理内存的复杂性。开发者无需显式调用 `new` 和 `delete`，减少了出错的机会，提高了代码的可读性和可维护性。
-
-4. **异常安全性：**
-   - 智能指针在异常发生时能够正确释放相关资源，确保程序在异常情况下也能保持正确的状态，避免资源泄漏。
-
-5. **更安全的多线程编程：**
-   - 使用智能指针可以避免多线程环境下的资源竞争和访问冲突，从而提高代码的线程安全性。例如，`std::shared_ptr` 通过引用计数来管理资源，能够在多线程环境中正确地共享资源。
-
-6. **循环引用的处理：**
-   - 在使用 `std::shared_ptr` 时，当存在循环引用（两个对象相互引用）时，智能指针可以通过引用计数解决循环引用导致的内存泄漏问题。
-
-<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
-好家伙！一口气出现几个我只看过没理解透彻的词汇出来！怎么就实现自动释放内存了？又怎么。。。
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-别急！我们慢慢深入。首先你先告诉我，如果你来设计一个所谓的智能指针，你会怎么保证他自动分配？防止重复释放？
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (7).png" :avatarWidth="40">
-
-无非就是自己写一个模板类，然后重写`BigFour`
-
-</chatmessage>
-
-:::note
-`BigFour`C++专栏中已经介绍过了
-![](..%2Fassets%2Fbigfour.png)
-:::
 
 ```cpp
-#include <iostream>
-
-template <typename T>
-class MySmartPointer {
-private:
-    T* ptr;
-
-public:
-    // 构造函数
-    MySmartPointer(T* p = nullptr) : ptr(p) {}
-
-    // 拷贝构造函数
-    MySmartPointer(const MySmartPointer& other) {
-        ptr = other.ptr ? new T(*(other.ptr)) : nullptr;
-    }
-
-    // 移动构造函数
-    MySmartPointer(MySmartPointer&& other) noexcept {
-        ptr = other.ptr;
-        other.ptr = nullptr;
-    }
-
-    // 析构函数
-    ~MySmartPointer() {
-        delete ptr;
-    }
-
-    // 重载赋值运算符
-    MySmartPointer& operator=(const MySmartPointer& other) {
-        if (this != &other) {
-            delete ptr;
-            ptr = other.ptr ? new T(*(other.ptr)) : nullptr;
-        }
-        return *this;
-    }
-
-    // 获取原始指针
-    T* get() const {
-        return ptr;
-    }
-
-    // 重载箭头运算符
-    T* operator->() const {
-        return ptr;
-    }
-
-    // 重载解引用运算符
-    T& operator*() const {
-        return *ptr;
-    }
-};
-
-int main() {
-    // 使用 MySmartPointer
-    MySmartPointer<int> myPtr(new int(42));
-    std::cout << "Value: " << *myPtr << std::endl;
-
-    // 在作用域结束时，MySmartPointer 的析构函数会自动释放资源
-
-    return 0;
-}
+Person person1;
+Person new person2;
+//....
+delete person2;
 ```
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-没错，一个简单指针模板类就这么实现了！但还谈不上`智能`。
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+类的实例化就是创建对象的过程。在面向对象编程中，通过实例化类来创建对象，这个过程也被称为类的实例化。而UE中因为有反射系统，推荐你用NewObject来实例化
 </chatmessage>
 
-1. **TSharedPtr：** 代表共享所有权的智能指针。多个 `TSharedPtr` 实例可以共享相同的对象，当最后一个引用超出范围时，对象会被销毁。
+### UE类实例化
 
-   ```cpp
-   TSharedPtr<MyClass> SharedObject = MakeShared<MyClass>();
-   ```
+>模板
+```cpp
+UYourClass* MyObject = NewObject<UYourClass>();
+```
 
-2. **TWeakPtr：** 代表弱引用智能指针，通常与 `TSharedPtr` 一起使用，用于避免循环引用。
+>静态工厂
 
-   ```cpp
-   TSharedPtr<MyClass> SharedObject = MakeShared<MyClass>();
-   TWeakPtr<MyClass> WeakObject = SharedObject;
-   ```
+```cpp
+UYourClass* MyObject = UYourClass::CreateInstance();
+```
 
-3. **TUniquePtr：** 代表独占所有权的智能指针。每个 `TUniquePtr` 实例拥有对对象的唯一所有权，用于确保资源的独占性。
+>SpawnActor
 
-   ```cpp
-   TUniquePtr<MyClass> UniqueObject = MakeUnique<MyClass>();
-   ```
+```cpp
+AYourActor* MyActor = GetWorld()->SpawnActor<AYourActor>(YourActorClass, SpawnLocation, SpawnRotation);
+```
+### UE类引用
 
-4. **UPROPERTY 和 UPROPERTY_POINTER：** 在UE4的中，`UPROPERTY` 用于声明成员变量，并可以与 `TWeakObjectPtr` 一起使用，以创建弱引用指针。
+```cpp
+TSoftClassPtr<UUserWidget> WidgetClass;
+UClass* UUserWidget = WidgetClass.Get();
+```
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+注意这里还是类，不是实例化的对象，所以你可以在引擎中看到从类构建实例、创建UI的控件、spawnActor这种节点。
+</chatmessage>
 
-   ```cpp
-   UPROPERTY()
-   TWeakObjectPtr<AActor> WeakActor;
-   ```
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+先来了解一下几个UE中的引用类型.
+</chatmessage>
 
-5. **FObjectPtr：** 代表一个智能指针，可以包含 `UObject` 类型的对象。用于管理UE的对象生命周期。
+![](..%2Fassets%2Floadassets002.png)
 
-   ```cpp
-   FObjectPtr<UClass> MyObject = NewObject<UClass>();
-   ```
+1. **对象引用 (`TObjectPtr`):**
+   - **特性：** 对象引用是强引用，它持有对 `UObject` 派生类对象的强引用，当对象销毁时，引用计数减少。
+   - **用途：** 适用于需要确保对象在引用期间不会被销毁的情况，例如需要持有一个具体对象的引用。
+
+```cpp
+TObjectPtr<UYourClass> MyObject;
+```
+
+2. **软引用 (`TSoftObjectPtr`):**
+   - **特性：** 软引用是一种弱引用，它不会增加对象的引用计数。如果对象被销毁，软引用会变为无效。
+   - **用途：** 适用于需要引用对象，但不要求对象一直存在的情况，例如在需要加载对象时，但不希望对象一直保持在内存中。
+
+```cpp
+TSoftObjectPtr<UYourClass> MySoftObject;
+```
 
 
+3. **类引用 (`TSubclassOf`):**
+   - **特性：** 类引用是用于引用类的一种方式，而不是类的实例。它不会增加类的引用计数。
+   - **用途：** 适用于需要引用类本身而不是类的实例的情况，例如在运行时动态生成对象的时候。
 
+```cpp
+TSubclassOf<UYourClass> MyClass;
+```
+
+4. **软类引用 (`TSoftClassPtr`):**
+   - **特性：** 软类引用是软引用的类版本，用于引用类，当类被销毁时，引用变为无效。
+   - **用途：** 类似于软引用，适用于需要引用类但不要求一直存在的情况，例如在需要加载类时。
+
+```cpp
+TSoftClassPtr<UYourClass> MySoftClass;
+```
+<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
+本质都是指针
+</chatmessage>
+
+### UE中的指针模板
+
+1. **shared_ptr|共享指针:**
+
+记录该对象当前被多少个共享指针所持有。当一个共享指针被销毁时，所有指向该对象的共享指针的计数都会减少。当指向一个对象的所有共享指针都被销毁时，对象自动被销毁。
+
+2. **unique_ptr|唯一指针：**
+
+该对象只能被一个唯一指针所持有。当唯一指针被销毁时，对应的对象也被销毁。
+
+3. **weak_ptr|弱指针：**
+
+该指针并不直接指向对象，而是指向该对象的共享指针。这样即使弱指针始终存在，没有被销毁，对象也会在共享指针的管理下自动销毁。
+
+## 参考链接
+[【UE4】对象指针，类指针，智能指针，硬引用，软引用](https://zhuanlan.zhihu.com/p/604213414#:~:text=%E8%BD%AF%E7%B1%BB%E5%BC%95%E7%94%A8%EF%BC%9A%20TSoftClassPtr%3CT%3E%20SoftClassRef%3B%20%E5%9C%A8%E8%93%9D%E5%9B%BE%E4%B8%AD%EF%BC%8C%E8%BD%AF%E7%B1%BB%E5%BC%95%E7%94%A8%E5%AF%B9%E5%BA%94%E7%9A%84%E6%98%AF%E6%B5%85%E7%B4%AB%E8%89%B2%E7%9A%84%E8%BD%AF%E7%B1%BB%E5%BC%95%E7%94%A8%EF%BC%9A%20%E4%B8%8D%E8%BF%87%EF%BC%8C%E8%BF%99%E4%B8%A4%E7%A7%8D%E4%B8%9C%E8%A5%BF%E6%9C%AC%E8%B4%A8%E4%B8%8A%E5%8F%AA%E6%98%AF%E4%B8%BA%E4%BA%86%E5%AD%98%E5%82%A8%E4%B8%80%E4%B8%AA%E8%B5%84%E4%BA%A7%E8%B7%AF%E5%BE%84%E3%80%82,%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B8%8D%E5%9C%A8%E4%B9%8E%E8%93%9D%E5%9B%BE%E5%B1%82%E6%98%BE%E7%A4%BA%E7%9A%84%E5%9B%BE%E6%A0%87%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%AE%8C%E5%85%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20FSoftObjectPath%20%E5%92%8C%20FSoftClassPath%20%E6%9D%A5%E4%BB%A3%E6%9B%BF%E4%BB%96%E4%BB%AC%E7%9A%84%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E3%80%82)

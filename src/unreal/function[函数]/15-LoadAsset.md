@@ -11,67 +11,10 @@ category:
 
 ## 前置
 
-<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
-先来了解一下几个UE中的引用类型
-</chatmessage>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
-![](..%2Fassets%2Floadassets002.png)
+食用本文建议先了解`类和对象`的介绍！[直通车](10-PTRINUE.md)
 
-1. **对象引用 (`TObjectPtr`):**
-    - **特性：** 对象引用是强引用，它持有对 `UObject` 派生类对象的强引用，当对象销毁时，引用计数减少。
-    - **用途：** 适用于需要确保对象在引用期间不会被销毁的情况，例如需要持有一个具体对象的引用。
-
-```cpp
-TObjectPtr<UYourClass> MyObject;
-```
-
-2. **软引用 (`TSoftObjectPtr`):**
-    - **特性：** 软引用是一种弱引用，它不会增加对象的引用计数。如果对象被销毁，软引用会变为无效。
-    - **用途：** 适用于需要引用对象，但不要求对象一直存在的情况，例如在需要加载对象时，但不希望对象一直保持在内存中。
-
-```cpp
-TSoftObjectPtr<UYourClass> MySoftObject;
-```
-
-3. **类引用 (`TSubclassOf`):**
-    - **特性：** 类引用是用于引用类的一种方式，而不是类的实例。它不会增加类的引用计数。
-    - **用途：** 适用于需要引用类本身而不是类的实例的情况，例如在运行时动态生成对象的时候。
-
-```cpp
-TSubclassOf<UYourClass> MyClass;
-```
-
-4. **软类引用 (`TSoftClassPtr`):**
-    - **特性：** 软类引用是软引用的类版本，用于引用类，当类被销毁时，引用变为无效。
-    - **用途：** 类似于软引用，适用于需要引用类但不要求一直存在的情况，例如在需要加载类时。
-
-```cpp
-TSoftClassPtr<UYourClass> MySoftClass;
-```
-
-### 类和对象
-
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
-类和对象什么区别？
-</chatmessage>
-
-1. **类 (Class):**
-    - **定义：** 类是一个抽象的概念，是对相似对象的通用属性和行为的抽象描述。它定义了对象的结构和行为。
-    - **特征：** 类是一个模板或蓝图，描述了一组对象共同的特性和行为。
-    - **例子：** 如果我们考虑“汽车”作为一个类，它可能包括属性如“颜色”、“速度”、“品牌”以及行为如“启动”、“停止”等。
-
-2. **对象 (Object):**
-    - **定义：** 对象是类的实例，是类的具体化。它是内存中的一个实体，具有类定义的属性和行为。
-    - **特征：** 对象是类的具体表现，具有类定义的特性和可以执行的方法。
-    - **例子：** 如果我们实例化一个特定的汽车对象，它可能具有特定的颜色、速度、品牌，以及可以执行启动和停止等方法。
-
-3. **关系：**
-    - 类和对象之间的关系是抽象与具体的关系。一个类可以有多个对象的实例，每个对象都是该类的具体实现。
-    - 类定义了对象的结构和行为，而对象则是类的具体实例，具有类定义的属性和方法。
-    - 对象是类的实体化，可以看作是类的具体实例。
-
-<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
-所以这里的引用一般是实例化的对象，但不一定是实例化的类。
 </chatmessage>
 
 ## 异步
@@ -99,7 +42,7 @@ Handle = UAssetManager::Get().GetStreamableManager().RequestAsyncLoad(SubConfig,
 Handle.isValid();//是否有效
 Handle->HasLoadCompleted();//进度 
 Handle.GetLoadedAsset();//获取资源
-Handle.Reset();//释放句柄
+Handle.ReleaseHandle();//释放句柄
 
 ```
 
@@ -109,14 +52,45 @@ Handle.Reset();//释放句柄
 
 ![](..%2Fassets%2Floadassets.png)
 
+### 问题
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+为什么资产加载后不需要实例化？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
+
+Handle->GetLoadedAsset() 返回加载完成的资产，已经是实例化的对象，它返回都是 `uobject`。
+
+</chatmessage>
+
+![](..%2Fassets%2Fuobject.png)
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+可是有时候我们会在这种资产中配置对象，这个对象为什么也被实例化了？
+</chatmessage>
+
+![](..%2Fassets%2Fslih.png)
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
+你这个添加行为其实就是UE编辑器的实例化行为。比方说我们构造函数的ID是0，然后去蓝图中重写。
+</chatmessage>
+
+![](..%2Fassets%2Fpt.png)
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
+如果说加载资产后才实例这个对象应该打印0，但实际是根据你蓝图中配置的5,这也验证了你加载资产是你蓝图派生的资产。
+</chatmessage>
+
+![](..%2Fassets%2Fprint5.png)
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+难怪有时候我直接派生UObject的构造函数中打印会报错，因为引擎启动就加载所有UObject类，GEngine可能没实例化就调用导致指针悬挂问题。
+</chatmessage>
 
 ## 同步
 
 ![](..%2Fassets%2Fload002.png)
 
-```cpp
-
-```
 
 ## 参考文档
 
