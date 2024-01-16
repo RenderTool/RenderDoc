@@ -610,35 +610,39 @@ return 0;
 ![](..%2Fassets%2Fspacenew.png)
 
 ```cpp
+// Param: Maximums - 总血量
+// Param: PerSplitHP - 一个格子的血量
+// Param: SpacingValue - 间隔值，用于调整间隔宽度
+
 // 1. 总血量Maximums = 一个格子血量PerSplitHP * 格子数量CellCount
 float CellCount = Maximums / PerSplitHP;
 
-// 2. 如果格子数量CellCount = 1 返回 0。
+// 2. 如果格子数量CellCount = 1 返回 1。
 if (CellCount == 1)
 {
     return 1;
 }
 
-// 3.frac贴图平铺CellCount次
+// 3. 绘制格子
+float2 tex = frac(float2(UV.x * CellCount, 0));
 
-float2 tex = frac(float2(UV.x*CellCount,0.0));
+// 4. 计算间隔宽度
 
-//4.计算补偿
-float Compensate = CellCount * SpacingValue; // 补偿
+// 补偿：用于调整间隔宽度
+float Compensate = CellCount * SpacingValue;
 
-//5.依然需要钳制
-float Spacing = clamp(Compensate, 0.001, 0.99); // 钳制在0.001-0.99内
+// 间隔宽度：钳制在0.001-0.99内
+float Spacing = clamp(Compensate, 0.001, 0.99);
 
-//6.计算 tex.x 的偏移
-tex.x +=(-Spacing+1);
+// 5. 检查是否在间隔范围内
+if (tex.x >= Spacing)
+{
+    return 1;
+}
 
-// 7. 对 tex.x 进行 ceil 处理
-tex.x = 1-(ceil(1 - tex.x)); 
-
-//tex.x = 1-(Sharpness*(1 - tex.x)); //虚化节点官方推荐512
-
-return tex;
+return 0;
 ```
+>修改于2024/1/16
 
 ## 状态部分
 
