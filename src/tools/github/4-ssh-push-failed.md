@@ -22,7 +22,7 @@ git@github.com: Permission denied (publickey). fatal: Could not read from remote
 
 1. [CSDN](https://blog.csdn.net/W_317/article/details/106518894)
 
-## 问题复现
+## 方案1
 
 1. cmd输入    
 
@@ -38,3 +38,11 @@ git@github.com: Permission denied (publickey). fatal: Could not read from remote
 3.然后将 `id_rsa.pub` 文件内容复制到github上。
 
 ![sshkeyupdata.png](assets%2Fsshkeyupdata.png)
+
+## 方案2
+>C:\Users\admin\.ssh 下新建config,然后添加下面的代码
+
+```text
+Host github.com
+  HostName ssh.github.com
+```
