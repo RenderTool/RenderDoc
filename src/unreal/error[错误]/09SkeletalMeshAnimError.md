@@ -5,7 +5,6 @@ category:
   - u++
 ---
 
-
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 起因是这样得，我在做角色皮肤切换效果
 </chatmessage>
@@ -50,32 +49,17 @@ void UExorcistFunctionLibrary::SetSkeletalMeshAndAnimation(USkeletalMesh* NewMes
 }
 ```
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-悲剧发生了！切换动画后角色的材质ID出现了错位，甚至蒙皮动画都出现了问题！
+悲剧发生了！切换动画后角色的材质ID出现了错位。
 </chatmessage>
 
 <gifwithbutton src="../../assets/unrealgif/hpimpove10.gif"/>
 
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-各自百度后，发现好像只能通过生成新的组件和移除组件来实现！
-</chatmessage>
-
-![](..%2Fassets%2Fnew%20animation03.png)
-
-<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
-很显然，这不是一个好办法，重新生成组件和销毁组件的性能开销太大
-</chatmessage>
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-最终我翻开了源码发现了这里两段函数！
+我翻开了源码发现了这里两段函数！
 </chatmessage>
 
 ![](..%2Fassets%2Fnew%20animation04.png)
-
-<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
-
-是的，我们应该搞清楚一个动画正确的播放流程正确的调用顺序应该是 SetAnimationMode -> SetAnimation -> Play
-
-</chatmessage>
 
 ```cpp
 void USkeletalMeshComponent::PlayAnimation(class UAnimationAsset* NewAnimToPlay, bool bLooping)
@@ -102,17 +86,52 @@ void USkeletalMeshComponent::SetAnimation(UAnimationAsset* NewAnimToPlay)
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 
-PlayAnimation 可以理解成同个角色的播放不同动画，SetAnimation则是切换到不同角色后播放新的动画。
-作为验证，你可以用之前的代码设置同个角色，播放不同的动画。
+UE5.2版本中PlayAnimation 和SetAnimation 都能更新动画，但都不能解决材质Bug!
 
 </chatmessage>
 
 <gifwithbutton src="../../assets/unrealgif/hpimpove11.gif"/>
 
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-卧槽！那么后面的同角色动画和不同角色动画切换岂不是要两个接口了？
-</chatmessage>
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
-可以做成两个接口，也可以用枚举切换，这个都是根据实际开发自适应决定的。
+目前有两个解决方案：
 </chatmessage>
+
+### 一. 动态创建组件
+
+![](..%2Fassets%2Fnew%20animation03.png)
+
+
+#### 1.使用 `NewObject` 和 `RegisterComponent`：
+
+```cpp
+// 创建 Actor Component
+USkeletalMeshComponent* SkeletalMeshComponent = NewObject<USkeletalMeshComponent>(this, USkeletalMeshComponent::StaticClass(), TEXT("SkeletalMeshComponent"));
+
+// 注册组件
+SkeletalMeshComponent->RegisterComponent();
+```
+
+#### 2. 使用 `AddInstanceComponent`：
+
+```cpp
+USkeletalMeshComponent* SkeletalMeshComponent = AddInstanceComponent(USkeletalMeshComponent::StaticClass(), TEXT("SkeletalMeshComponent"));
+SkeletalMeshComponent->SetRelativeTransform(InStruct.SkeletalTransform);
+```
+
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+
+- `AddInstanceComponent` 是 `UActorComponent` 的一个成员函数，用于在运行时添加一个新的组件实例到 AActor 上。
+- 这个方法内部实际上也是使用了 `NewObject` 和 `RegisterComponent`，但是提供了更简化的接口，特别是在 AActor 子类中更方便。
+
+</chatmessage>
+
+
+### 二. 缓存材质，传递材质
+
+```cpp
+// 其中SkeletalMesh为传入的新的骨骼网格物体，请自己判断原始模型上有没有材质
+const TArray<FSkeletalMaterial>& CurrentMats = SkeletalMesh->GetMaterials();
+SkeletalMeshComponent->SetSkeletalMesh(SkeletalMesh);
+SkeletalMeshComponent->SetMaterials(CurrentMats);
+```
