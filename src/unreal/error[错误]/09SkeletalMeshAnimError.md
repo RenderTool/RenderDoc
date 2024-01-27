@@ -129,9 +129,28 @@ SkeletalMeshComponent->SetRelativeTransform(InStruct.SkeletalTransform);
 
 ### 二. 缓存材质，传递材质
 
+![](..%2Fassets%2Fnode.png)
+
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+注意不要偷懒直接用SetMaterials,GetMaterials 返回的是 Skeletal Mesh 中的材质数组的一个拷贝，而不是对原始数组的引用。
+</chatmessage>
+
 ```cpp
 // 其中SkeletalMesh为传入的新的骨骼网格物体，请自己判断原始模型上有没有材质
-const TArray<FSkeletalMaterial>& CurrentMats = SkeletalMesh->GetMaterials();
+TArray<FSkeletalMaterial> CurrentMats = SkeletalMesh->GetMaterials();
 SkeletalMeshComponent->SetSkeletalMesh(SkeletalMesh);
 SkeletalMeshComponent->SetMaterials(CurrentMats);
+```
+
+>正确的应该是：
+
+```cpp
+TArray<FSkeletalMaterial> CurrentMats = SkeletalMesh->GetMaterials();
+if (CurrentMats.Num() > 0)
+{
+    for(int32 i=0;i<CurrentMats.Num();++i)
+    {
+    SkeletalMeshComponent->SetMaterial(i,CurrentMats[i].MaterialInterface);
+    }
+}
 ```
