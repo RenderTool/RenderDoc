@@ -82,8 +82,10 @@ category:
 4. **Roughness Map（粗糙度贴图）/Glossiness Map（光泽度贴图）：**
     - 描述物体表面的粗糙度。在Metal/Roughness工作流中，Roughness Map通常表示表面的粗糙度；而在Specular/Glossiness工作流中，Glossiness Map表示光泽度。
 
+
 ![](..%2Fassets%2Froughness.gif)
 
+![](..%2Fassets%2Fccd.jpg)
 
 5. **Height/Displacement Map（高度/位移贴图）：**
     - 描述表面的高度信息，用于模拟凹凸不平的表面细节。在一些情况下，这种信息也可以通过法线贴图来表示。
