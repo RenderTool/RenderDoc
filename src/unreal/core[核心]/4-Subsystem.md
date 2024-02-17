@@ -11,7 +11,6 @@ category:
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 虚幻引擎中的子系统是生命周期受控的自动实例化类。
-这些类提供了易用的扩展点，程序员可直接获得蓝图和Python公开，同时避免繁复的引擎类修改或覆盖。
 </chatmessage>
 
 ![](..%2Fassets%2Fsubs.png)
@@ -279,7 +278,9 @@ Cast是一个模板函数，很显然这里将GetOuter()返回值强转成UGameI
 ![](..%2Fassets%2Fuobjcet.png)
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+
 从源码上来看`GetOuter()` 是 UObjectBase 类中的一个内联返回`UObject`指针的函数，用于获取当前对象的外部对象，即包含当前对象的对象。
+
 </chatmessage>
 
 ![返回的就是`UObject`](..%2Fassets%2Frtuobject.png)
@@ -339,6 +340,16 @@ UE中几乎所有类都继承自 `UObject`，`UGameInstanceSubsystem` 类作为�
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 是的，这样我们可以直接通过UGameInstanceSubsystem访问UGameInstance。
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+我有个疑问，既然他都是UObject指针，他们的生命周期是怎么判定的？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+
+如果我们翻看其他类型的Subsystem,可以知道`GetOuter()`返回的指针各自转换成各自类型的指针，各自类型的指针意味着有各自的生命周期。
+
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>

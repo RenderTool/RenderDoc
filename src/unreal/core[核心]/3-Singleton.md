@@ -13,16 +13,12 @@ category:
 不同的框架实现方法不同，在C++中单例一般是指确保一个类只有一个实例，并为其提供一个全局访问入口。
 </chatmessage>
 
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-可是，怎么确保一个类只能有一个实例呢？
-</chatmessage>
-
 <chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 你先回答我，定义一个类后你是通过什么办法来新建实例的？
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-用new关键字，堆上新建一个对象。
+用new关键字，堆上开辟一块空间给该对象实例。
 </chatmessage>
 
 ```cpp
@@ -44,16 +40,23 @@ int main() {
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" >
-这还不简单，一个类默认拥有bigfour,即四个初始化操作。
+这还不简单，类的四个初始化操作。
 </chatmessage>
 
-1. **默认构造函数 (Default Constructor):** 如果你没有为类定义任何构造函数，编译器将生成一个无参的默认构造函数。它用于创建对象时的初始化，例如 `MyClass obj;`。
+1. **默认构造函数 (Default Constructor):** 
 
-2. **析构函数 (Destructor):** 如果你没有显式定义析构函数，编译器将生成一个默认的析构函数。它用于在对象生命周期结束时进行清理工作，例如释放动态分配的资源。析构函数的名称是类名前加上波浪号 `~`，如 `~MyClass()`。
+>如果没有为类定义任何构造函数，编译器将生成一个无参的默认构造函数。
 
-3. **拷贝构造函数 (Copy Constructor):** 如果你没有定义自己的拷贝构造函数，编译器将生成一个默认的拷贝构造函数。它用于通过复制另一个对象来初始化一个新对象，例如 `MyClass obj1; MyClass obj2 = obj1;`。
+2. **析构函数 (Destructor):** 
+>如果没有显式定义析构函数，编译器将生成一个默认的析构函数。用于在对象生命周期结束时进行清理工作,如 `~MyClass()`。
 
-4. **拷贝赋值运算符 (Copy Assignment Operator):** 如果你没有定义自己的拷贝赋值运算符，编译器将生成一个默认的拷贝赋值运算符。它用于将一个对象的值复制给另一个对象，例如 `MyClass obj1, obj2; obj2 = obj1;`。
+3. **拷贝构造函数 (Copy Constructor):** 
+>如果没有定义自己的拷贝构造函数，编译器将生成一个默认的拷贝构造函数。
+通过复制另一个对象来初始化一个新对象，如 `MyClass obj1; MyClass obj2 = obj1;`。
+
+4. **拷贝赋值运算符 (Copy Assignment Operator):** 
+>如果没有定义自己的拷贝赋值运算符，编译器将生成一个默认的拷贝赋值运算符。
+用于将一个对象的值复制给另一个对象，例如 `MyClass obj1, obj2; obj2 = obj1;`。
 
 ```cpp
 class MyClass
@@ -211,6 +214,11 @@ int main() {
     return 0;
 }
 ```
+
+::: note
+ 考虑UE大多数情况下无需多线程使用单例，因此没有考虑线程安全问题。懒汉式天生线程安全，但饿汉式多线程会存在线程安全问题，必要时考虑使用互斥锁、双重检查。
+:::
+
 <chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
 
  [Language/c++Designer/Singleton|单例](../../language/cpp/designer_设计模式_/1-Sington.html)
@@ -230,6 +238,7 @@ int main() {
 
 ![](..%2Fassets%2Fsingletonc%2B%2B.png)
 
+>在UE中宁可推荐使用结构体单例也不推荐直接用原生单例
 
 ### 经典模式
 
@@ -366,7 +375,7 @@ UGameSingleton* UGameSingleton::GetInstance()
 </chatmessage>
 
 ```cpp
-UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有设置强转失败
+UGameSingleton* Instance = Cast<UGameSingleton>(GEngine->GameSingleton);//没有设置拿不到对应对象实例指针。
 ```
 ![](..%2Fassets%2Fnullptr.jpg)
 
@@ -484,7 +493,7 @@ bool UGameUIManagerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (3).png" :avatarWidth="40" alignLeft>
-蓝图函数库（Blueprint Function Library）并不是严格意义上的单例。蓝图函数库是一种特殊类型的类，通常用于存储一组静态函数，这些函数可供蓝图（Blueprint）图表中的蓝图调用。
+蓝图函数库（Blueprint Function Library）不是单例，蓝图函数库本质是静态函数库，这些函数可供蓝图（Blueprint）图表中的蓝图调用。
 </chatmessage>
 
 ### 扩展
