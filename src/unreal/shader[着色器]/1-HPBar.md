@@ -671,6 +671,74 @@ Lerp 的作用是在两个值之间按照线性关系产生一个中间值。
 
 <gifwithbutton src="../../assets/unrealgif/hpimpove4.gif"/>
 
+## 2024/2/19补
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+这里MAXHP指的当前角色的最大血量，不是设定上的最大血量。以下是一些可能的讨论：
+</chatmessage>
+
+**1. 只更新最大血量**
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+如果只是更新最大血量，直接传参数到我们做好的MAXHP即可，注意这里的MAXHP命名应该更通用点，因为精力条、护甲条等都是通用的。
+
+</chatmessage>
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+单纯的更新MAXHP，视觉上血量反而是减少的，因为我们没有更新对应的血量百分比。
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup01.gif"/>
+
+**2. 更新最大血量和当前血量百分比**
+
+![](..%2Fassets%2Fhppart2.png)
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+以上是游戏中那种只突破最大血量，却不加实际血量的情况。游戏还存在突破体力后将突破部分也给你加上。
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup02.gif"/>
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+
+演示本身是满血，可能不太明显，为此我们可以先给一个减血Buff([Buff机制可以参考我的GAS](../core[核心]/8-GAS.md))
+
+</chatmessage>
+
+>先减血，后突破最大体力并加上突破部分。
+
+<gifwithbutton src="../../assets/unrealgif/hpup03.gif"/>
+
+>先减血，后突破最大体力不加上突破部分。
+
+<gifwithbutton src="../../assets/unrealgif/hpup04.gif"/>
+
+![](..%2Fassets%2Fhppart3.jpg)
+
+> 实现细节
+
+![](..%2Fassets%2Fhppart4.png)
+
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+
+本章不做具体实现，大概思路是：
+
+</chatmessage>
+
+1. 先更新血量委托，这里的血量要参与后面的血量百分比计算。
+2. 修改血量上下限需考虑更新原本的血量百分比，根据Buff效果决定要不要加上突破部分。
+3. 提前设定好=0死亡的委托，以及血量<=最大血量的钳制。
+
+**3. 临时血量表现效果**
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+血量一般是tick操作，所以我们可以添加一个延迟来表现血量变化。
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup05.gif"/>
+
 ## 参考
 
 [1.微软官网](https://learn.microsoft.com/zh-cn/windows/win32/direct3dhlsl/dx-graphics-hlsl-pguide)
