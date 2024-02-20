@@ -40,21 +40,12 @@ actions:
 
 ### 1. 图文对话
 
-<div class="chat-message" style="margin-top: 10px; display: flex; align-items: flex-start;">
-  <div class="avatar">
-    <img src="/assets/emoji/hx.png" style="max-width: 40px; margin-right: 10px;" alt="头像">
-  </div>
-  <div class="message" style="background-color: #e0e0e026; padding: 10px; border-radius: 4px;">
-    babaUE引擎怎么在屏幕中打印内容！
-  </div>
-</div>
-
 <chatmessage avatar="./assets/emoji/hx.png" :avatarWidth="40">
 babaUE引擎怎么在屏幕中打印内容！
 </chatmessage>
 
 <chatmessage avatar="./assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
-直接右键添加一个print节点就行啦！
+  直接右键添加一个print节点就行啦！
 </chatmessage>
 
 ### 2. 外链引用-视频-插件等
@@ -63,12 +54,12 @@ babaUE引擎怎么在屏幕中打印内容！
 
 >蓝图模块基于 **[BlueprintUE](https://blueprintue.com/)**当前BlueprintUE部分是外链，无法保证其长期有效性。因此，每个蓝图都会提供一个备用的图像版本。
 
-<chatmessage avatar="./assets/emoji/dsyj.png" :avatarWidth="40">
- 可我问的是C++怎么写？
+<chatmessage avatar="./assets/emoji/hx.png" :avatarWidth="40">
+可我问的是C++怎么写？
 </chatmessage>
 
-<chatmessage avatar="./assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
-上代码！
+<chatmessage avatar="./assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+上代码！ 
 </chatmessage>
 
 ### 3. 代码演示
@@ -96,12 +87,12 @@ public:
 
 ```
 
-
 <chatmessage avatar="./assets/emoji/bqb (6).png" :avatarWidth="40">
- 为了TA的视力健康，建议采用深色主题。
+为了TA的视力健康，建议采用深色主题。
 </chatmessage>
 
 ## 留情
+
 <chatmessage avatar="./assets/emoji/hh.png" :avatarWidth="40">
 本站大多为个人踩坑合实践记录,如果你发现一些错误和纰漏实属正常。要么是我不懂，要么是我还没写。
 </chatmessage>

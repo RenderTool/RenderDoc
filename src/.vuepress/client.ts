@@ -9,4 +9,7 @@ export default defineClientConfig({
     app.component("chatmessage", chatmessage);
     app.component('gifwithbutton', gifwithbutton);
   },
+  setup(){},
+  layouts: {},
+  rootComponents: [],
 });
