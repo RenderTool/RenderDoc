@@ -90,8 +90,6 @@ UE5.2版本中PlayAnimation 和SetAnimation 都能更新动画，但都不能解
 
 </chatmessage>
 
-<gifwithbutton src="../../assets/unrealgif/hpimpove11.gif"/>
-
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 目前有两个解决方案：
