@@ -40,6 +40,15 @@ actions:
 
 ### 1. 图文对话
 
+<div class="chat-message" style="margin-top: 10px; display: flex; align-items: flex-start;">
+  <div class="avatar">
+    <img src="/assets/emoji/hx.png" style="max-width: 40px; margin-right: 10px;" alt="头像">
+  </div>
+  <div class="message" style="background-color: #e0e0e026; padding: 10px; border-radius: 4px;">
+    babaUE引擎怎么在屏幕中打印内容！
+  </div>
+</div>
+
 <chatmessage avatar="./assets/emoji/hx.png" :avatarWidth="40">
 babaUE引擎怎么在屏幕中打印内容！
 </chatmessage>
