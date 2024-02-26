@@ -49,3 +49,21 @@ enum class EColorBits: uint8;
 };
 ```
 :::
+
+### 使用
+C++ 中的枚举类型并不是严格类型安全的，而且它们的大小是由编译器决定的，因此无法直接用作成员变量的类型。
+在UE中需要用对应的模板函数声明，有点像TObjcetPtr的味道
+
+```cpp
+//带命名空间
+UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "ViewLock")
+TEnumAsByte< EDrawDebugTrace::Type> DebugType;
+
+//不带UPROPERTY的普通枚举
+ EColorBits ColorType;
+ 
+//带UPROPERTY，不带命名空间
+UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "ViewLock")
+TEnumAsByte<EViewLockType> ViewLockType;
+
+```

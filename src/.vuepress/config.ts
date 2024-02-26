@@ -3,7 +3,6 @@ import { searchProPlugin } from "vuepress-plugin-search-pro";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-
   base: "/RenderDoc/",
   lang: "zh-CN",
   title: "RenderDoc",
@@ -12,7 +11,9 @@ export default defineUserConfig({
     searchProPlugin({
       // 索引全部内容
       indexContent: true,
-    }),
+    },
+    
+    ),
   ],
   theme,
   // Enable it with pwa
