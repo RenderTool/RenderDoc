@@ -106,17 +106,24 @@ void UMyClass::MyMethod_Implementation()
 ```
 :::
 
-### BlueprintNativeEvent & BlueprintImplementableEvent
-
-<chatmessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" >
-传统的接口概念差不多，但多了一个BlueprintNativeEvent宏标记！和BlueprintImplementableEvent什么区别？
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
-看文档：
-</chatmessage>
-
 ![](..%2Fassets%2FBLUEPRINTNATIVEENVENT.png)
+
+### 2024/2/28
+
+3. 其他类中调用
+
+#### ①. 普通调用
+```cpp
+Interface->ISetLockVisibility(FocusActor,IsFocus);
+```
+#### ②. BlueprintNativeEvent
+```cpp
+IMenuInterface* Interface = Cast<IMenuInterface>(FocusActor);
+if (Interface)
+{
+    Interface->Execute_ISetLockVisibility(FocusActor,IsFocus);
+}
+```
 
 ### 参考链接
 
