@@ -720,6 +720,13 @@ Lerp 的作用是在两个值之间按照线性关系产生一个中间值。
 
 ![](..%2Fassets%2Fhppart4.png)
 
+### 2024/3/01修
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+其实可以简化封装成代码块
+</chatmessage>
+
+![](..%2Fassets%2Fhppart5.png)
 
 <chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 

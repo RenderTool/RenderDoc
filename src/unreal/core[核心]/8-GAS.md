@@ -1,5 +1,5 @@
 ---
-title: c8.GAS|Gameplay Ability System 初识
+title: c8.GAS|Gameplay Ability System 
 order : 800
 category:
   - u++
@@ -503,11 +503,36 @@ virtual void OnRep_PlayerState() override;
 
 void AHeroCharacter::InitAbilityActorInfo()
 {
-	AYourPlayerState* YourPlayerState =GetPlayerState<AYourPlayerState>();
-	check(YourPlayerState);
-	YourPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(YourPlayerState, this);
-	AbilitySystemComponent = YourPlayerState->GetAbilitySystemComponent();
-	AttributeSet = YourPlayerState->GetAttributeSet();
+   	//拿到PlayState
+	AExorcistPlayerState* ExorcistPlayerState =GetPlayerState<AExorcistPlayerState>();
+	
+	if(!ExorcistPlayerState)
+	{
+		return;
+	}
+	
+	//利用PlayerState初始化组件
+	ExorcistPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(ExorcistPlayerState, this);
+
+	//赋值指针
+	AbilitySystemComponent = ExorcistPlayerState->GetAbilitySystemComponent();
+	AttributeSet = ExorcistPlayerState->GetAttributeSet();
+
+	if (IsLocallyControlled())
+   {
+     //调用子系统，利用子系统转发GE委托或者能力等
+      UExorcistAbilitySubsystem* ExorcistAbilitySubsystem = UGameplayStatics::GetGameInstance(this)->GetSubsystem<UExorcistAbilitySubsystem>();
+   
+      if(!ExorcistAbilitySubsystem)
+      {
+       return;
+      }
+      //子系统初始化组件，并将初始GE加载显示。
+      ExorcistAbilitySubsystem->InitOverlay(AbilitySystemComponent, AttributeSet);
+      ExorcistAbilitySubsystem->BroadCastInitialValues();
+       
+   }
+	
 }
 void AHeroCharacter::PossessedBy(AController* NewController)
 {
@@ -569,7 +594,7 @@ virtual void HealthChanged(const FOnAttributeChangeData& Data);
 ```
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-目前我们的AS变化是不会反馈到UI上面的，可以写个UI子系统\管理类，或者写个技能子系统专门转发这些AS属性变化的委托。
+目前我们的AS变化是不会反馈到UI上面的，可以写个UI子系统\管理类，或者写个技能子系统负责综合管理这个项目的GAS相关模块处理
 </chatmessage>
 
 
@@ -582,39 +607,70 @@ virtual void HealthChanged(const FOnAttributeChangeData& Data);
 
 #include "CoreMinimal.h"
 #include "GameplayEffectTypes.h"
+#include "GameplayEffect.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "ExorcistAbilitySubsystem.generated.h"
 
 class UExorcistAttributeSet;
 class UAbilitySystemComponent;
 
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangeDelegate,float,NewHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangeDelegate,float,NewMaxHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnArmorChangeDeleagate,float,NewArmor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxArmorChangeDeleagate,float,NewMaxArmor);
 
 UCLASS()
 class EXORCIST_API UExorcistAbilitySubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 public:
+	//委托
+	UPROPERTY(BlueprintAssignable, Category = "AbilitySubsystem|Health")
+	FOnHealthChangeDelegate OnHealthChanged;
+	
+	UPROPERTY(BlueprintAssignable, Category = "AbilitySubsystem|MaxHealth")
+	FOnMaxHealthChangeDelegate OnMaxHealthChanged;
+	
+	UPROPERTY(BlueprintAssignable, Category = "AbilitySubsystem|Armor")
+	FOnArmorChangeDeleagate OnArmorChanged;
+	
+	UPROPERTY(BlueprintAssignable, Category = "AbilitySubsystem|MaxArmor")
+	FOnMaxArmorChangeDeleagate OnMaxArmorChanged;
+
+	//默认接口
 	virtual bool ShouldCreateSubsystem(UObject* Outer) const override;
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 	virtual void Deinitialize() override;
 
-	UPROPERTY(BlueprintAssignable, Category = "AbilitySubsystem|Health")
-	FOnHealthChangeDelegate OnHealthChanged;
-
+	//初始化组件
+	UFUNCTION(BlueprintCallable, Category = "AbilitySubsystem")
+	void InitOverlay(UAbilitySystemComponent* Asc,UAttributeSet* As);
+	
 	//通过子系统转发AS属性更新
 	UFUNCTION(BlueprintCallable, Category = "AbilitySubsystem")
 	void BroadCastInitialValues();
 
-	UPROPERTY(BlueprintReadOnly,Category = "AbilitySubsystem")
-	TObjectPtr<UExorcistAttributeSet> ExorcistAttributeSet;
-	
-	UPROPERTY(BlueprintReadOnly,Category = "AbilitySubsystem")
-    TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	//使用GE，传入拥有组件的Actor和目标Actor以及对应的GE。
+	UFUNCTION(BlueprintCallable, Category = "AbilitySubsystem")
+	void ApplyEffectToTarget(AActor* SourceActor,AActor* TargetActor,TSubclassOf<UGameplayEffect> GameplayEffect,int32 Level=1);
 
-private:
+	//尝试移除TargetActor身上某种GE。
+	UFUNCTION(BlueprintCallable, Category = "AbilitySubsystem")
+	void RemoveTargetEffectByClass(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffect);
+
 	
-	void OnHealthChange(const FOnAttributeChangeData& OnAttributeChangeData);
+	//使用GE，传入拥有组件的Actor和目标Actor以及对应的GE。
+	UFUNCTION(BlueprintCallable, Category = "AbilitySubsystem")
+	void UpdateAttribute( FGameplayAttribute Attribute, float NewBaseValue);
+	
+protected:
+	
+	UPROPERTY(BlueprintReadOnly,Category="AbilitySubsystem")
+	TObjectPtr<UAttributeSet> AttributeSet;
+	
+	UPROPERTY(BlueprintReadOnly,Category = "AbilitySubsystem")
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	
 };
 ```
@@ -642,43 +698,116 @@ void UExorcistAbilitySubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-void UExorcistAbilitySubsystem::BroadCastInitialValues()
+void UExorcistAbilitySubsystem::InitOverlay(UAbilitySystemComponent* Asc, UAttributeSet* As)
 {
-	// 获取本地玩家对应的 State
-	ULocalPlayer* LocalPlayer = GetWorld()->GetFirstLocalPlayerFromController();
-	if (!LocalPlayer)
+	if (!Asc || !As)
 	{
 		return;
 	}
 
-	AExorcistPlayerState* PlayerState = Cast<AExorcistPlayerState>(LocalPlayer->PlayerController);
-	if (!PlayerState)
-	{
-		return;
-	}
+	AbilitySystemComponent = Asc;
+	AttributeSet = As;
 
-	// 获取属性
-	ExorcistAttributeSet = CastChecked<UExorcistAttributeSet>(PlayerState->GetAttributeSet());
+	const UExorcistAttributeSet* ExorcistAttributeSet = Cast<UExorcistAttributeSet>(AttributeSet);
 	if (!ExorcistAttributeSet)
 	{
 		return;
 	}
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ExorcistAttributeSet->GetHealthAttribute()).
+	                        AddLambda(
+		                        [this](const FOnAttributeChangeData& OnAttributeChangeData)
+		                        {
+			                        OnHealthChanged.Broadcast(OnAttributeChangeData.NewValue);
+		                        }
+	                        );
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ExorcistAttributeSet->GetMaxHealthAttribute()).
+	                        AddLambda(
+		                        [this](const FOnAttributeChangeData& OnAttributeChangeData)
+		                        {
+			                        OnMaxHealthChanged.Broadcast(OnAttributeChangeData.NewValue);
+		                        }
+	                        );
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ExorcistAttributeSet->GetArmorAttribute()).
+	                        AddLambda(
+		                        [this](const FOnAttributeChangeData& OnAttributeChangeData)
+		                        {
+			                        OnArmorChanged.Broadcast(OnAttributeChangeData.NewValue);
+		                        }
+	                        );
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ExorcistAttributeSet->GetMaxArmorAttribute()).
+	                        AddLambda(
+		                        [this](const FOnAttributeChangeData& OnAttributeChangeData)
+		                        {
+			                        OnMaxArmorChanged.Broadcast(OnAttributeChangeData.NewValue);
+		                        }
+	                        );
+}
 
-	// 广播初始值
-	OnHealthChanged.Broadcast(ExorcistAttributeSet->GetHealth());
 
-	AbilitySystemComponent = PlayerState->GetAbilitySystemComponent();
-	if (AbilitySystemComponent)
+void UExorcistAbilitySubsystem::BroadCastInitialValues()
+{
+	if (AttributeSet && AbilitySystemComponent)
 	{
-		// 绑定委托给我们的 OnHealthChange
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(ExorcistAttributeSet->GetHealthAttribute())
-		.AddUObject(this, &UExorcistAbilitySubsystem::OnHealthChange);
+		const UExorcistAttributeSet* ExorcistAttributeSet = CastChecked<UExorcistAttributeSet>(AttributeSet);
+		
+		OnHealthChanged.Broadcast(ExorcistAttributeSet->GetHealth());
+		OnMaxHealthChanged.Broadcast(ExorcistAttributeSet->GetMaxHealth());
+		OnArmorChanged.Broadcast(ExorcistAttributeSet->GetArmor());
+		OnMaxArmorChanged.Broadcast(ExorcistAttributeSet->GetMaxArmor());
 	}
 }
-//一旦属性被修改会执行这个函数，然后我们用我们的委托转发他。
-void UExorcistAbilitySubsystem::OnHealthChange(const FOnAttributeChangeData& OnAttributeChangeData)
+
+void UExorcistAbilitySubsystem::ApplyEffectToTarget(AActor* SourceActor, AActor* TargetActor,
+                                                    TSubclassOf<UGameplayEffect> GameplayEffect,int32 Level)
 {
-	OnHealthChanged.Broadcast(OnAttributeChangeData.NewValue);
+	//检查传入的对象
+	if (SourceActor == nullptr || TargetActor == nullptr || GameplayEffect == nullptr)
+	{
+		return;
+	}
+	//获取要使用的对象GAS组件
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	if (TargetASC == nullptr)
+	{
+		return;
+	}
+	FGameplayEffectContextHandle Context = TargetASC->MakeEffectContext();
+	Context.AddSourceObject(SourceActor);
+	FGameplayEffectSpecHandle SpecHandle = TargetASC->MakeOutgoingSpec(GameplayEffect, Level, Context);
+	FGameplayTagContainer EffectTags;
+	TargetASC->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), TargetASC);
+
+	//这个可以返回所有目标拥有的GETag
+	if(TargetActor->GetNetOwningPlayer())
+	{
+		SpecHandle.Data.Get()->GetAllAssetTags(EffectTags);
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, FString::SanitizeFloat(EffectTags.Num()));
+	}
+
+}
+void UExorcistAbilitySubsystem::RemoveTargetEffectByClass(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffect)
+{
+	
+	//检查传入的对象
+	if ( TargetActor == nullptr || GameplayEffect == nullptr)
+	{
+		return;
+	}
+	//获取要使用的对象GAS组件
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	if (TargetASC == nullptr)
+	{
+		return;
+	}
+	TargetASC->RemoveActiveGameplayEffectBySourceEffect(GameplayEffect, TargetASC);
+}
+
+void UExorcistAbilitySubsystem::UpdateAttribute(FGameplayAttribute Attribute, float NewBaseValue)
+{
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->SetNumericAttributeBase(Attribute, NewBaseValue);
+	}
 }
 ```
 :::
@@ -732,6 +861,76 @@ void UExorcistAbilitySubsystem::OnHealthChange(const FOnAttributeChangeData& OnA
 之前我们已经讨论过了，比如王者荣耀LOL中的英雄技能点，又比如守望先锋中的源氏大招。
 </chatmessage>
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+既然是技能，必定会有开始和结束，官方文档中对技能的基本流程是这样解释的：
+</chatmessage>
+
+![](..%2Fassets%2FGASuse006.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+首先它不是什么新东西，也摆脱不了UObject，更逃不开面向对象。
+</chatmessage>
+
+![](..%2Fassets%2FGASuse007.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+就像一开始属性Actor内置函数BeginPlay、TickComponent什么的，GA也有自己的一套规则，我们来简单翻译一下文档对各个函数的描述。
+</chatmessage>
+
+```cpp
+TryActivateAbility() - 尝试激活能力。调用CanActivateAbility()。输入事件可以直接调用此函数。
+- 还处理执行逻辑的实例化和复制/预测调用。
+
+CallActivateAbility() - 受保护的非虚函数。执行一些样板“预激活”工作，然后调用ActivateAbility()。
+
+ActivateAbility() - 能力的执行函数。子类希望重写此函数。
+
+CommitAbility() - 提交资源/冷却等。ActivateAbility() 必须调用此函数！
+
+CancelAbility() - 中断能力（来自外部源）。
+
+EndAbility() - 能力已结束。这是由能力自身调用以结束自身的。
+```
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+也就是说以往我们手写的战斗逻辑也可以写在这里吗？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+是的，以往的播放翻滚蒙太奇、跳跃都可以看成一个技能。
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+那么和我们自己写有什么区别？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+首先，简单的技能写起来没啥毛病。如果技能复杂度提升了，比如需要考虑各个技能的相互抑制、共生等关系，光定义一堆bool或者enum就够喝一壶了。
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
+他是怎么解决这个技能互斥共生问题的呢？比如一些防御、闪避技能是无非受到某些伤害的。
+</chatmessage>
+
+### GameplayTags
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+官方并没有用bool和enum，而是用了GameplayTags来配置技能之间的一些互斥、联系等。
+</chatmessage>
+
+![](..%2Fassets%2FGASuse008.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+咱们可以新建一个GA类看看。
+</chatmessage>
+
+![](..%2Fassets%2FGASuse009.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+相比之前的GE，这个类友好了很多。
+</chatmessage>
+
+![](..%2Fassets%2FGASuse010.png)
 
 ## 参考链接
 [官网](https://docs.unrealengine.com/5.0/zh-CN/getting-started-with-the-gameplay-ability-system-in-unreal-engine/)
