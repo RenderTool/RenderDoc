@@ -1,5 +1,5 @@
 ---
-title: NT-2.网络复制|TODO
+title: NT-2.网络同步-01|Actor复制
 order: 20
 category:
   - unreal
@@ -37,13 +37,10 @@ Baba，我遇到问题了！
 我明明已经启用了网络复制！为什么客户端中按1，服务端没有同步生成？
 </chatmessage>
 
+
 ## Replication|复制
 
 >复制是服务器将信息/数据传递给客户端的行为。
-
-<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
-案例中你应该只是启用了Actor的网络复制属性如下图：
-</chatmessage>
 
 ![中文](..%2Fassets%2Freplicate.png)
 
@@ -59,21 +56,54 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 }
 ```
 
->如果服务器生成了将“bReplicates”设置为 TRUE 的 Actor，则将在所有客户端上生成和复制。<br>
-如果一个客户端生成了这个 Actor，那么 Actor 将只存在于这个客户端上。
-
 ![](..%2Fassets%2Factorfz001.png)
 
-<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
-你想啊，如果客户端可以随便生成数据那岂不是外挂满天飞了？
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+在UE中只有Actor拥有的Replication，一切继承自Actor的派生都有这个能力，当然也包括组件。
 </chatmessage>
 
-<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
-对哦！这么说来客户端确实不应该生成Actor!
+![](..%2Fassets%2Freplicate001.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+现在，咱先不讨论SpawnActor的情况，直接将一个Actor丢入场景。并且没有启用复制。
+</chatmessage>
+
+![](..%2Fassets%2Freplicate002.png)
+
+![](..%2Fassets%2Freplicate004.png)
+
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+没有复制也能显示？这个复制可有可无？
+</chatmessage>
+
+![](..%2Fassets%2Freplicate003.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+并不是，咱们虽然在客户端和服务端都看到了这个Actor,他们都只是独立的副本，并且是因为咱们启用了`客户端上的网络加载`
+
+</chatmessage>
+
+![](..%2Fassets%2Freplicate005.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+咱们关闭它就原形毕露了。
+</chatmessage>
+
+![](..%2Fassets%2Freplicate006.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+虽然没有这个物体，此次依然会有球体的碰撞。
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup10.gif"/>
+
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+啊？我怎么越听越迷糊了？为什么关闭了网络加载依然会有碰撞？
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-我们先来补充几个知识点！
+别急，咱们先来补几个概念
 </chatmessage>
 
 ## 网络权威
@@ -85,7 +115,7 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 :::
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-客户端确实生成了Actor，但最终解释权在服务端，即服务器拥有绝对权限(Authority)
+客户端确实生成了Actor，但最终解释权在服务端，即服务器拥有绝对权限(Authority)。
 </chatmessage>
 
 ![](..%2Fassets%2Fauthority.png)
@@ -127,13 +157,9 @@ GetLocalRole() == ROLE_Authority
 
 ![](..%2Fassets%2Fnetwork002.png)
 
-<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
-这不就是个枚举值吗?
-</chatmessage>
-
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
-没错，但其中几个概念我们需要搞懂。也可以参考[文档](https://docs.unrealengine.com/4.27/zh-CN/InteractiveExperiences/Networking/Actors/Roles/)
+参考[文档](https://docs.unrealengine.com/4.27/zh-CN/InteractiveExperiences/Networking/Actors/Roles/)
 
 </chatmessage>
 
@@ -188,8 +214,42 @@ enum ENetRole : int
 
 <gifwithbutton src="../../assets/unrealgif/hpimpove5.gif"/>
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+为了测试，咱们把代码写在Actor的tick中，然后Debug每个场景中的的网络权限。
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup11.gif"/>
 
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+很显然，客户端并没有网络权限，因为它只是个无情的模拟机器。
+</chatmessage>
+
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+既然用不用Replication都能正确显示，那么这个Replication到底有什么用？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+场景默认生成的Actor确实看不出太多区别，但你提到的SpawnActor就看出大区别了。
+</chatmessage>
+
+![](..%2Fassets%2Freplicate008.png)
+
+![](..%2Fassets%2Freplicate009.png)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+将复制关闭后，即便是服务端也只能在本地生成，因为这个Actor的复制并没有启用。即便是咱们启用了所谓的`客户端上的网络加载`.
+
+</chatmessage>
+
+![](..%2Fassets%2Freplicate010.png)
+
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+
+我可以理解成一开始这个level中压根就没有这个对象是吧，也就不存在`客户端上的网络加载`行为了。
+
+</chatmessage>
 
 ## 网络模型
 
@@ -279,73 +339,63 @@ GamePlay框架中各自对应的网络职责划分（大佬的图）
 ![](..%2Fassets%2Fsimple.svg)
 
 
-
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 现在康康你原本的思路。
 </chatmessage>
 
 ![](..%2Fassets%2Ferrorpc.svg)
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+So现在问题就变成怎么让咱的客户端调用RPC让服务器Spawn这个Actor,然后同步给其他人。
+</chatmessage>
+
 ## 实践
 
-1. **定义复制属性：** 在您的Actor类中，您需要定义哪些属性需要在网络中进行复制。这通常通过使用`Replicated`标记来完成。例如：
+### BP
 
-   ```cpp
-   UPROPERTY(Replicated)
-   float Health;
-   ```
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+UE的BP中，可以在自定义事件中标记RPC状态，默认是不复制的。
+</chatmessage>
 
-   这将使`Health`属性被复制到所有连接的客户端。
+![](..%2Fassets%2Freplicate007.png)
 
-2. **重写复制函数：** 在您的Actor类中，您需要重写`GetLifetimeReplicatedProps`函数，以告诉引擎哪些属性应该在复制中被考虑。例如：
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+现在咱们搞一个在服务器上调用的事件，并确保Actor本身可以复制。
+</chatmessage>
 
-   ```cpp
-   void AYourActor::GetLifetimeReplicatedProps(TArray< FLifetimeProperty > & OutLifetimeProps) const
-   {
-       Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+![](..%2Fassets%2Freplicate011.png)
 
-       // DOREPLIFETIME for each replicated variable
-       DOREPLIFETIME(AYourActor, Health);
-   }
-   ```
+<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
+妙啊！这样相当于客户端申请让服务器生成这个Actor
+</chatmessage>
 
-3. **在服务器上更改属性：** 当服务器上的属性更改时，使用`ServerReplicateFunction`之类的自定义RPC（远程过程调用）函数来通知客户端。例如：
+<gifwithbutton src="../../assets/unrealgif/hpup12.gif"/>
 
-   ```cpp
+### C++
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+无论它咱们变，始终逃不开对象、类、函数调用这个框架，UE中有只需要在函数名中加入对应的宏标记即可
+</chatmessage>
+
+```cpp
    // .h
    UFUNCTION(Server, Reliable)
-   void ServerSetHealth(float NewHealth);
+   void ServerSetHealth();
 
    // .cpp
-   void AYourActor::ServerSetHealth_Implementation(float NewHealth)
+   void AMyActor::ServerSetHealth_Implementation()
    {
-       Health = NewHealth;
+     //spawn的代码
    }
-   ```
+```
 
-4. **在客户端上接收属性更改：** 客户端会自动接收服务器上的属性更改。确保您在客户端上有相应的操作来处理这些变化。
+<chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
+很显然，这种情况只适用于生成启用复制的Actor,可是有时候我想同步一些变量该怎么办？
+</chatmessage>
 
-   ```cpp
-   // 处理属性更改的函数
-   void AYourActor::OnRep_Health()
-   {
-       // 在这里处理 Health 属性的变化
-   }
-   ```
-
-5. **在服务器上生成对象：** 如果您希望在服务器上生成新的Actor（例如，一个新的游戏对象），确保使用Server RPC在服务器上生成，而不是直接在客户端上生成。
-
-   ```cpp
-   // 在服务器上生成新的Actor
-   void AYourGameMode::SpawnNewActor()
-   {
-       if (HasAuthority())
-       {
-           AYourActor* NewActor = GetWorld()->SpawnActor<AYourActor>(...);
-           // 在此添加其他处理逻辑
-       }
-   }
-   ```
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+这个就看下一章吧！
+</chatmessage>
    
 ## 扩展阅读
 
