@@ -4,31 +4,22 @@ order: 20
 category:
   - unreal
 ---
-## 导读
-<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
-Baba，我遇到问题了！
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
-说！
-</chatmessage>
+## 问题
 
 <chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
-我在我的角色类中添加了如下函数：
+角色类中添加了如下函数：按数字1可以Spawn生成Actor
 </chatmessage>
-
->按数字1可以Spawn生成Actor
 
 ![](..%2Fassets%2FspwanActor.png)
 
 <chatmessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
-接着，我进行了简单网络同步测试。同时运行了客户端和服务端后，发现在客户端按1生成Actor，服务端并没有同步生成！
+进行简单网络同步测试。同时客户端和服务端后，客户端按1生成Actor，服务端并没有同步
 </chatmessage>
 
 ![](..%2Fassets%2Fclientreplicate.png)
 
 <chatmessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
-然而，神奇的是在服务端按1时，客户端却同步了！
+但是，在服务端按1时，客户端却同步了！
 </chatmessage>
 
 ![](..%2Fassets%2Fserverreplicate.png)
@@ -37,6 +28,9 @@ Baba，我遇到问题了！
 我明明已经启用了网络复制！为什么客户端中按1，服务端没有同步生成？
 </chatmessage>
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+咱先搞懂几个概念
+</chatmessage>
 
 ## Replication|复制
 
@@ -59,41 +53,47 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 ![](..%2Fassets%2Factorfz001.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-在UE中只有Actor拥有的Replication，一切继承自Actor的派生都有这个能力，当然也包括组件。
+在UE中继承自Actor的派生都有Replication(包括组件)
 </chatmessage>
 
 ![](..%2Fassets%2Freplicate001.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-现在，咱先不讨论SpawnActor的情况，直接将一个Actor丢入场景。并且没有启用复制。
+先不讨论SpawnActor的情况，在场景中置入测试Actor，并关闭复制。
 </chatmessage>
 
 ![](..%2Fassets%2Freplicate002.png)
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+关闭复制。
+</chatmessage>
+
 ![](..%2Fassets%2Freplicate004.png)
 
 <chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
-没有复制也能显示？这个复制可有可无？
+运行后，两端都能正常显示，这个复制可有可无？
 </chatmessage>
 
 ![](..%2Fassets%2Freplicate003.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+并不是，虽然两端都看到了这个Actor,他们彼此独立。
+</chatmessage>
 
-并不是，咱们虽然在客户端和服务端都看到了这个Actor,他们都只是独立的副本，并且是因为咱们启用了`客户端上的网络加载`
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+若将`客户端上的网络加载`关闭，原形毕露。
 
 </chatmessage>
 
 ![](..%2Fassets%2Freplicate005.png)
 
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-咱们关闭它就原形毕露了。
-</chatmessage>
 
 ![](..%2Fassets%2Freplicate006.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-虽然没有这个物体，此次依然会有球体的碰撞。
+此时虽不可见，生成处依然会有球体的碰撞。
 </chatmessage>
 
 <gifwithbutton src="../../assets/unrealgif/hpup10.gif"/>
@@ -103,7 +103,7 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-别急，咱们先来补几个概念
+别急，咱再补几个概念。
 </chatmessage>
 
 ## 网络权威
@@ -115,7 +115,7 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 :::
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-客户端确实生成了Actor，但最终解释权在服务端，即服务器拥有绝对权限(Authority)。
+客户端确实生成了Actor，但我们认为所有客户端不可信，即服务器拥有绝对权限(Authority)。
 </chatmessage>
 
 ![](..%2Fassets%2Fauthority.png)
@@ -140,7 +140,7 @@ if (HasAuthority())
 
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-为了更进一步，我们翻看翻看源码。
+翻看翻看源码，一探究竟。
 </chatmessage>
 
 ![](..%2Fassets%2Fnetwork001.png)
@@ -202,6 +202,9 @@ enum ENetRole : int
 ```
 :::
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+蓝图中节点如下：
+</chatmessage>
 
 
 ![](..%2Fassets%2Fcsnode.png)
@@ -215,14 +218,14 @@ enum ENetRole : int
 <gifwithbutton src="../../assets/unrealgif/hpimpove5.gif"/>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-为了测试，咱们把代码写在Actor的tick中，然后Debug每个场景中的的网络权限。
+便于测试，咱把代码写在Actor的tick中，然后Debug每个场景中的的网络权限。
 </chatmessage>
 
 <gifwithbutton src="../../assets/unrealgif/hpup11.gif"/>
 
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-很显然，客户端并没有网络权限，因为它只是个无情的模拟机器。
+客户端并没有网络权限，只是个无情的模拟机器。
 </chatmessage>
 
 <chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
@@ -239,7 +242,7 @@ enum ENetRole : int
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
-将复制关闭后，即便是服务端也只能在本地生成，因为这个Actor的复制并没有启用。即便是咱们启用了所谓的`客户端上的网络加载`.
+将复制关闭后，在服务端，也只能在本地生成，无法同步。即便是开启`客户端上的网络加载`依然如此。
 
 </chatmessage>
 
@@ -247,7 +250,7 @@ enum ENetRole : int
 
 <chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
 
-我可以理解成一开始这个level中压根就没有这个对象是吧，也就不存在`客户端上的网络加载`行为了。
+可以理解成一开始这个Level中压根就没有这个对象是吧，也就不存在`客户端上的网络加载`行为了。
 
 </chatmessage>
 
@@ -305,33 +308,23 @@ GamePlay框架中各自对应的网络职责划分（大佬的图）
 ### RPC|Remote Procedure Calls
 
 <chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
-你说客户端没有什么权限。可是！客户端总得发送我的按键消息吧！
+你说客户端没有什么权限,客户端总得发送我的按键消息吧！
 </chatmessage>
 
  <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 是的，客户端总得通过一个方法去告诉服务器自己的行为，我们把这个过程称为RPC.
  </chatmessage>
 
-"RPC" 是 "Remote Procedure Call"（远程过程调用）的缩写。它是一种通信协议和编程模型，用于在不同的计算机或进程之间调用远程服务或函数，就像调用本地函数一样。
-
-在软件开发中，特别是在分布式系统中，RPC允许一个程序调用另一个地址空间（通常在远程机器上）的过程或服务，而开发人员不必担心底层网络通信的细节。
-
-基本思想是，通过RPC，你可以调用远程机器上的函数，就好像调用本地函数一样，而不必手动处理底层网络通信和数据传输。这样的抽象使得分布式系统的开发更加方便。
-
-在RPC中，通常有两个角色：
-
-1. **客户端(Client):** 发起RPC调用的一方。
-2. **服务器(Server):** 响应RPC调用的一方。
+>"RPC" 是 "Remote Procedure Call"（远程过程调用）的缩写。它是一种通信协议和编程模型，
+用于在不同的计算机或进程之间调用远程服务或函数，就像调用本地函数一样。
 
 
 <chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
-6!所以我该怎么改才能让客户端生成的Actor能同步到服务器呢？
+SO!UE中该怎么让客户端生成的Actor能同步到服务器呢？
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-
-理解还是有误！客户端没有权限生成Actor让**服务器**去同步（客户端不可靠）,我给你画个简单的流程请求图吧！
-
+理解还是有误！客户端并没有直接权限生成Actor（客户端不可靠）。
 </chatmessage>
 
 >注意这里的服务器描述可能不准确，LS确实是生成球体，而DS模式可能只是生成球体的代理。
@@ -345,11 +338,7 @@ GamePlay框架中各自对应的网络职责划分（大佬的图）
 
 ![](..%2Fassets%2Ferrorpc.svg)
 
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-So现在问题就变成怎么让咱的客户端调用RPC让服务器Spawn这个Actor,然后同步给其他人。
-</chatmessage>
-
-## 实践
+## 解决|RPC调用
 
 ### BP
 
@@ -360,22 +349,18 @@ UE的BP中，可以在自定义事件中标记RPC状态，默认是不复制的�
 ![](..%2Fassets%2Freplicate007.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-现在咱们搞一个在服务器上调用的事件，并确保Actor本身可以复制。
+确保Actor本身可以复制，定义一个在服务器上执行的事件。
 </chatmessage>
 
 ![](..%2Fassets%2Freplicate011.png)
 
 <chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
-妙啊！这样相当于客户端申请让服务器生成这个Actor
+搜嘎！客户端申请服务器生成这个Actor，然后自动同步给其他客户端。
 </chatmessage>
 
 <gifwithbutton src="../../assets/unrealgif/hpup12.gif"/>
 
 ### C++
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-无论它咱们变，始终逃不开对象、类、函数调用这个框架，UE中有只需要在函数名中加入对应的宏标记即可
-</chatmessage>
 
 ```cpp
    // .h
@@ -390,11 +375,11 @@ UE的BP中，可以在自定义事件中标记RPC状态，默认是不复制的�
 ```
 
 <chatmessage avatar=" ../../assets/emoji/bqb (6).png" :avatarWidth="40">
-很显然，这种情况只适用于生成启用复制的Actor,可是有时候我想同步一些变量该怎么办？
+一些变量比如速度如何同步呢？
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-这个就看下一章吧！
+请看下一章。
 </chatmessage>
    
 ## 扩展阅读
