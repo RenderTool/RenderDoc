@@ -34,14 +34,6 @@ export default sidebar({
             children: "structure",
         }
     ],
-    "/3Dtools/": [
-        {
-            text: "目录",
-            prefix: "",
-            link: "",
-            children: "structure",
-        }
-    ],
     "/algorithm/": [
         {
             text: "目录",

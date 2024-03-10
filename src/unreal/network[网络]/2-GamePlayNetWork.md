@@ -29,7 +29,7 @@ category:
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-咱先搞懂几个概念
+先搞懂几个概念
 </chatmessage>
 
 ## Replication|复制
