@@ -1,5 +1,5 @@
 ---
-title: F16.SetViewTargetWithBlend平滑过度相机的几种方法
+title: F16.SetViewTargetWithBlend|相机平滑切换
 order : 16
 category:
   - u++
