@@ -1,7 +1,6 @@
 import {hopeTheme, PageInfo} from "vuepress-theme-hope";
 import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
-
 export default hopeTheme({
 
   darkmode : "toggle",
@@ -41,7 +40,7 @@ export default hopeTheme({
   },
   plugins:
     {
-      
+     searchPro:true,
     blog: true,
     // You should generate and use your own comment service
     comment: {
@@ -57,7 +56,7 @@ export default hopeTheme({
       
       align: true,
       attrs: true,
-      card: true,
+      // card: true,
 
       // install chart.js before enabling it
       // chart: true,
@@ -122,13 +121,11 @@ export default hopeTheme({
       // install @vue/repl before enabling it
       // vuePlayground: true,
     },
-
     // uncomment these if you want a pwa
     pwa: {
       update: "force",
       favicon: "/favicon.ico",
       cacheHTML: true,
-      cachePic: true,
       appendBase: true,
       apple: {
         icon: "/assets/icon/apple-icon-152.png",

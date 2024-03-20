@@ -83,11 +83,13 @@ void AMyTest::BeginPlay()
 
 ![](..%2Fassets%2Factorbeginplay.png)
 
+
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
 
 可是继承的父类Actor中 `BeginPlay`只是一个虚函数，而且没有宏标记！他是怎么映射到蓝图中的?
 
 </chatmessage>
+
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
@@ -146,16 +148,20 @@ void AActor::BeginPlay()
 
 </chatmessage>
 
-![](..%2Fassets%2Feventbegin%21.png)
+
+![](..%2Fassets%2Feventbegin.png)
+
 
 :::note
 `meta=(DisplayName = "BeginPlay")`
 用于修改显示节点名。
 :::
 
+
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没错，这就解释了为什么继承的Actor执行后会先调用蓝图部分的函数再调用C++。
 </chatmessage>
+
 
 >因为我们加了Super::BeginPlay();所以执行顺序如下：
 1. 重写后的Actor`BeginPlay`

@@ -11,15 +11,21 @@
     "docs:update-package": "npx vp-update"
   },
   "devDependencies": {
-    "@vuepress/bundler-webpack": "^2.0.0-rc.8",
-    "@vuepress/client": "2.0.0-beta.67",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.67",
-    "vue": "^3.3.4",
-    "vuepress": "2.0.0-beta.67",
-    "vuepress-plugin-search-pro": "^2.0.0-beta.244",
-    "vuepress-theme-hope": "2.0.0-beta.243"
+    "@vuepress/bundler-vite": "2.0.0-rc.8",
+    "@vuepress/bundler-webpack": "2.0.0-rc.8",
+    "@vuepress/plugin-register-components": "2.0.0-rc.15",
+    "@waline/client": "^3.1.3",
+    "sass-loader": "^14.1.1",
+    "vue": "^3.4.21",
+    "vuepress": "2.0.0-rc.8",
+    "vuepress-plugin-components": "2.0.0-rc.31",
+    "vuepress-plugin-md-enhance": "2.0.0-rc.31",
+    "vuepress-plugin-search-pro": "2.0.0-rc.31",
+    "vuepress-theme-hope": "2.0.0-rc.31"
   },
   "dependencies": {
+    "@vuepress/plugin-pwa": "2.0.0-rc.20",
+    "typescript": "^5.4.2",
     "uuid": "^9.0.1"
   }
 }
