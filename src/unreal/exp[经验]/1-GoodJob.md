@@ -21,3 +21,11 @@ category:
 </chatmessage>
 
 ![](..%2Fassets%2Fbefe.jpg)
+
+### 3.迁移
+
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
+有效目录
+</chatmessage>
+
+![](..%2Fassets%2Fsc_svn_added_filese.png)

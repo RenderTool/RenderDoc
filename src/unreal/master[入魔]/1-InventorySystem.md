@@ -226,7 +226,7 @@ UE中对应的组件——WidgetSwitcher。
 
 ![](..%2Fassets%2Finv017.png)
 
-### 小实验
+### 小实验1
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 纸上得来终觉浅，咱还是开始动手做个实验Demo吧。
@@ -449,19 +449,94 @@ struct FPickUpInfoStruct
 <gifwithbutton src="../../assets/unrealgif/hpup30.gif"/>
 
 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+从上可知，构思①和构思②都存在这个问题，只能想办法过滤掉不在背包的内容，即对射线命中的物体进行一次是否在列表中查询操作。
+</chatmessage>
 
->对应蓝图,因为要进行C++重构，这里也就实现了一个简单的展示逻辑
+
+>背包组件对应蓝图,后面要进行C++重构，而且其实有更好的办法。
 
 ![](..%2Fassets%2Finv038.png)
 
 ![](..%2Fassets%2Finv039.png)
 
+## 背包部分
+
+>永劫里面，道具还分可暂存道具比如钩锁、武备、药品、护甲粉和直接使用道具，比如果实这种。为此我们需要设计一个合理的使用
+机制，这也是我们接下来讨论背包部分的重点。
+
+### 使用时机
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+物品被分成了道具背包、魂玉背包、武器背包。其实吧，加个配置字段就行了，生成的物体可以直接用还是缓存到附近列表（后续称做临时背包）、背包中。
+</chatmessage>
+
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-从上可知，只要过滤掉不在背包的内容即可。
+
+但你发现没，这些直接使用的道具往往不是我们口中的掉落`道具`，他们更像是功能性道具，比如果实、萤火虫。
+
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+也就是说他们可能被另外一个Actor携带和配置，永劫里小怪（AI Pawn）死后也会有掉落道具的行为。
+</chatmessage>
+
+
+### 小实验2
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+我们整理一下物体从看到到使用的简单过程吧。
+</chatmessage>
+
+![](..%2Fassets%2Finv040.jpg)
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+简单分析一下：
+</chatmessage>
+
+1. 信息交互的媒介为碰撞体、组件、角色Pawn
+2. 信息内容是配置好的道具内容，本质上其实是数据的增删改查。
+ 
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+回头看一下我们的小实验1内容，我们仅仅考虑了交互媒介。却没考虑信息内容的存取。
+</chatmessage>
+
+![](..%2Fassets%2Finv021.png)
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+你的组件不就在负责数据存取嘛？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+那么请问，这个数据是哪里来的？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+道具啊！
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+道具上的数据是哪里来的？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+场景生成的呗
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+场景凭空生成嘛？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (4).png" :avatarWidth="40">
+。。。。。
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+当然不是凭空生成，而是放在数据库中根据规则生成。在网络篇已经充分讨论了客户端不可信。
+即所有关键操作必须由服务器完成。但我们得放权给某些类去执行这些操作。
 </chatmessage>
 
 ### 背包边界
-
 
 <chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 另外，我注意到一个细节，打开货郎和打开背包似乎是同个页面的不同接口调用
@@ -469,11 +544,14 @@ struct FPickUpInfoStruct
 
 ![](..%2Fassets%2Finv010.png)
 
+
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 
 如果说`附近列表`属于背包的一部分，那么可以认为打开货郎这个操作就是打开背包，并且Push进货郎的UI。
 
 </chatmessage>
+
+## 货郎
 
 ### 移动模式
 
