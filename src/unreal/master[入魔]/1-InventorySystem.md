@@ -1,5 +1,5 @@
 ---
-title: M.背包系统01|永劫无间细节反推
+title: M.背包系统|永劫背包复刻01
 order : 1
 category:
   - u++
@@ -460,7 +460,86 @@ struct FPickUpInfoStruct
 
 ![](..%2Fassets%2Finv039.png)
 
+### 缺陷
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+而且这样做有个致命缺陷，非常依赖碰撞体，即视角稍微抬高就无法命中
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup33.gif"/>
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+把物体碰撞体改长点？
+</chatmessage>
+
+### 2.0
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+静下来心来思考，我们主要目的是什么？是不是计算物体的位置与玩家视口方向的夹角来确定最近的物体？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+好像是这个一个回事！
+</chatmessage>
+
+<gifwithbutton src="../../assets/unrealgif/hpup34.gif"/>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+而且就功能性来看，这个完全可以封装到蓝图函数库里。并且改进版完全摆脱了碰撞体的依赖。（即所有球体碰撞都可以移除了，也不需要发射射线了）
+</chatmessage>
+
+```cpp
+AActor* UExorcistFunctionLibrary::FindNearestActorInDirection(APlayerController* PlayerController,
+	const TArray<AActor*>& Actors)
+{
+	if (!PlayerController || Actors.Num() == 0)
+	{
+		// 处理找不到玩家控制器或者没有物体的情况
+		return nullptr;
+	}
+
+	// 获取玩家视口的位置和方向
+	FVector PlayerViewLocation;
+	FRotator PlayerViewRotation;
+	PlayerController->GetPlayerViewPoint(PlayerViewLocation, PlayerViewRotation);
+
+	float MinAngle = MAX_FLT;
+	AActor* NearestActor = nullptr;
+
+	// 遍历物体数组
+	for (AActor* Actor : Actors)
+	{
+		if (Actor)
+		{
+			// 获取物体位置
+			FVector ActorLocation = Actor->GetActorLocation();
+
+			// 计算物体与玩家视口方向的向量
+			FVector ToActor = ActorLocation - PlayerViewLocation;
+			ToActor.Normalize();
+
+			// 计算玩家视口方向的向量
+			FVector ViewDirection = PlayerViewRotation.Vector();
+
+			// 计算物体与玩家视口方向的夹角
+			float Angle = FMath::RadiansToDegrees(FMath::Acos(FVector::DotProduct(ToActor, ViewDirection)));
+
+			// 更新最小夹角和对应的物体
+			if (Angle < MinAngle)
+			{
+				MinAngle = Angle;
+				NearestActor = Actor;
+			}
+		}
+	}
+
+	return NearestActor;
+}
+```
+
+
 ## 背包部分
+
 
 >永劫里面，道具还分可暂存道具比如钩锁、武备、药品、护甲粉和直接使用道具，比如果实这种。为此我们需要设计一个合理的使用
 机制，这也是我们接下来讨论背包部分的重点。
