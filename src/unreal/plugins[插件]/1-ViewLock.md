@@ -1,15 +1,15 @@
 ---
 title: P1.ViewLock
-order : 01
+order: 1
 category:
-  - u++
+- unreal
 ---
 
 <chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40">
 Baba!我想做一个辅助锁敌插件！
 </chatmessage>
 
-## 思考
+### 思考
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没明白你想要做什么？
@@ -19,7 +19,7 @@ Baba!我想做一个辅助锁敌插件！
 锁敌锁敌，顾名思义就是类似老头环那种，屏幕中心出现一个辅助瞄准UI玩家视角会自动瞄准吸附到锁定对象上！
 </chatmessage>
 
-![](..%2Fassets%2Fviewlock01.jpg)
+![](../assets/LOCK.jpg)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 说说你的理解
