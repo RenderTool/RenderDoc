@@ -33,7 +33,7 @@ Baba!我想做一个辅助锁敌插件！
 无非就是发射一道射线然后锁定相机到物体上。
 </chatmessage>
 
-![](..%2Fassets%2Fviewlock.jpg)
+![](..%2Fassets%2Fviewlock001.jpg)
 
 
 ### 方案1|问题
