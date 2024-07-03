@@ -19,7 +19,7 @@ Baba!我想做一个辅助锁敌插件！
 锁敌锁敌，顾名思义就是类似老头环那种，屏幕中心出现一个辅助瞄准UI玩家视角会自动瞄准吸附到锁定对象上！
 </chatmessage>
 
-![](..%2Fassets%2Fviewlock001.jpg)
+![](..%2Fassets%2Fviewlock01.jpg)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 说说你的理解
