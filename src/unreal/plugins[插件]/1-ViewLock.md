@@ -19,7 +19,7 @@ Baba!我想做一个辅助锁敌插件！
 锁敌锁敌，顾名思义就是类似老头环那种，屏幕中心出现一个辅助瞄准UI玩家视角会自动瞄准吸附到锁定对象上！
 </chatmessage>
 
-![](../assets/LOCK.jpg)
+![](..%2Fassets%2Fviewlock001.jpg)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 说说你的理解
@@ -33,7 +33,7 @@ Baba!我想做一个辅助锁敌插件！
 无非就是发射一道射线然后锁定相机到物体上。
 </chatmessage>
 
-![](..%2Fassets%2Fviewlock001.jpg)
+![](../assets/LOCK.jpg)
 
 
 ### 方案1|问题
