@@ -1,6 +1,6 @@
 ---
-title: EXP9.ViewLock
-order : 09
+title: P1.ViewLock
+order : 01
 category:
   - u++
 ---
@@ -34,6 +34,7 @@ Baba!我想做一个辅助锁敌插件！
 </chatmessage>
 
 ![](..%2Fassets%2Fviewlock.jpg)
+
 
 ### 方案1|问题
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
