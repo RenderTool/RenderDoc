@@ -1,5 +1,5 @@
 ---
-title: c++2.理解左右值和移动语义TODO
+title: c++2.理解左右值和移动语义
 order: 2
 category:
   - c++
@@ -38,21 +38,64 @@ int b = a;//按照之前的判断标准b是左值，a是右值
     - **例子：** 字面常量、临时对象、表达式的计算结果等都是右值。
     - **性质：** 右值通常是短暂的，它们在计算后可能就会失去意义。你不能对右值取地址，也不能修改其值。
 
+## 右值引用
+
 在C++11及以后的标准中，有一个引入的重要概念叫做**右值引用**（Rvalue Reference），
 通过 `&&` 表示。右值引用允许我们对右值进行引用，并通过移动语义实现高效的资源管理，例如在移动构造函数和移动赋值运算符中。
 
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+换成人话来讲，右值引用就是延长临时对象的生命周期，从而减少对象复制，提高程序性能。
+</chatmessage>
+
 ```cpp
+#include <iostream>
+
+Class C {
+    public:
+    C() {}
+    C(const C& other) {}
+    ~C(){}
+     void show(){std::cout << "show" << std::endl;}
+};
+C make()
+{
+    C c1;
+    return c1;
+}
+
 int main() {
-    int x = 42;  // x 是左值
-    int* ptr = &x;  // &x 是右值，但 ptr 是左值
+    C c2 = make();//make()中默认构造，然后返回时出现一次复制构造，最后赋值给c2又发生复制构造。
+    c.show();
+}
+```
+<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40">
+上面的代码中，如果没有进行编译器优化，会发生3次构造。make 中c1会被默认构造一次，return 
+中c1复制构造产生临时对象，接着赋值给c2时又会使用复制构造。
+</chatmessage>
 
-    int& lvalueRef = x;  // 左值引用
-    int&& rvalueRef = 42;  // 右值引用
+<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
+SO!我们可以使用右值引用来延长这个临时对象的生命周期，减少复制。
+</chatmessage>
 
-    return 0;
+```cpp
+#include <iostream>
+
+Class C {
+    public:
+    C() {}
+    C(const C& other) {}
+    ~C(){}
+    void show(){std::cout << "show" << std::endl;}
+};
+C make()
+{
+    C c1;
+    return c1;
+}
+
+int main() {
+C &&c2 = make();
+c.show();
 }
 ```
 
-在上面的例子中，`x` 是左值，`&x` 是右值。
-左值引用 `lvalueRef` 绑定到左值 `x`，而右值引用 `rvalueRef` 绑定到右值 `42`。
-右值引用通常用于移动语义，提高效率。
