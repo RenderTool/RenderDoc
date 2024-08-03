@@ -30,7 +30,7 @@ category:
 	FVector location = GetActorLocation();
 
 	//ForwardVector*200+Location
-	FVector const spawnLocation =forwardVector * 200 + location;
+	FVector const spawnLocation = forwardVector * 200 + location;
 
 	UWorld* const World = GetWorld();
 	//断言
@@ -39,4 +39,24 @@ category:
 	 World->SpawnActor<AActor>(CurrentTarget,spawnLocation,FRotator::ZeroRotator);
 ```
 
+## 2024/0803 [摘自大佬博客](https://blog.csdn.net/qq_29523119/article/details/86368182)
 
+### SpawnActor流程
+
+![](..%2Fassets%2Fspawn.png)
+
+### SpawnActorDeferred 流程
+
+![](..%2Fassets%2FSpawnActorDeferred.png)
+
+```cpp
+	// 延迟生成
+	AInventoryItemActor* SpawnedItem =  GetWorld()->SpawnActorDeferred<AInventoryItemActor>(AInventoryItemActor::StaticClass(),SpawnTransform);
+	if (SpawnedItem)
+	{
+		// 将设置好的数据指针赋值给生成的Actor
+		SpawnedItem->SetPickUpData(InventoryPickUpData);
+		// 完成生成
+		SpawnedItem->FinishSpawning(SpawnTransform);
+	}
+```

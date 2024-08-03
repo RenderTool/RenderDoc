@@ -73,7 +73,7 @@ int main() {
 中c1复制构造产生临时对象，接着赋值给c2时又会使用复制构造。
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
+<chatmessage avatar="../../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft >
 SO!我们可以使用右值引用来延长这个临时对象的生命周期，减少复制。
 </chatmessage>
 
