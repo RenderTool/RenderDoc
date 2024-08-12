@@ -34,13 +34,13 @@ SVG是矢量图，但设计绘制的时候也有一个尺寸
 ![](..%2Fassets%2Fsvgsize002.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-这个在WPF等设计软件中尤为明显
+在WPF开发中特别明显
 </chatmessage>
 
 ![](..%2Fassets%2Fsvgsize005.png)
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-所以需要手动挑战一下尺寸
+所以需要手动调整一下尺寸
 </chatmessage>
 
 ![](..%2Fassets%2Fsvgsize004.png)

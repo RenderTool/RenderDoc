@@ -22,7 +22,8 @@ category:
 一定要先拷贝过去，再删除，不要剪切不要剪切！
 </chatmessage>
 
-![](..%2Fassets%2Fmovefile.png)
+![](..%2Fassets%2Fyidong.jpg)
+
 
 ### 2. 用管理员模式打开CMD,输入MKLINK命令
 
@@ -34,7 +35,8 @@ mklink /j C:\Users\admin\AppData\Local\JetBrains E:\softCache\JetBrains
 现在你能在C盘的位置看到一个类似快捷方式的文件夹，实际空间占用在E盘。
 </chatmessage>
 
-![](..%2Fassets%2Fmovefile2.png)
+![](..%2Fassets%2Fyidong2.jpg)
+
 
 ### 3. 注意事项
 
