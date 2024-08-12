@@ -1,7 +1,6 @@
 ---
 title: Umg5.RichTextBlock
 order: 5
-c
 ategory:
   - unreal
 ---
