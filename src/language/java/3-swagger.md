@@ -1,5 +1,5 @@
 ---
-title: JDK|2.Swagger
+title: JDK|2.Swagger&knife4j
 order: 3
 ---
 
@@ -21,30 +21,42 @@ springboot3基本使用流程[官方文档https://springdoc.org/#getting-started
     <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
     <version>2.6.0</version>
 </dependency>
+
+```
+
+```xml
+<!--knife4j https://doc.xiaominfo.com/docs/quick-start-->
+<dependency>
+<groupId>com.github.xiaoymin</groupId>
+<artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+<version>4.4.0</version>
+</dependency>
 ```
 
 ### 2. 配置 application.yml
 
 ```yml
-spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-  application:
-    name: springfox-swagger
-server:
-  port: 8080
-  
-# swagger-ui custom path
 springdoc:
   swagger-ui:
-    path : /swagger-ui.html
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    enabled: true
+
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
 ```
 
 ### 3.加入config类覆盖默认配置
 
 ```java
-package com.game.server.config;
+package com.exorcist.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -56,106 +68,162 @@ public class Swagger3Config {
     @Bean
     public OpenAPI springOpenAPI() {
         return new OpenAPI().info(new Info()
-                .title("Exorcist后台API")
-                .description("Exorcist后台管理API")
+                .title("Exorcist后台管理API")
+                .description("这是一个游戏后台API服务页面")
                 .version("0.0.1"));
     }
 }
 ```
 
-### 5. API 控制器注解
+### 4. API 控制器注解
 在控制器类和方法上使用 Swagger 3 的注解来描述 API 端点：
 
 ```java
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name="游戏版本控制模块")
 @RestController
+@RequestMapping("/api/versionAdmin")
 public class UserController {
 
-    @Operation(summary = "获取用户信息", description = "通过用户 ID 获取用户的详细信息")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "成功获取用户信息", 
-            content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        @ApiResponse(responseCode = "404", description = "未找到用户", 
-            content = @Content)
-    })
-    @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id) {
-        // 示例代码，实际应从数据库或服务中获取用户信息
-        return new User(id, "张三", "zhangsan@example.com");
+    @Operation(summary = "上传完整包", description = "上传最新完整包")
+    @PostMapping(value = "/uploadLatestGame", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResultInfo uploadLatestGame(@RequestPart("file") MultipartFile file, @Valid VersionDTO versionDTO) {
+        return ResultInfo.success(versionService.UpLoadFile("publish/LatestGame/", file, versionDTO));
     }
+
+    @Operation(summary = "上传完整包", description = "上传最新完整包")
+    @PostMapping(value = "/uploadLatestGame", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResultInfo uploadLatestGame(
+            @RequestPart("file") MultipartFile file,
+            @RequestParam("versionName") String versionName,
+            @RequestParam("fileName") String fileName,
+            @RequestParam("md5") String md5) {
+
+        VersionDTO versionDTO = new VersionDTO();
+        versionDTO.setVersionNumber(versionName);
+        versionDTO.setFileName(fileName);
+        versionDTO.setMd5(md5);
+
+        return ResultInfo.success(versionService.UpLoadFile("publish/LatestGame/", file, versionDTO));
+    }
+
 }
 ```
 
-### 6. 数据模型注解
-使用 `@Schema` 注解来描述数据模型：
 
-```java
-import io.swagger.v3.oas.annotations.media.Schema;
-
-@Schema(description = "用户实体类")
-public class User {
-
-    @Schema(description = "用户ID", example = "1")
-    private Long id;
-
-    @Schema(description = "用户名称", example = "张三")
-    private String name;
-
-    @Schema(description = "用户邮箱", example = "zhangsan@example.com")
-    private String email;
-
-    // 构造函数、Getter和Setter方法省略
-}
-```
-
-### 7. 请求参数注解
-使用 `@Parameter` 注解来详细描述请求参数：
-
-```java
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
-import org.springframework.web.bind.annotation.RequestParam;
-
-@Operation(summary = "获取用户列表", description = "根据分页参数获取用户列表")
-@Parameters({
-    @Parameter(name = "page", description = "页码", example = "1"),
-    @Parameter(name = "size", description = "每页条数", example = "10")
-})
-@GetMapping("/users")
-public List<User> getUsers(
-    @RequestParam(value = "page", defaultValue = "1") int page,
-    @RequestParam(value = "size", defaultValue = "10") int size) {
-    // 示例代码，实际应从数据库或服务中获取用户列表
-    return Arrays.asList(new User(1L, "张三", "zhangsan@example.com"));
-}
-```
-
-### 8. 自定义响应码
-使用 `@ApiResponse` 来描述自定义的 HTTP 响应状态码：
-
-```java
-@Operation(summary = "删除用户", description = "通过用户 ID 删除用户")
-@ApiResponses(value = {
-    @ApiResponse(responseCode = "204", description = "成功删除用户"),
-    @ApiResponse(responseCode = "404", description = "未找到用户")
-})
-@DeleteMapping("/users/{id}")
-public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-    // 示例代码，实际应删除用户
-    return ResponseEntity.noContent().build();
-}
-```
-
-### 9.api地址
+### 5.api地址
 
 ```text
 http://localhost:8080/swagger-ui/index.html#/
 ```
+
+
+### 6.拦截器
+
+```java
+package com.exorcist.config;
+
+import com.exorcist.interceptor.JWTInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private JWTInterceptor jwtInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(jwtInterceptor)
+                .addPathPatterns("/**") // 拦截所有路径
+                .excludePathPatterns(
+                        "/swagger-ui/**",          // 排除 Swagger UI 相关路径
+                        "/webjars/**",             // 排除 WebJars 相关路径
+                        "/doc.html/**",            // 排除文档相关路径
+                        "/v2/**",                  // 排除 Swagger 2 相关路径
+                        "/v3/**",                  // 排除 Swagger 3 相关路径
+                        "/swagger-ui.html/**",     // 排除 Swagger UI 旧版路径
+                        "/api/user/login",         // 排除 用户登录接口
+                        "/api/version/**",         // 排除 版本获取信息
+                        "/api/user/register",      // 排除 用户注册接口
+                        "/templates/**",
+                        "/favicon.ico",
+                        "/api/version/getLatestVersion"
+                );
+    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("doc.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+}
+```
+
+
+### 7.跨域
+
+```java
+package com.exorcist.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+/**
+ * 全局跨域配置
+ */
+@Configuration
+public class GlobalCorsConfig {
+
+    /**
+     * 允许跨域调用的过滤器
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+        //允许所有域名进行跨域调用
+        config.addAllowedOriginPattern("*");
+        //允许跨越发送cookie
+        config.setAllowCredentials(true);
+        //放行全部原始头信息
+        config.addAllowedHeader("*");
+        //允许所有请求方法跨域调用
+        config.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+}
+```
+
+## 问题
+
+### 问题1：解决不显示文件上传的问题
+
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+上面的uploadLatestGame接口在knife4j无法正常显示按钮
+</chatmessage>
+
+![](assets%2Fswagger001.png)
+
+<chatmessage avatar=" ../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+
+**`@RequestBody` 与 `@RequestPart` 不兼容**
+- 在 Spring MVC 中，`@RequestBody` 适用于从请求体中解析数据，而 `@RequestPart` 则用于处理 `multipart/form-data` 请求中带有文件的部分。
+- 通常这两者不应该在同一控制器方法参数中同时使用。
+- 可以将 `VersionDTO` 改为 `@RequestParam` 注解拆散DTO
+
+</chatmessage>
+
+![](assets%2Fswagger002.png)

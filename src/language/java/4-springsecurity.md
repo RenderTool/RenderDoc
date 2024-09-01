@@ -32,9 +32,3 @@ Spring Security基本使用流程 [官方网站https://springdoc.cn/spring-secur
 </chatmessage>
 
 ![](assets%2FSecurity001.png)
-
-### 4.使用Configuration注解
-
-```java
-
-```
