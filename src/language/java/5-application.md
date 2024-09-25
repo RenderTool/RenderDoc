@@ -37,3 +37,18 @@ email:
 //注解键名
 @ConfigurationProperties(prefix = "email")
 ```
+
+## 多环境多文件配置
+
+### 多环境配置
+
+![](assets%2Fjdk0013.png)
+
+
+### 使用外置配置文件
+
+![](assets%2Fjdk0012.png)
+
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
+很简单拷一份yml就行了，在jar包同级目录启动即可。
+</chatmessage>

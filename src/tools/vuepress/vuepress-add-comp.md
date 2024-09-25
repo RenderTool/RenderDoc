@@ -10,6 +10,7 @@ category:
 vuepress添加自定义组件-以实现聊天气泡为例。
 
 ## 实现目标
+
 <chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40">
   这是一条聊天消息。
 </chatmessage>

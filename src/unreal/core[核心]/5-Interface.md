@@ -125,6 +125,13 @@ if (Interface)
 }
 ```
 
+```cpp
+if (Actor->Implements<UHighlightInterface>())
+{
+    IHighlightInterface::Execute_UnHighlightActor(Actor);
+}
+```
+
 ### 参考链接
 
 [官方文档](https://docs.unrealengine.com/4.26/zh-CN/ProgrammingAndScripting/GameplayArchitecture/Interfaces/)
