@@ -550,7 +550,7 @@ void AHeroCharacter::OnRep_PlayerState()
 ```
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-至于使用GE的函数，选择就多了，可以用蓝图函数库，也可以自己子系统代理执行。
+GE的函数可以用蓝图函数库，也可以自己子系统代理执行。
 </chatmessage>
 
 ```cpp
