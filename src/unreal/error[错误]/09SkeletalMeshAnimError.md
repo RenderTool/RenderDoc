@@ -5,6 +5,11 @@ category:
   - u++
 ---
 
+
+>202411/13补
+> UE5.4BUG已经修复，5.3没试过，5.2是有这个问题的
+
+
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 起因是这样得，我在做角色皮肤切换效果
 </chatmessage>
