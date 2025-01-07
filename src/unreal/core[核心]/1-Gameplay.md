@@ -218,7 +218,7 @@ Game State 就是指游戏状态。它管理了所有已连接的客户端，并
 
 <chatmessage avatar="../../assets/emoji/kclr.png" :avatarWidth="40">
 
-记不住根本记不住！这里BABA推荐我看<a href="./exp_经验_/1-Blueprint2CPP.html">蓝图节点对应CPP的探索与解析</a>
+记不住根本记不住！
 
 </chatmessage>
 
@@ -320,7 +320,7 @@ Baba我不知道什么叫宏耶！
 
 
 `宏（英语：Macro），是一种批量处理的称谓。 计算机科学里的宏是一种抽象（Abstraction），它根据一系列预定义的规则替换一定的文本模式。
-解释器或编译器在遇到宏时会自动进行这一模式替换。——wiki` 具体的宏标记请[阅读我的](./doc_文档_/macro.html)
+解释器或编译器在遇到宏时会自动进行这一模式替换。——wiki`
 
 ### UHT|Unreal Header Tool（虚幻头文件工具）
 
@@ -541,12 +541,12 @@ void UTEST::TESTFUNC()
 |---------------------------|
 |    **[ 知乎大钊](https://www.zhihu.com/people/fjz13)**|
 
-| 课程名                              | 类型    | 链接                                                                                     |
-|-----------------------------------|-------|----------------------------------------------------------------------------------------|
-| 2023最新版C++                    | C++基础 | [链接](https://www.bilibili.com/video/BV1eL41187JS/?spm_id_from=333.999.0.0&vd_source=fc61eb54bf3245afbff2be6b8c1ebfc2)                     |
-| 【Cherno C++】                 | C++基础 | [链接](https://www.bilibili.com/video/BV1fP4y1w7iE/?spm_id_from=333.999.0.0)                        |
-| 为游戏编程学习C++           | C++基础 | [链接](https://www.bilibili.com/video/BV1Dd4y1R7VS/?spm_id_from=333.999.0.0)                        |
-|      黑马程序员匠心之作|C++教程          | [链接](https://www.bilibili.com/video/BV1et411b73Z?t=94.0&p=95 )                                                                                                    |
-| 字节跳动最新打造的C++教程 | C++基础 | [链接](https://www.bilibili.com/video/BV1ps4y1k7d7/?spm_id_from=333.999.0.0)                        |
-| Udemy宝藏数据结构与算法课   | C++算法 | [链接](https://www.bilibili.com/video/BV1Ba411Y71K/?spm_id_from=333.337.top_right_bar_window_custom_collection.content.click) |
+| 课程名             | 类型    | 链接                                                                                                                          |
+|-----------------|-------|-----------------------------------------------------------------------------------------------------------------------------|
+| 2023最新版C++      | C++基础 | [链接](https://www.bilibili.com/video/BV1eL41187JS/?spm_id_from=333.999.0.0&vd_source=fc61eb54bf3245afbff2be6b8c1ebfc2)       |
+| 【Cherno C++】    | C++基础 | [链接](https://www.bilibili.com/video/BV1fP4y1w7iE/?spm_id_from=333.999.0.0)                                                  |
+| 为游戏编程学习C++      | C++基础 | [链接](https://www.bilibili.com/video/BV1Dd4y1R7VS/?spm_id_from=333.999.0.0)                                                  |
+| 黑马程序员匠心之作       | C++教程 | [链接](https://www.bilibili.com/video/BV1et411b73Z?t=94.0&p=95 )                                                              |
+| 字节跳动最新打造的C++教程  | C++基础 | [链接](https://www.bilibili.com/video/BV1ps4y1k7d7/?spm_id_from=333.999.0.0)                                                  |
+| Udemy宝藏数据结构与算法课 | C++算法 | [链接](https://www.bilibili.com/video/BV1Ba411Y71K/?spm_id_from=333.337.top_right_bar_window_custom_collection.content.click) |
 

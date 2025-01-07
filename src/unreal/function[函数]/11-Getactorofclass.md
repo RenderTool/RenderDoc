@@ -184,104 +184,14 @@ void UGameplayStatics::GetAllActorsOfClass(const UObject* WorldContextObject, TS
 ### 问题
 
 <chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="50">
-为什么一开始就清空了数组,我也没见到节点有传入数组啊？<br>
+DeterminesOutputType和DynamicOutputParam作用是啥？
 </chatmessage>
 
-<chatmessage avatar="../../assets/emoji/new4.png" :avatarWidth="50" alignLeft>
-你注意UFUNCTION宏meta（元数据）的描述了吗？
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="50" alignLeft>
+
+具体跳转到 [UPROPERTY宏标记](../function_函数_/5-UPROPERTY.html#DeterminesOutputType) 里面有具体的介绍
+
 </chatmessage>
-
-`DeterminesOutputType` 和 `DynamicOutputParam` 是 UFUNCTION 宏的元数据，用于在蓝图中更好地处理输出参数的类型。
-
-1. **`DeterminesOutputType`：**
-    - 当指定了 `DeterminesOutputType` 元数据时，它表示函数的输出参数类型是由函数的实现决定的，而不是由函数声明时指定的。这对于一些动态生成输出类型的函数非常有用。
-
-2. **`DynamicOutputParam`：**
-    - 当指定了 `DynamicOutputParam` 元数据时，它表示函数的输出参数是动态生成的，而不是静态指定的。在函数签名中，你可以看到这个参数被标记为 `&OutActors`，这就是动态输出参数的示例。
-
-<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="50">
-那么这个节点会强制变成输出节点吗？比如我加了const修饰。
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/new7.png" :avatarWidth="50" alignLeft>
-测试一下不就行了！
-</chatmessage>
-
-```cpp
-   //没用const限定
-	UFUNCTION(BlueprintCallable, Category="Actor",  meta=( DynamicOutputParam="OutActors"))
-    static void TestFun(TArray<AActor*>& OutActors);
-    
-void UTEST::TestFun(TArray<AActor*>& OutActors)
-{
-//测试使用，实际开发别用哦
-	AActor* Actor2 = nullptr;
-    OutActors.Add(Actor2);
-	OutActors.Add(Actor2);
-	int Num = OutActors.Num();
-	GEngine->AddOnScreenDebugMessage(1, 5.0f, FColor::White, FString::FromInt(Num), true, FVector2D(1, 1));
-}
-	
-	//const限定
-	UFUNCTION(BlueprintCallable, Category="Actor" ,meta=(DynamicOutputParam="OutActors"))
-	static void TestFun2(const TArray<AActor*>& OutActors);  
-	void UTEST::TestFun2( const TArray<AActor*>& OutActors)
-{
-	int Num = OutActors.Num();
-	GEngine->AddOnScreenDebugMessage(1, 5.0f, FColor::White, FString::FromInt(Num), true, FVector2D(1, 1));
-}
-```
-
-![](..%2Fassets%2Fconstwithoutconst.png)
-
-<chatmessage avatar="../../assets/emoji/new8.png" :avatarWidth="50">
-测试结果看来const修饰后会将数组变成输入节点。
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
-没错，而且我们测试代码中给2个空指针到这个指针数组中，测试结果也是打印2.
-</chatmessage>
-
-![](..%2Fassets%2Fwss.png)
-
-<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
-const修饰后数组变成只读，需要我们自己传入数据。
-</chatmessage>
-
-![](..%2Fassets%2Fxd.png)
-
-<chatmessage avatar="../../assets/emoji/new8.png" :avatarWidth="50">
-const强制变成只读这没毛病，但动态生成我还是抱有怀疑态度，如果我们去掉DynamicOutputParam呢？还会打印2吗？
-</chatmessage>
-
-```cpp
-//没有meta
-UFUNCTION(BlueprintCallable, Category="Actor")
-static void TestFun3(TArray<AActor*>& OutActors);
-
-void UTEST::TestFun3(TArray<AActor*>& OutActors)
-{
-//测试使用，实际开发别用哦
-	AActor* Actor2 = nullptr;
-	OutActors.Add(Actor2);
-	OutActors.Add(Actor2);
-	int Num = OutActors.Num();
-	GEngine->AddOnScreenDebugMessage(1, 5.0f, FColor::White, FString::FromInt(Num), true, FVector2D(1, 1));
-}
-```
-
-![](..%2Fassets%2Fyjsc.png)
-
-<chatmessage avatar="../../assets/emoji/new3.png" :avatarWidth="50" alignLeft>
-居然还是可以！看来系统自动帮我们初始化了一个指针数组。
-</chatmessage>
-
-
-结论：
-
-1. const 限定优先级更高。
-2. DynamicOutputParam 确实帮我们动态生成了一个对象，但即使不加也会主动尝试生成。
-
 
 ## 其他问题
 

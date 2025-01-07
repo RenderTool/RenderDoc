@@ -156,6 +156,100 @@ public:
     int32 EditDefaultsOnlyNumber;
 ```
 
+## DeterminesOutputType
+
+>动态输出类型
+
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+你有没有注意过一个细节：官方的GetActorOfClass节点给输入一个ActorClass,能返回对应的Actor对象,但这个Actor不是Actor*而是对应的派生类？
+就比如下图的角色类。
+</chatmessage>
+
+![](..%2Fassets%2Ftestactor2.png)
+
+
+```cpp
+UFUNCTION(BlueprintCallable, Category="Actor", meta=(WorldContext="WorldContextObject", DeterminesOutputType="ActorClass"))
+	static ENGINE_API class AActor* GetActorOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass);
+	
+AActor* UGameplayStatics::GetActorOfClass(const UObject* WorldContextObject, TSubclassOf<AActor> ActorClass)
+{
+	QUICK_SCOPE_CYCLE_COUNTER(UGameplayStatics_GetActorOfClass);
+
+	// We do nothing if no is class provided
+	if (ActorClass)
+	{
+		if (UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::LogAndReturnNull))
+		{
+			for (TActorIterator<AActor> It(World, ActorClass); It; ++It)
+			{
+				AActor* Actor = *It;
+				return Actor;
+			}
+		}
+	}
+
+	return nullptr;
+}
+```
+
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" >
+我靠！我有一个维护各种策略的子系统。实际使用中往往需要输出对应的策略派生类。虽然C++可以使用模板，但用了模板后蓝图里就没法玩了。
+</chatmessage>
+
+```cpp
+UDataStrategyBase* UUserDataSubsystem::FindDataStrategy(FName StrategyName)
+{
+	UDataStrategyBase* StrategyInstance = RegisteredStrategies.FindRef(StrategyName);
+	return StrategyInstance;
+}
+```
+
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+
+是的，我们虽然可以用模板来应对C++开发者，但蓝图中显得不够智能了，每次都要手动Cast,因此才需要我们今天的主角` DeterminesOutputType`
+
+</chatmessage>
+
+> 首先当然是C++的T模板
+
+```cpp
+
+template <typename T>
+T* UUserDataSubsystem::FindDataStrategyAs(FName StrategyName)
+{
+    UDataStrategyBase* BaseInstance = FindDataStrategy(StrategyName);
+    return Cast<T>(BaseInstance); // 直接通过Cast返回派生类指针
+}
+
+```
+> 其次是蓝图节点的改造，通过`DeterminesOutputType`
+
+```cpp
+
+public:
+
+	UFUNCTION(BlueprintCallable, Category="DataStrategy", meta = (DeterminesOutputType = "StrategyClass"))
+	UDataStrategyBase* FindDataStrategyByClass(FName StrategyName, TSubclassOf<UDataStrategyBase> StrategyClass)
+    {
+        UDataStrategyBase* StrategyInstance = FindDataStrategy(StrategyName);
+    
+        if (StrategyInstance && StrategyInstance->IsA(StrategyClass))
+        {
+            return StrategyInstance;
+        }
+    
+        return nullptr;
+    }
+    
+	//将UDataStrategyBase* FindDataStrategy(FName StrategyName);移到私有
+
+private:
+	UDataStrategyBase* FindDataStrategy(FName StrategyName);
+
+```
+
+
 
 ## Category
 
@@ -244,6 +338,8 @@ UPROPERTY(EditAnywhere, meta=(EditCondition="bCanFly", Units="s"))
 ```
 
 ![](..%2Fassets%2FInlineEditConditionToggle.png)
+
+
 
 ### 更多参考
 
