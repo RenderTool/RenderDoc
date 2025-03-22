@@ -21,28 +21,56 @@ category:
 
 ![](..%2Fassets%2Fload001.png)
 
-<chatmessage avatar="../../assets/emoji/ybk.png" :avatarWidth="40" alignLeft>
-这里主要记录一下UAssetManager的异步加载，异步加载一定要检查指针！对于高频加载操作千万别自己释放句柄！因为异步玩玩不是实时的，容易出现线程安全问题！
-</chatmessage>
-
 ```cpp
-//定义句柄
-TSharedPtr<FStreamableHandle> Handle;
+//全局Handle
+private:
+	TSharedPtr<FStreamableHandle> Handle;
+void UDataDefinitionManager::AsyncCollectionDefinitions()
+{
+	TArray<FPrimaryAssetId> AssetIds;
+	const TArray<FName> LoadBundles;
+	
+	UKismetSystemLibrary::GetPrimaryAssetIdList(FPrimaryAssetType(CollectionDefinitionTypeName), AssetIds);
 
-TSoftObjectPtr<UInventorySubConfig> SubConfig;//如果是软引用，需要先ToSoftObjectPath()，使用需要先ToSoftObjectPath重载版本
+	if (AssetIds.IsEmpty())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No assets found for type %s"), *CollectionDefinitionTypeName.ToString());
+		return;
+	}
+	
+	UnloadAssets();
+	
+	UAssetManager& Manager = UAssetManager::Get();
+	
+	const FStreamableDelegate& NewDelegate = FStreamableDelegate::CreateUObject(this, &UDataDefinitionManager::CollectionCompleted);
+	
+	Handle = Manager.LoadPrimaryAssets(AssetIds,LoadBundles,NewDelegate);
+	
+}
 
-const UInventoryTotalConfig* SubConfig;//如果是对象指针，可以直接放进去,会有对应的重载版本
+void UDataDefinitionManager::CollectionCompleted()
+{
+	TArray<UObject*> Loaded;
 
-//委托
-FStreamableDelegate SubConfigLoadDelegate = FStreamableDelegate::CreateUObject(this, &你的类::回调函数, Index);
+	const UAssetManager& Manager = UAssetManager::Get();
+	//也可以直接
+	Manager.GetPrimaryAssetObjectList(FPrimaryAssetType(CollectionDefinitionTypeName),Loaded);
 
-//异步加载
-Handle = UAssetManager::Get().GetStreamableManager().RequestAsyncLoad(SubConfig, SubConfigLoadDelegate);
-
-Handle.isValid();//是否有效
-Handle->HasLoadCompleted();//进度 
-Handle.GetLoadedAsset();//获取资源
-Handle.ReleaseHandle();//释放句柄
+	if(!Handle.IsValid()) return;
+	Handle->GetLoadedAssets(Loaded);
+	
+	if(Loaded.IsEmpty()) return;
+	
+	CachedFragments.Empty();
+	for (UObject* LoadedObject : Loaded)
+	{
+		if (auto DataDefinition = Cast<UDataDefinition>(LoadedObject))
+		{
+			CachedFragments.Add(DataDefinition->Name,DataDefinition);
+		}
+	}
+	OnDefinitionsLoaded.Broadcast();
+}
 
 ```
 
@@ -71,20 +99,21 @@ Handle->GetLoadedAsset() 返回加载完成的资产，已经是实例化的对�
 
 ![](..%2Fassets%2Fslih.png)
 
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
-你这个添加行为其实就是UE编辑器的实例化行为。比方说我们构造函数的ID是0，然后去蓝图中重写。
-</chatmessage>
 
-![](..%2Fassets%2Fpt.png)
+>2025/0322 补充
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" alignLeft >
-如果说加载资产后才实例这个对象应该打印0，但实际是根据你蓝图中配置的5,这也验证了你加载资产是你蓝图派生的资产。
+定义的类中需要满足以下条件：
 </chatmessage>
 
-![](..%2Fassets%2Fprint5.png)
+1. 使用的类型反射宏UPROPERTY(Instanced) ,必须标记为`Instanced`
+2. 对应的对象反射宏UCLASS(DefaultToInstanced, EditInlineNew, Abstract),必须标记为`EditInlineNew`
+3. 注意类中的SoftPtr需要手动异步加载
+
+![](..%2Fassets%2FAyscLoad.png)
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40" >
-难怪有时候我直接派生UObject的构造函数中打印会报错，因为引擎启动就加载所有UObject类，GEngine可能没实例化就调用导致指针悬挂问题。
+6666
 </chatmessage>
 
 ## 同步
