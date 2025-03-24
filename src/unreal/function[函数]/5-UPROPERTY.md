@@ -19,6 +19,7 @@ UPROPERTY是啥啊？
 
 </chatmessage>
 
+
 <chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40">
 还是不理解！
 </chatmessage>
@@ -93,14 +94,6 @@ public:
 	int32 EditDefaultsOnlyNumber;
 };
 ```
-
-<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" >
-我不明白，这些有什么区别吗？
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
-别急，听老夫慢慢道来！
-</chatmessage>
 
 ## 属性说明符
 
@@ -248,7 +241,6 @@ private:
 	UDataStrategyBase* FindDataStrategy(FName StrategyName);
 
 ```
-
 
 
 ## Category
