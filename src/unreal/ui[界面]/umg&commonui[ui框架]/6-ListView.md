@@ -11,7 +11,7 @@ category:
 
 ![](..%2F..%2Fassets%2Flistview.svg)
 
-### ListView & TileView
+## ListView & TileView
 
 <chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 本质上来说TileView是ListView的一个扩展
@@ -37,9 +37,9 @@ UTileView : public UListView
 不明觉厉！
 </chatmessage>
 
-### 基本流程
+## 基本流程
 
-1. 新建一个UMG，作为ListView载体
+### 1. 新建一个UMG，作为ListView载体
 
 ![](..%2F..%2Fassets%2Flistview003.png)
 
@@ -79,7 +79,7 @@ ScrollBox这有多少数据就新建多少UI条目，而ListView存储着你的�
 是的，ListView只会渲染可见的子项UMG
 </chatmessage>
 
-2. 配置子项使用的条目控件类
+### 2. 配置子项使用的条目控件类
 
 ![](..%2F..%2Fassets%2Flistview004.png)
 
@@ -99,7 +99,7 @@ ScrollBox这有多少数据就新建多少UI条目，而ListView存储着你的�
 那是你没有添加条目进去！
 </chatmessage>
 
-3. 创建条目UMG
+### 3. 创建条目UMG
 
 <chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 我加了啊！我创建了对应的UMG，添加进去后没有反应啊！
@@ -117,7 +117,7 @@ NONONO!这里需要创建UObject,而不是子项UMG
 一脸懵逼
 </chatmessage>
 
-4. 创建数据类UObject
+### 4. 创建数据类UObject
 
 <chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 ListView使用了类似MVC的思想，将数据、视图、控制器分离，意味着我们需要手动创建一个数据类来作为数据载体。
@@ -146,7 +146,7 @@ ListView使用了类似MVC的思想，将数据、视图、控制器分离，意
 ![](..%2F..%2Fassets%2Flistview013.jpg)
 
 
-### 验证只绘制可见子项
+## 其他细则
 
 <chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
 如何验证他只是绘制可见项呢？
