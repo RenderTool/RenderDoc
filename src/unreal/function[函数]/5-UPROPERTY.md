@@ -318,8 +318,44 @@ UPROPERTY(EditAnywhere, Category="AdvancedDisplay", AdvancedDisplay)
 
 <gifwithbutton src="../../assets/unrealgif/adisplay.gif"/>
 
-## InlineEditConditionToggle
->内联联动
+
+## EditCondition
+
+>属性条件编辑
+
+```cpp
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PackageName")
+bool bAsPackageName = false;
+  
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PackageName",meta=(EditCondition="bAsPackageName")
+FString PackageNamePrefix;
+```
+
+![](..%2Fassets%2FEditCondition.png)
+
+### EditConditionHides
+
+>隐藏属性
+
+```cpp
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PackageName")
+    bool bAsPackageName = false;
+  
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PackageName",meta=(EditCondition="bAsPackageName",EditConditionHides))
+    FString PackageNamePrefix;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PackageName",meta=(EditCondition="bAsPackageName",EditConditionHides))
+    FString PackageNameSuffix;
+
+    UPROPERTY(BlueprintReadOnly,VisibleAnywhere,Category = "PackageName",meta=(EditCondition="bAsPackageName",EditConditionHides))
+    FString PackageNamePreview;
+    
+```
+<gifwithbutton src="../../assets/unrealgif/hpup49.gif"/>
+
+###  InlineEditConditionToggle
+
+>内联属性
 
 ```cpp
 UPROPERTY(EditAnywhere, meta=(InlineEditConditionToggle))
@@ -329,9 +365,8 @@ UPROPERTY(EditAnywhere, meta=(EditCondition="bCanFly", Units="s"))
 	float InlineEditConditionToggle;
 ```
 
+
 ![](..%2Fassets%2FInlineEditConditionToggle.png)
-
-
 
 ### 更多参考
 
