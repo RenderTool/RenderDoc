@@ -22,7 +22,8 @@ category:
    ```
 
 2. **TMap 迭代器：**
-    - `TMap` 是UE用于映射的模板类。它提供了多种迭代器，如 `TMap<KeyType, ValueType>::TIterator`，`TMap<KeyType, ValueType>::TConstIterator` 等。
+
+- `TMap` 是UE用于映射的模板类。它提供了多种迭代器，如 `TMap<KeyType, ValueType>::TIterator`，`TMap<KeyType, ValueType>::TConstIterator` 等。
 
    ```cpp
    TMap<FString, int32> MyMap;
@@ -35,7 +36,7 @@ category:
    
    //传统写法
    TMap<FString, int32> MyMap;
-   for TMap<FString, int32>::Iterator It(MyMap); It; ++It)
+   for (TMap<FString, int32>::Iterator It(MyMap); It; ++It)
    {
        const FString& Key = It.Key();
        int32& Value = It.Value();
@@ -99,7 +100,7 @@ AActor* UGameplayStatics::GetActorOfClass(const UObject* WorldContextObject, TSu
 }
  ```
 5. **TObjectIterator ：**
-    - `TObjectIterator ` 不采用 UWorld 上下文。这意味着它将遍历内存中的几乎每个 UObject。
+    - `TObjectIterator ` 不采用 UWorld 上下文。遍历内存中的几乎每个 UObject。
 
 >写法
 
@@ -114,57 +115,56 @@ UObject* Object = *It;
 ```
 6**TFieldIterator ：**
 
-> 遍历 类 的所有属性，查找结构体/结构体数组的属性
+> 遍历 类 的所有字段名称
 
 ```cpp
-	for (TFieldIterator<FProperty> PropIt(DataFragmentClass); PropIt; ++PropIt)
+	const UScriptStruct* RowStruct = DT->GetRowStruct();
+	if (!RowStruct) return MatchingKeys;
+
+	// 遍历结构体的所有属性
+	for (TFieldIterator<FProperty> It(RowStruct); It; ++It)
 	{
-		FProperty* FragProperty = *PropIt;
-		if (!FragProperty)
-			continue;
-
-		// **匹配数组类型**
-		if (FArrayProperty* ArrayProperty = CastField<FArrayProperty>(FragProperty))
+		if (const FProperty* Property = *It)
 		{
-			FStructProperty* ElementProperty = CastField<FStructProperty>(ArrayProperty->Inner);
-			if (!ElementProperty) continue;
-			if (ElementProperty->Struct == RowStruct) // 确保数组元素类型匹配
-			{
-				void* ArrayAddr = ArrayProperty->ContainerPtrToValuePtr<void>(Fragment);
-				FScriptArrayHelper ArrayHelper(ArrayProperty, ArrayAddr);
-
-				// 遍历 RowNames，把所有匹配的行加入数组
-				for (const FName& RowName : RowNames)
-				{
-					const uint8* RowData = DataTable->FindRowUnchecked(RowName);
-					if (RowData)
-					{
-						int32 NewIndex = ArrayHelper.AddValue();
-						void* NewElement = ArrayHelper.GetRawPtr(NewIndex);
-						RowStruct->CopyScriptStruct(NewElement, RowData);
-						UE_LOG(LogTemp, Log, TEXT("Added Row %s to array"), *RowName.ToString());
-					}
-				}
-			}
-		}
-		// **匹配单个结构体**
-		else if (FStructProperty* StructProperty = CastField<FStructProperty>(FragProperty))
-		{
-			if (StructProperty->Struct == RowStruct)
-			{
-				void* StructDest = StructProperty->ContainerPtrToValuePtr<void>(Fragment);
-				if (RowNames.Num() > 0)
-				{
-					const FName& FirstRowName = *RowNames.CreateConstIterator();
-					const uint8* RowData = DataTable->FindRowUnchecked(FirstRowName);
-					if (RowData)
-					{
-						RowStruct->CopyScriptStruct(StructDest, RowData);
-						UE_LOG(LogTemp, Log, TEXT("Filled DataFragment with single Row: %s"), *FirstRowName.ToString());
-					}
-				}
-			}
+			// 获取变量名
+			MatchingKeys.Add(Property->GetFName());
 		}
 	}
 ```
+
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
+哥们不会还不知道什么叫字段名称吧？
+</chatmessage>
+
+| 方式                                | 结果                 | 说明                                                                 |
+|-----------------------------------|--------------------|--------------------------------------------------------------------|
+| `Property->GetFName()`            | `"GameplayTag"`    | 变量名（代码中的成员变量）                                                      |
+| `Property->GetAuthoredName()`     | `"Gameplay Tag"`   | **UPROPERTY(EditAnywhere, meta = (DisplayName = "Gameplay Tag"))** |
+| `Property->GetCPPType()`          | `"FGameplayTag"`   | 变量的C++类型                                                           |
+| `Property->GetClass()->GetName()` | `"StructProperty"` | 变量的 `UProperty` 类型                                                 |
+
+
+```cpp
+USTRUCT(BlueprintType)
+struct FInventoryBase : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (DisplayName = "Item Identifier"))
+	FGameplayTag GameplayTag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText ItemName;
+};
+
+```
+
+>解析结果
+
+| 变量名 (`GetFName`) | UI 显示名 (`GetAuthoredName`) | C++ 类型 (`GetCPPType`) | UProperty 类型 (`GetClass()->GetName()`) |
+|------------------|----------------------------|-----------------------|----------------------------------------|
+| GameplayTag      | Item Identifier            | FGameplayTag          | StructProperty                         |
+| ItemName         | ItemName                   | FText                 | TextProperty                           |
+
+
 
