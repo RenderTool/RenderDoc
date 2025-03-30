@@ -112,3 +112,59 @@ UObject* Object = *It;
     // 例如，检查对象类型，执行操作等
 }
 ```
+6**TFieldIterator ：**
+
+> 遍历 类 的所有属性，查找结构体/结构体数组的属性
+
+```cpp
+	for (TFieldIterator<FProperty> PropIt(DataFragmentClass); PropIt; ++PropIt)
+	{
+		FProperty* FragProperty = *PropIt;
+		if (!FragProperty)
+			continue;
+
+		// **匹配数组类型**
+		if (FArrayProperty* ArrayProperty = CastField<FArrayProperty>(FragProperty))
+		{
+			FStructProperty* ElementProperty = CastField<FStructProperty>(ArrayProperty->Inner);
+			if (!ElementProperty) continue;
+			if (ElementProperty->Struct == RowStruct) // 确保数组元素类型匹配
+			{
+				void* ArrayAddr = ArrayProperty->ContainerPtrToValuePtr<void>(Fragment);
+				FScriptArrayHelper ArrayHelper(ArrayProperty, ArrayAddr);
+
+				// 遍历 RowNames，把所有匹配的行加入数组
+				for (const FName& RowName : RowNames)
+				{
+					const uint8* RowData = DataTable->FindRowUnchecked(RowName);
+					if (RowData)
+					{
+						int32 NewIndex = ArrayHelper.AddValue();
+						void* NewElement = ArrayHelper.GetRawPtr(NewIndex);
+						RowStruct->CopyScriptStruct(NewElement, RowData);
+						UE_LOG(LogTemp, Log, TEXT("Added Row %s to array"), *RowName.ToString());
+					}
+				}
+			}
+		}
+		// **匹配单个结构体**
+		else if (FStructProperty* StructProperty = CastField<FStructProperty>(FragProperty))
+		{
+			if (StructProperty->Struct == RowStruct)
+			{
+				void* StructDest = StructProperty->ContainerPtrToValuePtr<void>(Fragment);
+				if (RowNames.Num() > 0)
+				{
+					const FName& FirstRowName = *RowNames.CreateConstIterator();
+					const uint8* RowData = DataTable->FindRowUnchecked(FirstRowName);
+					if (RowData)
+					{
+						RowStruct->CopyScriptStruct(StructDest, RowData);
+						UE_LOG(LogTemp, Log, TEXT("Filled DataFragment with single Row: %s"), *FirstRowName.ToString());
+					}
+				}
+			}
+		}
+	}
+```
+
