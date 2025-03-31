@@ -301,3 +301,6 @@ ok，咱们可以在我们自己的蓝图中做个简单测试。
     ```cpp
     virtual void NotifyPostChange(const FPropertyChangedEvent& PropertyChangedEvent, FProperty* PropertyThatChanged) override;
     ```
+<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+下一节咱们用一个Datatable转资产的案例更深入的体验一下编辑器工具的便利。
+</chatmessage>
