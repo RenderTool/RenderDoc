@@ -1,34 +1,34 @@
 ---
-title: Slate1.编辑器工具插件TODO
+title: P0.插件开发
 order: 1
 category:
   - unreal
 ---
 ## 闲聊
 
-<chatmessage avatar="../../../assets/emoji/hh.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hh.png" :avatarWidth="40">
 Baba!我记不住这么多委托函数的写法怎么办？
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 为什么不用蓝图直接开发呢!
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/new11.png" :avatarWidth="50">
+<chatmessage avatar="../../assets/emoji/new11.png" :avatarWidth="50">
 总要提升挑战一下自己吧！有没有办法呢？
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
+<chatmessage avatar="../../assets/emoji/new2.png" :avatarWidth="50" alignLeft>
 也许你可以写一个可视化界面辅助我们写这个宏函数。比如这种：
 </chatmessage>
 
-![](..%2F..%2Fassets%2Fdesign.png)
+![](..%2Fassets%2Fdesign.png)
 
-<chatmessage avatar="../../../assets/emoji/new3.png" :avatarWidth="55">
+<chatmessage avatar="../../assets/emoji/new3.png" :avatarWidth="55">
 对哦！可是我们该选择什么框架来做呢？
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 方法有很多啊：<br>
 1.WPF/QT写一个独立程序<br>
 2.JS写成Web端<br>
@@ -36,61 +36,61 @@ Baba!我记不住这么多委托函数的写法怎么办？
 4.UE中用基于Slate的编辑器插件
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 WPF/QT太重了！很多UE代码库没法直接用啊。JS呢虽然也不能直接链接UE，但随时随地可用!是个备选方案!
 至于蓝图编辑器控件这个总觉得像在写UMG还是高级点的Slate来做吧！
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new9.png" :avatarWidth="40" alignLeft>
 安排！
 </chatmessage>
 
 ## 新建插件开始
 
-<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40" alignLeft>
 点击插件，Baba用的是UE5.2
 </chatmessage>
 
-![](..%2F..%2Fassets%2Feditorplugin.png)
+![](..%2Fassets%2Feditorplugin.png)
 
-<chatmessage avatar="../../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/new5.png" :avatarWidth="40" alignLeft>
 新建编辑器插件
 </chatmessage>
 
 
-![](..%2F..%2Fassets%2Fplugincreate.png)
+![](..%2Fassets%2Fplugincreate.png)
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 注意名称不要和现有插件重名。
 </chatmessage>
 
 >等待IED编译后点击窗口-就能看到你创建的插件了
 
-![](..%2F..%2Fassets%2Feditorpluginbuild.png)
+![](..%2Fassets%2Feditorpluginbuild.png)
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 此时回到编辑器就能看到我们的插件了
 </chatmessage>
 
-![](..%2F..%2Fassets%2Fplugin.png)
+![](..%2Fassets%2Fplugin.png)
 
 ### UI扩展点
 
-<chatmessage avatar="../../../assets/emoji/bqb01.png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/bqb01.png" :avatarWidth="40" >
 你的编辑器怎么有这些绿色的字啊？有什么用呢？
 </chatmessage>
 
-![](..%2F..%2Fassets%2Fkzd.png)
+![](..%2Fassets%2Fkzd.png)
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 这个呢叫UI扩展点，你可以在编辑器偏好设置中找到。见名知意就是方便咱确认UI插件启动按钮该放哪里用的。
 </chatmessage>
 
-![](..%2F..%2Fassets%2Fuikuozhang.png)
+![](..%2Fassets%2Fuikuozhang.png)
 
 ## 插件基本结构
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 下一步之前我们复习一下基本的插件目录结构
 </chatmessage>
 
@@ -175,13 +175,13 @@ public class ExorcistTool : ModuleRules
 }
 
 ```
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 没啥可说的，就是一些必备基础模块。
 </chatmessage>
 
 ## .uplugin解析
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 基操先看.uplugin
 </chatmessage>
 
@@ -245,7 +245,7 @@ public class ExorcistTool : ModuleRules
 :::
 
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 除了Modules所有都是单一键值对，重点关注一下这个Modules。
 </chatmessage>
 
@@ -352,16 +352,24 @@ namespace ELoadingPhase
 ```
 :::
 
+### 插件热编译
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+可以在编辑器中热编译
+</chatmessage>
+
+![](..%2Fassets%2Fplugin001.jpg)
+
 ## 插件初探
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 现在来看看这个全新的插件目录结构
 </chatmessage>
 
-![](..%2F..%2Fassets%2Ftoolplugin.png)
+![](..%2Fassets%2Ftoolplugin.png)
 
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 系统为我们生成了三个头/源文件
 </chatmessage>
 
@@ -475,7 +483,7 @@ private:
 
 ## **ExorcistTool解析**
 
-<chatmessage avatar="../../../assets/emoji/bqb (5).png" :avatarWidth="40" >
+<chatmessage avatar="../../assets/emoji/bqb (5).png" :avatarWidth="40" >
 为什么没有构造函数？
 </chatmessage>
 
@@ -483,7 +491,7 @@ private:
 class FExorcistToolModule : public IModuleInterface
 ```
 
-<chatmessage avatar="../../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/dsyj.png" :avatarWidth="40" alignLeft>
 在C++中，类不是必须要有构造函数的，尤其是对于实现接口的类。接口是一种抽象规范，而不是具体的实例。这里`IModuleInterface` 是一个标记接口，用于标识该类为模块接口，
 而不需要实例化。因此，它并不需要一个显式的构造函数。
 </chatmessage>
@@ -496,7 +504,7 @@ class FExorcistToolModule : public IModuleInterface
 	virtual void ShutdownModule() override;
 ```
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 模块的启动时函数和关闭时函数。
 </chatmessage>
 
@@ -506,7 +514,7 @@ class FExorcistToolModule : public IModuleInterface
 /** This function will be bound to Command (by default it will bring up plugin window) */
 	void PluginButtonClicked();
 ```
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 很显然，按钮触发时的回调函数。
 </chatmessage>
 
@@ -515,7 +523,7 @@ class FExorcistToolModule : public IModuleInterface
 ```cpp
 void RegisterMenus();
 ```
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 注册菜单回调，具体点就是告诉编辑器这个按钮要显示在哪个位置，可以用之前的 UI扩展点定位参考。
 </chatmessage>
 
@@ -525,32 +533,34 @@ TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabA
 
 >`OnSpawnPluginTab`是一个函数，返回类型是 `TSharedRef<class SDockTab>`，接受一个 `const FSpawnTabArgs&` 类型的参数 `SpawnTabArgs`。
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 具体地说，这个函数声明是用于生成插件的SDockTab对象，用于创建插件模块的Dockable Tab。
 </chatmessage>
 
 
-<chatmessage avatar="../../../assets/emoji/new1.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40">
 你在说啥？我怎么开始迷糊了！
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 别急，既然接触新的知识肯定要先接受一些新的术语，就好像之前的TSharedRef、TSharedPtr等一样。
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/new11.png" :avatarWidth="60">
+<chatmessage avatar="../../assets/emoji/new11.png" :avatarWidth="60">
 问题是你说的这个TSharedRef我就没理解啊！
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
 那就先来理解理解这个TSharedRef，咱的模板-智能指针中有具体的介绍，这里只做初步理解。
 </chatmessage>
 
 [官网](https://docs.unrealengine.com/5.2/zh-CN/shared-references-in-unreal-engine/)
 
-![](..%2F..%2Fassets%2Fshareref.png)
+![](..%2Fassets%2Fshareref.png)
 
-### `TSharedRef`回顾
+
+
+## `TSharedRef`回顾
 
 `TSharedRef` 是 UE中的引用计数智能指针（Reference Counted Smart Pointer）的模板类。
 这个类提供了自动内存管理，确保在不再需要对象时正确地释放内存。
@@ -565,11 +575,11 @@ TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabA
 
 5. **线程安全：** `TSharedRef` 对象是线程安全的。多个线程可以安全地访问引用计数，并且引用计数的操作是原子的。
 
-<chatmessage avatar="../../../assets/emoji/hx.png" :avatarWidth="40">
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 完了！你在说啥啊？ 
 </chatmessage>
 
-<chatmessage avatar="../../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
+<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
 推荐你康康Baba写的C++inside指针你就明白了！这里咱们先继续介绍一下SDockTab和Dockable
 </chatmessage>
 
