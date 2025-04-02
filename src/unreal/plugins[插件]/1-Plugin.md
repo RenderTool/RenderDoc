@@ -352,10 +352,34 @@ namespace ELoadingPhase
 ```
 :::
 
+
+### 插件目录案例
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+编辑器运行和Runtime内容分开。主要是为了防止用户错误的打包仅编辑器的内容。
+</chatmessage>
+
+
+```cpp
+	"Modules": [
+		{
+			"Name": "DataSystem",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "DataSystemEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit"
+		}
+	]
+```
+
+
 ### 插件热编译
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-可以在编辑器中热编译
+插件和源码一样，也可以热编译
 </chatmessage>
 
 ![](..%2Fassets%2Fplugin001.jpg)
@@ -537,65 +561,6 @@ TSharedRef<class SDockTab> OnSpawnPluginTab(const class FSpawnTabArgs& SpawnTabA
 具体地说，这个函数声明是用于生成插件的SDockTab对象，用于创建插件模块的Dockable Tab。
 </chatmessage>
 
-
-<chatmessage avatar="../../assets/emoji/new1.png" :avatarWidth="40">
-你在说啥？我怎么开始迷糊了！
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-别急，既然接触新的知识肯定要先接受一些新的术语，就好像之前的TSharedRef、TSharedPtr等一样。
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/new11.png" :avatarWidth="60">
-问题是你说的这个TSharedRef我就没理解啊！
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-那就先来理解理解这个TSharedRef，咱的模板-智能指针中有具体的介绍，这里只做初步理解。
-</chatmessage>
-
-[官网](https://docs.unrealengine.com/5.2/zh-CN/shared-references-in-unreal-engine/)
-
-![](..%2Fassets%2Fshareref.png)
-
-
-
-## `TSharedRef`回顾
-
-`TSharedRef` 是 UE中的引用计数智能指针（Reference Counted Smart Pointer）的模板类。
-这个类提供了自动内存管理，确保在不再需要对象时正确地释放内存。
-
-1. **引用计数：** `TSharedRef` 使用引用计数机制来追踪对象的引用次数。当创建 `TSharedRef` 时，引用计数初始化为 1。每当有新的 `TSharedRef` 对象指向同一块内存时，引用计数会递增。当引用计数降为零时，内存将被释放。
-
-2. **强引用：** `TSharedRef` 是强引用，这意味着它要求至少有一个 `TSharedRef` 对象在引用该内存块，否则内存将被释放。这确保了在对象的生命周期中至少有一个强引用。
-
-3. **构造函数：** 可以使用 `MakeShared` 或 `MakeShareable` 函数来创建 `TSharedRef`。这些函数确保引用计数的正确管理。
-
-4. **不能为空：** `TSharedRef` 不能为空。必须在构造时为其提供有效的对象。
-
-5. **线程安全：** `TSharedRef` 对象是线程安全的。多个线程可以安全地访问引用计数，并且引用计数的操作是原子的。
-
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-完了！你在说啥啊？ 
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (1).png" :avatarWidth="40" alignLeft>
-推荐你康康Baba写的C++inside指针你就明白了！这里咱们先继续介绍一下SDockTab和Dockable
-</chatmessage>
-
-1. **SDockTab:**
-   - `SDockTab` 是 Slate UI 框架中的一个类，用于创建 Dockable Tab。
-   - `SDockTab` 允许你定义一个可以通过拖拽重新排列、关闭、最小化等操作的标签页。
-   - 你可以通过 `SNew(SDockTab)` 来创建 `SDockTab` 的实例，并通过链式调用设置标签页的属性。
-   - 通常用于创建插件或编辑器中的标签页，以组织和展示特定的UI元素。
-
-2. **Dockable Tab:**
-   - "Dockable Tab" 是 UE编辑器中一个可以被停靠（拖拽到主编辑器窗口的边缘）的标签页。
-   - 这些标签页可以包含插件的自定义UI、视图或工具。
-   - "Dockable Tab" 允许用户自定义编辑器布局，将不同的标签页放置在编辑器窗口的不同区域，以满足其工作流需求。
-   - "Dockable Tab" 在 UE 编辑器中提供了一种有效的组织和访问工具和信息的方式。
-
-<hr>
 
 
 ## 参考文档
