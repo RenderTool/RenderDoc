@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://rendertool.github.io/RenderDoc/RenderDoc/sitemap.xml
+Sitemap: https://rendertool.github.io/RenderDoc/sitemap.xml
