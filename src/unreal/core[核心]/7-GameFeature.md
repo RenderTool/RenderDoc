@@ -1,5 +1,5 @@
 ---
-title: c7.GF|GameplayFeature
+title: c7.GameplayFeature|游戏功能
 order : 700
 category:
   - u++

@@ -1,5 +1,5 @@
 ---
-title: c11.编辑器配置属性|DevelopSettings
+title: c11.DevelopSettings|编辑器配置属性
 order :  1100
 category:
   - u++

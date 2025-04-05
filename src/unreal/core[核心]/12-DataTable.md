@@ -1,5 +1,5 @@
 ---
-title: c12.数据表格|Datatable
+title: c12.Datatable|数据表格
 order: 1200
 category:
   - u++
