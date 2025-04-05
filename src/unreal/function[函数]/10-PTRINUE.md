@@ -1,5 +1,5 @@
 ---
-title: F10.Class&OBJ|类和对象
+title: F10.UClass|类
 order: 10
 category:
   - u++

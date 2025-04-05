@@ -9,7 +9,7 @@ export default defineUserConfig({
     vue: {},
   }),
   
-  base: "/RenderDoc/",
+  base: "/",
   lang: "zh-CN",
   title: "RenderDoc",
   description: "斯高和的文档",
