@@ -4,6 +4,11 @@ order : 20
 category:
   - u++
 ---
+## 省流
+
+>建议看完下面的教程再回头食用
+
+![](..%2Fassets%2Ftemp004.svg)
 
 ## 介绍
 

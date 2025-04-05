@@ -123,12 +123,8 @@ PrivateDependencyModuleNames.AddRange(new string[]
 });
 ```
 
-
 ### 2. **创建 `FSlateStyleSet` 并加载自定义图标**
 
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
-这里本质其实是单例，至于用不用共享指针维护其实不是很重要。避免内存泄漏需要和模块生命周期一致。
-</chatmessage>
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 
@@ -138,8 +134,28 @@ PrivateDependencyModuleNames.AddRange(new string[]
 
 ![](..%2Fassets%2Fsmallpi2.jpg)
 
+### 2.1 尺寸推荐
+
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
-尺寸方面建议不要超过128
+
+以下是参考`GASCompanion`的尺寸
+
+</chatmessage>
+
+```cpp
+const FVector2D Icon16x16(16.0f, 16.0f);
+const FVector2D Icon20x20(20.0f, 20.0f);
+const FVector2D Icon40x40(40.0f, 40.0f);
+const FVector2D Icon180x100(180.0f, 100.0f);
+const FVector2D Icon256x256(256.0f, 256.0f);
+```
+
+### 2.2 单例写法
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+
+以下是参考`ComboGraph`的单例写法
+
 </chatmessage>
 
 ```cpp
@@ -188,14 +204,9 @@ public:
 
 ```
 
-<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40">
-不要迷茫，就是加一个类的事，之后在模块中维护一下生命周期即可。
-</chatmessage>
-
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 Baba怕你不知道，这里重点说一下我们的关注点
 </chatmessage>
-
 
 ```cpp
 Set("ClassIcon.XXX类", new IMAGE_BRUSH("Icons/AssetIcons/DataSystem_x16", Icon16x16));
@@ -234,6 +245,44 @@ void FDataSystemEditorModule::ShutdownModule()
     
 IMPLEMENT_MODULE(FDataSystemEditorModule, DataSystemEditor)
 ```
+
+### 2.3 官方模板
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+官方也给了一些模板，这一点非常棒，目前的趋势就是越来越傻瓜化智能化。
+</chatmessage>
+
+>这里咱就不贴代码了
+
+![](..%2Fassets%2Ftemp001.jpg)
+
+![](..%2Fassets%2Ftemp002.jpg)
+
+### 2.4 格式处理
+
+```cpp
+#define TTF_FONT( RelativePath, ... ) FSlateFontInfo( Style->RootToContentDir( RelativePath, TEXT(".ttf") ), __VA_ARGS__ )
+#define OTF_FONT( RelativePath, ... ) FSlateFontInfo( Style->RootToContentDir( RelativePath, TEXT(".otf") ), __VA_ARGS__ )
+#define JPG_IMAGE_BRUSH( RelativePath, ... ) FSlateImageBrush(Style->RootToContentDir( RelativePath, TEXT(".jpg")), __VA_ARGS__ )
+
+//....
+
+#undef TTF_FONT
+#undef OTF_FONT
+#undef JPG_IMAGE_BRUSH
+```
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+可以用系统的一些方法，比如：加载SVG。
+</chatmessage>
+
+
+```cpp
+#include "Styling/SlateStyleMacros.h"
+Style->Set("Test.PluginAction", new IMAGE_BRUSH_SVG(TEXT("PlaceholderButtonIcon"), Icon20x20));
+```
+
+### 2.5 优先级
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 
