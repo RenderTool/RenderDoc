@@ -9,14 +9,6 @@ category:
 资源加载的几种写法
 </chatmessage>
 
-## 前置
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
-
-食用本文建议先了解`类和对象`的介绍！[直通车](10-PTRINUE.md)
-
-</chatmessage>
-
 ## 异步
 
 ![](..%2Fassets%2Fload001.png)
