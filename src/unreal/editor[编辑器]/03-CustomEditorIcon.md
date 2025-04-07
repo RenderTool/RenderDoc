@@ -62,21 +62,26 @@ XXX\Plugins\XXX\Resources\Icon128.png
 
 </chatmessage>
 
->**修改之前的**
+---
 
-![](..%2Fassets%2Ficons001.png)
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+内容浏览器里展示的都叫缩略图
+</chatmessage>
 
->**自定义后**
-
-![](..%2Fassets%2Fsmallpi3.png)
-
+![](..%2Fassets%2Fsmallpic14.jpg)
 
 ## **扩展点图标**
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+当然这些地方的都是图标
+</chatmessage>
 
 - **场景中的 Actor 右键菜单**
 - **内容浏览器（Content Browser）空白处右键菜单**
 - **内容浏览器（Content Browser）中的资产（Asset）右键菜单**
 - **工具栏按钮**
+
+![](..%2Fassets%2Fsmallpic5.png)
 
 ---
 
@@ -112,6 +117,8 @@ XXX\Plugins\XXX\Resources\Icon128.png
 
 </chatmessage>
 
+---
+
 ### 1. **引入模块**
 
 ```csharp
@@ -123,8 +130,9 @@ PrivateDependencyModuleNames.AddRange(new string[]
 });
 ```
 
-### 2. **创建 `FSlateStyleSet` 并加载自定义图标**
+---
 
+### 2.1 **创建 `FSlateStyleSet` 并加载自定义图标**
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 
@@ -134,23 +142,9 @@ PrivateDependencyModuleNames.AddRange(new string[]
 
 ![](..%2Fassets%2Fsmallpi2.jpg)
 
-### 2.1 尺寸推荐
+---
 
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
-
-以下是参考`GASCompanion`的尺寸
-
-</chatmessage>
-
-```cpp
-const FVector2D Icon16x16(16.0f, 16.0f);
-const FVector2D Icon20x20(20.0f, 20.0f);
-const FVector2D Icon40x40(40.0f, 40.0f);
-const FVector2D Icon180x100(180.0f, 100.0f);
-const FVector2D Icon256x256(256.0f, 256.0f);
-```
-
-### 2.2 单例写法
+### 2.2 单例写法（不推荐但可以了解）
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 
@@ -216,8 +210,13 @@ Set("ClassIcon.XXX类", new IMAGE_BRUSH("Icons/AssetIcons/DataSystem_x16", Icon1
 
 ![](..%2Fassets%2Fsmallpi5.png)
 
+---
 
->模块
+### 2.3 注册使用
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+菜准备好了，自然需要有人来烧。这个烧菜的人就是我们的插件模块本身。
+</chatmessage>
 
 ```cpp
 //利用共享指针管理
@@ -246,19 +245,186 @@ void FDataSystemEditorModule::ShutdownModule()
 IMPLEMENT_MODULE(FDataSystemEditorModule, DataSystemEditor)
 ```
 
-### 2.3 官方模板
+---
+
+### **3. 官方模板** （推荐做法）
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
 官方也给了一些模板，这一点非常棒，目前的趋势就是越来越傻瓜化智能化。
 </chatmessage>
 
->这里咱就不贴代码了
+---
+
+
+### 3.1 创建模板
 
 ![](..%2Fassets%2Ftemp001.jpg)
 
+---
+
+### 3.2 模板构成
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+模板包括了模块本身、命令、样式
+</chatmessage>
+
 ![](..%2Fassets%2Ftemp002.jpg)
 
-### 2.4 格式处理
+---
+
+### 3.3 实际例子
+
+```cpp
+#pragma once
+
+#include "Styling/SlateStyle.h"
+
+class FDataSystemEditorStyle
+{
+
+public:
+	static void Initialize();
+	
+	static void Shutdown();
+	
+	static void ReloadTextures();
+	
+	static const ISlateStyle& Get();
+	
+	static FName GetStyleSetName();
+
+private:
+	static TSharedRef<class FSlateStyleSet> Create();
+
+private:
+	static TSharedPtr<class FSlateStyleSet> StyleInstance;
+};
+
+```
+
+```cpp
+#include "DataSystemEditorStyle.h"
+#include "Framework/Application/SlateApplication.h"
+#include "Styling/SlateStyleRegistry.h"
+#include "Interfaces/IPluginManager.h"
+
+
+#define RootToContentDir Style->RootToContentDir
+#define IMAGE_BRUSH(RelativePath, ...) FSlateImageBrush(RootToContentDir(RelativePath, TEXT(".png") ), __VA_ARGS__)
+
+TSharedPtr<FSlateStyleSet> FDataSystemEditorStyle::StyleInstance = nullptr;
+
+//初始化模块
+void FDataSystemEditorStyle::Initialize()
+{
+	if (!StyleInstance.IsValid())
+	{
+		StyleInstance = Create();
+		FSlateStyleRegistry::RegisterSlateStyle(*StyleInstance);
+	}
+}
+
+//析构模块
+void FDataSystemEditorStyle::Shutdown()
+{
+	FSlateStyleRegistry::UnRegisterSlateStyle(*StyleInstance);
+	ensure(StyleInstance.IsUnique());
+	StyleInstance.Reset();
+}
+
+void FDataSystemEditorStyle::ReloadTextures()
+{
+	if (FSlateApplication::IsInitialized())
+	{
+		FSlateApplication::Get().GetRenderer()->ReloadTextureResources();
+	}
+}
+
+//获取样式名称
+FName FDataSystemEditorStyle::GetStyleSetName()
+{
+	static FName StyleSetName(TEXT("DataSystemEditorStyle"));
+	return StyleSetName;
+}
+
+//图标尺寸定义
+const FVector2D Icon16x16(16.0f, 16.0f);
+const FVector2D Icon20x20(20.0f, 20.0f);
+const FVector2D Icon40x40(40.0f, 40.0f);
+const FVector2D Icon64x64(64.f, 64.f);
+const FVector2D Icon96x96(96.f, 96.f);
+
+//注册图标
+
+TSharedRef< FSlateStyleSet > FDataSystemEditorStyle::Create()
+{
+	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("DataSystemEditorStyle"));
+	Style->SetContentRoot(IPluginManager::Get().FindPlugin("DataSystem")->GetBaseDir() / TEXT("Resources"));
+	Style-> Set("ClassIcon.DataMatching", new IMAGE_BRUSH("Icons/AssetIcons/DataSystem_x16", Icon20x20));
+	Style-> Set("ClassThumbnail.DataMatching", new IMAGE_BRUSH("Icons/AssetIcons/DataSystem_x64", Icon64x64));
+	Style->Set("DataSystemEditor.OpenPluginWindow", new IMAGE_BRUSH(TEXT("Icon128"), Icon96x96));
+	return Style;
+}
+
+//Get方法
+const ISlateStyle& FDataSystemEditorStyle::Get()
+{
+	return *StyleInstance;
+}
+
+#undef IMAGE_BRUSH
+
+```
+
+### 3.4 注册使用
+
+```cpp
+void FDataSystemEditorModule::StartupModule()
+{
+	FDataSystemEditorStyle::Initialize();
+	FDataSystemEditorStyle::ReloadTextures();
+
+	PluginCommands = MakeShareable(new FUICommandList);
+
+	UToolMenus::RegisterStartupCallback(
+		FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FDataSystemEditorModule::RegisterMenus));
+}
+
+void FDataSystemEditorModule::ShutdownModule()
+{
+	UToolMenus::UnRegisterStartupCallback(this);
+
+	UToolMenus::UnregisterOwner(this);
+
+	FDataSystemEditorStyle::Shutdown();
+}
+```
+
+---
+
+### 4. 处理细节
+
+---
+
+### 4.1 图集尺寸
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+
+以下是参考`GASCompanion`的尺寸
+
+</chatmessage>
+
+```cpp
+const FVector2D Icon16x16(16.0f, 16.0f);
+const FVector2D Icon20x20(20.0f, 20.0f);
+const FVector2D Icon40x40(40.0f, 40.0f);
+const FVector2D Icon180x100(180.0f, 100.0f);
+const FVector2D Icon256x256(256.0f, 256.0f);
+```
+
+---
+
+### 4.1 图集格式
 
 ```cpp
 #define TTF_FONT( RelativePath, ... ) FSlateFontInfo( Style->RootToContentDir( RelativePath, TEXT(".ttf") ), __VA_ARGS__ )
@@ -282,7 +448,9 @@ IMPLEMENT_MODULE(FDataSystemEditorModule, DataSystemEditor)
 Style->Set("Test.PluginAction", new IMAGE_BRUSH_SVG(TEXT("PlaceholderButtonIcon"), Icon20x20));
 ```
 
-### 2.5 优先级
+---
+
+### 4.2 优先级
 
 <chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
 
