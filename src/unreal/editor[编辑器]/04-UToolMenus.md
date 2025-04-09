@@ -61,6 +61,172 @@ category:
 PrivateDependencyModuleNames.AddRange(new string[]{"ToolMenus",});
 ```
 ---
+
+### **菜单|绑定回调**
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+接着咱们开始注册菜单，注册菜单之前先注册菜单的回调委托。
+</chatmessage>
+
+```cpp
+UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FDataSystemEditorModule::RegisterMenus));
+```
+---
+
+### **菜单|注册菜单**
+
+```cpp
+UToolMenu* ToolbarMenu = UToolMenus::Get()->RegisterMenu("LevelEditor.LevelEditorToolBar.SettingsToolbar", NAME_None, EMultiBoxType::SlimHorizontalToolBar);
+```
+
+---
+
+### **菜单|按键布局**
+
+```cpp
+UENUM(BlueprintType)
+enum class EMultiBoxType : uint8
+{
+    MenuBar,                       // 水平菜单栏（如主菜单）
+    ToolBar,                       // 标准工具栏
+    VerticalToolBar,              // 垂直工具栏
+    SlimHorizontalToolBar,        // 扁平水平工具栏（图标 + 文本水平对齐）
+    UniformToolBar,               // 均匀布局的工具栏（目前仅支持水平）
+    Menu,                         // 下拉菜单或右键菜单
+    ButtonRow,                    // 多行按钮排列（最多N个按钮一行）
+    SlimHorizontalUniformToolBar // 扁平均匀工具栏
+};
+```
+---
+
+### **菜单|按钮方式**
+
+| 函数名                            | 用途            | 使用场景         |
+|--------------------------------|---------------|--------------|
+| `InitMenuEntry`                | 普通菜单项         | 右键菜单、主菜单     |
+| `InitMenuEntryWithCommandList` | 菜单项 + 自定义命令列表 | 多命令源场景       |
+| `InitToolBarButton`            | 工具栏按钮         | 顶部工具栏、自定义工具条 |
+| `InitSubMenu`                  | 子菜单项          | 多级菜单         |
+| `InitDynamicEntry`             | 动态生成的菜单项      | 项目很多、运行时生成内容 |
+| `InitComboButton`              | 复合按钮          | 例如下拉菜单       |
+
+---
+
+### **菜单|系统样式**
+
+> SlimHorizontalToolBar的样式用`AssetEditorToolbar`
+
+```cpp twoslash {6}
+UToolMenu* ToolbarMenu = UToolMenus::Get()->RegisterMenu(
+			"LevelEditor.LevelEditorToolBar.SettingsToolbar",
+			NAME_None,
+			EMultiBoxType::SlimHorizontalToolBar
+);
+ToolbarMenu->StyleName = "AssetEditorToolbar";
+```
+
+> Entry的样式用`CalloutToolbar`
+
+```cpp twoslash {4}
+FToolMenuEntry& Entry = Section.AddEntry(
+    FToolMenuEntry::InitToolBarButton(FDataSystemEditorCommands::Get().PluginAction)
+    
+Entry.StyleNameOverride = "CalloutToolbar";
+```
+
+---
+
+### **菜单|样式参考**
+
+<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
+这些系统样式参考有吗？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
+用这个Fab里的插件看吧
+</chatmessage>
+
+![](..%2Fassets%2Fmenustyle001.jpg)
+
+[官方Fab](https://www.fab.com/listings/04eb0964-3152-412f-85be-fdbfbda56425)
+
+---
+
+### **菜单|显示结构**
+
+![](..%2Fassets%2FMenuPatern.png)
+
+
+* Section 和 Entry
+
+| **概念**                   | **作用**                      |
+|--------------------------|-----------------------------|
+| **`Section`（区块）**        | 用于组织菜单选项的 **分组**，类似于 `菜单分类` |
+| **`Entry`（选项）**          | 具体的 **菜单项**，用户可以点击的按钮       |
+| **`SubMenu`（次级列表）**      | 弹出的次级列表 ,支持无限嵌套             |
+| **`PullDownMenu`（下拉菜单）** | 弹出的下拉菜单                     |
+
+---
+
+>Section：用于组织菜单选项的 **分组**
+
+```cpp
+FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("DataSystem");
+```
+
+>Entry：具体的 **菜单项**
+
+![](..%2Fassets%2FMenuPatern2.png)
+
+```cpp
+ //MainEntry
+{
+	FToolMenuSection& Section = Menu->AddSection("Main", LOCTEXT("MainHeading", "Main"));
+	Section.AddMenuEntry(
+	"Main",
+	LOCTEXT("Main", "Main"),
+	LOCTEXT("MainToolTip", "MainToolTip"),
+	FSlateIcon(FAppStyle::GetAppStyleSetName(), "LevelEditor.BrowseDocumentation"),
+	FUIAction(FExecuteAction::CreateStatic(&Local::OpenDocumentation))
+	);
+}
+
+```
+
+---
+
+* SubMenu
+
+>SubMenu：弹出的次级列表
+
+![](..%2Fassets%2FMenuPatern3.png)
+
+```cpp
+    struct BuildEntry
+	{
+		static void BuildSubChildMenu(FMenuBuilder& MenuBuilder)
+		{
+			MenuBuilder.AddMenuEntry(
+				LOCTEXT("SubChildMenu", "SubChildMenu"),
+				LOCTEXT("SubChildMenuTooltip", "SubChildMenuTooltips"),
+				FSlateIcon(FDataSystemEditorStyle::GetStyleSetName(), "ClassIcon.DataMatching"),
+				FUIAction(FExecuteAction::CreateStatic(&Local::OpenDataDefinitionManager))
+			);
+		};
+	};
+    {
+        FToolMenuSection& Section = Menu->AddSection("Sub", LOCTEXT("SubHeading", "Sub"));
+	    Section.AddSubMenu(
+		"SubMain",
+		LOCTEXT("SubMain", "SubMain Menu"),
+		LOCTEXT("SubMainTooltip", "SubMain Tooltip"),
+		FNewMenuDelegate::CreateStatic(&BuildEntry::BuildSubChildMenu));
+    }
+
+```
+
+---
+
 ### **注册命令|Command**
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
@@ -177,124 +343,6 @@ PluginCommands->MapAction(
 		FCanExecuteAction());
 ```
 
----
-
-### **菜单|绑定回调**
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
-接着咱们开始注册菜单，注册菜单之前先注册菜单的回调委托。
-</chatmessage>
-
-```cpp
-UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FDataSystemEditorModule::RegisterMenus));
-```
----
-
-### **菜单|注册菜单**
-
-```cpp
-UToolMenu* ToolbarMenu = UToolMenus::Get()->RegisterMenu("LevelEditor.LevelEditorToolBar.SettingsToolbar", NAME_None, EMultiBoxType::SlimHorizontalToolBar);
-```
-
----
-
-### **菜单|按键布局**
-
-```cpp
-UENUM(BlueprintType)
-enum class EMultiBoxType : uint8
-{
-    MenuBar,                       // 水平菜单栏（如主菜单）
-    ToolBar,                       // 标准工具栏
-    VerticalToolBar,              // 垂直工具栏
-    SlimHorizontalToolBar,        // 扁平水平工具栏（图标 + 文本水平对齐）
-    UniformToolBar,               // 均匀布局的工具栏（目前仅支持水平）
-    Menu,                         // 下拉菜单或右键菜单
-    ButtonRow,                    // 多行按钮排列（最多N个按钮一行）
-    SlimHorizontalUniformToolBar // 扁平均匀工具栏
-};
-```
----
-
-### **菜单|显示结构**
-
-* Section 和 Entry
-
-| **概念**            | **作用**                      |
-|-------------------|-----------------------------|
-| **`Section`（区块）** | 用于组织菜单选项的 **分组**，类似于 `菜单分类` |
-| **`Entry`（选项）**   | 具体的 **菜单项**，用户可以点击的按钮       |
-
----
-
->Section：用于组织菜单选项的 **分组**
-
-```cpp
-FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("DataSystem");
-```
-
->Entry：具体的 **菜单项**
-
-```cpp
-// 添加一个工具栏按钮，该按钮绑定 UI_COMMAND 定义的 PluginAction 命令
-FToolMenuEntry& Entry = Section.AddEntry(
-    FToolMenuEntry::InitToolBarButton(FDataSystemEditorCommands::Get().PluginAction)
-);
-
-// 设置按钮的命令列表（用于支持快捷键、状态等）
-Entry.SetCommandList(PluginCommands);
-```
----
-
-### **菜单|按钮方式**
-
-
-| 函数名                            | 用途            | 使用场景         |
-|--------------------------------|---------------|--------------|
-| `InitMenuEntry`                | 普通菜单项         | 右键菜单、主菜单     |
-| `InitMenuEntryWithCommandList` | 菜单项 + 自定义命令列表 | 多命令源场景       |
-| `InitToolBarButton`            | 工具栏按钮         | 顶部工具栏、自定义工具条 |
-| `InitSubMenu`                  | 子菜单项          | 多级菜单         |
-| `InitDynamicEntry`             | 动态生成的菜单项      | 项目很多、运行时生成内容 |
-| `InitComboButton`              | 复合按钮          | 例如下拉菜单       |
-
----
-
-### **菜单|系统样式**
-
-> SlimHorizontalToolBar的样式用`AssetEditorToolbar`
-
-```cpp twoslash {6}
-UToolMenu* ToolbarMenu = UToolMenus::Get()->RegisterMenu(
-			"LevelEditor.LevelEditorToolBar.SettingsToolbar",
-			NAME_None,
-			EMultiBoxType::SlimHorizontalToolBar
-);
-ToolbarMenu->StyleName = "AssetEditorToolbar";
-```
-
-> Entry的样式用`CalloutToolbar`
-
-```cpp twoslash {4}
-FToolMenuEntry& Entry = Section.AddEntry(
-    FToolMenuEntry::InitToolBarButton(FDataSystemEditorCommands::Get().PluginAction)
-    
-Entry.StyleNameOverride = "CalloutToolbar";
-```
-
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="40">
-这些系统样式参考有吗？
-</chatmessage>
-
-<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft >
-用这个Fab里的插件看吧
-</chatmessage>
-
-![](..%2Fassets%2Fmenustyle001.jpg)
-
-[官方Fab](https://www.fab.com/listings/04eb0964-3152-412f-85be-fdbfbda56425)
-
----
 
 ### **回到案例**
 
@@ -377,6 +425,15 @@ void FDataSystemEditorModule::RegisterComboMenus() const
 			FUIAction(FExecuteAction::CreateStatic(&Local::OpenDocumentation))
 		);
 	}
+}
+TSharedRef<SWidget> FDataSystemEditorModule::GenerateToolbarSettingsMenu(TSharedRef<FUICommandList> InCommandList)
+{
+	FLevelEditorModule& LevelEditorModule = FModuleManager::GetModuleChecked<FLevelEditorModule>(TEXT("LevelEditor"));
+	const TSharedPtr<FExtender> MenuExtender = LevelEditorModule.AssembleExtenders(
+		InCommandList, LevelEditorModule.GetAllLevelEditorToolbarViewMenuExtenders());
+
+	const FToolMenuContext MenuContext(InCommandList, MenuExtender);
+	return UToolMenus::Get()->GenerateWidget("LevelEditor.LevelEditorToolBar.DataSystemEditor.ComboMenu", MenuContext);
 }
 
 ```
