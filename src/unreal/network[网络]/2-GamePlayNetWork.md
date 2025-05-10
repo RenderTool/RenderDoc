@@ -13,19 +13,19 @@ category:
 ![](..%2Fassets%2FspwanActor.png)
 
 <chatmessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
-进行简单网络同步测试。同时客户端和服务端后，客户端按1生成Actor，服务端并没有同步
+客户端按1生成Actor，服务端没有同步
 </chatmessage>
 
 ![](..%2Fassets%2Fclientreplicate.png)
 
 <chatmessage avatar=" ../../assets/emoji/new7.png" :avatarWidth="40">
-但是，在服务端按1时，客户端却同步了！
+但是，在服务端按1时，客户端同步了！
 </chatmessage>
 
 ![](..%2Fassets%2Fserverreplicate.png)
 
 <chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
-我明明已经启用了网络复制！为什么客户端中按1，服务端没有同步生成？
+已经启用了网络复制！为什么客户端中按1，服务端没有同步生成？
 </chatmessage>
 
 <chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
@@ -107,6 +107,53 @@ AMyCharacter::ATestCharacter(const FObjectInitializer& ObjectInitializer)
 </chatmessage>
 
 ## 网络权威
+
+### ENetMode
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+第一件事肯定是先确认自己运行在在哪个端口。
+</chatmessage>
+
+
+```cpp
+enum ENetMode
+{
+	/** Standalone: a game without networking, with one or more local players. Still considered a server because it has all server functionality. */
+	NM_Standalone,
+
+	/** Dedicated server: server with no local players. */
+	NM_DedicatedServer,
+
+	/** Listen server: a server that also has a local player who is hosting the game, available to other players on the network. */
+	NM_ListenServer,
+
+	/**
+	 * Network client: client connected to a remote server.
+	 * Note that every mode less than this value is a kind of server, so checking NetMode < NM_Client is always some variety of server.
+	 */
+	NM_Client,
+
+	NM_MAX,
+};
+```
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+也就是说我们调这个函数就能确定自己是不是服务器了？
+</chatmessage>
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+对，也不全对。要知道在没连接服务器前，我们本地都是以`NM_Standalone`运行的。这时候你去打印得到的永远是`NM_Standalone`。
+
+</chatmessage>
+
+<chatmessage avatar=" ../../assets/emoji/hx.png" :avatarWidth="40">
+那不完犊子了！
+</chatmessage>
+
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+所以这种判断尽量在明确的函数上执行，例如RPC中。
+</chatmessage>
 
 ### Authority|Remote
 
