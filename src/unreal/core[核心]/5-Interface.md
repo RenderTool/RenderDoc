@@ -212,6 +212,10 @@ if (Interface)
 
 ### ②. BlueprintNativeEvent
 
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+只会调用到C++的版本，蓝图中的接口不会被调用。
+</chatmessage>
+
 ```cpp
 IMenuInterface* Interface = Cast<IMenuInterface>(FocusActor);
 if (Interface)
@@ -219,6 +223,10 @@ if (Interface)
     Interface->Execute_ISetLockVisibility(FocusActor,IsFocus);
 }
 ```
+
+<chatmessage avatar="../../assets/emoji/blzt.png" :avatarWidth="40" alignLeft>
+C++/蓝图接口都会被调用
+</chatmessage>
 
 ```cpp
 if (Actor->Implements<UHighlightInterface>())
