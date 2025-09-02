@@ -115,6 +115,8 @@ struct FInventoryBase : public FTableRowBase
 
 ### **C++ 读取**
 
+
+
 ### 获取行结构体
 
 ```cpp
@@ -125,6 +127,30 @@ struct FInventoryBase : public FTableRowBase
 ```
 
 ---
+
+<chatmessage avatar="../../assets/emoji/bqb (2).png" :avatarWidth="40" alignLeft>
+
+有时候我们需要指定`Datatable`的数据类型，可以使用`meta`标记
+
+</chatmessage>
+
+### meta|` RequiredAssetDataTags`
+
+> 所需的资产数据标签永久链接永久链接，一般用于指定Datatable的结构体类型
+
+```cpp
+    UPROPERTY(EditAnywhere, meta = (RequiredAssetDataTags = "RowStructure=/Script/UMG.RichTextStyleRow"))
+	TObjectPtr<UDataTable> TextStyleSet;
+```
+
+### meta|` RowType`
+
+> 仅允许选择具有特定类型的数据表行。
+
+```cpp
+    UPROPERTY(EditAnywhere, meta=(RowType="ImageRow"))
+	TObjectPtr<UDataTable> TextStyleSet;
+```
 
 ## **5. 动态修改 DataTable（运行时）数据**
 虽然 `DataTable` 主要用于存储静态数据，但在运行时也可以修改：
