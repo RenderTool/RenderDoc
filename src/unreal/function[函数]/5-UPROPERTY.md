@@ -365,6 +365,23 @@ UPROPERTY(EditAnywhere, meta=(EditCondition="bCanFly", Units="s"))
 	float InlineEditConditionToggle;
 ```
 
+### ` RequiredAssetDataTags`
+
+> 所需的资产数据标签永久链接永久链接，一般用于指定Datatable的结构体类型
+
+```cpp
+    UPROPERTY(EditAnywhere, meta = (RequiredAssetDataTags = "RowStructure=/Script/UMG.RichTextStyleRow"))
+	TObjectPtr<UDataTable> TextStyleSet;
+```
+
+### ` RowType`
+
+> 仅允许选择具有特定类型的数据表行。
+
+```cpp
+    UPROPERTY(EditAnywhere, meta=(RowType="ImageRow"))
+	TObjectPtr<UDataTable> TextStyleSet;
+```
 
 ![](..%2Fassets%2FInlineEditConditionToggle.png)
 
