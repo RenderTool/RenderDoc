@@ -15,7 +15,8 @@ export default navbar([
     icon: "screwdriver-wrench",
     prefix: "/tools/",
     children:["git/","github/","vscode/","vuepress/","rider/","visualstudio/","idea/"],
-  },
+  }, 
+  "/aigc/",
   "/algorithm/",  
   "/timeline/",
     

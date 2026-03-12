@@ -22,7 +22,7 @@ category:
 
 ## 二、实现步骤
 
-### **1** 在 新建`FEdGraphSchemaAction`
+### **1** 新建`FEdGraphSchemaAction`
 ::: code-tabs#language
 
 @tab NodeActions.h
@@ -87,9 +87,7 @@ UEdGraphNode* FComboSchemaAction_AddComment::PerformAction(class UEdGraph* Paren
 
 ---
 
-### **2** 允许创建 Comment 节点
-
->你的UEdGraphSchema中重写虚函数
+### **2** `UEdGraphSchema`派生类中重写注释`GetCreateCommentAction`节点
 
 ```cpp
  virtual TSharedPtr<FEdGraphSchemaAction> GetCreateCommentAction() const override
@@ -99,7 +97,7 @@ UEdGraphNode* FComboSchemaAction_AddComment::PerformAction(class UEdGraph* Paren
 ```
 ---
 
-### **3.** 在`FAssetEditorToolkit`的CommandList中注册命令
+### **3.** `FAssetEditorToolkit`派生类中添加创建命令
 
 ```cpp
 void FComboGraphEditorApp::CreateCommandList()
@@ -115,7 +113,7 @@ void FComboGraphEditorApp::CreateCommandList()
     );
 }
 ```
-### **4.** 最重要的是`Graph Events`委托注册`OnNodeTitleCommitted`支持`ReName`
+### **4.** 与此同时在`Graph Events`委托注册`OnNodeTitleCommitted`支持`ReName`
 
 ```cpp
     SGraphEditor::FGraphEditorEvents GraphEvents;
@@ -139,15 +137,7 @@ void FComboGraphEditorApp::CreateCommandList()
 
 </chatmessage>
 
-
-<chatmessage avatar="../../assets/emoji/hx.png" :avatarWidth="38">
-
-其实就是在`InitEditor`中就行
-
-</chatmessage>
-
-### **5.**  在`FAssetEditorToolkit` 修改以显示注释的属性
-
+### **5.**  细节面板中显示`UEdGraphNode_Comment`属性
 
 ```cpp
 SGraphEditor::FGraphEditorEvents InEvents;
@@ -184,7 +174,9 @@ void FSuperComboGraphAssetsEditor::OnGraphSelectionChanged(const TSet<UObject*>&
 	SuperComboGraphProperties->SetObject(SuperComboGraphObj);
 }
 ```
-### **6.** 派生的`UEdGraphSchema`类中注册Action,以便手动右键内容中可以创建注释节点
+### **6.** `UEdGraphSchema`派生类中注册Action,以便手动右键内容中可以创建注释节点
+
+![](../assets/comment_Action.jpg)
 
 ```cpp
 void UComboGraphSchema::GetGraphContextActions(FGraphContextMenuBuilder& ContextMenuBuilder) const
@@ -203,6 +195,5 @@ void UComboGraphSchema::GetGraphContextActions(FGraphContextMenuBuilder& Context
 
 ```
 
-![](../assets/comment_Action.jpg)
 
 
