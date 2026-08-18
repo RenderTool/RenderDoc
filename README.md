@@ -47,19 +47,19 @@ RenderDoc 是基于 [VuePress](https://vuepress.vuejs.org/) 与 [theme-hope](htt
 ### 站点首页
 
 <p align="center">
-  <img src="src/.vuepress/public/001.png" width="60%" alt="站点首页截图 1">
+  <img src="src/.vuepress/public/001.png" width="100%" alt="站点首页截图 1">
 </p>
 <p align="center">
-  <img src="src/.vuepress/public/002.png" width="60%" alt="站点首页截图 2">
+  <img src="src/.vuepress/public/002.png" width="100%" alt="站点首页截图 2">
 </p>
 <p align="center">
-  <img src="src/.vuepress/public/003.png" width="60%" alt="站点首页截图 3">
+  <img src="src/.vuepress/public/003.png" width="100%" alt="站点首页截图 3">
 </p>
 
 ### 暗色主题
 
 <p align="center">
-  <img src="src/.vuepress/public/004.png" width="60%" alt="暗色主题截图">
+  <img src="src/.vuepress/public/004.png" width="100%" alt="暗色主题截图">
 </p>
 
 ---
